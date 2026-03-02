@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { ToolExecutor } from "../src/tools/executor.js";
+import { TOOL_DEFINITIONS } from "../src/tools/definitions.js";
 
 describe("ToolExecutor", () => {
   it("routes get_balance to /api/balances", async () => {
@@ -38,6 +39,9 @@ describe("ToolExecutor", () => {
   });
 
   it("routes claim_signup_bonus to /api/signup-bonus/claim", async () => {
+    const claimEnabled = TOOL_DEFINITIONS.some(
+      (tool) => tool.name === "claim_signup_bonus"
+    );
     const http = {
       get: vi.fn(),
       post: vi.fn().mockResolvedValue({ success: true }),
@@ -46,8 +50,37 @@ describe("ToolExecutor", () => {
 
     const result = await executor.execute("claim_signup_bonus", {});
 
+    if (!claimEnabled) {
+      expect(result.status).toBe("error");
+      expect(http.post).not.toHaveBeenCalled();
+      return;
+    }
+
     expect(result.status).toBe("success");
     expect(http.post).toHaveBeenCalledWith("/api/signup-bonus/claim", {});
+  });
+
+  it("routes x402_fetch to /api/x402/fetch", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ ok: true }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("x402_fetch", {
+      url: "https://paid.example.com/data",
+      method: "GET",
+      preferred_chain: "base",
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith("/api/x402/fetch", {
+      url: "https://paid.example.com/data",
+      method: "GET",
+      headers: undefined,
+      body: undefined,
+      preferred_chain: "base",
+    });
   });
 
   it("routes store_key to /api/agent-keys", async () => {

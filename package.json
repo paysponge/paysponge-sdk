@@ -1,6 +1,6 @@
 {
   "name": "@paysponge/sdk",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "description": "SDK for spinning up wallets for AI agents with Claude Agent SDK integration",
   "main": "./dist/index.js",
@@ -20,6 +20,8 @@
   ],
   "scripts": {
     "generate:types": "bunx openapi-typescript openapi.json -o src/types/generated.d.ts",
+    "generate:api": "bunx openapi-ts -f openapi-ts.config.ts",
+    "generate": "bun run generate:types && bun run generate:api",
     "build": "tsc",
     "dev": "tsc --watch",
     "typecheck": "tsc --noEmit",
@@ -29,14 +31,17 @@
     "example:basic": "bun run examples/basic.ts",
     "example:transfer": "bun run examples/transfer.ts",
     "example:claude": "bun run examples/claude-agent.ts",
-    "example:tools": "bun run examples/direct-tools.ts"
+    "example:tools": "bun run examples/direct-tools.ts",
+    "example:user-email-flow": "bun run examples/user-email-flow.ts"
   },
   "dependencies": {
-    "zod": "^3.24.0",
+    "clipboardy": "^4.0.0",
     "open": "^10.1.0",
-    "clipboardy": "^4.0.0"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@hey-api/client-fetch": "^0.13.1",
+    "@hey-api/openapi-ts": "^0.93.1",
     "@types/bun": "^1.3.2",
     "@types/node": "^25.0.3",
     "openapi-typescript": "^7.13.0",

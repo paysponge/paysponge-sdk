@@ -13,6 +13,15 @@ import {
   type Chain,
 } from "../types/schemas.js";
 import type { HttpClient } from "./http.js";
+import {
+  getApiTransactions,
+  getApiTransactionsStatusByTxHash,
+  postApiTransactionsSwap,
+  postApiTransfersEvm,
+  postApiTransfersSolana,
+  postApiTransfersTempo,
+} from "./generated/heyapi/sdk.gen.js";
+import { getHeyApiClient } from "./generated/heyapi-adapter.js";
 
 // Swap response from API
 const SwapResponseSchema = z.object({
@@ -79,11 +88,14 @@ export class TransactionsApi {
         throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
       }
 
-      const response = await this.http.post<unknown>("/api/transfers/solana", {
-        chain: validated.chain,
-        to: validated.to,
-        amount: validated.amount,
-        currency: validated.currency,
+      const response = await postApiTransfersSolana({
+        client: getHeyApiClient(this.http),
+        body: {
+          chain: validated.chain,
+          to: validated.to,
+          amount: validated.amount,
+          currency: validated.currency,
+        },
       });
 
       const parsed = SubmitTransactionSchema.parse(response);
@@ -102,11 +114,14 @@ export class TransactionsApi {
         throw new Error("pathUSD transfers are only supported on Tempo chains");
       }
 
-      const response = await this.http.post<unknown>("/api/transfers/tempo", {
-        chain: validated.chain,
-        to: validated.to,
-        amount: validated.amount,
-        use_gas_sponsorship: true,
+      const response = await postApiTransfersTempo({
+        client: getHeyApiClient(this.http),
+        body: {
+          chain: validated.chain,
+          to: validated.to,
+          amount: validated.amount,
+          use_gas_sponsorship: true,
+        } as any,
       });
 
       const parsed = SubmitTransactionSchema.parse(response);
@@ -124,11 +139,14 @@ export class TransactionsApi {
       throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
     }
 
-    const response = await this.http.post<unknown>("/api/transfers/evm", {
-      chain: validated.chain,
-      to: validated.to,
-      amount: validated.amount,
-      currency: validated.currency,
+    const response = await postApiTransfersEvm({
+      client: getHeyApiClient(this.http),
+      body: {
+        chain: validated.chain,
+        to: validated.to,
+        amount: validated.amount,
+        currency: validated.currency,
+      },
     });
 
     const parsed = SubmitTransactionSchema.parse(response);
@@ -148,12 +166,15 @@ export class TransactionsApi {
   async swap(options: SwapOptions): Promise<TransactionResult> {
     const validated = SwapOptionsSchema.parse(options);
 
-    const response = await this.http.post<unknown>("/api/transactions/swap", {
-      chain: validated.chain,
-      inputToken: validated.from,
-      outputToken: validated.to,
-      amount: validated.amount,
-      slippageBps: validated.slippageBps,
+    const response = await postApiTransactionsSwap({
+      client: getHeyApiClient(this.http),
+      body: {
+        chain: validated.chain,
+        inputToken: validated.from,
+        outputToken: validated.to,
+        amount: validated.amount,
+        slippageBps: validated.slippageBps,
+      },
     });
 
     const parsed = SwapResponseSchema.parse(response);
@@ -170,14 +191,15 @@ export class TransactionsApi {
    * Uses the /api/transactions/status/:txHash endpoint
    */
   async getStatus(txHash: string, chain: Chain): Promise<TransactionStatus> {
-    const params: Record<string, string> = {
+    const params: { chain: Chain } = {
       chain,
     };
 
-    const response = await this.http.get<unknown>(
-      `/api/transactions/status/${txHash}`,
-      params
-    );
+    const response = await getApiTransactionsStatusByTxHash({
+      client: getHeyApiClient(this.http),
+      path: { txHash },
+      query: params,
+    });
 
     const parsed = TransactionStatusResponseSchema.parse(response);
 
@@ -209,7 +231,10 @@ export class TransactionsApi {
       params.offset = options.offset.toString();
     }
 
-    const response = await this.http.get<unknown>("/api/transactions", params);
+    const response = await getApiTransactions({
+      client: getHeyApiClient(this.http),
+      query: params,
+    });
     const parsed = TransactionHistoryResponseSchema.parse(response);
 
     return parsed.items.map((tx) => ({

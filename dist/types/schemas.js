@@ -57,6 +57,10 @@ export const ConnectOptionsSchema = z.object({
     baseUrl: z.string().url().optional(),
     /** Disable browser auto-open during device flow */
     noBrowser: z.boolean().optional(),
+    /** Custom path to store credentials file (defaults to ~/.spongewallet/credentials.json) */
+    credentialsPath: z.string().optional(),
+    /** Email to associate with the agent (used for claim matching) */
+    email: z.string().email().optional(),
 });
 // ============================================================================
 // Agent Types

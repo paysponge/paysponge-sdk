@@ -29,6 +29,10 @@ export declare const ConnectOptionsSchema: z.ZodObject<{
     baseUrl: z.ZodOptional<z.ZodString>;
     /** Disable browser auto-open during device flow */
     noBrowser: z.ZodOptional<z.ZodBoolean>;
+    /** Custom path to store credentials file (defaults to ~/.spongewallet/credentials.json) */
+    credentialsPath: z.ZodOptional<z.ZodString>;
+    /** Email to associate with the agent (used for claim matching) */
+    email: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     name?: string | undefined;
     agentId?: string | undefined;
@@ -36,6 +40,8 @@ export declare const ConnectOptionsSchema: z.ZodObject<{
     testnet?: boolean | undefined;
     baseUrl?: string | undefined;
     noBrowser?: boolean | undefined;
+    credentialsPath?: string | undefined;
+    email?: string | undefined;
 }, {
     name?: string | undefined;
     agentId?: string | undefined;
@@ -43,6 +49,8 @@ export declare const ConnectOptionsSchema: z.ZodObject<{
     testnet?: boolean | undefined;
     baseUrl?: string | undefined;
     noBrowser?: boolean | undefined;
+    credentialsPath?: string | undefined;
+    email?: string | undefined;
 }>;
 export type ConnectOptions = z.infer<typeof ConnectOptionsSchema>;
 export declare const CreateAgentOptionsSchema: z.ZodObject<{

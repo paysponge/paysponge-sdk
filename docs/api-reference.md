@@ -152,6 +152,18 @@ const payment = await wallet.createX402Payment({
 });
 ```
 
+#### `wallet.x402Fetch(options): Promise<unknown>`
+
+Fetch a URL with automatic x402 payment handling.
+
+```typescript
+const response = await wallet.x402Fetch({
+  url: "https://api.example.com/protected",
+  method: "GET",
+  preferred_chain: "base",
+});
+```
+
 #### `wallet.createAgent(options): Promise<Agent>`
 
 Create a new agent.
@@ -178,46 +190,7 @@ Get the current agent's UUID.
 
 ---
 
-### SpongeAdmin
-
-Management client for programmatic agent creation using a master API key.
-
-#### `SpongeAdmin.connect(options?): Promise<SpongeAdmin>`
-
-Authenticate via device flow and get a master key.
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `baseUrl` | `string` | `https://api.wallet.paysponge.com` | Custom API URL |
-| `noBrowser` | `boolean` | `false` | Don't open browser |
-
-#### `new SpongeAdmin({ apiKey, baseUrl? })`
-
-Create instance with existing master key.
-
-#### `admin.createAgent(options): Promise<{ agent: Agent; apiKey: string }>`
-
-Create a new agent with wallets. Returns the agent and its API key.
-
-| Option | Type | Required | Description |
-|--------|------|----------|-------------|
-| `name` | `string` | Yes | Agent name (1-255 chars) |
-| `description` | `string` | No | Agent description |
-| `dailySpendingLimit` | `string` | No | Daily limit |
-| `weeklySpendingLimit` | `string` | No | Weekly limit |
-| `monthlySpendingLimit` | `string` | No | Monthly limit |
-
-#### `admin.createWallet(options): Promise<SpongeWallet>`
-
-Create agent and return a connected `SpongeWallet`.
-
-#### `admin.listAgents(): Promise<Agent[]>`
-
-List all agents.
-
-#### `admin.deleteAgent(agentId): Promise<void>`
-
-Delete an agent.
+Master-key automation is available via backend REST endpoints, not a dedicated SDK admin client.
 
 ---
 

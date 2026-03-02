@@ -10,6 +10,10 @@ export interface DeviceFlowOptions {
     agentName?: string;
     /** Type of key to generate: "agent" (default) or "master" */
     keyType?: "agent" | "master";
+    /** Custom path to store credentials file */
+    credentialsPath?: string;
+    /** Email to associate with the agent (used for claim matching) */
+    email?: string;
 }
 /**
  * Start the OAuth Device Flow authentication

@@ -56,32 +56,31 @@ const wallet = await SpongeWallet.connect({
 
 ## Programmatic Agent Creation
 
-Use a master API key to spin up agents without browser auth:
+Use a master API key with the REST API to spin up agents without browser auth:
 
 ```typescript
-import { SpongeAdmin } from "@spongewallet/sdk";
-
-// First time: authenticate via browser to get a master key
-const admin = await SpongeAdmin.connect();
-
-// Or use an existing master key
-const admin = new SpongeAdmin({ apiKey: "sponge_master_..." });
-
-// Create agents programmatically
-const { agent, apiKey } = await admin.createAgent({ name: "bot-1" });
+const response = await fetch("https://api.wallet.paysponge.com/api/agents/", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer sponge_master_...",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ name: "bot-1" }),
+});
+const { apiKey } = await response.json();
 
 // Connect to the agent's wallet
 const wallet = await SpongeWallet.connect({ apiKey });
 ```
 
-See [Master Keys](./master-keys.md) for details.
+See the backend API docs for full master-key lifecycle endpoints.
 
 ## Environment Variables
 
 | Variable | Description |
 |----------|-------------|
 | `SPONGE_API_KEY` | Agent API key (skips device flow) |
-| `SPONGE_MASTER_KEY` | Master key for programmatic agent creation |
+| `SPONGE_MASTER_KEY` | Optional key for your own REST automation scripts |
 | `SPONGE_API_URL` | Custom backend URL (default: `https://api.wallet.paysponge.com`) |
 
 ## What Happens on Connect

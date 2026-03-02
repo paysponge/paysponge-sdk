@@ -1,23 +1,18 @@
 /**
- * Master Key - Programmatic Agent Creation
+ * Master Key - Programmatic Agent Creation (REST)
  *
- * Uses a master API key to create new agents with wallets,
- * without requiring browser-based auth.
+ * Uses a master API key to create a new agent via REST,
+ * then connects to the returned agent key with SpongeWallet.
  *
  * Run with:
  *   cd packages/spongewallet-sdk
- *
- *   # Option A: authenticate via device flow to get a master key
- *   bun run examples/master-key.ts
- *
- *   # Option B: use an existing master key
  *   SPONGE_MASTER_KEY=sponge_master_xxx bun run examples/master-key.ts
  *
  * Optional:
- *   SPONGE_API_URL=http://localhost:8000 for local dev
+ *   SPONGE_API_URL=http://localhost:8000
  */
 
-import { SpongeAdmin } from "../src/index.js";
+import { SpongeWallet, deviceFlowAuth } from "../src/index.js";
 
 async function main() {
   console.log("=".repeat(60));
@@ -25,53 +20,60 @@ async function main() {
   console.log("=".repeat(60));
   console.log();
 
-  const baseUrl = process.env.SPONGE_API_URL || undefined;
-  const masterKey = process.env.SPONGE_MASTER_KEY;
+  const baseUrl = process.env.SPONGE_API_URL || "https://api.wallet.paysponge.com";
+  const envMasterKey = process.env.SPONGE_MASTER_KEY;
 
-  let admin: SpongeAdmin;
+  const masterKey =
+    envMasterKey ??
+    (await deviceFlowAuth({
+      baseUrl,
+      keyType: "master",
+    })).apiKey;
 
-  if (masterKey) {
-    console.log("1. Using master key from environment...");
-    admin = new SpongeAdmin({ apiKey: masterKey, baseUrl });
-  } else {
-    console.log("1. Authenticating via device flow to get master key...");
-    admin = await SpongeAdmin.connect({ baseUrl });
+  if (!envMasterKey) {
+    console.log("Obtained a new master key via device flow.");
+    console.log();
   }
-  console.log("   Done");
-  console.log();
 
-  // Create a new agent
-  console.log("2. Creating agent...");
-  const { agent, apiKey } = await admin.createAgent({
-    name: `bot-${Date.now()}`,
-    description: "Created via master key example",
+  console.log("1. Creating agent via REST...");
+  const createResponse = await fetch(`${baseUrl}/api/agents/`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${masterKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: `bot-${Date.now()}`,
+      description: "Created via master key example",
+    }),
   });
-  console.log(`   Agent: ${agent.name} (${agent.id})`);
-  console.log(`   API Key: ${apiKey.substring(0, 24)}...`);
+
+  if (!createResponse.ok) {
+    throw new Error(`Failed to create agent: ${createResponse.status} ${createResponse.statusText}`);
+  }
+
+  const createResult = (await createResponse.json()) as {
+    agent: { id: string; name: string };
+    apiKey: string;
+  };
+
+  console.log(`   Agent: ${createResult.agent.name} (${createResult.agent.id})`);
+  console.log(`   API Key: ${createResult.apiKey.substring(0, 24)}...`);
   console.log();
 
-  // Connect to the agent's wallet
-  console.log("3. Connecting to agent wallet...");
-  const wallet = await admin.createWallet({
-    name: `wallet-bot-${Date.now()}`,
+  console.log("2. Connecting to created agent wallet...");
+  const wallet = await SpongeWallet.connect({
+    apiKey: createResult.apiKey,
+    agentId: createResult.agent.id,
+    baseUrl,
   });
   console.log(`   Connected! Agent ID: ${wallet.getAgentId()}`);
   console.log();
 
-  // Get wallet addresses
-  console.log("4. Getting wallet addresses...");
+  console.log("3. Getting wallet addresses...");
   const addresses = await wallet.getAddresses();
   for (const [chain, address] of Object.entries(addresses)) {
     console.log(`   ${chain}: ${address}`);
-  }
-  console.log();
-
-  // List all agents
-  console.log("5. Listing all agents...");
-  const agents = await admin.listAgents();
-  console.log(`   Total agents: ${agents.length}`);
-  for (const a of agents) {
-    console.log(`   - ${a.name} (${a.id})`);
   }
   console.log();
 

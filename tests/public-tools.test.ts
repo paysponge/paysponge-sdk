@@ -70,4 +70,52 @@ describe("PublicToolsApi", () => {
     expect(result.success).toBe(true);
     expect(http.post).toHaveBeenCalledWith("/api/signup-bonus/claim", {});
   });
+
+  it("posts x402 fetch requests to the REST endpoint", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        data: { hello: "world" },
+      }),
+    };
+    const api = new PublicToolsApi(http as any);
+
+    const result = await api.x402Fetch({
+      url: "https://paid.example.com/data",
+      method: "GET",
+      preferred_chain: "base",
+    });
+
+    expect(result).toEqual({
+      ok: true,
+      status: 200,
+      data: { hello: "world" },
+    });
+    expect(http.post).toHaveBeenCalledWith("/api/x402/fetch", {
+      url: "https://paid.example.com/data",
+      method: "GET",
+      preferred_chain: "base",
+    });
+  });
+
+  it("supports preferredChain and defaults method to GET", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ ok: true }),
+    };
+    const api = new PublicToolsApi(http as any);
+
+    await api.x402Fetch({
+      url: "https://paid.example.com/other",
+      preferredChain: "solana",
+    });
+
+    expect(http.post).toHaveBeenCalledWith("/api/x402/fetch", {
+      url: "https://paid.example.com/other",
+      method: "GET",
+      preferred_chain: "solana",
+    });
+  });
 });

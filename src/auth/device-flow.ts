@@ -20,6 +20,10 @@ export interface DeviceFlowOptions {
   agentName?: string;
   /** Type of key to generate: "agent" (default) or "master" */
   keyType?: "agent" | "master";
+  /** Custom path to store credentials file */
+  credentialsPath?: string;
+  /** Email to associate with the agent (used for claim matching) */
+  email?: string;
 }
 
 /**
@@ -44,6 +48,7 @@ export async function deviceFlowAuth(
     testnet: options.testnet,
     agentName: options.agentName,
     keyType: options.keyType,
+    email: options.email,
   });
 
   // Step 2: Display instructions and optionally open browser
@@ -90,7 +95,7 @@ export async function deviceFlowAuth(
       createdAt: new Date(),
       baseUrl: baseUrl !== DEFAULT_BASE_URL ? baseUrl : undefined,
     };
-    saveCredentials(credentials);
+    saveCredentials(credentials, options.credentialsPath);
   }
 
   // Step 5: Display success message with API key
@@ -101,12 +106,12 @@ export async function deviceFlowAuth(
   if (isMaster) {
     console.log("Use this key to create agents programmatically:");
     console.log("  - Set SPONGE_MASTER_KEY environment variable, or");
-    console.log("  - Pass directly: new SpongeAdmin({ apiKey: '...' })\n");
+    console.log("  - Use as Bearer token with POST /api/agents\n");
   } else {
     console.log("Save this key for other machines/deployments:");
     console.log("  - Set SPONGE_API_KEY environment variable, or");
     console.log("  - Pass directly: SpongeWallet.connect({ apiKey: '...' })\n");
-    console.log(`Key cached locally at ${getCredentialsPath()}`);
+    console.log(`Key cached locally at ${getCredentialsPath(options.credentialsPath)}`);
   }
   console.log("=".repeat(60) + "\n");
 
@@ -118,7 +123,7 @@ export async function deviceFlowAuth(
  */
 async function requestDeviceCode(
   baseUrl: string,
-  options: { testnet?: boolean; agentName?: string; keyType?: "agent" | "master" }
+  options: { testnet?: boolean; agentName?: string; keyType?: "agent" | "master"; email?: string }
 ): Promise<DeviceCodeResponse> {
   const response = await fetch(`${baseUrl}/api/oauth/device/authorization`, {
     method: "POST",
@@ -131,6 +136,7 @@ async function requestDeviceCode(
       testnet: options.testnet,
       agentName: options.agentName,
       keyType: options.keyType,
+      email: options.email,
     }),
   });
 

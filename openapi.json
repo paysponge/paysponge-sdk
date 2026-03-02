@@ -36,6 +36,10 @@
                   },
                   "claimRequired": {
                     "type": "boolean"
+                  },
+                  "email": {
+                    "format": "email",
+                    "type": "string"
                   }
                 }
               }
@@ -60,6 +64,10 @@
                   },
                   "claimRequired": {
                     "type": "boolean"
+                  },
+                  "email": {
+                    "format": "email",
+                    "type": "string"
                   }
                 }
               }
@@ -84,6 +92,10 @@
                   },
                   "claimRequired": {
                     "type": "boolean"
+                  },
+                  "email": {
+                    "format": "email",
+                    "type": "string"
                   }
                 }
               }
@@ -7794,6 +7806,9 @@
                       "agent",
                       "master"
                     ]
+                  },
+                  "email": {
+                    "type": "string"
                   }
                 }
               }
@@ -7820,6 +7835,9 @@
                       "agent",
                       "master"
                     ]
+                  },
+                  "email": {
+                    "type": "string"
                   }
                 }
               }
@@ -7846,6 +7864,9 @@
                       "agent",
                       "master"
                     ]
+                  },
+                  "email": {
+                    "type": "string"
                   }
                 }
               }

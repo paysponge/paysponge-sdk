@@ -6,6 +6,15 @@ import {
   type CreateAgentOptions,
 } from "../types/schemas.js";
 import type { HttpClient } from "./http.js";
+import {
+  deleteApiAgentsById,
+  getApiAgents,
+  getApiAgentsById,
+  getApiAgentsMe,
+  postApiAgents,
+  putApiAgentsById,
+} from "./generated/heyapi/sdk.gen.js";
+import { getHeyApiClient } from "./generated/heyapi-adapter.js";
 
 // Response from creating an agent (includes API key)
 const CreateAgentResponseSchema = z.object({
@@ -23,8 +32,12 @@ export class AgentsApi {
     options: CreateAgentOptions
   ): Promise<{ agent: Agent; apiKey: string }> {
     const validated = CreateAgentOptionsSchema.parse(options);
+    const client = getHeyApiClient(this.http);
 
-    const response = await this.http.post<unknown>("/api/agents", validated);
+    const response = await postApiAgents({
+      client,
+      body: validated,
+    });
     const parsed = CreateAgentResponseSchema.parse(response);
 
     return {
@@ -38,7 +51,9 @@ export class AgentsApi {
    * Note: This endpoint requires Privy auth, not API key auth
    */
   async list(): Promise<Agent[]> {
-    const response = await this.http.get<unknown[]>("/api/agents");
+    const response = await getApiAgents({
+      client: getHeyApiClient(this.http),
+    });
     return z.array(AgentSchema).parse(response);
   }
 
@@ -47,7 +62,10 @@ export class AgentsApi {
    * Note: This endpoint requires Privy auth, not API key auth
    */
   async get(agentId: string): Promise<Agent> {
-    const response = await this.http.get<unknown>(`/api/agents/${agentId}`);
+    const response = await getApiAgentsById({
+      client: getHeyApiClient(this.http),
+      path: { id: agentId },
+    });
     return AgentSchema.parse(response);
   }
 
@@ -56,7 +74,9 @@ export class AgentsApi {
    * This endpoint returns the agent associated with the current API key
    */
   async getCurrent(): Promise<Agent> {
-    const response = await this.http.get<unknown>("/api/agents/me");
+    const response = await getApiAgentsMe({
+      client: getHeyApiClient(this.http),
+    });
     return AgentSchema.parse(response);
   }
 
@@ -67,10 +87,11 @@ export class AgentsApi {
     agentId: string,
     updates: Partial<CreateAgentOptions>
   ): Promise<Agent> {
-    const response = await this.http.put<unknown>(
-      `/api/agents/${agentId}`,
-      updates
-    );
+    const response = await putApiAgentsById({
+      client: getHeyApiClient(this.http),
+      path: { id: agentId },
+      body: updates,
+    });
     return AgentSchema.parse(response);
   }
 
@@ -78,6 +99,9 @@ export class AgentsApi {
    * Delete an agent
    */
   async delete(agentId: string): Promise<void> {
-    await this.http.delete(`/api/agents/${agentId}`);
+    await deleteApiAgentsById({
+      client: getHeyApiClient(this.http),
+      path: { id: agentId },
+    });
   }
 }

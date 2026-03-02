@@ -57,17 +57,9 @@ SPONGE_API_KEY=sponge_test_xxx node my-bot.js
 
 ### Master Keys (Programmatic Agent Creation)
 
-```typescript
-import { SpongeAdmin } from "@paysponge/sdk";
-
-const admin = new SpongeAdmin({ apiKey: "sponge_master_..." });
-
-// Create agents programmatically
-const { agent, apiKey } = await admin.createAgent({ name: "bot-1" });
-
-// Connect to the agent's wallet
-const wallet = await SpongeWallet.connect({ apiKey });
-```
+`SpongeAdmin` is not part of the SDK surface. For master-key automation,
+call the REST API directly (for example, `POST /api/agents`) using
+`Authorization: Bearer sponge_master_...`.
 
 ## Claude Agent SDK Integration
 
@@ -109,8 +101,8 @@ for await (const msg of query({
 - [Authentication](./docs/authentication.md)
 - [Wallets & Transfers](./docs/wallets-and-transfers.md)
 - [Claude Integration](./docs/claude-integration.md)
-- [Master Keys](./docs/master-keys.md)
 - [API Reference](./docs/api-reference.md)
+- [OpenAPI Method Generation Plan](./docs/openapi-sdk-method-generation-plan.md)
 
 ## CLI
 

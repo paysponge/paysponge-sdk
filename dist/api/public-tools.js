@@ -1,4 +1,6 @@
 import { DetailedBalancesSchema, EvmTransferOptionsSchema, SolanaTransferOptionsSchema, SubmitTransactionSchema, SolanaTokensResponseSchema, SolanaTokenSearchResponseSchema, FundingRequestResponseSchema, OnrampCryptoOptionsSchema, OnrampCryptoResponseSchema, SignupBonusClaimResponseSchema, TransactionHistoryDetailedSchema, SpongeResponseSchema, X402PaymentResponseSchema, } from "../types/schemas.js";
+import { getApiBalances, getApiSolanaTokens, getApiSolanaTokensSearch, getApiTransactionsHistory, postApiFundingRequests, postApiOnrampCrypto, postApiSignupBonusClaim, postApiTransfersEvm, postApiTransfersSolana, postApiX402Payments, } from "./generated/heyapi/sdk.gen.js";
+import { getHeyApiClient } from "./generated/heyapi-adapter.js";
 export class PublicToolsApi {
     http;
     constructor(http) {
@@ -15,28 +17,43 @@ export class PublicToolsApi {
         if (options.onlyUsdc) {
             params.onlyUsdc = "true";
         }
-        const response = await this.http.get("/api/balances", params);
+        const response = await getApiBalances({
+            client: getHeyApiClient(this.http),
+            query: params,
+        });
         return DetailedBalancesSchema.parse(response);
     }
     async evmTransfer(options) {
         const validated = EvmTransferOptionsSchema.parse(options);
-        const response = await this.http.post("/api/transfers/evm", validated);
+        const response = await postApiTransfersEvm({
+            client: getHeyApiClient(this.http),
+            body: validated,
+        });
         return SubmitTransactionSchema.parse(response);
     }
     async solanaTransfer(options) {
         const validated = SolanaTransferOptionsSchema.parse(options);
-        const response = await this.http.post("/api/transfers/solana", validated);
+        const response = await postApiTransfersSolana({
+            client: getHeyApiClient(this.http),
+            body: validated,
+        });
         return SubmitTransactionSchema.parse(response);
     }
     async getSolanaTokens(chain) {
-        const response = await this.http.get("/api/solana/tokens", { chain });
+        const response = await getApiSolanaTokens({
+            client: getHeyApiClient(this.http),
+            query: { chain },
+        });
         return SolanaTokensResponseSchema.parse(response);
     }
     async searchSolanaTokens(query, limit) {
         const params = { query };
         if (limit !== undefined)
             params.limit = limit.toString();
-        const response = await this.http.get("/api/solana/tokens/search", params);
+        const response = await getApiSolanaTokensSearch({
+            client: getHeyApiClient(this.http),
+            query: params,
+        });
         return SolanaTokenSearchResponseSchema.parse(response);
     }
     async getTransactionHistoryDetailed(options = {}) {
@@ -45,20 +62,32 @@ export class PublicToolsApi {
             params.limit = options.limit.toString();
         if (options.chain)
             params.chain = options.chain;
-        const response = await this.http.get("/api/transactions/history", params);
+        const response = await getApiTransactionsHistory({
+            client: getHeyApiClient(this.http),
+            query: params,
+        });
         return TransactionHistoryDetailedSchema.parse(response);
     }
     async requestFunding(options) {
-        const response = await this.http.post("/api/funding-requests", options);
+        const response = await postApiFundingRequests({
+            client: getHeyApiClient(this.http),
+            body: options,
+        });
         return FundingRequestResponseSchema.parse(response);
     }
     async createOnrampLink(options) {
         const validated = OnrampCryptoOptionsSchema.parse(options);
-        const response = await this.http.post("/api/onramp/crypto", validated);
+        const response = await postApiOnrampCrypto({
+            client: getHeyApiClient(this.http),
+            body: validated,
+        });
         return OnrampCryptoResponseSchema.parse(response);
     }
     async claimSignupBonus() {
-        const response = await this.http.post("/api/signup-bonus/claim", {});
+        const response = await postApiSignupBonusClaim({
+            client: getHeyApiClient(this.http),
+            body: {},
+        });
         return SignupBonusClaimResponseSchema.parse(response);
     }
     async sponge(request) {
@@ -66,8 +95,19 @@ export class PublicToolsApi {
         return SpongeResponseSchema.parse(response);
     }
     async createX402Payment(options) {
-        const response = await this.http.post("/api/x402/payments", options);
+        const response = await postApiX402Payments({
+            client: getHeyApiClient(this.http),
+            body: options,
+        });
         return X402PaymentResponseSchema.parse(response);
+    }
+    async x402Fetch(options) {
+        const { preferredChain, preferred_chain, method = "GET", ...rest } = options;
+        return this.http.post("/api/x402/fetch", {
+            ...rest,
+            method,
+            preferred_chain: preferred_chain ?? preferredChain,
+        });
     }
 }
 //# sourceMappingURL=public-tools.js.map

@@ -8,6 +8,12 @@ import {
   type Balance,
 } from "../types/schemas.js";
 import type { HttpClient } from "./http.js";
+import {
+  getApiWallets,
+  getApiWalletsById,
+  getApiWalletsByIdBalance,
+} from "./generated/heyapi/sdk.gen.js";
+import { getHeyApiClient } from "./generated/heyapi-adapter.js";
 
 // Balance response from API
 const BalanceResponseSchema = z.object({
@@ -49,10 +55,10 @@ export class WalletsApi {
       params.includeBalances = "true";
     }
 
-    const response = await this.http.get<unknown[]>(
-      `/api/wallets`,
-      params
-    );
+    const response = await getApiWallets({
+      client: getHeyApiClient(this.http),
+      query: params,
+    });
     return z.array(WalletSchema).parse(response);
   }
 
@@ -60,7 +66,10 @@ export class WalletsApi {
    * Get a specific wallet by ID
    */
   async get(walletId: string): Promise<Wallet> {
-    const response = await this.http.get<unknown>(`/api/wallets/${walletId}`);
+    const response = await getApiWalletsById({
+      client: getHeyApiClient(this.http),
+      path: { id: walletId },
+    });
     return WalletSchema.parse(response);
   }
 
@@ -73,10 +82,11 @@ export class WalletsApi {
       params.chainId = chainId.toString();
     }
 
-    const response = await this.http.get<unknown>(
-      `/api/wallets/${walletId}/balance`,
-      params
-    );
+    const response = await getApiWalletsByIdBalance({
+      client: getHeyApiClient(this.http),
+      path: { id: walletId },
+      query: params,
+    });
     const parsed = BalanceResponseSchema.parse(response);
 
     // Convert to simple balance map

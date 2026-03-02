@@ -114,7 +114,8 @@ export class SpongeWallet {
     const baseUrl = validated.baseUrl ?? DEFAULT_BASE_URL;
 
     // Step 1: Try to get API key
-    let apiKey = validated.apiKey ?? getApiKey();
+    const credentialsPath = validated.credentialsPath;
+    let apiKey = validated.apiKey ?? getApiKey("SPONGE_API_KEY", credentialsPath);
     let agentId = validated.agentId;
     let credentials: Credentials | null = null;
 
@@ -125,6 +126,8 @@ export class SpongeWallet {
         noBrowser: validated.noBrowser,
         testnet: validated.testnet,
         agentName: validated.name ?? "Default Agent",
+        credentialsPath,
+        email: validated.email,
       });
 
       apiKey = tokenResponse.apiKey;
@@ -132,7 +135,7 @@ export class SpongeWallet {
     } else {
       // Load credentials to get agent ID if not provided
       if (!agentId) {
-        credentials = loadCredentials();
+        credentials = loadCredentials(credentialsPath);
         agentId = credentials?.agentId;
       }
     }
@@ -156,7 +159,7 @@ export class SpongeWallet {
           testnet: validated.testnet,
           createdAt: new Date(),
           baseUrl: baseUrl !== DEFAULT_BASE_URL ? baseUrl : undefined,
-        });
+        }, credentialsPath);
       } catch {
         // If getCurrent fails, the API key might be invalid
         throw new Error(
@@ -406,6 +409,20 @@ export class SpongeWallet {
     http_method?: "GET" | "POST";
   }) {
     return this.publicTools.createX402Payment(options);
+  }
+
+  /**
+   * Fetch any URL with automatic x402 payment handling
+   */
+  async x402Fetch(options: {
+    url: string;
+    method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    headers?: Record<string, string>;
+    body?: unknown;
+    preferredChain?: "base" | "solana" | "ethereum";
+    preferred_chain?: "base" | "solana" | "ethereum";
+  }) {
+    return this.publicTools.x402Fetch(options);
   }
 
   /**

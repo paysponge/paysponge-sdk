@@ -85,7 +85,8 @@ export class SpongeWallet {
         const validated = ConnectOptionsSchema.parse(options);
         const baseUrl = validated.baseUrl ?? DEFAULT_BASE_URL;
         // Step 1: Try to get API key
-        let apiKey = validated.apiKey ?? getApiKey();
+        const credentialsPath = validated.credentialsPath;
+        let apiKey = validated.apiKey ?? getApiKey("SPONGE_API_KEY", credentialsPath);
         let agentId = validated.agentId;
         let credentials = null;
         // Step 2: If no API key, do device flow
@@ -95,6 +96,8 @@ export class SpongeWallet {
                 noBrowser: validated.noBrowser,
                 testnet: validated.testnet,
                 agentName: validated.name ?? "Default Agent",
+                credentialsPath,
+                email: validated.email,
             });
             apiKey = tokenResponse.apiKey;
             agentId = tokenResponse.agentId ?? undefined;
@@ -102,7 +105,7 @@ export class SpongeWallet {
         else {
             // Load credentials to get agent ID if not provided
             if (!agentId) {
-                credentials = loadCredentials();
+                credentials = loadCredentials(credentialsPath);
                 agentId = credentials?.agentId;
             }
         }
@@ -123,7 +126,7 @@ export class SpongeWallet {
                     testnet: validated.testnet,
                     createdAt: new Date(),
                     baseUrl: baseUrl !== DEFAULT_BASE_URL ? baseUrl : undefined,
-                });
+                }, credentialsPath);
             }
             catch {
                 // If getCurrent fails, the API key might be invalid
@@ -307,6 +310,12 @@ export class SpongeWallet {
      */
     async createX402Payment(options) {
         return this.publicTools.createX402Payment(options);
+    }
+    /**
+     * Fetch any URL with automatic x402 payment handling
+     */
+    async x402Fetch(options) {
+        return this.publicTools.x402Fetch(options);
     }
     /**
      * Trade perps and spot on Hyperliquid DEX

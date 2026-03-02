@@ -6,7 +6,7 @@ The SDK supports three ways to authenticate:
 
 ### 1. Device Flow (interactive)
 
-On first use, `SpongeWallet.connect()` or `SpongeAdmin.connect()` starts the OAuth Device Flow:
+On first use, `SpongeWallet.connect()` starts the OAuth Device Flow:
 
 1. SDK requests a device code from the backend
 2. A code like `ABCD-1234` is displayed in your terminal (and copied to clipboard)
@@ -35,12 +35,10 @@ Or use the environment variable:
 export SPONGE_API_KEY=sponge_test_...
 ```
 
-### 3. Master Key (for SpongeAdmin)
+### 3. Master Key (for REST automation)
 
 ```typescript
-const admin = new SpongeAdmin({
-  apiKey: "sponge_master_...",
-});
+const masterKey = process.env.SPONGE_MASTER_KEY;
 ```
 
 Or use the environment variable:
@@ -55,7 +53,7 @@ export SPONGE_MASTER_KEY=sponge_master_...
 |------------|------|-------|------------|
 | `sponge_test_` | Agent key (test) | Single agent, test mode | Agent creation or device flow |
 | `sponge_live_` | Agent key (live) | Single agent, live mode | Agent creation or device flow |
-| `sponge_master_` | Master key | User-level, can create agents | `SpongeAdmin.connect()` or API |
+| `sponge_master_` | Master key | User-level, can create agents | API |
 
 ## Credential Storage
 

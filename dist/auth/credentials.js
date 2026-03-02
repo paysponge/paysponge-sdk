@@ -5,32 +5,47 @@ import { CredentialsSchema } from "../types/schemas.js";
 const CREDENTIALS_DIR = ".spongewallet";
 const CREDENTIALS_FILE = "credentials.json";
 /**
+ * Resolve the credentials file path.
+ * Priority: explicit path > SPONGE_CREDENTIALS_PATH env var > default (~/.spongewallet/credentials.json)
+ */
+function resolveCredentialsPath(customPath) {
+    if (customPath) {
+        return customPath;
+    }
+    const envPath = process.env.SPONGE_CREDENTIALS_PATH;
+    if (envPath) {
+        return envPath;
+    }
+    return path.join(os.homedir(), CREDENTIALS_DIR, CREDENTIALS_FILE);
+}
+/**
  * Get the credentials directory path
  */
-export function getCredentialsDir() {
-    return path.join(os.homedir(), CREDENTIALS_DIR);
+export function getCredentialsDir(customPath) {
+    return path.dirname(resolveCredentialsPath(customPath));
 }
 /**
  * Get the credentials file path
  */
-export function getCredentialsPath() {
-    return path.join(getCredentialsDir(), CREDENTIALS_FILE);
+export function getCredentialsPath(customPath) {
+    return resolveCredentialsPath(customPath);
 }
 /**
  * Ensure the credentials directory exists
  */
-function ensureCredentialsDir() {
-    const dir = getCredentialsDir();
+function ensureCredentialsDir(customPath) {
+    const dir = getCredentialsDir(customPath);
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true, mode: 0o700 });
     }
 }
 /**
  * Load credentials from disk
+ * @param customPath Optional custom path to the credentials file
  * @returns Credentials if found and valid, null otherwise
  */
-export function loadCredentials() {
-    const credPath = getCredentialsPath();
+export function loadCredentials(customPath) {
+    const credPath = resolveCredentialsPath(customPath);
     if (!fs.existsSync(credPath)) {
         return null;
     }
@@ -51,10 +66,12 @@ export function loadCredentials() {
 }
 /**
  * Save credentials to disk
+ * @param credentials Credentials to save
+ * @param customPath Optional custom path to the credentials file
  */
-export function saveCredentials(credentials) {
-    ensureCredentialsDir();
-    const credPath = getCredentialsPath();
+export function saveCredentials(credentials, customPath) {
+    ensureCredentialsDir(customPath);
+    const credPath = resolveCredentialsPath(customPath);
     // Validate before saving
     const validated = CredentialsSchema.parse(credentials);
     fs.writeFileSync(credPath, JSON.stringify(validated, null, 2), {
@@ -63,38 +80,42 @@ export function saveCredentials(credentials) {
 }
 /**
  * Delete credentials from disk
+ * @param customPath Optional custom path to the credentials file
  */
-export function deleteCredentials() {
-    const credPath = getCredentialsPath();
+export function deleteCredentials(customPath) {
+    const credPath = resolveCredentialsPath(customPath);
     if (fs.existsSync(credPath)) {
         fs.unlinkSync(credPath);
     }
 }
 /**
  * Check if credentials exist
+ * @param customPath Optional custom path to the credentials file
  */
-export function hasCredentials() {
-    return fs.existsSync(getCredentialsPath());
+export function hasCredentials(customPath) {
+    return fs.existsSync(resolveCredentialsPath(customPath));
 }
 /**
  * Get API key from environment variable or credentials file
  * @param envVarName Name of the environment variable to check (default: SPONGE_API_KEY)
+ * @param customPath Optional custom path to the credentials file
  */
-export function getApiKey(envVarName = "SPONGE_API_KEY") {
+export function getApiKey(envVarName = "SPONGE_API_KEY", customPath) {
     // Check environment variable first
     const envKey = process.env[envVarName];
     if (envKey) {
         return envKey;
     }
     // Fall back to credentials file
-    const creds = loadCredentials();
+    const creds = loadCredentials(customPath);
     return creds?.apiKey ?? null;
 }
 /**
  * Get agent ID from credentials file
+ * @param customPath Optional custom path to the credentials file
  */
-export function getAgentId() {
-    const creds = loadCredentials();
+export function getAgentId(customPath) {
+    const creds = loadCredentials(customPath);
     return creds?.agentId ?? null;
 }
 //# sourceMappingURL=credentials.js.map

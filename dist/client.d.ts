@@ -343,6 +343,17 @@ export declare class SpongeWallet {
         headerName?: string | undefined;
     }>;
     /**
+     * Fetch any URL with automatic x402 payment handling
+     */
+    x402Fetch(options: {
+        url: string;
+        method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+        headers?: Record<string, string>;
+        body?: unknown;
+        preferredChain?: "base" | "solana" | "ethereum";
+        preferred_chain?: "base" | "solana" | "ethereum";
+    }): Promise<unknown>;
+    /**
      * Trade perps and spot on Hyperliquid DEX
      *
      * @example

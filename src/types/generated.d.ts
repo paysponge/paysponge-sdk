@@ -2408,18 +2408,24 @@ export interface operations {
                     agentFirst?: boolean;
                     testnet?: boolean;
                     claimRequired?: boolean;
+                    /** Format: email */
+                    email?: string;
                 };
                 "application/x-www-form-urlencoded": {
                     name: string;
                     agentFirst?: boolean;
                     testnet?: boolean;
                     claimRequired?: boolean;
+                    /** Format: email */
+                    email?: string;
                 };
                 "multipart/form-data": {
                     name: string;
                     agentFirst?: boolean;
                     testnet?: boolean;
                     claimRequired?: boolean;
+                    /** Format: email */
+                    email?: string;
                 };
             };
         };
@@ -5429,6 +5435,7 @@ export interface operations {
                     agentName?: string;
                     /** @enum {string} */
                     keyType?: "agent" | "master";
+                    email?: string;
                 };
                 "application/x-www-form-urlencoded": {
                     clientId?: string;
@@ -5437,6 +5444,7 @@ export interface operations {
                     agentName?: string;
                     /** @enum {string} */
                     keyType?: "agent" | "master";
+                    email?: string;
                 };
                 "multipart/form-data": {
                     clientId?: string;
@@ -5445,6 +5453,7 @@ export interface operations {
                     agentName?: string;
                     /** @enum {string} */
                     keyType?: "agent" | "master";
+                    email?: string;
                 };
             };
         };

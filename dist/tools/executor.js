@@ -173,6 +173,14 @@ export class ToolExecutor {
                     fee_payer: args.fee_payer,
                     http_method: args.http_method,
                 });
+            case "x402_fetch":
+                return this.http.post("/api/x402/fetch", {
+                    url: args.url,
+                    method: args.method,
+                    headers: args.headers,
+                    body: args.body,
+                    preferred_chain: args.preferred_chain ?? args.preferredChain,
+                });
             case "mpp_fetch":
                 return this.http.post("/api/mpp/fetch", {
                     chain: args.chain,

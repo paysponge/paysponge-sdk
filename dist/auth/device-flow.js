@@ -19,6 +19,7 @@ export async function deviceFlowAuth(options = {}) {
         testnet: options.testnet,
         agentName: options.agentName,
         keyType: options.keyType,
+        email: options.email,
     });
     // Step 2: Display instructions and optionally open browser
     console.log("To authenticate, visit:");
@@ -56,7 +57,7 @@ export async function deviceFlowAuth(options = {}) {
             createdAt: new Date(),
             baseUrl: baseUrl !== DEFAULT_BASE_URL ? baseUrl : undefined,
         };
-        saveCredentials(credentials);
+        saveCredentials(credentials, options.credentialsPath);
     }
     // Step 5: Display success message with API key
     const isMaster = options.keyType === "master";
@@ -66,13 +67,13 @@ export async function deviceFlowAuth(options = {}) {
     if (isMaster) {
         console.log("Use this key to create agents programmatically:");
         console.log("  - Set SPONGE_MASTER_KEY environment variable, or");
-        console.log("  - Pass directly: new SpongeAdmin({ apiKey: '...' })\n");
+        console.log("  - Use as Bearer token with POST /api/agents\n");
     }
     else {
         console.log("Save this key for other machines/deployments:");
         console.log("  - Set SPONGE_API_KEY environment variable, or");
         console.log("  - Pass directly: SpongeWallet.connect({ apiKey: '...' })\n");
-        console.log(`Key cached locally at ${getCredentialsPath()}`);
+        console.log(`Key cached locally at ${getCredentialsPath(options.credentialsPath)}`);
     }
     console.log("=".repeat(60) + "\n");
     return tokenResponse;
@@ -92,6 +93,7 @@ async function requestDeviceCode(baseUrl, options) {
             testnet: options.testnet,
             agentName: options.agentName,
             keyType: options.keyType,
+            email: options.email,
         }),
     });
     if (!response.ok) {

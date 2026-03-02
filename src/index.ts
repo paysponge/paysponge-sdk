@@ -1,9 +1,6 @@
 // Main client
 export { SpongeWallet } from "./client.js";
 
-// Admin client for programmatic agent creation
-export { SpongeAdmin } from "./admin.js";
-
 // Types
 export * from "./types/schemas.js";
 

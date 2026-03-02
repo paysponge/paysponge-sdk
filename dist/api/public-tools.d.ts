@@ -30,6 +30,14 @@ export interface CreateX402PaymentOptions {
     fee_payer?: string;
     http_method?: "GET" | "POST";
 }
+export interface X402FetchOptions {
+    url: string;
+    method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    headers?: Record<string, string>;
+    body?: unknown;
+    preferredChain?: "base" | "solana" | "ethereum";
+    preferred_chain?: "base" | "solana" | "ethereum";
+}
 export declare class PublicToolsApi {
     private readonly http;
     constructor(http: HttpClient);
@@ -44,5 +52,6 @@ export declare class PublicToolsApi {
     claimSignupBonus(): Promise<SignupBonusClaimResponse>;
     sponge(request: SpongeRequest): Promise<SpongeResponse>;
     createX402Payment(options: CreateX402PaymentOptions): Promise<X402PaymentResponse>;
+    x402Fetch(options: X402FetchOptions): Promise<unknown>;
 }
 //# sourceMappingURL=public-tools.d.ts.map
