@@ -145,7 +145,35 @@ await tools.execute("hyperliquid", {
 });
 ```
 
-Hyperliquid actions: `status`, `order`, `cancel`, `cancel_all`, `set_leverage`, `positions`, `orders`, `fills`, `markets`, `ticker`, `orderbook`, `funding`, `withdraw`, `transfer`.
+Hyperliquid actions: `status`, `order`, `cancel`, `cancel_all`, `set_leverage`, `positions`, `orders`, `fills`, `markets`, `ticker`, `orderbook`, `book_updates`, `funding`, `pnl`, `liquidation_caps`, `liquidations`, `trade_status`, `alerts`, `withdraw`, `transfer`, `chart`.
+
+For richer in-chat charting + traceability:
+
+```typescript
+const chart = await tools.execute("hyperliquid", {
+  action: "chart",
+  symbol: "BTC/USDC:USDC",
+  interval: "1h",
+  chart_style: "live_line", // default
+  trace_tool_call: true, // default
+});
+```
+
+Backend env for richer Hyperliquid monitoring (QuickNode):
+
+```bash
+# Required for stream-backed actions like book_updates/liquidations/trade_status/alerts
+QUICKNODE_HYPERLIQUID_STREAM_ENDPOINT=https://<endpoint>.hype-mainnet.quiknode.pro/<token>/hypercore
+
+# Optional but recommended
+QUICKNODE_HYPERLIQUID_INFO_ENDPOINT=https://<endpoint>.hype-mainnet.quiknode.pro/<token>/info
+QUICKNODE_HYPERLIQUID_HYPERCORE_RPC_ENDPOINT=https://<endpoint>.hype-mainnet.quiknode.pro/<token>/hypercore
+QUICKNODE_HYPERLIQUID_HYPERCORE_WSS_ENDPOINT=wss://<endpoint>.hype-mainnet.quiknode.pro/<token>/hypercore/ws
+QUICKNODE_HYPERLIQUID_GRPC_ENDPOINT=<endpoint>.hype-mainnet.quiknode.pro:10000
+QUICKNODE_HYPERLIQUID_REST_ENDPOINT=https://<endpoint>.hype-mainnet.quiknode.pro/<token>/hypercore
+QUICKNODE_HYPERLIQUID_API_VERSION=v1
+QUICKNODE_HYPERLIQUID_BEARER_TOKEN= # only if required by your QuickNode setup
+```
 
 ## 5. Bridge cross-chain
 

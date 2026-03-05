@@ -236,6 +236,10 @@ export class ToolExecutor {
                     query: args.query,
                     market_type: args.market_type,
                     full: args.full,
+                    lookback_ms: args.lookback_ms,
+                    interval: args.interval,
+                    chart_style: args.chart_style,
+                    trace_tool_call: args.trace_tool_call,
                     destination: args.destination,
                     to_perp: args.to_perp,
                 });

@@ -513,8 +513,11 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     description:
       "Trade perps and spot on Hyperliquid DEX. Uses your agent's EVM wallet for signing (no API keys needed).\n\n" +
       "ACTIONS:\n" +
-      "  Read: status, positions, orders, fills, markets, ticker, orderbook, funding\n" +
+      "  Read: status, positions, orders, fills, markets, ticker, orderbook, book_updates, funding, pnl, liquidation_caps, liquidations, trade_status, alerts, chart\n" +
       "  Write (requires hyperliquid:trade scope): order, cancel, cancel_all, set_leverage, withdraw, transfer\n\n" +
+      "UX:\n" +
+      "- Responses include tool_call metadata with tool name + arguments by default\n" +
+      "- chart supports live-line/candle rendering via chart_style\n\n" +
       "ORDER PARAMETERS (for action=\"order\"):\n" +
       "- symbol: CCXT symbol (e.g., \"BTC/USDC:USDC\" for perps, \"PURR/USDC\" for spot)\n" +
       "- side: \"buy\" or \"sell\"\n" +
@@ -539,9 +542,16 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
             "markets",
             "ticker",
             "orderbook",
+            "book_updates",
             "funding",
+            "pnl",
+            "liquidation_caps",
+            "liquidations",
+            "trade_status",
+            "alerts",
             "withdraw",
             "transfer",
+            "chart",
           ],
           description: "Action to perform",
         },
@@ -620,6 +630,27 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
           type: "boolean",
           description:
             "For markets: true returns full market objects (larger payload)",
+        },
+        lookback_ms: {
+          type: "number",
+          description:
+            "Lookback window for trade_status/alerts in milliseconds",
+        },
+        interval: {
+          type: "string",
+          enum: ["1m", "5m", "15m", "30m", "1h", "4h", "1d"],
+          description: "Candle interval for chart action",
+        },
+        chart_style: {
+          type: "string",
+          enum: ["sparkline", "live_line", "candles", "live_line_candles"],
+          description:
+            "Chart render style for chart action (default: live_line)",
+        },
+        trace_tool_call: {
+          type: "boolean",
+          description:
+            "Include tool_call metadata (tool + arguments + timestamp) in response",
         },
         destination: {
           type: "string",

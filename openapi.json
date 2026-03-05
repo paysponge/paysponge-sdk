@@ -594,6 +594,77 @@
         "operationId": "getApiAgentsByIdHyperliquidOrders"
       }
     },
+    "/api/agents/{id}/hyperliquid/cancel-order": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "orderId",
+                  "symbol"
+                ],
+                "properties": {
+                  "orderId": {
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "orderId",
+                  "symbol"
+                ],
+                "properties": {
+                  "orderId": {
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "orderId",
+                  "symbol"
+                ],
+                "properties": {
+                  "orderId": {
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdHyperliquidCancel-order"
+      }
+    },
     "/api/agents/{id}/hyperliquid/close-position": {
       "post": {
         "parameters": [
@@ -6268,9 +6339,16 @@
                       "markets",
                       "ticker",
                       "orderbook",
+                      "book_updates",
                       "funding",
+                      "pnl",
+                      "liquidation_caps",
+                      "liquidations",
+                      "trade_status",
+                      "alerts",
                       "withdraw",
-                      "transfer"
+                      "transfer",
+                      "chart"
                     ]
                   },
                   "symbol": {
@@ -6345,10 +6423,37 @@
                   "full": {
                     "type": "boolean"
                   },
+                  "lookback_ms": {
+                    "type": "number"
+                  },
                   "destination": {
                     "type": "string"
                   },
                   "to_perp": {
+                    "type": "boolean"
+                  },
+                  "interval": {
+                    "type": "string",
+                    "enum": [
+                      "1m",
+                      "5m",
+                      "15m",
+                      "30m",
+                      "1h",
+                      "4h",
+                      "1d"
+                    ]
+                  },
+                  "chart_style": {
+                    "type": "string",
+                    "enum": [
+                      "sparkline",
+                      "live_line",
+                      "candles",
+                      "live_line_candles"
+                    ]
+                  },
+                  "trace_tool_call": {
                     "type": "boolean"
                   },
                   "agentId": {
@@ -6378,9 +6483,16 @@
                       "markets",
                       "ticker",
                       "orderbook",
+                      "book_updates",
                       "funding",
+                      "pnl",
+                      "liquidation_caps",
+                      "liquidations",
+                      "trade_status",
+                      "alerts",
                       "withdraw",
-                      "transfer"
+                      "transfer",
+                      "chart"
                     ]
                   },
                   "symbol": {
@@ -6455,10 +6567,37 @@
                   "full": {
                     "type": "boolean"
                   },
+                  "lookback_ms": {
+                    "type": "number"
+                  },
                   "destination": {
                     "type": "string"
                   },
                   "to_perp": {
+                    "type": "boolean"
+                  },
+                  "interval": {
+                    "type": "string",
+                    "enum": [
+                      "1m",
+                      "5m",
+                      "15m",
+                      "30m",
+                      "1h",
+                      "4h",
+                      "1d"
+                    ]
+                  },
+                  "chart_style": {
+                    "type": "string",
+                    "enum": [
+                      "sparkline",
+                      "live_line",
+                      "candles",
+                      "live_line_candles"
+                    ]
+                  },
+                  "trace_tool_call": {
                     "type": "boolean"
                   },
                   "agentId": {
@@ -6488,9 +6627,16 @@
                       "markets",
                       "ticker",
                       "orderbook",
+                      "book_updates",
                       "funding",
+                      "pnl",
+                      "liquidation_caps",
+                      "liquidations",
+                      "trade_status",
+                      "alerts",
                       "withdraw",
-                      "transfer"
+                      "transfer",
+                      "chart"
                     ]
                   },
                   "symbol": {
@@ -6565,10 +6711,37 @@
                   "full": {
                     "type": "boolean"
                   },
+                  "lookback_ms": {
+                    "type": "number"
+                  },
                   "destination": {
                     "type": "string"
                   },
                   "to_perp": {
+                    "type": "boolean"
+                  },
+                  "interval": {
+                    "type": "string",
+                    "enum": [
+                      "1m",
+                      "5m",
+                      "15m",
+                      "30m",
+                      "1h",
+                      "4h",
+                      "1d"
+                    ]
+                  },
+                  "chart_style": {
+                    "type": "string",
+                    "enum": [
+                      "sparkline",
+                      "live_line",
+                      "candles",
+                      "live_line_candles"
+                    ]
+                  },
+                  "trace_tool_call": {
                     "type": "boolean"
                   },
                   "agentId": {

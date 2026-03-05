@@ -228,6 +228,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/agents/{id}/hyperliquid/cancel-order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["postApiAgentsByIdHyperliquidCancel-order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/agents/{id}/hyperliquid/close-position": {
         parameters: {
             query?: never;
@@ -2719,6 +2735,33 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
+    "postApiAgentsByIdHyperliquidCancel-order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    orderId: string;
+                    symbol: string;
+                };
+                "application/x-www-form-urlencoded": {
+                    orderId: string;
+                    symbol: string;
+                };
+                "multipart/form-data": {
+                    orderId: string;
+                    symbol: string;
+                };
+            };
+        };
+        responses: never;
+    };
     "postApiAgentsByIdHyperliquidClose-position": {
         parameters: {
             query?: never;
@@ -4943,7 +4986,7 @@ export interface operations {
             content: {
                 "application/json": {
                     /** @enum {string} */
-                    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "funding" | "withdraw" | "transfer";
+                    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "book_updates" | "funding" | "pnl" | "liquidation_caps" | "liquidations" | "trade_status" | "alerts" | "withdraw" | "transfer" | "chart";
                     symbol?: string;
                     /** @enum {string} */
                     side?: "buy" | "sell";
@@ -4966,13 +5009,19 @@ export interface operations {
                     /** @enum {string} */
                     market_type?: "spot" | "swap";
                     full?: boolean;
+                    lookback_ms?: number;
                     destination?: string;
                     to_perp?: boolean;
+                    /** @enum {string} */
+                    interval?: "1m" | "5m" | "15m" | "30m" | "1h" | "4h" | "1d";
+                    /** @enum {string} */
+                    chart_style?: "sparkline" | "live_line" | "candles" | "live_line_candles";
+                    trace_tool_call?: boolean;
                     agentId?: string;
                 };
                 "application/x-www-form-urlencoded": {
                     /** @enum {string} */
-                    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "funding" | "withdraw" | "transfer";
+                    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "book_updates" | "funding" | "pnl" | "liquidation_caps" | "liquidations" | "trade_status" | "alerts" | "withdraw" | "transfer" | "chart";
                     symbol?: string;
                     /** @enum {string} */
                     side?: "buy" | "sell";
@@ -4995,13 +5044,19 @@ export interface operations {
                     /** @enum {string} */
                     market_type?: "spot" | "swap";
                     full?: boolean;
+                    lookback_ms?: number;
                     destination?: string;
                     to_perp?: boolean;
+                    /** @enum {string} */
+                    interval?: "1m" | "5m" | "15m" | "30m" | "1h" | "4h" | "1d";
+                    /** @enum {string} */
+                    chart_style?: "sparkline" | "live_line" | "candles" | "live_line_candles";
+                    trace_tool_call?: boolean;
                     agentId?: string;
                 };
                 "multipart/form-data": {
                     /** @enum {string} */
-                    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "funding" | "withdraw" | "transfer";
+                    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "book_updates" | "funding" | "pnl" | "liquidation_caps" | "liquidations" | "trade_status" | "alerts" | "withdraw" | "transfer" | "chart";
                     symbol?: string;
                     /** @enum {string} */
                     side?: "buy" | "sell";
@@ -5024,8 +5079,14 @@ export interface operations {
                     /** @enum {string} */
                     market_type?: "spot" | "swap";
                     full?: boolean;
+                    lookback_ms?: number;
                     destination?: string;
                     to_perp?: boolean;
+                    /** @enum {string} */
+                    interval?: "1m" | "5m" | "15m" | "30m" | "1h" | "4h" | "1d";
+                    /** @enum {string} */
+                    chart_style?: "sparkline" | "live_line" | "candles" | "live_line_candles";
+                    trace_tool_call?: boolean;
                     agentId?: string;
                 };
             };

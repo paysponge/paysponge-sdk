@@ -448,7 +448,7 @@ export class SpongeWallet {
    * ```
    */
   async hyperliquid(args: {
-    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "funding" | "withdraw" | "transfer";
+    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "book_updates" | "funding" | "pnl" | "liquidation_caps" | "liquidations" | "trade_status" | "alerts" | "withdraw" | "transfer" | "chart";
     symbol?: string;
     side?: "buy" | "sell";
     type?: "limit" | "market";
@@ -466,6 +466,10 @@ export class SpongeWallet {
     query?: string;
     market_type?: "spot" | "swap";
     full?: boolean;
+    lookback_ms?: number;
+    interval?: "1m" | "5m" | "15m" | "30m" | "1h" | "4h" | "1d";
+    chart_style?: "sparkline" | "live_line" | "candles" | "live_line_candles";
+    trace_tool_call?: boolean;
     destination?: string;
     to_perp?: boolean;
   }): Promise<unknown> {
