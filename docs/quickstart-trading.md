@@ -253,14 +253,6 @@ const wallet = await SpongeWallet.connect({ testnet: true });
 
 // Claim 1 USDC on Base Sepolia to get started
 await wallet.claimSignupBonus();
-
-// Request testnet funding
-await wallet.requestFunding({
-  amount: "100",
-  chain: "base-sepolia",
-  currency: "USDC",
-  reason: "Testing swap logic",
-});
 ```
 
 ## Supported currencies

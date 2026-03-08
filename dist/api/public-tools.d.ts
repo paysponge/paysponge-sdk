@@ -1,4 +1,4 @@
-import { type Chain, type EvmTransferOptions, type SolanaTransferOptions, type SubmitTransaction, type DetailedBalances, type SolanaTokensResponse, type SolanaTokenSearchResponse, type FundingRequestResponse, type OnrampCryptoOptions, type OnrampCryptoResponse, type SignupBonusClaimResponse, type TransactionHistoryDetailed, type SpongeResponse, type X402PaymentResponse, type SolanaChain } from "../types/schemas.js";
+import { type Chain, type EvmTransferOptions, type SolanaTransferOptions, type SubmitTransaction, type DetailedBalances, type SolanaTokensResponse, type SolanaTokenSearchResponse, type OnrampCryptoOptions, type OnrampCryptoResponse, type SignupBonusClaimResponse, type TransactionHistoryDetailed, type SpongeResponse, type X402PaymentResponse, type SolanaChain } from "../types/schemas.js";
 import type { HttpClient } from "./http.js";
 export interface DetailedBalanceOptions {
     chain?: Chain | "all";
@@ -8,12 +8,6 @@ export interface DetailedBalanceOptions {
 export interface TransactionHistoryDetailedOptions {
     limit?: number;
     chain?: Chain;
-}
-export interface FundingRequestOptions {
-    amount: string;
-    reason?: string;
-    chain?: Chain;
-    currency?: string;
 }
 export interface SpongeRequest {
     [key: string]: unknown;
@@ -47,7 +41,6 @@ export declare class PublicToolsApi {
     getSolanaTokens(chain: SolanaChain): Promise<SolanaTokensResponse>;
     searchSolanaTokens(query: string, limit?: number): Promise<SolanaTokenSearchResponse>;
     getTransactionHistoryDetailed(options?: TransactionHistoryDetailedOptions): Promise<TransactionHistoryDetailed>;
-    requestFunding(options: FundingRequestOptions): Promise<FundingRequestResponse>;
     createOnrampLink(options: OnrampCryptoOptions): Promise<OnrampCryptoResponse>;
     claimSignupBonus(): Promise<SignupBonusClaimResponse>;
     sponge(request: SpongeRequest): Promise<SpongeResponse>;

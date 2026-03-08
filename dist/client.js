@@ -282,12 +282,6 @@ export class SpongeWallet {
         return this.publicTools.searchSolanaTokens(query, limit);
     }
     /**
-     * Request funding from the owner (creates an approval request)
-     */
-    async requestFunding(options) {
-        return this.publicTools.requestFunding(options);
-    }
-    /**
      * Create a fiat onramp link to buy USDC into this agent's wallet.
      */
     async onrampCrypto(options) {

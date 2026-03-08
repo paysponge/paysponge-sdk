@@ -76,7 +76,6 @@ describe("Hey API adapter", () => {
         "getApiWalletsById",
         "getApiWalletsByIdBalance",
         "postApiAgents",
-        "postApiFundingRequests",
         "postApiOnrampCrypto",
         "postApiSignupBonusClaim",
         "postApiTransactionsSwap",

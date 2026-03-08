@@ -1,5 +1,5 @@
-import { DetailedBalancesSchema, EvmTransferOptionsSchema, SolanaTransferOptionsSchema, SubmitTransactionSchema, SolanaTokensResponseSchema, SolanaTokenSearchResponseSchema, FundingRequestResponseSchema, OnrampCryptoOptionsSchema, OnrampCryptoResponseSchema, SignupBonusClaimResponseSchema, TransactionHistoryDetailedSchema, SpongeResponseSchema, X402PaymentResponseSchema, } from "../types/schemas.js";
-import { getApiBalances, getApiSolanaTokens, getApiSolanaTokensSearch, getApiTransactionsHistory, postApiFundingRequests, postApiOnrampCrypto, postApiSignupBonusClaim, postApiTransfersEvm, postApiTransfersSolana, postApiX402Payments, } from "./generated/heyapi/sdk.gen.js";
+import { DetailedBalancesSchema, EvmTransferOptionsSchema, SolanaTransferOptionsSchema, SubmitTransactionSchema, SolanaTokensResponseSchema, SolanaTokenSearchResponseSchema, OnrampCryptoOptionsSchema, OnrampCryptoResponseSchema, SignupBonusClaimResponseSchema, TransactionHistoryDetailedSchema, SpongeResponseSchema, X402PaymentResponseSchema, } from "../types/schemas.js";
+import { getApiBalances, getApiSolanaTokens, getApiSolanaTokensSearch, getApiTransactionsHistory, postApiOnrampCrypto, postApiSignupBonusClaim, postApiTransfersEvm, postApiTransfersSolana, postApiX402Payments, } from "./generated/heyapi/sdk.gen.js";
 import { getHeyApiClient } from "./generated/heyapi-adapter.js";
 export class PublicToolsApi {
     http;
@@ -67,13 +67,6 @@ export class PublicToolsApi {
             query: params,
         });
         return TransactionHistoryDetailedSchema.parse(response);
-    }
-    async requestFunding(options) {
-        const response = await postApiFundingRequests({
-            client: getHeyApiClient(this.http),
-            body: options,
-        });
-        return FundingRequestResponseSchema.parse(response);
     }
     async createOnrampLink(options) {
         const validated = OnrampCryptoOptionsSchema.parse(options);

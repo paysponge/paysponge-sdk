@@ -196,12 +196,6 @@ export const SolanaTokenSearchResponseSchema = z.object({
         verified: z.boolean(),
     })),
 });
-export const FundingRequestResponseSchema = z.object({
-    success: z.boolean(),
-    requestId: z.string(),
-    message: z.string(),
-    status: z.string(),
-});
 export const OnrampCryptoOptionsSchema = z.object({
     wallet_address: z.string(),
     provider: z.enum(["auto", "stripe", "coinbase"]).optional(),

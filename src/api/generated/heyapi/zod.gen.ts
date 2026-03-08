@@ -208,18 +208,6 @@ export const zGetApiTransactionsHistoryData = z.object({
     }).optional()
 });
 
-export const zPostApiFundingRequestsData = z.object({
-    body: z.object({
-        amount: z.string(),
-        reason: z.string().optional(),
-        chain: z.string().optional(),
-        currency: z.string().optional(),
-        agentId: z.string().optional()
-    }),
-    path: z.never().optional(),
-    query: z.never().optional()
-});
-
 export const zPostApiOnrampCryptoData = z.object({
     body: z.object({
         wallet_address: z.string(),

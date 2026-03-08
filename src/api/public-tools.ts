@@ -5,7 +5,6 @@ import {
   SubmitTransactionSchema,
   SolanaTokensResponseSchema,
   SolanaTokenSearchResponseSchema,
-  FundingRequestResponseSchema,
   OnrampCryptoOptionsSchema,
   OnrampCryptoResponseSchema,
   SignupBonusClaimResponseSchema,
@@ -19,7 +18,6 @@ import {
   type DetailedBalances,
   type SolanaTokensResponse,
   type SolanaTokenSearchResponse,
-  type FundingRequestResponse,
   type OnrampCryptoOptions,
   type OnrampCryptoResponse,
   type SignupBonusClaimResponse,
@@ -34,7 +32,6 @@ import {
   getApiSolanaTokens,
   getApiSolanaTokensSearch,
   getApiTransactionsHistory,
-  postApiFundingRequests,
   postApiOnrampCrypto,
   postApiSignupBonusClaim,
   postApiTransfersEvm,
@@ -52,13 +49,6 @@ export interface DetailedBalanceOptions {
 export interface TransactionHistoryDetailedOptions {
   limit?: number;
   chain?: Chain;
-}
-
-export interface FundingRequestOptions {
-  amount: string;
-  reason?: string;
-  chain?: Chain;
-  currency?: string;
 }
 
 export interface SpongeRequest {
@@ -156,14 +146,6 @@ export class PublicToolsApi {
       query: params,
     });
     return TransactionHistoryDetailedSchema.parse(response);
-  }
-
-  async requestFunding(options: FundingRequestOptions): Promise<FundingRequestResponse> {
-    const response = await postApiFundingRequests({
-      client: getHeyApiClient(this.http),
-      body: options,
-    });
-    return FundingRequestResponseSchema.parse(response);
   }
 
   async createOnrampLink(options: OnrampCryptoOptions): Promise<OnrampCryptoResponse> {

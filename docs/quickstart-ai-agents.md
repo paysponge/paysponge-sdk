@@ -128,7 +128,6 @@ Both MCP and direct tools expose the same capabilities:
 | `solana_swap` | Swap any token via Jupiter |
 | `get_transaction_status` | Check if a transaction confirmed |
 | `get_transaction_history` | View past transactions |
-| `request_funding` | Ask the wallet owner for more funds |
 | `search_solana_tokens` | Look up tokens by name or symbol |
 
 Every tool returns a consistent result:

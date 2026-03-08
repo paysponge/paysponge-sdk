@@ -354,33 +354,6 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     },
   },
   {
-    name: "request_funding",
-    description:
-      "Request funding from the owner (creates an approval request).",
-    input_schema: {
-      type: "object",
-      properties: {
-        amount: {
-          type: "string",
-          description: "Amount to request",
-        },
-        reason: {
-          type: "string",
-          description: "Reason for the request",
-        },
-        chain: {
-          type: "string",
-          description: "Chain to request on (default: tempo or tempo-mainnet based on key mode)",
-        },
-        currency: {
-          type: "string",
-          description: "Currency (pathUSD, USDC, ETH, SOL)",
-        },
-      },
-      required: ["amount"],
-    },
-  },
-  {
     name: "create_crypto_onramp",
     description:
       "Create a fiat-to-crypto onramp link to purchase USDC directly into the agent wallet.",

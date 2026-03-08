@@ -4,7 +4,7 @@
  * Demonstrates a practical flow for:
  * 1) Ensuring one Sponge agent per user email (email registration endpoint not wired yet)
  * 2) Connecting wallet for that user agent
- * 3) Creating onramp + funding request
+ * 3) Creating onramp link
  * 4) Reading balances
  * 5) Making x402 payments
  *
@@ -141,7 +141,7 @@ async function main() {
   console.log(`   Agent ID: ${wallet.getAgentId()}`);
   console.log();
 
-  // Step 3: Onramp + funding request workflow.
+  // Step 3: Onramp workflow.
   const addresses = await wallet.getAddresses();
   const baseAddress = addresses.base;
 
@@ -157,26 +157,16 @@ async function main() {
   console.log("   Onramp response:", onramp);
   console.log();
 
-  console.log("4. Funding request");
-  const funding = await wallet.requestFunding({
-    amount: "25",
-    reason: `Initial funding for ${normalizeEmail(userEmail)}`,
-    chain: "base",
-    currency: "USDC",
-  });
-  console.log("   Funding response:", funding);
-  console.log();
-
-  // Step 5: Read balances.
-  console.log("5. Current balances");
+  // Step 4: Read balances.
+  console.log("4. Current balances");
   const balances = await wallet.getBalances();
   console.log(JSON.stringify(balances, null, 2));
   console.log();
 
-  // Step 6a: Explicit x402 payment payload creation.
+  // Step 5a: Explicit x402 payment payload creation.
   const payTo = process.env.X402_PAY_TO;
   if (payTo) {
-    console.log("6. Create x402 payment payload");
+    console.log("5. Create x402 payment payload");
     const payment = await wallet.createX402Payment({
       chain: "base",
       to: payTo,
@@ -192,10 +182,10 @@ async function main() {
     console.log();
   }
 
-  // Step 6b: Auto x402 fetch by URL.
+  // Step 5b: Auto x402 fetch by URL.
   const x402Url = process.env.X402_URL;
   if (x402Url) {
-    console.log("7. x402Fetch");
+    console.log("6. x402Fetch");
     const paidResponse = await wallet.x402Fetch({
       url: x402Url,
       method: "GET",
@@ -203,7 +193,7 @@ async function main() {
     });
     console.log("   x402Fetch response:", paidResponse);
   } else {
-    console.log("7. Skipping x402Fetch (set X402_URL to enable)");
+    console.log("6. Skipping x402Fetch (set X402_URL to enable)");
   }
 
   console.log();

@@ -154,14 +154,3 @@ const history = await wallet.getTransactionHistoryDetailed({
 const tokens = await wallet.getSolanaTokens("solana");
 const results = await wallet.searchSolanaTokens("BONK", 5);
 ```
-
-### Funding Request
-
-```typescript
-const request = await wallet.requestFunding({
-  amount: "25",
-  chain: "tempo",
-  currency: "pathUSD",
-  reason: "Cover transaction fees",
-});
-```

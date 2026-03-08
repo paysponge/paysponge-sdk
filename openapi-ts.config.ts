@@ -25,7 +25,6 @@ export default defineConfig({
           "GET /api/solana/tokens",
           "GET /api/solana/tokens/search",
           "GET /api/transactions/history",
-          "POST /api/funding-requests",
           "POST /api/onramp/crypto",
           "POST /api/signup-bonus/claim",
           "POST /api/x402/payments",

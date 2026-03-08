@@ -2,7 +2,7 @@
 
 import { client } from './client.gen.js';
 import type { Client, Options as Options2, TDataShape } from './client/index.js';
-import type { DeleteApiAgentsByIdData, GetApiAgentsByIdData, GetApiAgentsData, GetApiAgentsMeData, GetApiBalancesData, GetApiSolanaTokensData, GetApiSolanaTokensSearchData, GetApiTransactionsData, GetApiTransactionsHistoryData, GetApiTransactionsStatusByTxHashData, GetApiWalletsByIdBalanceData, GetApiWalletsByIdData, GetApiWalletsData, PostApiAgentsData, PostApiFundingRequestsData, PostApiOnrampCryptoData, PostApiSignupBonusClaimData, PostApiTransactionsSwapData, PostApiTransfersEvmData, PostApiTransfersSolanaData, PostApiTransfersTempoData, PostApiX402PaymentsData, PutApiAgentsByIdData } from './types.gen.js';
+import type { DeleteApiAgentsByIdData, GetApiAgentsByIdData, GetApiAgentsData, GetApiAgentsMeData, GetApiBalancesData, GetApiSolanaTokensData, GetApiSolanaTokensSearchData, GetApiTransactionsData, GetApiTransactionsHistoryData, GetApiTransactionsStatusByTxHashData, GetApiWalletsByIdBalanceData, GetApiWalletsByIdData, GetApiWalletsData, PostApiAgentsData, PostApiOnrampCryptoData, PostApiSignupBonusClaimData, PostApiTransactionsSwapData, PostApiTransfersEvmData, PostApiTransfersSolanaData, PostApiTransfersTempoData, PostApiX402PaymentsData, PutApiAgentsByIdData } from './types.gen.js';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -154,16 +154,6 @@ export const getApiTransactionsHistory = <ThrowOnError extends boolean = false>(
     responseStyle: 'data',
     url: '/api/transactions/history',
     ...options
-});
-
-export const postApiFundingRequests = <ThrowOnError extends boolean = false>(options: Options<PostApiFundingRequestsData, ThrowOnError>) => (options.client ?? client).post<unknown, unknown, ThrowOnError, 'data'>({
-    responseStyle: 'data',
-    url: '/api/funding-requests',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
-    }
 });
 
 export const postApiOnrampCrypto = <ThrowOnError extends boolean = false>(options: Options<PostApiOnrampCryptoData, ThrowOnError>) => (options.client ?? client).post<unknown, unknown, ThrowOnError, 'data'>({

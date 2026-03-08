@@ -353,18 +353,6 @@ export class SpongeWallet {
   }
 
   /**
-   * Request funding from the owner (creates an approval request)
-   */
-  async requestFunding(options: {
-    amount: string;
-    reason?: string;
-    chain?: Chain;
-    currency?: string;
-  }) {
-    return this.publicTools.requestFunding(options);
-  }
-
-  /**
    * Create a fiat onramp link to buy USDC into this agent's wallet.
    */
   async onrampCrypto(options: {

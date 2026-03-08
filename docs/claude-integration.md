@@ -78,7 +78,6 @@ for (const block of response.content) {
 | `search_solana_tokens` | Search Jupiter tokens | `{ query, limit? }` |
 | `get_transaction_status` | Check tx status | `{ txHash, chain }` |
 | `get_transaction_history` | Get tx history | `{ limit?, chain? }` |
-| `request_funding` | Request funding approval | `{ amount, reason?, chain?, currency? }` |
 <!-- | `sponge` | Call paid APIs via x402 | `{ task, ... }` | (temporarily disabled) -->
 | `create_x402_payment` | Create x402 payment | `{ chain, to, amount, ... }` |
 

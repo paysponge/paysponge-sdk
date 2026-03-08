@@ -139,13 +139,6 @@ export class ToolExecutor {
                     limit: args.limit !== undefined ? String(args.limit) : undefined,
                     chain: args.chain ? String(args.chain) : undefined,
                 });
-            case "request_funding":
-                return this.http.post("/api/funding-requests", {
-                    amount: args.amount,
-                    reason: args.reason,
-                    chain: args.chain,
-                    currency: args.currency,
-                });
             case "create_crypto_onramp":
                 return this.http.post("/api/onramp/crypto", {
                     wallet_address: args.wallet_address,

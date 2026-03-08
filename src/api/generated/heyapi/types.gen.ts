@@ -233,19 +233,6 @@ export type GetApiTransactionsHistoryData = {
     url: '/api/transactions/history';
 };
 
-export type PostApiFundingRequestsData = {
-    body: {
-        amount: string;
-        reason?: string;
-        chain?: string;
-        currency?: string;
-        agentId?: string;
-    };
-    path?: never;
-    query?: never;
-    url: '/api/funding-requests';
-};
-
 export type PostApiOnrampCryptoData = {
     body: {
         wallet_address: string;

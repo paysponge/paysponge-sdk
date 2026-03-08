@@ -119,15 +119,6 @@ export const getApiTransactionsHistory = (options) => (options?.client ?? client
     url: '/api/transactions/history',
     ...options
 });
-export const postApiFundingRequests = (options) => (options.client ?? client).post({
-    responseStyle: 'data',
-    url: '/api/funding-requests',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
-    }
-});
 export const postApiOnrampCrypto = (options) => (options.client ?? client).post({
     responseStyle: 'data',
     url: '/api/onramp/crypto',

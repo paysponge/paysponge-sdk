@@ -110,17 +110,6 @@ List all SPL tokens held by the agent's Solana wallet.
 
 Search the Jupiter token list by symbol or name.
 
-#### `wallet.requestFunding(options): Promise<FundingRequestResponse>`
-
-Create a funding request for owner approval.
-
-| Option | Type | Description |
-|--------|------|-------------|
-| `amount` | `string` | Amount to request |
-| `reason` | `string` | Optional reason |
-| `chain` | `Chain` | Optional chain (default: tempo) |
-| `currency` | `string` | Optional currency (pathUSD, USDC, ETH, SOL) |
-
 #### `wallet.claimSignupBonus(): Promise<SignupBonusClaimResponse>`
 
 Claim the one-time sign-up bonus. Sends 1 USDC on Base to the current agent wallet.
@@ -311,17 +300,6 @@ type DetailedBalances = {
     address: string;
     balances: Array<{ token: string; amount: string; usdValue?: string }>;
   };
-};
-```
-
-### FundingRequestResponse
-
-```typescript
-type FundingRequestResponse = {
-  success: boolean;
-  requestId: string;
-  message: string;
-  status: string;
 };
 ```
 

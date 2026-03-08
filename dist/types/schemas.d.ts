@@ -468,23 +468,6 @@ export declare const SolanaTokenSearchResponseSchema: z.ZodObject<{
     }[];
 }>;
 export type SolanaTokenSearchResponse = z.infer<typeof SolanaTokenSearchResponseSchema>;
-export declare const FundingRequestResponseSchema: z.ZodObject<{
-    success: z.ZodBoolean;
-    requestId: z.ZodString;
-    message: z.ZodString;
-    status: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    message: string;
-    status: string;
-    success: boolean;
-    requestId: string;
-}, {
-    message: string;
-    status: string;
-    success: boolean;
-    requestId: string;
-}>;
-export type FundingRequestResponse = z.infer<typeof FundingRequestResponseSchema>;
 export declare const OnrampCryptoOptionsSchema: z.ZodObject<{
     wallet_address: z.ZodString;
     provider: z.ZodOptional<z.ZodEnum<["auto", "stripe", "coinbase"]>>;
@@ -523,8 +506,8 @@ export declare const OnrampCryptoResponseSchema: z.ZodObject<{
     clientSecret: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     status: "initiated";
-    success: true;
     provider: "stripe" | "coinbase";
+    success: true;
     url: string;
     sessionId: string;
     destinationChain: "base" | "solana" | "polygon";
@@ -533,8 +516,8 @@ export declare const OnrampCryptoResponseSchema: z.ZodObject<{
     clientSecret?: string | undefined;
 }, {
     status: "initiated";
-    success: true;
     provider: "stripe" | "coinbase";
+    success: true;
     url: string;
     sessionId: string;
     destinationChain: "base" | "solana" | "polygon";

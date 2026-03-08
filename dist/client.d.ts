@@ -228,20 +228,6 @@ export declare class SpongeWallet {
         }[];
     }>;
     /**
-     * Request funding from the owner (creates an approval request)
-     */
-    requestFunding(options: {
-        amount: string;
-        reason?: string;
-        chain?: Chain;
-        currency?: string;
-    }): Promise<{
-        message: string;
-        status: string;
-        success: boolean;
-        requestId: string;
-    }>;
-    /**
      * Create a fiat onramp link to buy USDC into this agent's wallet.
      */
     onrampCrypto(options: {
@@ -254,8 +240,8 @@ export declare class SpongeWallet {
         redirect_url?: string;
     }): Promise<{
         status: "initiated";
-        success: true;
         provider: "stripe" | "coinbase";
+        success: true;
         url: string;
         sessionId: string;
         destinationChain: "base" | "solana" | "polygon";

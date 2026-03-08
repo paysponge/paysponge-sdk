@@ -706,49 +706,6 @@ export declare const zGetApiTransactionsHistoryData: z.ZodObject<{
     } | undefined;
     body?: undefined;
 }>;
-export declare const zPostApiFundingRequestsData: z.ZodObject<{
-    body: z.ZodObject<{
-        amount: z.ZodString;
-        reason: z.ZodOptional<z.ZodString>;
-        chain: z.ZodOptional<z.ZodString>;
-        currency: z.ZodOptional<z.ZodString>;
-        agentId: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        amount: string;
-        agentId?: string | undefined;
-        chain?: string | undefined;
-        currency?: string | undefined;
-        reason?: string | undefined;
-    }, {
-        amount: string;
-        agentId?: string | undefined;
-        chain?: string | undefined;
-        currency?: string | undefined;
-        reason?: string | undefined;
-    }>;
-    path: z.ZodOptional<z.ZodNever>;
-    query: z.ZodOptional<z.ZodNever>;
-}, "strip", z.ZodTypeAny, {
-    body: {
-        amount: string;
-        agentId?: string | undefined;
-        chain?: string | undefined;
-        currency?: string | undefined;
-        reason?: string | undefined;
-    };
-    path?: undefined;
-    query?: undefined;
-}, {
-    body: {
-        amount: string;
-        agentId?: string | undefined;
-        chain?: string | undefined;
-        currency?: string | undefined;
-        reason?: string | undefined;
-    };
-    path?: undefined;
-    query?: undefined;
-}>;
 export declare const zPostApiOnrampCryptoData: z.ZodObject<{
     body: z.ZodObject<{
         wallet_address: z.ZodString;
