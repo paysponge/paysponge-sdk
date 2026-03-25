@@ -64,6 +64,12 @@ export const ConnectOptionsSchema = z.object({
     /** Email to associate with the agent (used for claim matching) */
     email: z.string().email().optional(),
 });
+export const PlatformConnectOptionsSchema = z.object({
+    /** Master API key to use for platform control-plane operations */
+    apiKey: z.string().optional(),
+    /** Base URL for the API (defaults to production) */
+    baseUrl: z.string().url().optional(),
+});
 export const RegisterAgentOptionsSchema = z.object({
     name: z.string().min(1).max(255),
     agentFirst: z.boolean().optional(),
@@ -82,6 +88,9 @@ export const CreateAgentOptionsSchema = z.object({
     weeklySpendingLimit: z.string().optional(),
     monthlySpendingLimit: z.string().optional(),
 });
+export const PlatformCreateAgentOptionsSchema = CreateAgentOptionsSchema.extend({
+    isTestMode: z.boolean().optional(),
+});
 export const AgentSchema = z.object({
     id: z.string().uuid(),
     name: z.string(),
@@ -92,6 +101,24 @@ export const AgentSchema = z.object({
     monthlySpendingLimit: z.string().nullish(),
     createdAt: z.coerce.date(),
     updatedAt: z.coerce.date().nullish(),
+});
+export const MasterApiKeySchema = z.object({
+    id: z.string().uuid(),
+    keyPrefix: z.string(),
+    keyName: z.string().nullish(),
+    scopes: z.array(z.string()),
+    isActive: z.boolean(),
+    usageCount: z.number(),
+    lastUsedAt: z.coerce.date().nullish(),
+    expiresAt: z.coerce.date().nullish(),
+    createdAt: z.coerce.date(),
+});
+export const CreatedMasterApiKeySchema = z.object({
+    id: z.string().uuid(),
+    apiKey: z.string(),
+    keyName: z.string().nullish(),
+    scopes: z.array(z.string()),
+    createdAt: z.coerce.date(),
 });
 // ============================================================================
 // Wallet Types

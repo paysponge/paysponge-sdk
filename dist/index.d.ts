@@ -1,4 +1,5 @@
 export { SpongeWallet } from "./client.js";
+export { SpongePlatform } from "./platform.js";
 export * from "./types/schemas.js";
 export { loadCredentials, saveCredentials, deleteCredentials, hasCredentials, getApiKey, getAgentId, getCredentialsPath, } from "./auth/credentials.js";
 export { deviceFlowAuth, type DeviceFlowOptions } from "./auth/device-flow.js";

@@ -91,6 +91,14 @@ export const ConnectOptionsSchema = z.object({
 });
 export type ConnectOptions = z.infer<typeof ConnectOptionsSchema>;
 
+export const PlatformConnectOptionsSchema = z.object({
+  /** Master API key to use for platform control-plane operations */
+  apiKey: z.string().optional(),
+  /** Base URL for the API (defaults to production) */
+  baseUrl: z.string().url().optional(),
+});
+export type PlatformConnectOptions = z.infer<typeof PlatformConnectOptionsSchema>;
+
 export const RegisterAgentOptionsSchema = z.object({
   name: z.string().min(1).max(255),
   agentFirst: z.boolean().optional(),
@@ -114,6 +122,11 @@ export const CreateAgentOptionsSchema = z.object({
 });
 export type CreateAgentOptions = z.infer<typeof CreateAgentOptionsSchema>;
 
+export const PlatformCreateAgentOptionsSchema = CreateAgentOptionsSchema.extend({
+  isTestMode: z.boolean().optional(),
+});
+export type PlatformCreateAgentOptions = z.infer<typeof PlatformCreateAgentOptionsSchema>;
+
 export const AgentSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
@@ -126,6 +139,28 @@ export const AgentSchema = z.object({
   updatedAt: z.coerce.date().nullish(),
 });
 export type Agent = z.infer<typeof AgentSchema>;
+
+export const MasterApiKeySchema = z.object({
+  id: z.string().uuid(),
+  keyPrefix: z.string(),
+  keyName: z.string().nullish(),
+  scopes: z.array(z.string()),
+  isActive: z.boolean(),
+  usageCount: z.number(),
+  lastUsedAt: z.coerce.date().nullish(),
+  expiresAt: z.coerce.date().nullish(),
+  createdAt: z.coerce.date(),
+});
+export type MasterApiKey = z.infer<typeof MasterApiKeySchema>;
+
+export const CreatedMasterApiKeySchema = z.object({
+  id: z.string().uuid(),
+  apiKey: z.string(),
+  keyName: z.string().nullish(),
+  scopes: z.array(z.string()),
+  createdAt: z.coerce.date(),
+});
+export type CreatedMasterApiKey = z.infer<typeof CreatedMasterApiKeySchema>;
 
 // ============================================================================
 // Wallet Types

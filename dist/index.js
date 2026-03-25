@@ -1,5 +1,6 @@
 // Main client
 export { SpongeWallet } from "./client.js";
+export { SpongePlatform } from "./platform.js";
 // Types
 export * from "./types/schemas.js";
 // Auth utilities (for advanced usage)

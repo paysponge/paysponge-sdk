@@ -283,11 +283,11 @@ export declare class SpongeWallet {
             raw_amount: string;
         } | undefined;
         payment_made?: {
+            expiresAt: string;
             chain: string;
             to: string;
             amount: string;
             token: string;
-            expiresAt: string;
         } | undefined;
         wallet_balance?: Record<string, {
             address: string;

@@ -1,6 +1,6 @@
 {
   "name": "@paysponge/sdk",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "type": "module",
   "description": "SDK for spinning up wallets for AI agents with Claude Agent SDK integration",
   "main": "./dist/index.js",
@@ -37,6 +37,7 @@
     "example:transfer": "bun run examples/transfer.ts",
     "example:claude": "bun run examples/claude-agent.ts",
     "example:tools": "bun run examples/direct-tools.ts",
+    "example:platform": "bun run examples/platform.ts",
     "example:openapi": "bun run examples/openapi-generated.ts",
     "example:user-email-flow": "bun run examples/user-email-flow.ts",
     "example:per-user-agents": "bun run examples/per-user-agents.ts"
@@ -74,8 +75,13 @@
     "solana"
   ],
   "license": "MIT",
+  "homepage": "https://docs.paysponge.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paysponge/spongewallet-sdk"
+    "url": "https://github.com/paysponge/sponge.git",
+    "directory": "mobwallet/packages/spongewallet-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/paysponge/sponge/issues"
   }
 }

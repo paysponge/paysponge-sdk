@@ -53,6 +53,19 @@ export declare const ConnectOptionsSchema: z.ZodObject<{
     email?: string | undefined;
 }>;
 export type ConnectOptions = z.infer<typeof ConnectOptionsSchema>;
+export declare const PlatformConnectOptionsSchema: z.ZodObject<{
+    /** Master API key to use for platform control-plane operations */
+    apiKey: z.ZodOptional<z.ZodString>;
+    /** Base URL for the API (defaults to production) */
+    baseUrl: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    apiKey?: string | undefined;
+    baseUrl?: string | undefined;
+}, {
+    apiKey?: string | undefined;
+    baseUrl?: string | undefined;
+}>;
+export type PlatformConnectOptions = z.infer<typeof PlatformConnectOptionsSchema>;
 export declare const RegisterAgentOptionsSchema: z.ZodObject<{
     name: z.ZodString;
     agentFirst: z.ZodOptional<z.ZodBoolean>;
@@ -96,6 +109,30 @@ export declare const CreateAgentOptionsSchema: z.ZodObject<{
     monthlySpendingLimit?: string | undefined;
 }>;
 export type CreateAgentOptions = z.infer<typeof CreateAgentOptionsSchema>;
+export declare const PlatformCreateAgentOptionsSchema: z.ZodObject<{
+    name: z.ZodString;
+    description: z.ZodOptional<z.ZodString>;
+    dailySpendingLimit: z.ZodOptional<z.ZodString>;
+    weeklySpendingLimit: z.ZodOptional<z.ZodString>;
+    monthlySpendingLimit: z.ZodOptional<z.ZodString>;
+} & {
+    isTestMode: z.ZodOptional<z.ZodBoolean>;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    description?: string | undefined;
+    dailySpendingLimit?: string | undefined;
+    weeklySpendingLimit?: string | undefined;
+    monthlySpendingLimit?: string | undefined;
+    isTestMode?: boolean | undefined;
+}, {
+    name: string;
+    description?: string | undefined;
+    dailySpendingLimit?: string | undefined;
+    weeklySpendingLimit?: string | undefined;
+    monthlySpendingLimit?: string | undefined;
+    isTestMode?: boolean | undefined;
+}>;
+export type PlatformCreateAgentOptions = z.infer<typeof PlatformCreateAgentOptionsSchema>;
 export declare const AgentSchema: z.ZodObject<{
     id: z.ZodString;
     name: z.ZodString;
@@ -128,6 +165,58 @@ export declare const AgentSchema: z.ZodObject<{
     updatedAt?: Date | null | undefined;
 }>;
 export type Agent = z.infer<typeof AgentSchema>;
+export declare const MasterApiKeySchema: z.ZodObject<{
+    id: z.ZodString;
+    keyPrefix: z.ZodString;
+    keyName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    scopes: z.ZodArray<z.ZodString, "many">;
+    isActive: z.ZodBoolean;
+    usageCount: z.ZodNumber;
+    lastUsedAt: z.ZodOptional<z.ZodNullable<z.ZodDate>>;
+    expiresAt: z.ZodOptional<z.ZodNullable<z.ZodDate>>;
+    createdAt: z.ZodDate;
+}, "strip", z.ZodTypeAny, {
+    id: string;
+    createdAt: Date;
+    keyPrefix: string;
+    scopes: string[];
+    isActive: boolean;
+    usageCount: number;
+    keyName?: string | null | undefined;
+    lastUsedAt?: Date | null | undefined;
+    expiresAt?: Date | null | undefined;
+}, {
+    id: string;
+    createdAt: Date;
+    keyPrefix: string;
+    scopes: string[];
+    isActive: boolean;
+    usageCount: number;
+    keyName?: string | null | undefined;
+    lastUsedAt?: Date | null | undefined;
+    expiresAt?: Date | null | undefined;
+}>;
+export type MasterApiKey = z.infer<typeof MasterApiKeySchema>;
+export declare const CreatedMasterApiKeySchema: z.ZodObject<{
+    id: z.ZodString;
+    apiKey: z.ZodString;
+    keyName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    scopes: z.ZodArray<z.ZodString, "many">;
+    createdAt: z.ZodDate;
+}, "strip", z.ZodTypeAny, {
+    apiKey: string;
+    id: string;
+    createdAt: Date;
+    scopes: string[];
+    keyName?: string | null | undefined;
+}, {
+    apiKey: string;
+    id: string;
+    createdAt: Date;
+    scopes: string[];
+    keyName?: string | null | undefined;
+}>;
+export type CreatedMasterApiKey = z.infer<typeof CreatedMasterApiKeySchema>;
 export declare const WalletSchema: z.ZodObject<{
     id: z.ZodString;
     agentId: z.ZodString;
@@ -144,10 +233,10 @@ export declare const WalletSchema: z.ZodObject<{
     agentId: string;
     id: string;
     createdAt: Date;
+    isActive: boolean;
     chainId: number;
     chainName: string;
     address: string;
-    isActive: boolean;
     symbol?: string | undefined;
     chainType?: "solana" | "evm" | undefined;
     balance?: string | undefined;
@@ -156,10 +245,10 @@ export declare const WalletSchema: z.ZodObject<{
     agentId: string;
     id: string;
     createdAt: Date;
+    isActive: boolean;
     chainId: number;
     chainName: string;
     address: string;
-    isActive: boolean;
     symbol?: string | undefined;
     chainType?: "solana" | "evm" | undefined;
     balance?: string | undefined;
@@ -694,17 +783,17 @@ export declare const SpongeResponseSchema: z.ZodObject<{
         token: z.ZodString;
         expiresAt: z.ZodString;
     }, "strip", z.ZodTypeAny, {
+        expiresAt: string;
         chain: string;
         to: string;
         amount: string;
         token: string;
-        expiresAt: string;
     }, {
+        expiresAt: string;
         chain: string;
         to: string;
         amount: string;
         token: string;
-        expiresAt: string;
     }>>;
     wallet_balance: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
         address: z.ZodString;
@@ -758,11 +847,11 @@ export declare const SpongeResponseSchema: z.ZodObject<{
         raw_amount: string;
     } | undefined;
     payment_made?: {
+        expiresAt: string;
         chain: string;
         to: string;
         amount: string;
         token: string;
-        expiresAt: string;
     } | undefined;
     wallet_balance?: Record<string, {
         address: string;
@@ -793,11 +882,11 @@ export declare const SpongeResponseSchema: z.ZodObject<{
         raw_amount: string;
     } | undefined;
     payment_made?: {
+        expiresAt: string;
         chain: string;
         to: string;
         amount: string;
         token: string;
-        expiresAt: string;
     } | undefined;
     wallet_balance?: Record<string, {
         address: string;

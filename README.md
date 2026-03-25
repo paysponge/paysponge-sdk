@@ -35,28 +35,22 @@ await wallet.transfer({
 });
 ```
 
-## Generated OpenAPI Client
-
-The package also exports the raw OpenAPI Generator request builder for advanced
-REST usage:
+## Platforms
 
 ```typescript
-import {
-  HttpClient,
-  createGeneratedApiClient,
-} from "@paysponge/sdk";
+import { SpongePlatform } from "@paysponge/sdk";
 
-const http = new HttpClient({ apiKey: "sponge_test_xxx" });
-const client = createGeneratedApiClient(http);
+const platform = await SpongePlatform.connect({
+  apiKey: process.env.SPONGE_MASTER_KEY,
+});
 
-const currentAgent = await client.request<Record<string, unknown>>(
-  client.api.getApiAgentsMeRequestOpts(),
-);
+const { agent, apiKey } = await platform.createAgent({
+  name: "support-bot-1",
+});
+
+const wallet = await platform.connectAgent({ apiKey });
+console.log(agent.id, await wallet.getAddresses());
 ```
-
-The current backend spec is missing response schemas for most endpoints, so the
-generated layer is used for request shapes and paths while the SDK keeps its
-existing response parsing on top.
 
 ## Authentication
 
@@ -77,12 +71,6 @@ Or via environment variable:
 ```bash
 SPONGE_API_KEY=sponge_test_xxx node my-bot.js
 ```
-
-### Master Keys (Programmatic Agent Creation)
-
-`SpongeAdmin` is not part of the SDK surface. For master-key automation,
-call the REST API directly (for example, `POST /api/agents`) using
-`Authorization: Bearer sponge_master_...`.
 
 ## Claude Agent SDK Integration
 
@@ -120,23 +108,18 @@ for await (const msg of query({
 
 ## Documentation
 
-Canonical docs live in the repo's top-level Mintlify source:
+Full docs: [docs.paysponge.com](https://docs.paysponge.com)
 
-- [Welcome](https://github.com/paysponge/sponge/blob/main/docs/index.mdx)
-- [Self-Registration](https://github.com/paysponge/sponge/blob/main/docs/quickstart-self-registration.mdx)
-- [AI Agents](https://github.com/paysponge/sponge/blob/main/docs/quickstart-ai-agents.mdx)
-- [Platforms](https://github.com/paysponge/sponge/blob/main/docs/quickstart-platforms.mdx)
-- [Trading & Payments](https://github.com/paysponge/sponge/blob/main/docs/quickstart-trading.mdx)
-- [CLI](https://github.com/paysponge/sponge/blob/main/docs/cli.mdx)
-- [Authentication](https://github.com/paysponge/sponge/blob/main/docs/authentication.mdx)
-- [Wallets & Transfers](https://github.com/paysponge/sponge/blob/main/docs/wallets-and-transfers.mdx)
-- [Claude Integration](https://github.com/paysponge/sponge/blob/main/docs/claude-integration.mdx)
-- [SDK Reference](https://github.com/paysponge/sponge/blob/main/docs/sdk-reference.mdx)
-- [Master Keys](https://github.com/paysponge/sponge/blob/main/docs/master-keys.mdx)
-
-Generated-client examples:
-- [TypeScript direct OpenAPI example](./examples/openapi-generated.ts)
-- [Python generated client package](../../python/spongewallet-openapi/README.md)
+- [Welcome](https://docs.paysponge.com)
+- [Self-Registration](https://docs.paysponge.com/quickstart-self-registration)
+- [Platforms](https://docs.paysponge.com/quickstart-platforms)
+- [AI Agents](https://docs.paysponge.com/quickstart-ai-agents)
+- [Trading & Payments](https://docs.paysponge.com/quickstart-trading)
+- [CLI](https://docs.paysponge.com/cli)
+- [Authentication](https://docs.paysponge.com/authentication)
+- [Wallets & Transfers](https://docs.paysponge.com/wallets-and-transfers)
+- [Claude Integration](https://docs.paysponge.com/claude-integration)
+- [SDK Reference](https://docs.paysponge.com/sdk-reference)
 
 ## CLI
 
@@ -173,7 +156,6 @@ npx spongewallet logout
 | Variable | Description |
 |----------|-------------|
 | `SPONGE_API_KEY` | Agent API key (skips device flow) |
-| `SPONGE_MASTER_KEY` | Master key for programmatic agent creation |
 | `SPONGE_API_URL` | Custom API URL |
 
 ## License

@@ -10,7 +10,7 @@
  *
  * Run with:
  *   cd packages/spongewallet-sdk
- *   USER_EMAIL=user@example.com bun run examples/user-email-flow.ts
+ *   USER_EMAIL=user@example.com SPONGE_MASTER_KEY=sponge_master_xxx bun run examples/user-email-flow.ts
  *
  * Optional env vars:
  *   SPONGE_API_URL=https://api.wallet.paysponge.com
@@ -20,7 +20,7 @@
  *   X402_AMOUNT=0.01
  */
 
-import { SpongeWallet, deviceFlowAuth } from "../src/index.js";
+import { SpongePlatform } from "../src/index.js";
 
 type UserAgentRecord = {
   agentId: string;
@@ -39,73 +39,32 @@ function emailToAgentName(email: string): string {
   return `agent-${local.replace(/[^a-zA-Z0-9_-]/g, "-").slice(0, 32)}`;
 }
 
-async function getMasterKey(baseUrl: string): Promise<string> {
-  const existing = process.env.SPONGE_MASTER_KEY;
-  if (existing) {
-    return existing;
-  }
-
-  // Until the email-registration endpoint exists, use master auth for provisioning.
-  const token = await deviceFlowAuth({
-    baseUrl,
-    keyType: "master",
-  });
-  return token.apiKey;
-}
-
 async function createAgentForEmail(args: {
   email: string;
-  baseUrl: string;
-  masterKey: string;
+  platform: SpongePlatform;
 }): Promise<UserAgentRecord> {
-  const response = await fetch(`${args.baseUrl}/api/agents/`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${args.masterKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  const created = await args.platform.createAgent({
       name: emailToAgentName(args.email),
       description: `Auto-provisioned wallet agent for ${args.email}`,
-      // This metadata field is where we'd persist owner identity until dedicated wiring lands.
-      metadata: {
-        ownerEmail: args.email,
-      },
-    }),
+      isTestMode: true,
   });
 
-  if (!response.ok) {
-    const body = await response.text().catch(() => "");
-    throw new Error(`Failed to create agent (${response.status}): ${body}`);
-  }
-
-  const json = (await response.json()) as {
-    agent?: { id?: string };
-    mcpApiKey?: string;
-  };
-
-  if (!json.agent?.id || !json.mcpApiKey) {
-    throw new Error("Create agent response missing agent.id or mcpApiKey");
-  }
-
   return {
-    agentId: json.agent.id,
-    apiKey: json.mcpApiKey,
+    agentId: created.agent.id,
+    apiKey: created.apiKey,
   };
 }
 
-async function ensureUserAgent(email: string, baseUrl: string): Promise<UserAgentRecord> {
+async function ensureUserAgent(email: string, platform: SpongePlatform): Promise<UserAgentRecord> {
   const key = normalizeEmail(email);
   const existing = userAgentStore.get(key);
   if (existing) {
     return existing;
   }
 
-  const masterKey = await getMasterKey(baseUrl);
   const created = await createAgentForEmail({
     email: key,
-    baseUrl,
-    masterKey,
+    platform,
   });
   userAgentStore.set(key, created);
   return created;
@@ -114,9 +73,13 @@ async function ensureUserAgent(email: string, baseUrl: string): Promise<UserAgen
 async function main() {
   const baseUrl = process.env.SPONGE_API_URL ?? "https://api.wallet.paysponge.com";
   const userEmail = process.env.USER_EMAIL;
+  const masterKey = process.env.SPONGE_MASTER_KEY;
 
   if (!userEmail) {
     throw new Error("USER_EMAIL is required");
+  }
+  if (!masterKey) {
+    throw new Error("SPONGE_MASTER_KEY is required");
   }
 
   console.log("=".repeat(60));
@@ -125,17 +88,21 @@ async function main() {
   console.log(`User: ${userEmail}`);
   console.log();
 
+  const platform = await SpongePlatform.connect({
+    apiKey: masterKey,
+    baseUrl,
+  });
+
   // Step 1: Ensure one agent per user email (placeholder logic until dedicated endpoint exists).
-  const userAgent = await ensureUserAgent(userEmail, baseUrl);
+  const userAgent = await ensureUserAgent(userEmail, platform);
   console.log("1. Agent provisioned/resolved");
   console.log(`   Agent ID: ${userAgent.agentId}`);
   console.log();
 
   // Step 2: Connect wallet scoped to that user's agent key.
-  const wallet = await SpongeWallet.connect({
+  const wallet = await platform.connectAgent({
     apiKey: userAgent.apiKey,
     agentId: userAgent.agentId,
-    baseUrl,
   });
   console.log("2. Wallet connected");
   console.log(`   Agent ID: ${wallet.getAgentId()}`);

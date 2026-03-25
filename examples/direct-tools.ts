@@ -78,7 +78,7 @@ async function main() {
   console.log();
   console.log("   ```typescript");
   console.log("   import Anthropic from '@anthropic-ai/sdk';");
-  console.log("   import { SpongeWallet } from '@spongewallet/sdk';");
+  console.log("   import { SpongeWallet } from '@paysponge/sdk';");
   console.log("");
   console.log("   const anthropic = new Anthropic();");
   console.log("   const wallet = await SpongeWallet.connect();");
