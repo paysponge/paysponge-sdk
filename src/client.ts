@@ -400,6 +400,19 @@ export class SpongeWallet {
   }
 
   /**
+   * Fetch any URL with automatic paid API handling
+   */
+  async paidFetch(options: {
+    url: string;
+    method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    headers?: Record<string, string>;
+    body?: unknown;
+    chain?: "base" | "solana" | "tempo" | "ethereum";
+  }) {
+    return this.publicTools.paidFetch(options);
+  }
+
+  /**
    * Fetch any URL with automatic x402 payment handling
    */
   async x402Fetch(options: {
@@ -582,10 +595,9 @@ export class SpongeWallet {
    * }
    * ```
    */
-  tools() {
-    // Import dynamically to avoid circular dependencies
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { createTools } = require("./tools/index.js");
+  async tools() {
+    // Dynamic import to avoid circular dependencies
+    const { createTools } = await import("./tools/executor.js");
     return createTools(this.http, this.agentId);
   }
 

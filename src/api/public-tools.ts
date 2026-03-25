@@ -27,18 +27,7 @@ import {
   type SolanaChain,
 } from "../types/schemas.js";
 import type { HttpClient } from "./http.js";
-import {
-  getApiBalances,
-  getApiSolanaTokens,
-  getApiSolanaTokensSearch,
-  getApiTransactionsHistory,
-  postApiOnrampCrypto,
-  postApiSignupBonusClaim,
-  postApiTransfersEvm,
-  postApiTransfersSolana,
-  postApiX402Payments,
-} from "./generated/heyapi/sdk.gen.js";
-import { getHeyApiClient } from "./generated/heyapi-adapter.js";
+import { createGeneratedApiClient } from "./generated/openapi-adapter.js";
 
 export interface DetailedBalanceOptions {
   chain?: Chain | "all";
@@ -77,10 +66,19 @@ export interface X402FetchOptions {
   preferred_chain?: "base" | "solana" | "ethereum";
 }
 
+export interface PaidFetchOptions {
+  url: string;
+  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+  headers?: Record<string, string>;
+  body?: unknown;
+  chain?: "base" | "solana" | "tempo" | "ethereum";
+}
+
 export class PublicToolsApi {
   constructor(private readonly http: HttpClient) {}
 
   async getDetailedBalances(options: DetailedBalanceOptions = {}): Promise<DetailedBalances> {
+    const client = createGeneratedApiClient(this.http);
     const params: Record<string, string> = {};
     if (options.chain) {
       params.chain = options.chain;
@@ -92,76 +90,83 @@ export class PublicToolsApi {
       params.onlyUsdc = "true";
     }
 
-    const response = await getApiBalances({
-      client: getHeyApiClient(this.http),
-      query: params,
-    });
+    const response = await client.request(
+      client.api.getApiBalancesRequestOpts(params),
+    );
     return DetailedBalancesSchema.parse(response);
   }
 
   async evmTransfer(options: EvmTransferOptions): Promise<SubmitTransaction> {
+    const client = createGeneratedApiClient(this.http);
     const validated = EvmTransferOptionsSchema.parse(options);
-    const response = await postApiTransfersEvm({
-      client: getHeyApiClient(this.http),
-      body: validated,
-    });
+    const response = await client.request(
+      client.api.postApiTransfersEvmRequestOpts({
+        postApiTransfersEvmRequest: validated,
+      }),
+    );
     return SubmitTransactionSchema.parse(response);
   }
 
   async solanaTransfer(options: SolanaTransferOptions): Promise<SubmitTransaction> {
+    const client = createGeneratedApiClient(this.http);
     const validated = SolanaTransferOptionsSchema.parse(options);
-    const response = await postApiTransfersSolana({
-      client: getHeyApiClient(this.http),
-      body: validated,
-    });
+    const response = await client.request(
+      client.api.postApiTransfersSolanaRequestOpts({
+        postApiTransfersSolanaRequest: validated,
+      }),
+    );
     return SubmitTransactionSchema.parse(response);
   }
 
   async getSolanaTokens(chain: SolanaChain): Promise<SolanaTokensResponse> {
-    const response = await getApiSolanaTokens({
-      client: getHeyApiClient(this.http),
-      query: { chain },
-    });
+    const client = createGeneratedApiClient(this.http);
+    const response = await client.request(
+      client.api.getApiSolanaTokensRequestOpts({ chain }),
+    );
     return SolanaTokensResponseSchema.parse(response);
   }
 
   async searchSolanaTokens(query: string, limit?: number): Promise<SolanaTokenSearchResponse> {
+    const client = createGeneratedApiClient(this.http);
     const params: { query: string; limit?: string } = { query };
     if (limit !== undefined) params.limit = limit.toString();
-    const response = await getApiSolanaTokensSearch({
-      client: getHeyApiClient(this.http),
-      query: params,
-    });
+    const response = await client.request(
+      client.api.getApiSolanaTokensSearchRequestOpts(params),
+    );
     return SolanaTokenSearchResponseSchema.parse(response);
   }
 
   async getTransactionHistoryDetailed(
     options: TransactionHistoryDetailedOptions = {},
   ): Promise<TransactionHistoryDetailed> {
+    const client = createGeneratedApiClient(this.http);
     const params: Record<string, string> = {};
     if (options.limit !== undefined) params.limit = options.limit.toString();
     if (options.chain) params.chain = options.chain;
-    const response = await getApiTransactionsHistory({
-      client: getHeyApiClient(this.http),
-      query: params,
-    });
+    const response = await client.request(
+      client.api.getApiTransactionsHistoryRequestOpts(params),
+    );
     return TransactionHistoryDetailedSchema.parse(response);
   }
 
   async createOnrampLink(options: OnrampCryptoOptions): Promise<OnrampCryptoResponse> {
+    const client = createGeneratedApiClient(this.http);
     const validated = OnrampCryptoOptionsSchema.parse(options);
-    const response = await postApiOnrampCrypto({
-      client: getHeyApiClient(this.http),
-      body: validated,
-    });
+    const response = await client.request(
+      client.api.postApiOnrampCryptoRequestOpts({
+        postApiOnrampCryptoRequest: validated,
+      }),
+    );
     return OnrampCryptoResponseSchema.parse(response);
   }
 
   async claimSignupBonus(): Promise<SignupBonusClaimResponse> {
-    const response = await postApiSignupBonusClaim({
-      client: getHeyApiClient(this.http),
-      body: {},
-    });
+    const client = createGeneratedApiClient(this.http);
+    const response = await client.request(
+      client.api.postApiSignupBonusClaimRequestOpts({
+        postApiSignupBonusClaimRequest: {},
+      }),
+    );
     return SignupBonusClaimResponseSchema.parse(response);
   }
 
@@ -171,11 +176,22 @@ export class PublicToolsApi {
   }
 
   async createX402Payment(options: CreateX402PaymentOptions): Promise<X402PaymentResponse> {
-    const response = await postApiX402Payments({
-      client: getHeyApiClient(this.http),
-      body: options,
-    });
+    const client = createGeneratedApiClient(this.http);
+    const response = await client.request(
+      client.api.postApiX402PaymentsRequestOpts({
+        postApiX402PaymentsRequest: options,
+      }),
+    );
     return X402PaymentResponseSchema.parse(response);
+  }
+
+  async paidFetch(options: PaidFetchOptions): Promise<unknown> {
+    const { method = "GET", ...rest } = options;
+
+    return this.http.post<unknown>("/api/paid/fetch", {
+      ...rest,
+      method,
+    });
   }
 
   async x402Fetch(options: X402FetchOptions): Promise<unknown> {

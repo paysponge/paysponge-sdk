@@ -8,12 +8,7 @@ import {
   type Balance,
 } from "../types/schemas.js";
 import type { HttpClient } from "./http.js";
-import {
-  getApiWallets,
-  getApiWalletsById,
-  getApiWalletsByIdBalance,
-} from "./generated/heyapi/sdk.gen.js";
-import { getHeyApiClient } from "./generated/heyapi-adapter.js";
+import { createGeneratedApiClient } from "./generated/openapi-adapter.js";
 
 // Balance response from API
 const BalanceResponseSchema = z.object({
@@ -48,6 +43,7 @@ export class WalletsApi {
     agentId: string,
     options?: { includeBalances?: boolean }
   ): Promise<Wallet[]> {
+    const client = createGeneratedApiClient(this.http);
     const params: Record<string, string> = {
       agentId,
     };
@@ -55,10 +51,9 @@ export class WalletsApi {
       params.includeBalances = "true";
     }
 
-    const response = await getApiWallets({
-      client: getHeyApiClient(this.http),
-      query: params,
-    });
+    const response = await client.request(
+      client.api.getApiWalletsRequestOpts(params),
+    );
     return z.array(WalletSchema).parse(response);
   }
 
@@ -66,10 +61,10 @@ export class WalletsApi {
    * Get a specific wallet by ID
    */
   async get(walletId: string): Promise<Wallet> {
-    const response = await getApiWalletsById({
-      client: getHeyApiClient(this.http),
-      path: { id: walletId },
-    });
+    const client = createGeneratedApiClient(this.http);
+    const response = await client.request(
+      client.api.getApiWalletsByIdRequestOpts({ id: walletId }),
+    );
     return WalletSchema.parse(response);
   }
 
@@ -77,16 +72,18 @@ export class WalletsApi {
    * Get wallet balance
    */
   async getBalance(walletId: string, chainId?: number): Promise<Balance> {
+    const client = createGeneratedApiClient(this.http);
     const params: Record<string, string> = {};
     if (chainId !== undefined) {
       params.chainId = chainId.toString();
     }
 
-    const response = await getApiWalletsByIdBalance({
-      client: getHeyApiClient(this.http),
-      path: { id: walletId },
-      query: params,
-    });
+    const response = await client.request(
+      client.api.getApiWalletsByIdBalanceRequestOpts({
+        id: walletId,
+        ...params,
+      }),
+    );
     const parsed = BalanceResponseSchema.parse(response);
 
     // Convert to simple balance map

@@ -38,7 +38,7 @@ async function main() {
 
   // Get tools
   console.log("2. Getting tool definitions...");
-  const tools = wallet.tools();
+  const tools = await wallet.tools();
   console.log(`   Found ${tools.definitions.length} tools:`);
   console.log();
 
@@ -82,7 +82,7 @@ async function main() {
   console.log("");
   console.log("   const anthropic = new Anthropic();");
   console.log("   const wallet = await SpongeWallet.connect();");
-  console.log("   const tools = wallet.tools();");
+  console.log("   const tools = await wallet.tools();");
   console.log("");
   console.log("   const messages = [{ role: 'user', content: 'Check my balance' }];");
   console.log("");

@@ -1,7 +1,11 @@
 import { z } from "zod";
 import type { HttpClient } from "../api/http.js";
 import type { ToolResult } from "../types/schemas.js";
-import { TOOL_DEFINITIONS, type ToolDefinition } from "./definitions.js";
+import {
+  TOOL_DEFINITIONS,
+  toAnthropicToolDefinition,
+  type AnthropicToolDefinition,
+} from "./definitions.js";
 
 /**
  * Tool executor for use with the Anthropic SDK
@@ -17,8 +21,8 @@ export class ToolExecutor {
   /**
    * Get tool definitions for use with Anthropic SDK
    */
-  get definitions(): ToolDefinition[] {
-    return TOOL_DEFINITIONS;
+  get definitions(): AnthropicToolDefinition[] {
+    return TOOL_DEFINITIONS.map(toAnthropicToolDefinition);
   }
 
   /**
@@ -100,6 +104,14 @@ export class ToolExecutor {
           amount: args.amount,
           currency: args.currency,
         });
+      case "solana_sign_transaction":
+        return this.http.post<unknown>("/api/solana/sign", {
+          transaction: args.transaction,
+        });
+      case "solana_sign_and_send_transaction":
+        return this.http.post<unknown>("/api/solana/sign-and-send", {
+          transaction: args.transaction,
+        });
       case "solana_swap":
         return this.http.post<unknown>("/api/transactions/swap", {
           chain: args.chain,
@@ -173,6 +185,14 @@ export class ToolExecutor {
           resource_description: args.resource_description,
           fee_payer: args.fee_payer,
           http_method: args.http_method,
+        });
+      case "paid_fetch":
+        return this.http.post<unknown>("/api/paid/fetch", {
+          url: args.url,
+          method: args.method,
+          headers: args.headers,
+          body: args.body,
+          chain: args.chain,
         });
       case "x402_fetch":
         return this.http.post<unknown>("/api/x402/fetch", {

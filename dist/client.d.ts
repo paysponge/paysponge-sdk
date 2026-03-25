@@ -190,9 +190,9 @@ export declare class SpongeWallet {
             status: string;
             chain: string;
             to: string;
+            token: string;
             txHash: string | null;
             from: string;
-            token: string;
             direction: string;
             timestamp: string;
         }[];
@@ -328,6 +328,16 @@ export declare class SpongeWallet {
         paymentPayload?: unknown;
         headerName?: string | undefined;
     }>;
+    /**
+     * Fetch any URL with automatic paid API handling
+     */
+    paidFetch(options: {
+        url: string;
+        method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+        headers?: Record<string, string>;
+        body?: unknown;
+        chain?: "base" | "solana" | "tempo" | "ethereum";
+    }): Promise<unknown>;
     /**
      * Fetch any URL with automatic x402 payment handling
      */
@@ -495,7 +505,7 @@ export declare class SpongeWallet {
      * }
      * ```
      */
-    tools(): any;
+    tools(): Promise<import("./tools/executor.js").ToolExecutor>;
     /**
      * Get the agent ID
      */

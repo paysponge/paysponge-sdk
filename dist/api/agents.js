@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { AgentSchema, CreateAgentOptionsSchema, } from "../types/schemas.js";
-import { deleteApiAgentsById, getApiAgents, getApiAgentsById, getApiAgentsMe, postApiAgents, putApiAgentsById, } from "./generated/heyapi/sdk.gen.js";
-import { getHeyApiClient } from "./generated/heyapi-adapter.js";
+import { createGeneratedApiClient, } from "./generated/openapi-adapter.js";
 // Response from creating an agent (includes API key)
 const CreateAgentResponseSchema = z.object({
     agent: AgentSchema,
@@ -17,11 +16,10 @@ export class AgentsApi {
      */
     async create(options) {
         const validated = CreateAgentOptionsSchema.parse(options);
-        const client = getHeyApiClient(this.http);
-        const response = await postApiAgents({
-            client,
-            body: validated,
-        });
+        const client = createGeneratedApiClient(this.http);
+        const response = await client.request(client.api.postApiAgentsRequestOpts({
+            postApiAgentsRequest: validated,
+        }));
         const parsed = CreateAgentResponseSchema.parse(response);
         return {
             agent: parsed.agent,
@@ -33,9 +31,8 @@ export class AgentsApi {
      * Note: This endpoint requires Privy auth, not API key auth
      */
     async list() {
-        const response = await getApiAgents({
-            client: getHeyApiClient(this.http),
-        });
+        const client = createGeneratedApiClient(this.http);
+        const response = await client.request(client.api.getApiAgentsRequestOpts({}));
         return z.array(AgentSchema).parse(response);
     }
     /**
@@ -43,10 +40,8 @@ export class AgentsApi {
      * Note: This endpoint requires Privy auth, not API key auth
      */
     async get(agentId) {
-        const response = await getApiAgentsById({
-            client: getHeyApiClient(this.http),
-            path: { id: agentId },
-        });
+        const client = createGeneratedApiClient(this.http);
+        const response = await client.request(client.api.getApiAgentsByIdRequestOpts({ id: agentId }));
         return AgentSchema.parse(response);
     }
     /**
@@ -54,30 +49,27 @@ export class AgentsApi {
      * This endpoint returns the agent associated with the current API key
      */
     async getCurrent() {
-        const response = await getApiAgentsMe({
-            client: getHeyApiClient(this.http),
-        });
+        const client = createGeneratedApiClient(this.http);
+        const response = await client.request(client.api.getApiAgentsMeRequestOpts());
         return AgentSchema.parse(response);
     }
     /**
      * Update an agent
      */
     async update(agentId, updates) {
-        const response = await putApiAgentsById({
-            client: getHeyApiClient(this.http),
-            path: { id: agentId },
-            body: updates,
-        });
+        const client = createGeneratedApiClient(this.http);
+        const response = await client.request(client.api.putApiAgentsByIdRequestOpts({
+            id: agentId,
+            putApiAgentsByIdRequest: updates,
+        }));
         return AgentSchema.parse(response);
     }
     /**
      * Delete an agent
      */
     async delete(agentId) {
-        await deleteApiAgentsById({
-            client: getHeyApiClient(this.http),
-            path: { id: agentId },
-        });
+        const client = createGeneratedApiClient(this.http);
+        await client.request(client.api.deleteApiAgentsByIdRequestOpts({ id: agentId }));
     }
 }
 //# sourceMappingURL=agents.js.map

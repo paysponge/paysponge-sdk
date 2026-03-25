@@ -17,5 +17,11 @@
     "isolatedModules": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "examples"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "examples",
+    "src/api/generated/heyapi/**/*",
+    "src/api/generated/heyapi-adapter.ts"
+  ]
 }

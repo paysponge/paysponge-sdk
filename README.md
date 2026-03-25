@@ -35,6 +35,29 @@ await wallet.transfer({
 });
 ```
 
+## Generated OpenAPI Client
+
+The package also exports the raw OpenAPI Generator request builder for advanced
+REST usage:
+
+```typescript
+import {
+  HttpClient,
+  createGeneratedApiClient,
+} from "@paysponge/sdk";
+
+const http = new HttpClient({ apiKey: "sponge_test_xxx" });
+const client = createGeneratedApiClient(http);
+
+const currentAgent = await client.request<Record<string, unknown>>(
+  client.api.getApiAgentsMeRequestOpts(),
+);
+```
+
+The current backend spec is missing response schemas for most endpoints, so the
+generated layer is used for request shapes and paths while the SDK keeps its
+existing response parsing on top.
+
 ## Authentication
 
 ### Device Flow (Browser)
@@ -83,7 +106,7 @@ for await (const msg of query({
 
 ## Supported Chains
 
-- **EVM**: Ethereum, Base, Sepolia, Base Sepolia, Tempo
+- **EVM**: Ethereum, Base, Monad, Sepolia, Base Sepolia, Tempo
 - **Solana**: Mainnet, Devnet
 
 ## Features
@@ -97,30 +120,49 @@ for await (const msg of query({
 
 ## Documentation
 
-**[Early Access Docs →](./docs/index.md)**
+Canonical docs live in the repo's top-level Mintlify source:
 
-Quickstarts by use case:
-- [Self-Registration](./docs/quickstart-self-registration.md) — Create a wallet instantly, claim later
-- [AI Agents](./docs/quickstart-ai-agents.md) — Give Claude wallet tools via MCP or direct tools
-- [Platforms](./docs/quickstart-platforms.md) — Programmatic agent creation with master keys
-- [Trading & DeFi](./docs/quickstart-trading.md) — Swaps, perps, bridges, and x402 payments
+- [Welcome](https://github.com/paysponge/sponge/blob/main/docs/index.mdx)
+- [Self-Registration](https://github.com/paysponge/sponge/blob/main/docs/quickstart-self-registration.mdx)
+- [AI Agents](https://github.com/paysponge/sponge/blob/main/docs/quickstart-ai-agents.mdx)
+- [Platforms](https://github.com/paysponge/sponge/blob/main/docs/quickstart-platforms.mdx)
+- [Trading & Payments](https://github.com/paysponge/sponge/blob/main/docs/quickstart-trading.mdx)
+- [CLI](https://github.com/paysponge/sponge/blob/main/docs/cli.mdx)
+- [Authentication](https://github.com/paysponge/sponge/blob/main/docs/authentication.mdx)
+- [Wallets & Transfers](https://github.com/paysponge/sponge/blob/main/docs/wallets-and-transfers.mdx)
+- [Claude Integration](https://github.com/paysponge/sponge/blob/main/docs/claude-integration.mdx)
+- [SDK Reference](https://github.com/paysponge/sponge/blob/main/docs/sdk-reference.mdx)
+- [Master Keys](https://github.com/paysponge/sponge/blob/main/docs/master-keys.mdx)
 
-Reference:
-- [Getting Started](./docs/getting-started.md)
-- [Authentication](./docs/authentication.md)
-- [Wallets & Transfers](./docs/wallets-and-transfers.md)
-- [Claude Integration](./docs/claude-integration.md)
-- [API Reference](./docs/api-reference.md)
-- [Master Keys](./docs/master-keys.md)
+Generated-client examples:
+- [TypeScript direct OpenAPI example](./examples/openapi-generated.ts)
+- [Python generated client package](../../python/spongewallet-openapi/README.md)
 
 ## CLI
 
 ```bash
-# Login via browser
+# Create agent immediately, claim later
+npx spongewallet init
+
+# Agent-first with email for claim matching
+npx spongewallet init --email alice@example.com
+
+# Claim pending agent or do normal login if no pending claim exists
 npx spongewallet login
+
+# Curated wallet workflows
+npx spongewallet wallet balance
+npx spongewallet wallet send --chain base --to 0xabc... --amount 10 --asset USDC
+npx spongewallet tx status --chain base --tx-hash 0x123...
+
+# Raw tool commands remain available under "advanced"
+npx spongewallet advanced get-balance --chain base
 
 # Check current session
 npx spongewallet whoami
+
+# Print authenticated MCP config
+npx spongewallet mcp print
 
 # Logout
 npx spongewallet logout

@@ -1,6 +1,6 @@
 import type { HttpClient } from "../api/http.js";
 import type { ToolResult } from "../types/schemas.js";
-import { type ToolDefinition } from "./definitions.js";
+import { type AnthropicToolDefinition } from "./definitions.js";
 /**
  * Tool executor for use with the Anthropic SDK
  *
@@ -13,7 +13,7 @@ export declare class ToolExecutor {
     /**
      * Get tool definitions for use with Anthropic SDK
      */
-    get definitions(): ToolDefinition[];
+    get definitions(): AnthropicToolDefinition[];
     /**
      * Execute a tool by name
      *

@@ -15,7 +15,90 @@ export interface ToolDefinition {
     properties: Record<string, unknown>;
     required?: string[];
   };
+  cli_output?: CliOutputDefinition;
 }
+
+export type AnthropicToolDefinition = Omit<ToolDefinition, "cli_output">;
+
+export function toAnthropicToolDefinition(tool: ToolDefinition): AnthropicToolDefinition {
+  return {
+    name: tool.name,
+    description: tool.description,
+    input_schema: tool.input_schema,
+  };
+}
+
+export type CliOutputKind =
+  | "tx"
+  | "table"
+  | "fields"
+  | "link"
+  | "http_response";
+
+export interface CliOutputField {
+  key: string | string[];
+  label: string;
+}
+
+export interface CliOutputColumn {
+  key: string | string[];
+  label: string;
+}
+
+export interface CliOutputDefinition {
+  kind: CliOutputKind;
+  title?: string;
+  dataPath?: string;
+  emptyMessage?: string;
+  fields?: CliOutputField[];
+  columns?: CliOutputColumn[];
+  linkField?: string;
+}
+
+const txOutput = (title?: string): CliOutputDefinition => ({
+  kind: "tx",
+  title,
+});
+
+const fieldsOutput = (
+  fields: CliOutputField[],
+  title?: string,
+  dataPath?: string,
+): CliOutputDefinition => ({
+  kind: "fields",
+  title,
+  dataPath,
+  fields,
+});
+
+const tableOutput = (
+  columns: CliOutputColumn[],
+  title?: string,
+  dataPath?: string,
+  emptyMessage?: string,
+): CliOutputDefinition => ({
+  kind: "table",
+  title,
+  dataPath,
+  emptyMessage,
+  columns,
+});
+
+const linkOutput = (
+  title: string,
+  linkField: string,
+  fields: CliOutputField[],
+): CliOutputDefinition => ({
+  kind: "link",
+  title,
+  linkField,
+  fields,
+});
+
+const httpResponseOutput = (title: string): CliOutputDefinition => ({
+  kind: "http_response",
+  title,
+});
 
 export const TOOL_DEFINITIONS: ToolDefinition[] = [
   {
@@ -32,8 +115,8 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
             "base",
             "sepolia",
             "base-sepolia",
+            "tempo-testnet",
             "tempo",
-            "tempo-mainnet",
             "solana",
             "solana-devnet",
           ],
@@ -53,6 +136,15 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: [],
     },
+    cli_output: tableOutput(
+      [
+        { key: "chain", label: "Chain" },
+        { key: "token", label: "Token" },
+        { key: "amount", label: "Amount" },
+        { key: "usdValue", label: "USD" },
+      ],
+      "Balances",
+    ),
   },
   {
     name: "evm_transfer",
@@ -83,6 +175,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["chain", "to", "amount", "currency"],
     },
+    cli_output: txOutput("Transfer submitted"),
   },
   {
     name: "solana_transfer",
@@ -112,6 +205,46 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["chain", "to", "amount", "currency"],
     },
+    cli_output: txOutput("Transfer submitted"),
+  },
+  {
+    name: "solana_sign_transaction",
+    description:
+      "Sign a pre-built Solana transaction without submitting it. Use this when another API returns a base64 serialized Solana transaction for the agent wallet to sign.",
+    input_schema: {
+      type: "object",
+      properties: {
+        transaction: {
+          type: "string",
+          description: "Base64-encoded serialized Solana transaction",
+        },
+      },
+      required: ["transaction"],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: "signature", label: "Signature" },
+        { key: "from", label: "Signer" },
+        { key: "chain", label: "Chain" },
+      ],
+      "Transaction signed",
+    ),
+  },
+  {
+    name: "solana_sign_and_send_transaction",
+    description:
+      "Sign a pre-built Solana transaction and immediately submit it. Use this when another API returns a base64 serialized Solana transaction for the agent wallet to sign and broadcast.",
+    input_schema: {
+      type: "object",
+      properties: {
+        transaction: {
+          type: "string",
+          description: "Base64-encoded serialized Solana transaction",
+        },
+      },
+      required: ["transaction"],
+    },
+    cli_output: txOutput("Transaction submitted"),
   },
   {
     name: "solana_swap",
@@ -147,6 +280,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["chain", "inputToken", "outputToken", "amount"],
     },
+    cli_output: txOutput("Swap submitted"),
   },
   {
     name: "jupiter_swap_quote",
@@ -182,6 +316,20 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["chain", "inputToken", "outputToken", "amount"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: "quoteId", label: "Quote ID" },
+        { key: "inputToken.amount", label: "Input amount" },
+        { key: "inputToken.symbol", label: "Input token" },
+        { key: "outputToken.amount", label: "Output amount" },
+        { key: "outputToken.symbol", label: "Output token" },
+        { key: "exchangeRate", label: "Exchange rate" },
+        { key: "priceImpactPct", label: "Price impact" },
+        { key: "router", label: "Router" },
+        { key: "expiresAt", label: "Expires at" },
+      ],
+      "Swap quote",
+    ),
   },
   {
     name: "jupiter_swap_execute",
@@ -197,6 +345,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["quoteId"],
     },
+    cli_output: txOutput("Swap executed"),
   },
   {
     name: "base_swap",
@@ -232,6 +381,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["chain", "inputToken", "outputToken", "amount"],
     },
+    cli_output: txOutput("Swap submitted"),
   },
   {
     name: "bridge",
@@ -272,6 +422,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["sourceChain", "destinationChain", "token", "amount"],
     },
+    cli_output: txOutput("Bridge submitted"),
   },
   {
     name: "get_solana_tokens",
@@ -288,6 +439,17 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["chain"],
     },
+    cli_output: tableOutput(
+      [
+        { key: "symbol", label: "Symbol" },
+        { key: "name", label: "Name" },
+        { key: "balance", label: "Balance" },
+        { key: "verified", label: "Verified" },
+      ],
+      "Solana tokens",
+      "tokens",
+      "No SPL tokens found.",
+    ),
   },
   {
     name: "search_solana_tokens",
@@ -306,6 +468,17 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["query"],
     },
+    cli_output: tableOutput(
+      [
+        { key: "symbol", label: "Symbol" },
+        { key: "name", label: "Name" },
+        { key: "mint", label: "Mint" },
+        { key: "verified", label: "Verified" },
+      ],
+      "Token search results",
+      "tokens",
+      "No tokens found.",
+    ),
   },
   {
     name: "get_transaction_status",
@@ -324,8 +497,8 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
             "base",
             "sepolia",
             "base-sepolia",
+            "tempo-testnet",
             "tempo",
-            "tempo-mainnet",
             "solana",
             "solana-devnet",
           ],
@@ -334,6 +507,16 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["txHash", "chain"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: ["transactionHash", "txHash", "signature"], label: "Transaction" },
+        { key: "status", label: "Status" },
+        { key: "chain", label: "Chain" },
+        { key: "explorerUrl", label: "Explorer" },
+        { key: "message", label: "Message" },
+      ],
+      "Transaction status",
+    ),
   },
   {
     name: "get_transaction_history",
@@ -352,6 +535,18 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: [],
     },
+    cli_output: tableOutput(
+      [
+        { key: "chain", label: "Chain" },
+        { key: "value", label: "Amount" },
+        { key: "token", label: "Token" },
+        { key: "status", label: "Status" },
+        { key: "timestamp", label: "Timestamp" },
+      ],
+      "Transaction history",
+      "transactions",
+      "No transactions found.",
+    ),
   },
   {
     name: "create_crypto_onramp",
@@ -393,6 +588,13 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["wallet_address"],
     },
+    cli_output: linkOutput("Onramp session", "url", [
+      { key: "provider", label: "Provider" },
+      { key: "status", label: "Status" },
+      { key: "destinationChain", label: "Destination chain" },
+      { key: "destinationAddress", label: "Destination address" },
+      { key: "sessionId", label: "Session ID" },
+    ]),
   },
   ...(SIGNUP_BONUS_ENABLED
     ? [
@@ -405,9 +607,48 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
             properties: {},
             required: [] as string[],
           },
+          cli_output: txOutput("Signup bonus claimed"),
         },
       ]
     : []),
+  {
+    name: "paid_fetch",
+    description:
+      "Make an HTTP request with automatic paid API handling. " +
+      "This is the main one-shot paid fetch tool. It selects the best wallet route, automatically handles x402 or MPP challenges, " +
+      "and falls back when the requested chain is unsupported by the endpoint.",
+    input_schema: {
+      type: "object",
+      properties: {
+        url: {
+          type: "string",
+          description: "The URL to fetch",
+        },
+        method: {
+          type: "string",
+          enum: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+          description: "HTTP method (default: GET)",
+        },
+        headers: {
+          type: "object",
+          description: "Additional HTTP headers to include",
+        },
+        body: {
+          type: "object",
+          description:
+            "Request body (for POST/PUT/PATCH). Will be JSON-stringified if not already a string.",
+        },
+        chain: {
+          type: "string",
+          enum: ["base", "solana", "tempo", "ethereum"],
+          description:
+            "Preferred wallet chain to spend from. This is a hint, not a hard requirement.",
+        },
+      },
+      required: ["url"],
+    },
+    cli_output: httpResponseOutput("Paid fetch"),
+  },
   {
     name: "x402_fetch",
     description:
@@ -445,6 +686,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["url"],
     },
+    cli_output: httpResponseOutput("x402 fetch"),
   },
   {
     name: "mpp_fetch",
@@ -456,7 +698,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       properties: {
         chain: {
           type: "string",
-          enum: ["tempo", "tempo-mainnet"],
+          enum: ["tempo-testnet", "tempo"],
           description: "Payment chain to use",
         },
         url: {
@@ -480,6 +722,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["url"],
     },
+    cli_output: httpResponseOutput("MPP fetch"),
   },
   {
     name: "hyperliquid",
@@ -666,6 +909,15 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["service", "key"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: "service", label: "Service" },
+        { key: "label", label: "Label" },
+        { key: "key_preview", label: "Preview" },
+        { key: "created_at", label: "Created" },
+      ],
+      "Key stored",
+    ),
   },
   {
     name: "store_credit_card",
@@ -726,8 +978,9 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
             state: { type: "string" },
             postal_code: { type: "string" },
             country: { type: "string" },
+            phone: { type: "string" },
           },
-          required: ["line1", "city", "state", "postal_code", "country"],
+          required: ["line1", "city", "state", "postal_code", "country", "phone"],
         },
         label: {
           type: "string",
@@ -740,6 +993,50 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["card_number", "cvc", "cardholder_name", "email", "billing_address", "shipping_address"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: "service", label: "Service" },
+        { key: "label", label: "Label" },
+        { key: "card_last4", label: "Card last4" },
+        { key: "key_preview", label: "Preview" },
+        { key: "created_at", label: "Created" },
+      ],
+      "Card stored",
+    ),
+  },
+  {
+    name: "get_virtual_card",
+    description:
+      "Issue a virtual card for making a payment. Returns fresh card credentials (number, expiry, CVC) " +
+      "scoped to a specific amount and merchant. Requires an enrolled card (set up by the user in the dashboard).\n\n" +
+      "Use this when you need card details to pay for something — e.g., signing up for a paid service, " +
+      "buying a subscription, or entering payment info on any website. " +
+      "For purchases via web_purchase, virtual card credentials are handled automatically — " +
+      "use this tool directly only when you need the raw card details (e.g., to fill in a payment form yourself).",
+    input_schema: {
+      type: "object",
+      properties: {
+        amount: { type: "string", description: "Transaction amount (e.g., '99.99')" },
+        currency: { type: "string", description: "ISO 4217 currency code (default: USD)" },
+        merchant_name: { type: "string", description: "Merchant name" },
+        merchant_url: { type: "string", description: "Merchant URL" },
+        merchant_country_code: { type: "string", description: "Merchant country code (default: US)" },
+        description: { type: "string", description: "Description of the purchase" },
+        enrollment_id: { type: "string", description: "Specific enrollment ID (uses default if omitted)" },
+      },
+      required: ["amount", "merchant_name", "merchant_url"],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: "card_number", label: "Card number" },
+        { key: "expiration_month", label: "Expiry month" },
+        { key: "expiration_year", label: "Expiry year" },
+        { key: "cvc", label: "CVC" },
+        { key: "expires_at", label: "Expires at" },
+        { key: "instruction_id", label: "Instruction ID" },
+      ],
+      "Virtual card",
+    ),
   },
   {
     name: "get_key_list",
@@ -751,6 +1048,17 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       properties: {},
       required: [],
     },
+    cli_output: tableOutput(
+      [
+        { key: "service", label: "Service" },
+        { key: "label", label: "Label" },
+        { key: "key_preview", label: "Preview" },
+        { key: "created_at", label: "Created" },
+      ],
+      "Stored keys",
+      "keys",
+      "No stored keys found.",
+    ),
   },
   {
     name: "get_key_value",
@@ -766,6 +1074,17 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["service"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: "service", label: "Service" },
+        { key: "label", label: "Label" },
+        { key: "key_preview", label: "Preview" },
+        { key: "key", label: "Key" },
+        { key: "created_at", label: "Created" },
+      ],
+      "Stored key",
+      "key",
+    ),
   },
   {
     name: "submit_plan",
@@ -848,6 +1167,14 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["title", "steps"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: "planId", label: "Plan ID" },
+        { key: "message", label: "Message" },
+        { key: "dashboardUrl", label: "Dashboard URL" },
+      ],
+      "Plan submitted",
+    ),
   },
   {
     name: "approve_plan",
@@ -864,6 +1191,18 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["plan_id"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: "planId", label: "Plan ID" },
+        { key: "status", label: "Status" },
+        { key: "completedSteps", label: "Completed steps" },
+        { key: "skippedSteps", label: "Skipped steps" },
+        { key: "totalSteps", label: "Total steps" },
+        { key: "failureReason", label: "Failure reason" },
+        { key: "message", label: "Message" },
+      ],
+      "Plan approved",
+    ),
   },
   {
     name: "propose_trade",
@@ -894,6 +1233,16 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["input_token", "output_token", "amount", "reason"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: "requestId", label: "Request ID" },
+        { key: "status", label: "Status" },
+        { key: "estimatedOutput", label: "Estimated output" },
+        { key: "estimatedPrice", label: "Estimated price" },
+        { key: "message", label: "Message" },
+      ],
+      "Trade proposal",
+    ),
   },
   {
     name: "generate_siwe",
@@ -944,5 +1293,17 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
       required: ["domain", "uri"],
     },
+    cli_output: fieldsOutput(
+      [
+        { key: "address", label: "Address" },
+        { key: "chainId", label: "Chain ID" },
+        { key: "nonce", label: "Nonce" },
+        { key: "issuedAt", label: "Issued at" },
+        { key: "expirationTime", label: "Expires at" },
+        { key: "signature", label: "Signature" },
+        { key: "base64SiweMessage", label: "Base64 message" },
+      ],
+      "SIWE signature",
+    ),
   },
 ];

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { TOOL_DEFINITIONS } from "./definitions.js";
+import { TOOL_DEFINITIONS, toAnthropicToolDefinition, } from "./definitions.js";
 /**
  * Tool executor for use with the Anthropic SDK
  *
@@ -16,7 +16,7 @@ export class ToolExecutor {
      * Get tool definitions for use with Anthropic SDK
      */
     get definitions() {
-        return TOOL_DEFINITIONS;
+        return TOOL_DEFINITIONS.map(toAnthropicToolDefinition);
     }
     /**
      * Execute a tool by name
@@ -95,6 +95,14 @@ export class ToolExecutor {
                     amount: args.amount,
                     currency: args.currency,
                 });
+            case "solana_sign_transaction":
+                return this.http.post("/api/solana/sign", {
+                    transaction: args.transaction,
+                });
+            case "solana_sign_and_send_transaction":
+                return this.http.post("/api/solana/sign-and-send", {
+                    transaction: args.transaction,
+                });
             case "solana_swap":
                 return this.http.post("/api/transactions/swap", {
                     chain: args.chain,
@@ -165,6 +173,14 @@ export class ToolExecutor {
                     resource_description: args.resource_description,
                     fee_payer: args.fee_payer,
                     http_method: args.http_method,
+                });
+            case "paid_fetch":
+                return this.http.post("/api/paid/fetch", {
+                    url: args.url,
+                    method: args.method,
+                    headers: args.headers,
+                    body: args.body,
+                    chain: args.chain,
                 });
             case "x402_fetch":
                 return this.http.post("/api/x402/fetch", {

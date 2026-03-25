@@ -1,17 +1,17 @@
 import { z } from "zod";
-export declare const ChainSchema: z.ZodEnum<["ethereum", "base", "sepolia", "base-sepolia", "tempo", "tempo-mainnet", "solana", "solana-devnet"]>;
+export declare const ChainSchema: z.ZodEnum<["ethereum", "base", "monad", "sepolia", "base-sepolia", "tempo-testnet", "tempo", "solana", "solana-devnet"]>;
 export type Chain = z.infer<typeof ChainSchema>;
 export declare const ChainTypeSchema: z.ZodEnum<["evm", "solana"]>;
 export type ChainType = z.infer<typeof ChainTypeSchema>;
-export declare const CurrencySchema: z.ZodEnum<["ETH", "SOL", "USDC", "pathUSD"]>;
+export declare const CurrencySchema: z.ZodString;
 export type Currency = z.infer<typeof CurrencySchema>;
-export declare const EvmChainSchema: z.ZodEnum<["ethereum", "base", "sepolia", "base-sepolia"]>;
+export declare const EvmChainSchema: z.ZodEnum<["ethereum", "base", "monad", "sepolia", "base-sepolia"]>;
 export type EvmChain = z.infer<typeof EvmChainSchema>;
 export declare const SolanaChainSchema: z.ZodEnum<["solana", "solana-devnet"]>;
 export type SolanaChain = z.infer<typeof SolanaChainSchema>;
-export declare const MainnetChainSchema: z.ZodEnum<["ethereum", "base", "tempo-mainnet", "solana"]>;
+export declare const MainnetChainSchema: z.ZodEnum<["ethereum", "base", "monad", "tempo", "solana"]>;
 export type MainnetChain = z.infer<typeof MainnetChainSchema>;
-export declare const TestnetChainSchema: z.ZodEnum<["sepolia", "base-sepolia", "tempo", "solana-devnet"]>;
+export declare const TestnetChainSchema: z.ZodEnum<["sepolia", "base-sepolia", "tempo-testnet", "solana-devnet"]>;
 export type TestnetChain = z.infer<typeof TestnetChainSchema>;
 export declare const EthereumAddressSchema: z.ZodString;
 export declare const SolanaAddressSchema: z.ZodString;
@@ -53,6 +53,29 @@ export declare const ConnectOptionsSchema: z.ZodObject<{
     email?: string | undefined;
 }>;
 export type ConnectOptions = z.infer<typeof ConnectOptionsSchema>;
+export declare const RegisterAgentOptionsSchema: z.ZodObject<{
+    name: z.ZodString;
+    agentFirst: z.ZodOptional<z.ZodBoolean>;
+    testnet: z.ZodOptional<z.ZodBoolean>;
+    claimRequired: z.ZodOptional<z.ZodBoolean>;
+    email: z.ZodOptional<z.ZodString>;
+    baseUrl: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    testnet?: boolean | undefined;
+    baseUrl?: string | undefined;
+    email?: string | undefined;
+    agentFirst?: boolean | undefined;
+    claimRequired?: boolean | undefined;
+}, {
+    name: string;
+    testnet?: boolean | undefined;
+    baseUrl?: string | undefined;
+    email?: string | undefined;
+    agentFirst?: boolean | undefined;
+    claimRequired?: boolean | undefined;
+}>;
+export type RegisterAgentOptions = z.infer<typeof RegisterAgentOptionsSchema>;
 export declare const CreateAgentOptionsSchema: z.ZodObject<{
     name: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
@@ -76,33 +99,33 @@ export type CreateAgentOptions = z.infer<typeof CreateAgentOptionsSchema>;
 export declare const AgentSchema: z.ZodObject<{
     id: z.ZodString;
     name: z.ZodString;
-    description: z.ZodNullable<z.ZodString>;
+    description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     status: z.ZodEnum<["active", "paused", "suspended"]>;
-    dailySpendingLimit: z.ZodNullable<z.ZodString>;
-    weeklySpendingLimit: z.ZodNullable<z.ZodString>;
-    monthlySpendingLimit: z.ZodNullable<z.ZodString>;
+    dailySpendingLimit: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    weeklySpendingLimit: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    monthlySpendingLimit: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     createdAt: z.ZodDate;
-    updatedAt: z.ZodDate;
+    updatedAt: z.ZodOptional<z.ZodNullable<z.ZodDate>>;
 }, "strip", z.ZodTypeAny, {
     status: "active" | "paused" | "suspended";
     name: string;
-    description: string | null;
-    dailySpendingLimit: string | null;
-    weeklySpendingLimit: string | null;
-    monthlySpendingLimit: string | null;
     id: string;
     createdAt: Date;
-    updatedAt: Date;
+    description?: string | null | undefined;
+    dailySpendingLimit?: string | null | undefined;
+    weeklySpendingLimit?: string | null | undefined;
+    monthlySpendingLimit?: string | null | undefined;
+    updatedAt?: Date | null | undefined;
 }, {
     status: "active" | "paused" | "suspended";
     name: string;
-    description: string | null;
-    dailySpendingLimit: string | null;
-    weeklySpendingLimit: string | null;
-    monthlySpendingLimit: string | null;
     id: string;
     createdAt: Date;
-    updatedAt: Date;
+    description?: string | null | undefined;
+    dailySpendingLimit?: string | null | undefined;
+    weeklySpendingLimit?: string | null | undefined;
+    monthlySpendingLimit?: string | null | undefined;
+    updatedAt?: Date | null | undefined;
 }>;
 export type Agent = z.infer<typeof AgentSchema>;
 export declare const WalletSchema: z.ZodObject<{
@@ -171,23 +194,38 @@ export declare const TokenBalanceSchema: z.ZodObject<{
 export type TokenBalance = z.infer<typeof TokenBalanceSchema>;
 export declare const BalanceSchema: z.ZodRecord<z.ZodString, z.ZodString>;
 export type Balance = z.infer<typeof BalanceSchema>;
-export declare const AllBalancesSchema: z.ZodRecord<z.ZodEnum<["ethereum", "base", "sepolia", "base-sepolia", "tempo", "tempo-mainnet", "solana", "solana-devnet"]>, z.ZodRecord<z.ZodString, z.ZodString>>;
+export declare const AllBalancesSchema: z.ZodRecord<z.ZodEnum<["ethereum", "base", "monad", "sepolia", "base-sepolia", "tempo-testnet", "tempo", "solana", "solana-devnet"]>, z.ZodRecord<z.ZodString, z.ZodString>>;
 export type AllBalances = z.infer<typeof AllBalancesSchema>;
-export declare const TransferOptionsSchema: z.ZodObject<{
-    chain: z.ZodEnum<["ethereum", "base", "sepolia", "base-sepolia", "tempo", "tempo-mainnet", "solana", "solana-devnet"]>;
+export declare const TransferOptionsSchema: z.ZodEffects<z.ZodObject<{
+    chain: z.ZodEnum<["ethereum", "base", "monad", "sepolia", "base-sepolia", "tempo-testnet", "tempo", "solana", "solana-devnet"]>;
     to: z.ZodEffects<z.ZodString, string, string>;
     amount: z.ZodString;
-    currency: z.ZodEnum<["ETH", "SOL", "USDC", "pathUSD"]>;
+    currency: z.ZodOptional<z.ZodString>;
+    token: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    chain: "ethereum" | "base" | "sepolia" | "base-sepolia" | "tempo" | "tempo-mainnet" | "solana" | "solana-devnet";
+    chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
     amount: string;
-    currency: "ETH" | "SOL" | "USDC" | "pathUSD";
+    currency?: string | undefined;
+    token?: string | undefined;
 }, {
-    chain: "ethereum" | "base" | "sepolia" | "base-sepolia" | "tempo" | "tempo-mainnet" | "solana" | "solana-devnet";
+    chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
     amount: string;
-    currency: "ETH" | "SOL" | "USDC" | "pathUSD";
+    currency?: string | undefined;
+    token?: string | undefined;
+}>, {
+    chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
+    to: string;
+    amount: string;
+    currency?: string | undefined;
+    token?: string | undefined;
+}, {
+    chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
+    to: string;
+    amount: string;
+    currency?: string | undefined;
+    token?: string | undefined;
 }>;
 export type TransferOptions = z.infer<typeof TransferOptionsSchema>;
 export declare const TransactionResultSchema: z.ZodObject<{
@@ -324,17 +362,17 @@ export declare const DetailedBalancesSchema: z.ZodRecord<z.ZodString, z.ZodObjec
 }>>;
 export type DetailedBalances = z.infer<typeof DetailedBalancesSchema>;
 export declare const EvmTransferOptionsSchema: z.ZodObject<{
-    chain: z.ZodEnum<["ethereum", "base", "sepolia", "base-sepolia"]>;
+    chain: z.ZodEnum<["ethereum", "base", "monad", "sepolia", "base-sepolia"]>;
     to: z.ZodString;
     amount: z.ZodString;
     currency: z.ZodEnum<["ETH", "USDC"]>;
 }, "strip", z.ZodTypeAny, {
-    chain: "ethereum" | "base" | "sepolia" | "base-sepolia";
+    chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia";
     to: string;
     amount: string;
     currency: "ETH" | "USDC";
 }, {
-    chain: "ethereum" | "base" | "sepolia" | "base-sepolia";
+    chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia";
     to: string;
     amount: string;
     currency: "ETH" | "USDC";
@@ -349,12 +387,12 @@ export declare const SolanaTransferOptionsSchema: z.ZodObject<{
     chain: "solana" | "solana-devnet";
     to: string;
     amount: string;
-    currency: "SOL" | "USDC";
+    currency: "USDC" | "SOL";
 }, {
     chain: "solana" | "solana-devnet";
     to: string;
     amount: string;
-    currency: "SOL" | "USDC";
+    currency: "USDC" | "SOL";
 }>;
 export type SolanaTransferOptions = z.infer<typeof SolanaTransferOptionsSchema>;
 export declare const SubmitTransactionSchema: z.ZodObject<{
@@ -571,9 +609,9 @@ export declare const TransactionHistoryDetailedSchema: z.ZodObject<{
         status: string;
         chain: string;
         to: string;
+        token: string;
         txHash: string | null;
         from: string;
-        token: string;
         direction: string;
         timestamp: string;
     }, {
@@ -581,9 +619,9 @@ export declare const TransactionHistoryDetailedSchema: z.ZodObject<{
         status: string;
         chain: string;
         to: string;
+        token: string;
         txHash: string | null;
         from: string;
-        token: string;
         direction: string;
         timestamp: string;
     }>, "many">;
@@ -595,9 +633,9 @@ export declare const TransactionHistoryDetailedSchema: z.ZodObject<{
         status: string;
         chain: string;
         to: string;
+        token: string;
         txHash: string | null;
         from: string;
-        token: string;
         direction: string;
         timestamp: string;
     }[];
@@ -609,9 +647,9 @@ export declare const TransactionHistoryDetailedSchema: z.ZodObject<{
         status: string;
         chain: string;
         to: string;
+        token: string;
         txHash: string | null;
         from: string;
-        token: string;
         direction: string;
         timestamp: string;
     }[];
@@ -881,6 +919,77 @@ export declare const DeviceFlowErrorSchema: z.ZodObject<{
     errorDescription?: string | undefined;
 }>;
 export type DeviceFlowError = z.infer<typeof DeviceFlowErrorSchema>;
+export declare const AgentRegistrationResponseSchema: z.ZodObject<{
+    deviceCode: z.ZodString;
+    userCode: z.ZodString;
+    verificationUri: z.ZodString;
+    verificationUriComplete: z.ZodString;
+    expiresIn: z.ZodNumber;
+    interval: z.ZodNumber;
+    claimCode: z.ZodString;
+    claimText: z.ZodNullable<z.ZodString>;
+    agentId: z.ZodNullable<z.ZodString>;
+    apiKey: z.ZodNullable<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    agentId: string | null;
+    apiKey: string | null;
+    deviceCode: string;
+    userCode: string;
+    verificationUri: string;
+    expiresIn: number;
+    interval: number;
+    verificationUriComplete: string;
+    claimCode: string;
+    claimText: string | null;
+}, {
+    agentId: string | null;
+    apiKey: string | null;
+    deviceCode: string;
+    userCode: string;
+    verificationUri: string;
+    expiresIn: number;
+    interval: number;
+    verificationUriComplete: string;
+    claimCode: string;
+    claimText: string | null;
+}>;
+export type AgentRegistrationResponse = z.infer<typeof AgentRegistrationResponseSchema>;
+export declare const AgentFirstRegistrationResponseSchema: z.ZodObject<{
+    deviceCode: z.ZodString;
+    userCode: z.ZodString;
+    verificationUri: z.ZodString;
+    verificationUriComplete: z.ZodString;
+    expiresIn: z.ZodNumber;
+    interval: z.ZodNumber;
+    claimCode: z.ZodString;
+    claimText: z.ZodNullable<z.ZodString>;
+} & {
+    agentId: z.ZodString;
+    apiKey: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    agentId: string;
+    apiKey: string;
+    deviceCode: string;
+    userCode: string;
+    verificationUri: string;
+    expiresIn: number;
+    interval: number;
+    verificationUriComplete: string;
+    claimCode: string;
+    claimText: string | null;
+}, {
+    agentId: string;
+    apiKey: string;
+    deviceCode: string;
+    userCode: string;
+    verificationUri: string;
+    expiresIn: number;
+    interval: number;
+    verificationUriComplete: string;
+    claimCode: string;
+    claimText: string | null;
+}>;
+export type AgentFirstRegistrationResponse = z.infer<typeof AgentFirstRegistrationResponseSchema>;
 export declare const CredentialsSchema: z.ZodObject<{
     apiKey: z.ZodString;
     agentId: z.ZodString;
@@ -888,20 +997,29 @@ export declare const CredentialsSchema: z.ZodObject<{
     testnet: z.ZodOptional<z.ZodBoolean>;
     createdAt: z.ZodDate;
     baseUrl: z.ZodOptional<z.ZodString>;
+    claimCode: z.ZodOptional<z.ZodString>;
+    claimUrl: z.ZodOptional<z.ZodString>;
+    claimText: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, "strip", z.ZodTypeAny, {
     agentId: string;
     apiKey: string;
     createdAt: Date;
     testnet?: boolean | undefined;
     baseUrl?: string | undefined;
+    claimCode?: string | undefined;
+    claimText?: string | null | undefined;
     agentName?: string | undefined;
+    claimUrl?: string | undefined;
 }, {
     agentId: string;
     apiKey: string;
     createdAt: Date;
     testnet?: boolean | undefined;
     baseUrl?: string | undefined;
+    claimCode?: string | undefined;
+    claimText?: string | null | undefined;
     agentName?: string | undefined;
+    claimUrl?: string | undefined;
 }>;
 export type Credentials = z.infer<typeof CredentialsSchema>;
 export declare const McpConfigSchema: z.ZodObject<{

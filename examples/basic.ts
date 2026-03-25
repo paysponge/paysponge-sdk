@@ -76,7 +76,7 @@ async function main() {
 
   // Get tool definitions
   console.log("5. Available Tools:");
-  const tools = wallet.tools();
+  const tools = await wallet.tools();
   for (const tool of tools.definitions) {
     console.log(`   - ${tool.name}: ${tool.description.substring(0, 60)}...`);
   }

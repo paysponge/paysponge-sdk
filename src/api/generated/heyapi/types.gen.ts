@@ -191,9 +191,10 @@ export type PostApiTransfersSolanaData = {
 
 export type PostApiTransfersTempoData = {
     body: {
-        chain?: 'tempo' | 'tempo-mainnet';
+        chain?: 'tempo-testnet' | 'tempo';
         to: string;
         amount: string;
+        token?: string;
         agentId?: string;
     };
     path?: never;

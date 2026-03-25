@@ -3,6 +3,20 @@ import { ToolExecutor } from "../src/tools/executor.js";
 import { TOOL_DEFINITIONS } from "../src/tools/definitions.js";
 
 describe("ToolExecutor", () => {
+  it("returns Anthropic-safe tool definitions without CLI metadata", () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn(),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    expect(executor.definitions.length).toBeGreaterThan(0);
+    expect(executor.definitions[0]).not.toHaveProperty("cli_output");
+    expect(executor.definitions[0]).toHaveProperty("name");
+    expect(executor.definitions[0]).toHaveProperty("description");
+    expect(executor.definitions[0]).toHaveProperty("input_schema");
+  });
+
   it("routes get_balance to /api/balances", async () => {
     const http = {
       get: vi.fn().mockResolvedValue({}),
@@ -83,6 +97,30 @@ describe("ToolExecutor", () => {
     });
   });
 
+  it("routes paid_fetch to /api/paid/fetch", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ ok: true }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("paid_fetch", {
+      url: "https://paid.example.com/data",
+      method: "POST",
+      body: { query: "hello" },
+      chain: "tempo",
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith("/api/paid/fetch", {
+      url: "https://paid.example.com/data",
+      method: "POST",
+      headers: undefined,
+      body: { query: "hello" },
+      chain: "tempo",
+    });
+  });
+
   it("routes store_key to /api/agent-keys", async () => {
     const http = {
       get: vi.fn(),
@@ -131,6 +169,7 @@ describe("ToolExecutor", () => {
         state: "CA",
         postal_code: "94107",
         country: "US",
+        phone: "+14155550123",
       },
       label: "personal",
     });
@@ -157,6 +196,7 @@ describe("ToolExecutor", () => {
         state: "CA",
         postal_code: "94107",
         country: "US",
+        phone: "+14155550123",
       },
       label: "personal",
       metadata: undefined,

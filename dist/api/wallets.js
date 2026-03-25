@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { WalletSchema, ChainSchema, CHAIN_IDS, } from "../types/schemas.js";
-import { getApiWallets, getApiWalletsById, getApiWalletsByIdBalance, } from "./generated/heyapi/sdk.gen.js";
-import { getHeyApiClient } from "./generated/heyapi-adapter.js";
+import { createGeneratedApiClient } from "./generated/openapi-adapter.js";
 // Balance response from API
 const BalanceResponseSchema = z.object({
     walletId: z.string(),
@@ -31,41 +30,37 @@ export class WalletsApi {
      * List all wallets for an agent
      */
     async list(agentId, options) {
+        const client = createGeneratedApiClient(this.http);
         const params = {
             agentId,
         };
         if (options?.includeBalances) {
             params.includeBalances = "true";
         }
-        const response = await getApiWallets({
-            client: getHeyApiClient(this.http),
-            query: params,
-        });
+        const response = await client.request(client.api.getApiWalletsRequestOpts(params));
         return z.array(WalletSchema).parse(response);
     }
     /**
      * Get a specific wallet by ID
      */
     async get(walletId) {
-        const response = await getApiWalletsById({
-            client: getHeyApiClient(this.http),
-            path: { id: walletId },
-        });
+        const client = createGeneratedApiClient(this.http);
+        const response = await client.request(client.api.getApiWalletsByIdRequestOpts({ id: walletId }));
         return WalletSchema.parse(response);
     }
     /**
      * Get wallet balance
      */
     async getBalance(walletId, chainId) {
+        const client = createGeneratedApiClient(this.http);
         const params = {};
         if (chainId !== undefined) {
             params.chainId = chainId.toString();
         }
-        const response = await getApiWalletsByIdBalance({
-            client: getHeyApiClient(this.http),
-            path: { id: walletId },
-            query: params,
-        });
+        const response = await client.request(client.api.getApiWalletsByIdBalanceRequestOpts({
+            id: walletId,
+            ...params,
+        }));
         const parsed = BalanceResponseSchema.parse(response);
         // Convert to simple balance map
         const balance = {

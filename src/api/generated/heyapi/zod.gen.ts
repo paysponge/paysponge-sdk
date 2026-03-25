@@ -170,7 +170,7 @@ export const zPostApiTransfersSolanaData = z.object({
 
 export const zPostApiTransfersTempoData = z.object({
     body: z.object({
-        chain: z.enum(['tempo', 'tempo-mainnet']).optional(),
+        chain: z.enum(['tempo-testnet', 'tempo']).optional(),
         to: z.string(),
         amount: z.string(),
         agentId: z.string().optional()

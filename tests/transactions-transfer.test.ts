@@ -55,7 +55,33 @@ describe("TransactionsApi.transfer", () => {
     });
   });
 
-  it("uses /api/transfers/tempo for pathUSD on tempo", async () => {
+  it("uses /api/transfers/tempo for pathUSD on tempo-testnet", async () => {
+    const http = {
+      post: vi.fn().mockResolvedValue({
+        transactionHash: "0xtempo",
+        status: "pending",
+      }),
+      get: vi.fn(),
+    };
+    const api = new TransactionsApi(http as any, "agent-1");
+
+    const result = await api.transfer({
+      chain: "tempo-testnet",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      amount: "2",
+      currency: "pathUSD",
+    });
+
+    expect(result.txHash).toBe("0xtempo");
+    expect(http.post).toHaveBeenCalledWith("/api/transfers/tempo", {
+      chain: "tempo-testnet",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      amount: "2",
+      token: "pathUSD",
+    });
+  });
+
+  it("uses /api/transfers/tempo for USDC.e on tempo", async () => {
     const http = {
       post: vi.fn().mockResolvedValue({
         transactionHash: "0xtempo",
@@ -69,7 +95,7 @@ describe("TransactionsApi.transfer", () => {
       chain: "tempo",
       to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
       amount: "2",
-      currency: "pathUSD",
+      currency: "USDC.e",
     });
 
     expect(result.txHash).toBe("0xtempo");
@@ -77,33 +103,7 @@ describe("TransactionsApi.transfer", () => {
       chain: "tempo",
       to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
       amount: "2",
-      use_gas_sponsorship: true,
-    });
-  });
-
-  it("uses /api/transfers/tempo for pathUSD on tempo-mainnet", async () => {
-    const http = {
-      post: vi.fn().mockResolvedValue({
-        transactionHash: "0xtempo-mainnet",
-        status: "pending",
-      }),
-      get: vi.fn(),
-    };
-    const api = new TransactionsApi(http as any, "agent-1");
-
-    const result = await api.transfer({
-      chain: "tempo-mainnet",
-      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
-      amount: "2",
-      currency: "pathUSD",
-    });
-
-    expect(result.txHash).toBe("0xtempo-mainnet");
-    expect(http.post).toHaveBeenCalledWith("/api/transfers/tempo", {
-      chain: "tempo-mainnet",
-      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
-      amount: "2",
-      use_gas_sponsorship: true,
+      token: "USDC.e",
     });
   });
 

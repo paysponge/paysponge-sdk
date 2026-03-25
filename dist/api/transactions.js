@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { TransactionResultSchema, TransactionStatusSchema, TransferOptionsSchema, SwapOptionsSchema, SubmitTransactionSchema, CHAIN_IDS, } from "../types/schemas.js";
-import { getApiTransactions, getApiTransactionsStatusByTxHash, postApiTransactionsSwap, postApiTransfersEvm, postApiTransfersSolana, postApiTransfersTempo, } from "./generated/heyapi/sdk.gen.js";
-import { getHeyApiClient } from "./generated/heyapi-adapter.js";
+import { createGeneratedApiClient } from "./generated/openapi-adapter.js";
 // Swap response from API
 const SwapResponseSchema = z.object({
     signature: z.string(),
@@ -50,6 +49,7 @@ export class TransactionsApi {
      * Uses the /api/transactions/transfer endpoint
      */
     async transfer(options) {
+        const client = createGeneratedApiClient(this.http);
         const validated = TransferOptionsSchema.parse(options);
         const chainId = CHAIN_IDS[validated.chain];
         if (chainId === undefined) {
@@ -60,15 +60,14 @@ export class TransactionsApi {
             if (validated.currency !== "SOL" && validated.currency !== "USDC") {
                 throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
             }
-            const response = await postApiTransfersSolana({
-                client: getHeyApiClient(this.http),
-                body: {
+            const response = await client.request(client.api.postApiTransfersSolanaRequestOpts({
+                postApiTransfersSolanaRequest: {
                     chain: validated.chain,
                     to: validated.to,
                     amount: validated.amount,
                     currency: validated.currency,
                 },
-            });
+            }));
             const parsed = SubmitTransactionSchema.parse(response);
             const status = parsed.status === "pending" || parsed.status === "submitted" ? "pending" : "confirmed";
             return TransactionResultSchema.parse({
@@ -78,20 +77,20 @@ export class TransactionsApi {
                 chainId,
             });
         }
-        // Tempo pathUSD transfers
-        if (validated.chain === "tempo" || validated.chain === "tempo-mainnet" || validated.currency === "pathUSD") {
-            if ((validated.chain !== "tempo" && validated.chain !== "tempo-mainnet") || validated.currency !== "pathUSD") {
-                throw new Error("pathUSD transfers are only supported on Tempo chains");
+        // Tempo TIP-20 transfers
+        if (validated.chain === "tempo-testnet" || validated.chain === "tempo") {
+            const tempoToken = validated.token ?? validated.currency;
+            if (!tempoToken) {
+                throw new Error(`A Tempo token symbol or contract address is required on ${validated.chain}`);
             }
-            const response = await postApiTransfersTempo({
-                client: getHeyApiClient(this.http),
-                body: {
+            const response = await client.request(client.api.postApiTransfersTempoRequestOpts({
+                postApiTransfersTempoRequest: {
                     chain: validated.chain,
                     to: validated.to,
                     amount: validated.amount,
-                    use_gas_sponsorship: true,
+                    token: tempoToken,
                 },
-            });
+            }));
             const parsed = SubmitTransactionSchema.parse(response);
             const status = parsed.status === "pending" || parsed.status === "submitted" ? "pending" : "confirmed";
             return TransactionResultSchema.parse({
@@ -105,15 +104,14 @@ export class TransactionsApi {
         if (validated.currency !== "ETH" && validated.currency !== "USDC") {
             throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
         }
-        const response = await postApiTransfersEvm({
-            client: getHeyApiClient(this.http),
-            body: {
+        const response = await client.request(client.api.postApiTransfersEvmRequestOpts({
+            postApiTransfersEvmRequest: {
                 chain: validated.chain,
                 to: validated.to,
                 amount: validated.amount,
                 currency: validated.currency,
             },
-        });
+        }));
         const parsed = SubmitTransactionSchema.parse(response);
         const status = parsed.status === "pending" || parsed.status === "submitted" ? "pending" : "confirmed";
         return TransactionResultSchema.parse({
@@ -128,17 +126,17 @@ export class TransactionsApi {
      * Uses the /api/transactions/swap endpoint
      */
     async swap(options) {
+        const client = createGeneratedApiClient(this.http);
         const validated = SwapOptionsSchema.parse(options);
-        const response = await postApiTransactionsSwap({
-            client: getHeyApiClient(this.http),
-            body: {
+        const response = await client.request(client.api.postApiTransactionsSwapRequestOpts({
+            postApiTransactionsSwapRequest: {
                 chain: validated.chain,
                 inputToken: validated.from,
                 outputToken: validated.to,
                 amount: validated.amount,
                 slippageBps: validated.slippageBps,
             },
-        });
+        }));
         const parsed = SwapResponseSchema.parse(response);
         return TransactionResultSchema.parse({
             txHash: parsed.signature,
@@ -151,14 +149,14 @@ export class TransactionsApi {
      * Uses the /api/transactions/status/:txHash endpoint
      */
     async getStatus(txHash, chain) {
+        const client = createGeneratedApiClient(this.http);
         const params = {
             chain,
         };
-        const response = await getApiTransactionsStatusByTxHash({
-            client: getHeyApiClient(this.http),
-            path: { txHash },
-            query: params,
-        });
+        const response = await client.request(client.api.getApiTransactionsStatusByTxHashRequestOpts({
+            txHash,
+            ...params,
+        }));
         const parsed = TransactionStatusResponseSchema.parse(response);
         return TransactionStatusSchema.parse({
             txHash: parsed.transactionHash,
@@ -172,6 +170,7 @@ export class TransactionsApi {
      * Get transaction history
      */
     async getHistory(options) {
+        const client = createGeneratedApiClient(this.http);
         const params = {
             agentId: this.agentId,
         };
@@ -181,10 +180,7 @@ export class TransactionsApi {
         if (options?.offset !== undefined) {
             params.offset = options.offset.toString();
         }
-        const response = await getApiTransactions({
-            client: getHeyApiClient(this.http),
-            query: params,
-        });
+        const response = await client.request(client.api.getApiTransactionsRequestOpts(params));
         const parsed = TransactionHistoryResponseSchema.parse(response);
         return parsed.items.map((tx) => ({
             txHash: tx.txHash ?? "",

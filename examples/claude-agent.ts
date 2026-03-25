@@ -53,7 +53,7 @@ async function main() {
 
   // Example using direct tools (without Claude Agent SDK)
   console.log("3. Testing direct tools integration...");
-  const tools = wallet.tools();
+  const tools = await wallet.tools();
   console.log(`   Available tools: ${tools.definitions.map((t: any) => t.name).join(", ")}`);
   console.log();
 
@@ -92,7 +92,7 @@ async function main() {
   console.log("   import Anthropic from '@anthropic-ai/sdk';");
   console.log("   ");
   console.log("   const anthropic = new Anthropic();");
-  console.log("   const tools = wallet.tools();");
+  console.log("   const tools = await wallet.tools();");
   console.log("   ");
   console.log("   const response = await anthropic.messages.create({");
   console.log("     model: 'claude-sonnet-4-20250514',");

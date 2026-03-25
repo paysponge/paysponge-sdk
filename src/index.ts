@@ -16,6 +16,7 @@ export {
 } from "./auth/credentials.js";
 
 export { deviceFlowAuth, type DeviceFlowOptions } from "./auth/device-flow.js";
+export { registerAgent, registerAgentFirst } from "./registration.js";
 
 // MCP utilities
 export { createMcpConfig } from "./mcp/config.js";
@@ -27,3 +28,9 @@ export { TOOL_DEFINITIONS, type ToolDefinition } from "./tools/definitions.js";
 // API client (for advanced usage)
 export { HttpClient, SpongeApiError } from "./api/http.js";
 export { PublicToolsApi } from "./api/public-tools.js";
+export {
+  createGeneratedApiClient,
+  executeOpenApiRequest,
+  getOpenApiRequestBuilder,
+} from "./api/generated/openapi-adapter.js";
+export * from "./api/generated/openapi/index.js";

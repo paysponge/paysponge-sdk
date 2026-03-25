@@ -5,29 +5,31 @@ import { z } from "zod";
 export const ChainSchema = z.enum([
     "ethereum",
     "base",
+    "monad",
     "sepolia",
     "base-sepolia",
+    "tempo-testnet",
     "tempo",
-    "tempo-mainnet",
     "solana",
     "solana-devnet",
 ]);
 export const ChainTypeSchema = z.enum(["evm", "solana"]);
-export const CurrencySchema = z.enum(["ETH", "SOL", "USDC", "pathUSD"]);
+export const CurrencySchema = z.string();
 export const EvmChainSchema = z.enum([
     "ethereum",
     "base",
+    "monad",
     "sepolia",
     "base-sepolia",
 ]);
 export const SolanaChainSchema = z.enum(["solana", "solana-devnet"]);
 // Mainnet chains only
-export const MainnetChainSchema = z.enum(["ethereum", "base", "tempo-mainnet", "solana"]);
+export const MainnetChainSchema = z.enum(["ethereum", "base", "monad", "tempo", "solana"]);
 // Testnet chains only
 export const TestnetChainSchema = z.enum([
     "sepolia",
     "base-sepolia",
-    "tempo",
+    "tempo-testnet",
     "solana-devnet",
 ]);
 // ============================================================================
@@ -62,6 +64,14 @@ export const ConnectOptionsSchema = z.object({
     /** Email to associate with the agent (used for claim matching) */
     email: z.string().email().optional(),
 });
+export const RegisterAgentOptionsSchema = z.object({
+    name: z.string().min(1).max(255),
+    agentFirst: z.boolean().optional(),
+    testnet: z.boolean().optional(),
+    claimRequired: z.boolean().optional(),
+    email: z.string().email().optional(),
+    baseUrl: z.string().url().optional(),
+});
 // ============================================================================
 // Agent Types
 // ============================================================================
@@ -75,13 +85,13 @@ export const CreateAgentOptionsSchema = z.object({
 export const AgentSchema = z.object({
     id: z.string().uuid(),
     name: z.string(),
-    description: z.string().nullable(),
+    description: z.string().nullish(),
     status: z.enum(["active", "paused", "suspended"]),
-    dailySpendingLimit: z.string().nullable(),
-    weeklySpendingLimit: z.string().nullable(),
-    monthlySpendingLimit: z.string().nullable(),
+    dailySpendingLimit: z.string().nullish(),
+    weeklySpendingLimit: z.string().nullish(),
+    monthlySpendingLimit: z.string().nullish(),
     createdAt: z.coerce.date(),
-    updatedAt: z.coerce.date(),
+    updatedAt: z.coerce.date().nullish(),
 });
 // ============================================================================
 // Wallet Types
@@ -118,7 +128,10 @@ export const TransferOptionsSchema = z.object({
     chain: ChainSchema,
     to: AddressSchema,
     amount: z.string(),
-    currency: CurrencySchema,
+    currency: CurrencySchema.optional(),
+    token: z.string().optional(),
+}).refine(value => Boolean(value.currency || value.token), {
+    message: "Either currency or token is required",
 });
 export const TransactionResultSchema = z.object({
     txHash: z.string(),
@@ -315,6 +328,22 @@ export const DeviceFlowErrorSchema = z.object({
     ]),
     errorDescription: z.string().optional(),
 });
+export const AgentRegistrationResponseSchema = z.object({
+    deviceCode: z.string(),
+    userCode: z.string(),
+    verificationUri: z.string().url(),
+    verificationUriComplete: z.string().url(),
+    expiresIn: z.number(),
+    interval: z.number(),
+    claimCode: z.string(),
+    claimText: z.string().nullable(),
+    agentId: z.string().uuid().nullable(),
+    apiKey: z.string().nullable(),
+});
+export const AgentFirstRegistrationResponseSchema = AgentRegistrationResponseSchema.extend({
+    agentId: z.string().uuid(),
+    apiKey: z.string(),
+});
 // ============================================================================
 // Credentials (stored locally)
 // ============================================================================
@@ -325,6 +354,9 @@ export const CredentialsSchema = z.object({
     testnet: z.boolean().optional(),
     createdAt: z.coerce.date(),
     baseUrl: z.string().url().optional(),
+    claimCode: z.string().optional(),
+    claimUrl: z.string().url().optional(),
+    claimText: z.string().nullable().optional(),
 });
 // ============================================================================
 // MCP Config
@@ -370,10 +402,11 @@ export const ChainInfoSchema = z.object({
 export const CHAIN_IDS = {
     ethereum: 1,
     base: 8453,
+    monad: 143,
     sepolia: 11155111,
     "base-sepolia": 84532,
-    tempo: 42431,
-    "tempo-mainnet": 4217,
+    "tempo-testnet": 42431,
+    tempo: 4217,
     solana: 101,
     "solana-devnet": 102,
 };

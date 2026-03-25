@@ -534,6 +534,56 @@
         "operationId": "getApiAgentsByIdPolymarketPositions"
       }
     },
+    "/api/agents/{id}/polymarket/redeem": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "conditionId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "conditionId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "conditionId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdPolymarketRedeem"
+      }
+    },
     "/api/agents/{id}/polymarket/deposit-address": {
       "post": {
         "parameters": [
@@ -2358,6 +2408,109 @@
         "operationId": "postApiTransactionsBase-swap"
       }
     },
+    "/api/transactions/tempo-swap": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "chain",
+                  "inputToken",
+                  "outputToken",
+                  "amount"
+                ],
+                "properties": {
+                  "chain": {
+                    "type": "string"
+                  },
+                  "inputToken": {
+                    "type": "string"
+                  },
+                  "outputToken": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "slippageBps": {
+                    "type": "number"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "chain",
+                  "inputToken",
+                  "outputToken",
+                  "amount"
+                ],
+                "properties": {
+                  "chain": {
+                    "type": "string"
+                  },
+                  "inputToken": {
+                    "type": "string"
+                  },
+                  "outputToken": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "slippageBps": {
+                    "type": "number"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "chain",
+                  "inputToken",
+                  "outputToken",
+                  "amount"
+                ],
+                "properties": {
+                  "chain": {
+                    "type": "string"
+                  },
+                  "inputToken": {
+                    "type": "string"
+                  },
+                  "outputToken": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "slippageBps": {
+                    "type": "number"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiTransactionsTempo-swap"
+      }
+    },
     "/api/transactions/bridge": {
       "post": {
         "requestBody": {
@@ -2380,6 +2533,8 @@
                       "base",
                       "polygon",
                       "arbitrum-one",
+                      "monad",
+                      "tempo",
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
@@ -2394,6 +2549,8 @@
                       "base",
                       "polygon",
                       "arbitrum-one",
+                      "monad",
+                      "tempo",
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
@@ -2437,6 +2594,8 @@
                       "base",
                       "polygon",
                       "arbitrum-one",
+                      "monad",
+                      "tempo",
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
@@ -2451,6 +2610,8 @@
                       "base",
                       "polygon",
                       "arbitrum-one",
+                      "monad",
+                      "tempo",
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
@@ -2494,6 +2655,8 @@
                       "base",
                       "polygon",
                       "arbitrum-one",
+                      "monad",
+                      "tempo",
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
@@ -2508,6 +2671,8 @@
                       "base",
                       "polygon",
                       "arbitrum-one",
+                      "monad",
+                      "tempo",
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
@@ -2559,6 +2724,9 @@
                   "walletId": {
                     "type": "string"
                   },
+                  "btEnrollmentId": {
+                    "type": "string"
+                  },
                   "limitType": {
                     "type": "string",
                     "enum": [
@@ -2594,6 +2762,9 @@
                   "walletId": {
                     "type": "string"
                   },
+                  "btEnrollmentId": {
+                    "type": "string"
+                  },
                   "limitType": {
                     "type": "string",
                     "enum": [
@@ -2627,6 +2798,9 @@
                     "type": "string"
                   },
                   "walletId": {
+                    "type": "string"
+                  },
+                  "btEnrollmentId": {
                     "type": "string"
                   },
                   "limitType": {
@@ -3502,6 +3676,14 @@
                   },
                   "forceExecute": {
                     "type": "boolean"
+                  },
+                  "selectedOptions": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -3515,6 +3697,14 @@
                   },
                   "forceExecute": {
                     "type": "boolean"
+                  },
+                  "selectedOptions": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -3528,6 +3718,14 @@
                   },
                   "forceExecute": {
                     "type": "boolean"
+                  },
+                  "selectedOptions": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -4256,6 +4454,1104 @@
         "operationId": "deleteApiAgentsByIdPayment-methodsByPaymentMethodId"
       }
     },
+    "/api/agents/{id}/enrollments": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "btTokenId",
+                  "consumerEmail"
+                ],
+                "properties": {
+                  "btTokenId": {
+                    "type": "string"
+                  },
+                  "consumerEmail": {
+                    "type": "string"
+                  },
+                  "cardLast4": {
+                    "type": "string"
+                  },
+                  "cardBrand": {
+                    "type": "string"
+                  },
+                  "paymentMethodId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "btTokenId",
+                  "consumerEmail"
+                ],
+                "properties": {
+                  "btTokenId": {
+                    "type": "string"
+                  },
+                  "consumerEmail": {
+                    "type": "string"
+                  },
+                  "cardLast4": {
+                    "type": "string"
+                  },
+                  "cardBrand": {
+                    "type": "string"
+                  },
+                  "paymentMethodId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "btTokenId",
+                  "consumerEmail"
+                ],
+                "properties": {
+                  "btTokenId": {
+                    "type": "string"
+                  },
+                  "consumerEmail": {
+                    "type": "string"
+                  },
+                  "cardLast4": {
+                    "type": "string"
+                  },
+                  "cardBrand": {
+                    "type": "string"
+                  },
+                  "paymentMethodId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdEnrollments"
+      },
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdEnrollments"
+      }
+    },
+    "/api/agents/{id}/enrollments/{enrollmentId}/status": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enrollmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdEnrollmentsByEnrollmentIdStatus"
+      }
+    },
+    "/api/agents/{id}/enrollments/{enrollmentId}": {
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enrollmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "deleteApiAgentsByIdEnrollmentsByEnrollmentId"
+      }
+    },
+    "/api/agents/{id}/enrollments/{enrollmentId}/verify": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enrollmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgentsByIdEnrollmentsByEnrollmentIdVerify"
+      }
+    },
+    "/api/agents/{id}/enrollments/{enrollmentId}/verify/method": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enrollmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "methodId"
+                ],
+                "properties": {
+                  "methodId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "methodId"
+                ],
+                "properties": {
+                  "methodId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "methodId"
+                ],
+                "properties": {
+                  "methodId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethod"
+      }
+    },
+    "/api/agents/{id}/enrollments/{enrollmentId}/verify/otp": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enrollmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "otpCode"
+                ],
+                "properties": {
+                  "otpCode": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "otpCode"
+                ],
+                "properties": {
+                  "otpCode": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "otpCode"
+                ],
+                "properties": {
+                  "otpCode": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtp"
+      }
+    },
+    "/api/agents/{id}/enrollments/{enrollmentId}/verify/complete": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enrollmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgentsByIdEnrollmentsByEnrollmentIdVerifyComplete"
+      }
+    },
+    "/api/agents/{id}/instructions": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "enrollmentId",
+                  "amount"
+                ],
+                "properties": {
+                  "enrollmentId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "merchantName": {
+                    "type": "string"
+                  },
+                  "merchantUrl": {
+                    "type": "string"
+                  },
+                  "expiresAt": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "enrollmentId",
+                  "amount"
+                ],
+                "properties": {
+                  "enrollmentId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "merchantName": {
+                    "type": "string"
+                  },
+                  "merchantUrl": {
+                    "type": "string"
+                  },
+                  "expiresAt": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "enrollmentId",
+                  "amount"
+                ],
+                "properties": {
+                  "enrollmentId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "merchantName": {
+                    "type": "string"
+                  },
+                  "merchantUrl": {
+                    "type": "string"
+                  },
+                  "expiresAt": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdInstructions"
+      }
+    },
+    "/api/agents/{id}/instructions/{instructionId}/verify": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instructionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgentsByIdInstructionsByInstructionIdVerify"
+      }
+    },
+    "/api/agents/{id}/instructions/{instructionId}/verify/passkey": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instructionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "assuranceData"
+                ],
+                "properties": {
+                  "assuranceData": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "assuranceData"
+                ],
+                "properties": {
+                  "assuranceData": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "assuranceData"
+                ],
+                "properties": {
+                  "assuranceData": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdInstructionsByInstructionIdVerifyPasskey"
+      }
+    },
+    "/api/agents/{id}/instructions/{instructionId}/credentials": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instructionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "merchant"
+                ],
+                "properties": {
+                  "merchant": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "url",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "price",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "merchant"
+                ],
+                "properties": {
+                  "merchant": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "url",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "price",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "merchant"
+                ],
+                "properties": {
+                  "merchant": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "url",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "price",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdInstructionsByInstructionIdCredentials"
+      }
+    },
+    "/api/agents/{id}/virtual-card": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount",
+                  "merchant"
+                ],
+                "properties": {
+                  "enrollmentId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "merchant": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "url",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "price",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount",
+                  "merchant"
+                ],
+                "properties": {
+                  "enrollmentId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "merchant": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "url",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "price",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount",
+                  "merchant"
+                ],
+                "properties": {
+                  "enrollmentId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "merchant": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "url",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "price",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country_code"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country_code": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdVirtual-card"
+      }
+    },
     "/api/balances": {
       "get": {
         "parameters": [
@@ -4401,6 +5697,122 @@
         "operationId": "postApiTransfersEvm"
       }
     },
+    "/api/solana/sign": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "transaction"
+                ],
+                "properties": {
+                  "transaction": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "transaction"
+                ],
+                "properties": {
+                  "transaction": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "transaction"
+                ],
+                "properties": {
+                  "transaction": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiSolanaSign"
+      }
+    },
+    "/api/solana/sign-and-send": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "transaction"
+                ],
+                "properties": {
+                  "transaction": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "transaction"
+                ],
+                "properties": {
+                  "transaction": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "transaction"
+                ],
+                "properties": {
+                  "transaction": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiSolanaSign-and-send"
+      }
+    },
     "/api/transfers/solana": {
       "post": {
         "requestBody": {
@@ -4509,6 +5921,7 @@
     },
     "/api/transfers/tempo": {
       "post": {
+        "operationId": "postApiTransfersTempo",
         "requestBody": {
           "required": true,
           "content": {
@@ -4523,14 +5936,20 @@
                   "chain": {
                     "type": "string",
                     "enum": [
-                      "tempo",
-                      "tempo-mainnet"
+                      "tempo-testnet",
+                      "tempo"
                     ]
                   },
                   "to": {
                     "type": "string"
                   },
                   "amount": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string"
+                  },
+                  "data": {
                     "type": "string"
                   },
                   "agentId": {
@@ -4550,14 +5969,20 @@
                   "chain": {
                     "type": "string",
                     "enum": [
-                      "tempo",
-                      "tempo-mainnet"
+                      "tempo-testnet",
+                      "tempo"
                     ]
                   },
                   "to": {
                     "type": "string"
                   },
                   "amount": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string"
+                  },
+                  "data": {
                     "type": "string"
                   },
                   "agentId": {
@@ -4577,14 +6002,20 @@
                   "chain": {
                     "type": "string",
                     "enum": [
-                      "tempo",
-                      "tempo-mainnet"
+                      "tempo-testnet",
+                      "tempo"
                     ]
                   },
                   "to": {
                     "type": "string"
                   },
                   "amount": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string"
+                  },
+                  "data": {
                     "type": "string"
                   },
                   "agentId": {
@@ -4595,7 +6026,11 @@
             }
           }
         },
-        "operationId": "postApiTransfersTempo"
+        "responses": {
+          "200": {
+            "description": "Tempo transfer submitted"
+          }
+        }
       }
     },
     "/api/solana/tokens": {
@@ -4681,91 +6116,6 @@
           }
         ],
         "operationId": "getApiTransactionsHistory"
-      }
-    },
-    "/api/funding-requests": {
-      "post": {
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "amount"
-                ],
-                "properties": {
-                  "amount": {
-                    "type": "string"
-                  },
-                  "reason": {
-                    "type": "string"
-                  },
-                  "chain": {
-                    "type": "string"
-                  },
-                  "currency": {
-                    "type": "string"
-                  },
-                  "agentId": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "amount"
-                ],
-                "properties": {
-                  "amount": {
-                    "type": "string"
-                  },
-                  "reason": {
-                    "type": "string"
-                  },
-                  "chain": {
-                    "type": "string"
-                  },
-                  "currency": {
-                    "type": "string"
-                  },
-                  "agentId": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "amount"
-                ],
-                "properties": {
-                  "amount": {
-                    "type": "string"
-                  },
-                  "reason": {
-                    "type": "string"
-                  },
-                  "chain": {
-                    "type": "string"
-                  },
-                  "currency": {
-                    "type": "string"
-                  },
-                  "agentId": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "postApiFunding-requests"
       }
     },
     "/api/onramp/crypto": {
@@ -5025,7 +6375,8 @@
                       "city",
                       "state",
                       "postal_code",
-                      "country"
+                      "country",
+                      "phone"
                     ],
                     "properties": {
                       "line1": {
@@ -5044,6 +6395,9 @@
                         "type": "string"
                       },
                       "country": {
+                        "type": "string"
+                      },
+                      "phone": {
                         "type": "string"
                       }
                     }
@@ -5133,7 +6487,8 @@
                       "city",
                       "state",
                       "postal_code",
-                      "country"
+                      "country",
+                      "phone"
                     ],
                     "properties": {
                       "line1": {
@@ -5152,6 +6507,9 @@
                         "type": "string"
                       },
                       "country": {
+                        "type": "string"
+                      },
+                      "phone": {
                         "type": "string"
                       }
                     }
@@ -5241,7 +6599,8 @@
                       "city",
                       "state",
                       "postal_code",
-                      "country"
+                      "country",
+                      "phone"
                     ],
                     "properties": {
                       "line1": {
@@ -5260,6 +6619,9 @@
                         "type": "string"
                       },
                       "country": {
+                        "type": "string"
+                      },
+                      "phone": {
                         "type": "string"
                       }
                     }
@@ -5282,6 +6644,19 @@
           }
         },
         "operationId": "postApiCredit-cards"
+      },
+      "get": {
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiCredit-cards"
       }
     },
     "/api/agent-keys": {
@@ -5389,9 +6764,38 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "service",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "operationId": "getApiAgent-keys"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "deleteApiAgent-keys"
       }
     },
     "/api/agent-keys/value": {
@@ -5559,6 +6963,148 @@
         "operationId": "postApiSiweGenerate"
       }
     },
+    "/api/paid/fetch": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "url"
+                ],
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ]
+                  },
+                  "headers": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {},
+                  "chain": {
+                    "type": "string",
+                    "enum": [
+                      "base",
+                      "solana",
+                      "tempo",
+                      "ethereum"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "url"
+                ],
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ]
+                  },
+                  "headers": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {},
+                  "chain": {
+                    "type": "string",
+                    "enum": [
+                      "base",
+                      "solana",
+                      "tempo",
+                      "ethereum"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "url"
+                ],
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ]
+                  },
+                  "headers": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {},
+                  "chain": {
+                    "type": "string",
+                    "enum": [
+                      "base",
+                      "solana",
+                      "tempo",
+                      "ethereum"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiPaidFetch"
+      }
+    },
     "/api/mpp/fetch": {
       "post": {
         "requestBody": {
@@ -5574,8 +7120,8 @@
                   "chain": {
                     "type": "string",
                     "enum": [
-                      "tempo",
-                      "tempo-mainnet"
+                      "tempo-testnet",
+                      "tempo"
                     ]
                   },
                   "url": {
@@ -5616,8 +7162,8 @@
                   "chain": {
                     "type": "string",
                     "enum": [
-                      "tempo",
-                      "tempo-mainnet"
+                      "tempo-testnet",
+                      "tempo"
                     ]
                   },
                   "url": {
@@ -5658,8 +7204,8 @@
                   "chain": {
                     "type": "string",
                     "enum": [
-                      "tempo",
-                      "tempo-mainnet"
+                      "tempo-testnet",
+                      "tempo"
                     ]
                   },
                   "url": {
@@ -5693,6 +7239,319 @@
           }
         },
         "operationId": "postApiMppFetch"
+      }
+    },
+    "/api/mpp/session/start": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chain": {
+                    "type": "string",
+                    "enum": [
+                      "tempo-testnet",
+                      "tempo"
+                    ]
+                  },
+                  "max_deposit": {
+                    "type": "string"
+                  },
+                  "deposit": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chain": {
+                    "type": "string",
+                    "enum": [
+                      "tempo-testnet",
+                      "tempo"
+                    ]
+                  },
+                  "max_deposit": {
+                    "type": "string"
+                  },
+                  "deposit": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chain": {
+                    "type": "string",
+                    "enum": [
+                      "tempo-testnet",
+                      "tempo"
+                    ]
+                  },
+                  "max_deposit": {
+                    "type": "string"
+                  },
+                  "deposit": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiMppSessionStart"
+      }
+    },
+    "/api/mpp/session/request": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "session_id",
+                  "url"
+                ],
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ]
+                  },
+                  "headers": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {},
+                  "stream": {
+                    "type": "boolean"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "session_id",
+                  "url"
+                ],
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ]
+                  },
+                  "headers": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {},
+                  "stream": {
+                    "type": "boolean"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "session_id",
+                  "url"
+                ],
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE",
+                      "PATCH"
+                    ]
+                  },
+                  "headers": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {},
+                  "stream": {
+                    "type": "boolean"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiMppSessionRequest"
+      }
+    },
+    "/api/mpp/session/close": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "session_id"
+                ],
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "session_id"
+                ],
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "session_id"
+                ],
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiMppSessionClose"
+      }
+    },
+    "/api/mpp/sessions": {
+      "get": {
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiMppSessions"
       }
     },
     "/api/payment-links": {
@@ -6199,6 +8058,9 @@
                       "order",
                       "positions",
                       "orders",
+                      "balance_allowance",
+                      "refresh_balance_allowance",
+                      "get_order",
                       "cancel",
                       "search_markets",
                       "get_market",
@@ -6258,9 +8120,6 @@
                   },
                   "limit": {
                     "type": "number"
-                  },
-                  "to_address": {
-                    "type": "string"
                   },
                   "amount": {
                     "type": "string"
@@ -6285,6 +8144,9 @@
                       "order",
                       "positions",
                       "orders",
+                      "balance_allowance",
+                      "refresh_balance_allowance",
+                      "get_order",
                       "cancel",
                       "search_markets",
                       "get_market",
@@ -6344,9 +8206,6 @@
                   },
                   "limit": {
                     "type": "number"
-                  },
-                  "to_address": {
-                    "type": "string"
                   },
                   "amount": {
                     "type": "string"
@@ -6371,6 +8230,9 @@
                       "order",
                       "positions",
                       "orders",
+                      "balance_allowance",
+                      "refresh_balance_allowance",
+                      "get_order",
                       "cancel",
                       "search_markets",
                       "get_market",
@@ -6430,9 +8292,6 @@
                   },
                   "limit": {
                     "type": "number"
-                  },
-                  "to_address": {
-                    "type": "string"
                   },
                   "amount": {
                     "type": "string"
@@ -7007,6 +8866,14 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "tempo",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "hyperliquid",
                                   "type": "string"
                                 },
@@ -7044,6 +8911,14 @@
                                 },
                                 {
                                   "const": "arbitrum-one",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "tempo",
                                   "type": "string"
                                 },
                                 {
@@ -7203,6 +9078,14 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "tempo",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "hyperliquid",
                                   "type": "string"
                                 },
@@ -7240,6 +9123,14 @@
                                 },
                                 {
                                   "const": "arbitrum-one",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "tempo",
                                   "type": "string"
                                 },
                                 {
@@ -7399,6 +9290,14 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "tempo",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "hyperliquid",
                                   "type": "string"
                                 },
@@ -7436,6 +9335,14 @@
                                 },
                                 {
                                   "const": "arbitrum-one",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "tempo",
                                   "type": "string"
                                 },
                                 {
@@ -9306,6 +11213,590 @@
         "operationId": "postApiWebhooksStripe-onramp"
       }
     },
+    "/api/bridge-fiat/config": {
+      "get": {
+        "operationId": "getApiBridge-fiatConfig"
+      }
+    },
+    "/api/bridge-fiat/customer": {
+      "get": {
+        "parameters": [
+          {
+            "name": "forceRefresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "format": "boolean",
+                  "default": false,
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
+        "operationId": "getApiBridge-fiatCustomer"
+      },
+      "delete": {
+        "operationId": "deleteApiBridge-fiatCustomer"
+      }
+    },
+    "/api/bridge-fiat/customer/sandbox": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBridge-fiatCustomerSandbox"
+      },
+      "delete": {
+        "operationId": "deleteApiBridge-fiatCustomerSandbox"
+      }
+    },
+    "/api/bridge-fiat/customer/kyc-link": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBridge-fiatCustomerKyc-link"
+      }
+    },
+    "/api/bridge-fiat/external-accounts": {
+      "get": {
+        "operationId": "getApiBridge-fiatExternal-accounts"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "customerId",
+                  "bankName",
+                  "accountOwnerName",
+                  "routingNumber",
+                  "accountNumber",
+                  "checkingOrSavings",
+                  "streetLine1",
+                  "city",
+                  "state",
+                  "postalCode"
+                ],
+                "properties": {
+                  "customerId": {
+                    "type": "string"
+                  },
+                  "bankName": {
+                    "type": "string"
+                  },
+                  "accountOwnerName": {
+                    "type": "string"
+                  },
+                  "routingNumber": {
+                    "type": "string"
+                  },
+                  "accountNumber": {
+                    "type": "string"
+                  },
+                  "checkingOrSavings": {
+                    "type": "string",
+                    "enum": [
+                      "checking",
+                      "savings"
+                    ]
+                  },
+                  "streetLine1": {
+                    "type": "string"
+                  },
+                  "streetLine2": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "postalCode": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "customerId",
+                  "bankName",
+                  "accountOwnerName",
+                  "routingNumber",
+                  "accountNumber",
+                  "checkingOrSavings",
+                  "streetLine1",
+                  "city",
+                  "state",
+                  "postalCode"
+                ],
+                "properties": {
+                  "customerId": {
+                    "type": "string"
+                  },
+                  "bankName": {
+                    "type": "string"
+                  },
+                  "accountOwnerName": {
+                    "type": "string"
+                  },
+                  "routingNumber": {
+                    "type": "string"
+                  },
+                  "accountNumber": {
+                    "type": "string"
+                  },
+                  "checkingOrSavings": {
+                    "type": "string",
+                    "enum": [
+                      "checking",
+                      "savings"
+                    ]
+                  },
+                  "streetLine1": {
+                    "type": "string"
+                  },
+                  "streetLine2": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "postalCode": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "customerId",
+                  "bankName",
+                  "accountOwnerName",
+                  "routingNumber",
+                  "accountNumber",
+                  "checkingOrSavings",
+                  "streetLine1",
+                  "city",
+                  "state",
+                  "postalCode"
+                ],
+                "properties": {
+                  "customerId": {
+                    "type": "string"
+                  },
+                  "bankName": {
+                    "type": "string"
+                  },
+                  "accountOwnerName": {
+                    "type": "string"
+                  },
+                  "routingNumber": {
+                    "type": "string"
+                  },
+                  "accountNumber": {
+                    "type": "string"
+                  },
+                  "checkingOrSavings": {
+                    "type": "string",
+                    "enum": [
+                      "checking",
+                      "savings"
+                    ]
+                  },
+                  "streetLine1": {
+                    "type": "string"
+                  },
+                  "streetLine2": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "postalCode": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBridge-fiatExternal-accounts"
+      }
+    },
+    "/api/bridge-fiat/virtual-account-wallet-ids": {
+      "get": {
+        "operationId": "getApiBridge-fiatVirtual-account-wallet-ids"
+      }
+    },
+    "/api/bridge-fiat/wallets/{walletId}/virtual-account": {
+      "get": {
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiBridge-fiatWalletsByWalletIdVirtual-account"
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiBridge-fiatWalletsByWalletIdVirtual-account"
+      }
+    },
+    "/api/bridge-fiat/liquidation-addresses": {
+      "get": {
+        "operationId": "getApiBridge-fiatLiquidation-addresses"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "externalAccountId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "externalAccountId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "externalAccountId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBridge-fiatLiquidation-addresses"
+      }
+    },
+    "/api/bridge-fiat/transfer-templates": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBridge-fiatTransfer-templates"
+      }
+    },
+    "/api/bridge-fiat/transfers": {
+      "get": {
+        "parameters": [
+          {
+            "name": "transferId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiBridge-fiatTransfers"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId",
+                  "externalAccountId",
+                  "amount"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "externalAccountId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId",
+                  "externalAccountId",
+                  "amount"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "externalAccountId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "walletId",
+                  "externalAccountId",
+                  "amount"
+                ],
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "externalAccountId": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBridge-fiatTransfers"
+      }
+    },
+    "/api/bridge-fiat/transfers/{transferId}/retry-funding": {
+      "post": {
+        "parameters": [
+          {
+            "name": "transferId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiBridge-fiatTransfersByTransferIdRetry-funding"
+      }
+    },
+    "/api/webhooks/bridge": {
+      "post": {
+        "operationId": "postApiWebhooksBridge"
+      }
+    },
     "/api/card-access-requests/": {
       "post": {
         "requestBody": {
@@ -9385,6 +11876,175 @@
           }
         ],
         "operationId": "getApiPromoKv2Jm7DZOIDGi6D2Freemoney"
+      }
+    },
+    "/api/chat/history/{agentId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiChatHistoryByAgentId"
+      }
+    },
+    "/api/chat/sessions/{agentId}/new": {
+      "post": {
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiChatSessionsByAgentIdNew"
+      }
+    },
+    "/api/chat/messages": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "messages"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "sessionId": {
+                    "type": "string"
+                  },
+                  "messages": {
+                    "type": "array",
+                    "items": {}
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "messages"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "sessionId": {
+                    "type": "string"
+                  },
+                  "messages": {
+                    "type": "array",
+                    "items": {}
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "messages"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "sessionId": {
+                    "type": "string"
+                  },
+                  "messages": {
+                    "type": "array",
+                    "items": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiChatMessages"
+      }
+    },
+    "/api/chat/rate-limit/check": {
+      "post": {
+        "operationId": "postApiChatRate-limitCheck"
+      }
+    },
+    "/api/chat/rate-limit/report": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "inputTokens",
+                  "outputTokens"
+                ],
+                "properties": {
+                  "inputTokens": {
+                    "type": "number"
+                  },
+                  "outputTokens": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "inputTokens",
+                  "outputTokens"
+                ],
+                "properties": {
+                  "inputTokens": {
+                    "type": "number"
+                  },
+                  "outputTokens": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "inputTokens",
+                  "outputTokens"
+                ],
+                "properties": {
+                  "inputTokens": {
+                    "type": "number"
+                  },
+                  "outputTokens": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiChatRate-limitReport"
       }
     },
     "/api/checkout/": {
@@ -10248,6 +12908,236 @@
           }
         ],
         "operationId": "postApiAgentsByIdShipping-addressesByAddressIdSet-default"
+      }
+    },
+    "/api/extension/push/public-key": {
+      "get": {
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiExtensionPushPublic-key"
+      }
+    },
+    "/api/extension/push/subscribe": {
+      "post": {
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "endpoint",
+                  "keys"
+                ],
+                "properties": {
+                  "endpoint": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "expirationTime": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "keys": {
+                    "type": "object",
+                    "required": [
+                      "auth",
+                      "p256dh"
+                    ],
+                    "properties": {
+                      "auth": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "p256dh": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "endpoint",
+                  "keys"
+                ],
+                "properties": {
+                  "endpoint": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "expirationTime": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "keys": {
+                    "type": "object",
+                    "required": [
+                      "auth",
+                      "p256dh"
+                    ],
+                    "properties": {
+                      "auth": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "p256dh": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "endpoint",
+                  "keys"
+                ],
+                "properties": {
+                  "endpoint": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "expirationTime": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "keys": {
+                    "type": "object",
+                    "required": [
+                      "auth",
+                      "p256dh"
+                    ],
+                    "properties": {
+                      "auth": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "p256dh": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiExtensionPushSubscribe"
+      }
+    },
+    "/api/extension/push/unsubscribe": {
+      "post": {
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiExtensionPushUnsubscribe"
+      }
+    },
+    "/api/extension/ws": {
+      "ws": {
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "wsApiExtensionWs"
       }
     },
     "/mcp/*": {

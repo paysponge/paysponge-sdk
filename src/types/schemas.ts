@@ -7,10 +7,11 @@ import { z } from "zod";
 export const ChainSchema = z.enum([
   "ethereum",
   "base",
+  "monad",
   "sepolia",
   "base-sepolia",
+  "tempo-testnet",
   "tempo",
-  "tempo-mainnet",
   "solana",
   "solana-devnet",
 ]);
@@ -19,12 +20,13 @@ export type Chain = z.infer<typeof ChainSchema>;
 export const ChainTypeSchema = z.enum(["evm", "solana"]);
 export type ChainType = z.infer<typeof ChainTypeSchema>;
 
-export const CurrencySchema = z.enum(["ETH", "SOL", "USDC", "pathUSD"]);
+export const CurrencySchema = z.string();
 export type Currency = z.infer<typeof CurrencySchema>;
 
 export const EvmChainSchema = z.enum([
   "ethereum",
   "base",
+  "monad",
   "sepolia",
   "base-sepolia",
 ]);
@@ -34,14 +36,14 @@ export const SolanaChainSchema = z.enum(["solana", "solana-devnet"]);
 export type SolanaChain = z.infer<typeof SolanaChainSchema>;
 
 // Mainnet chains only
-export const MainnetChainSchema = z.enum(["ethereum", "base", "tempo-mainnet", "solana"]);
+export const MainnetChainSchema = z.enum(["ethereum", "base", "monad", "tempo", "solana"]);
 export type MainnetChain = z.infer<typeof MainnetChainSchema>;
 
 // Testnet chains only
 export const TestnetChainSchema = z.enum([
   "sepolia",
   "base-sepolia",
-  "tempo",
+  "tempo-testnet",
   "solana-devnet",
 ]);
 export type TestnetChain = z.infer<typeof TestnetChainSchema>;
@@ -89,6 +91,16 @@ export const ConnectOptionsSchema = z.object({
 });
 export type ConnectOptions = z.infer<typeof ConnectOptionsSchema>;
 
+export const RegisterAgentOptionsSchema = z.object({
+  name: z.string().min(1).max(255),
+  agentFirst: z.boolean().optional(),
+  testnet: z.boolean().optional(),
+  claimRequired: z.boolean().optional(),
+  email: z.string().email().optional(),
+  baseUrl: z.string().url().optional(),
+});
+export type RegisterAgentOptions = z.infer<typeof RegisterAgentOptionsSchema>;
+
 // ============================================================================
 // Agent Types
 // ============================================================================
@@ -105,13 +117,13 @@ export type CreateAgentOptions = z.infer<typeof CreateAgentOptionsSchema>;
 export const AgentSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
-  description: z.string().nullable(),
+  description: z.string().nullish(),
   status: z.enum(["active", "paused", "suspended"]),
-  dailySpendingLimit: z.string().nullable(),
-  weeklySpendingLimit: z.string().nullable(),
-  monthlySpendingLimit: z.string().nullable(),
+  dailySpendingLimit: z.string().nullish(),
+  weeklySpendingLimit: z.string().nullish(),
+  monthlySpendingLimit: z.string().nullish(),
   createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date(),
+  updatedAt: z.coerce.date().nullish(),
 });
 export type Agent = z.infer<typeof AgentSchema>;
 
@@ -160,7 +172,10 @@ export const TransferOptionsSchema = z.object({
   chain: ChainSchema,
   to: AddressSchema,
   amount: z.string(),
-  currency: CurrencySchema,
+  currency: CurrencySchema.optional(),
+  token: z.string().optional(),
+}).refine(value => Boolean(value.currency || value.token), {
+  message: "Either currency or token is required",
 });
 export type TransferOptions = z.infer<typeof TransferOptionsSchema>;
 
@@ -409,6 +424,26 @@ export const DeviceFlowErrorSchema = z.object({
 });
 export type DeviceFlowError = z.infer<typeof DeviceFlowErrorSchema>;
 
+export const AgentRegistrationResponseSchema = z.object({
+  deviceCode: z.string(),
+  userCode: z.string(),
+  verificationUri: z.string().url(),
+  verificationUriComplete: z.string().url(),
+  expiresIn: z.number(),
+  interval: z.number(),
+  claimCode: z.string(),
+  claimText: z.string().nullable(),
+  agentId: z.string().uuid().nullable(),
+  apiKey: z.string().nullable(),
+});
+export type AgentRegistrationResponse = z.infer<typeof AgentRegistrationResponseSchema>;
+
+export const AgentFirstRegistrationResponseSchema = AgentRegistrationResponseSchema.extend({
+  agentId: z.string().uuid(),
+  apiKey: z.string(),
+});
+export type AgentFirstRegistrationResponse = z.infer<typeof AgentFirstRegistrationResponseSchema>;
+
 // ============================================================================
 // Credentials (stored locally)
 // ============================================================================
@@ -420,6 +455,9 @@ export const CredentialsSchema = z.object({
   testnet: z.boolean().optional(),
   createdAt: z.coerce.date(),
   baseUrl: z.string().url().optional(),
+  claimCode: z.string().optional(),
+  claimUrl: z.string().url().optional(),
+  claimText: z.string().nullable().optional(),
 });
 export type Credentials = z.infer<typeof CredentialsSchema>;
 
@@ -481,10 +519,11 @@ export type ChainInfo = z.infer<typeof ChainInfoSchema>;
 export const CHAIN_IDS: Record<Chain, number> = {
   ethereum: 1,
   base: 8453,
+  monad: 143,
   sepolia: 11155111,
   "base-sepolia": 84532,
-  tempo: 42431,
-  "tempo-mainnet": 4217,
+  "tempo-testnet": 42431,
+  tempo: 4217,
   solana: 101,
   "solana-devnet": 102,
 };

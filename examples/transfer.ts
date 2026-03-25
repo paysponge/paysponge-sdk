@@ -87,7 +87,7 @@ async function main() {
 
     // Check transaction status
     console.log("5. Checking transaction status...");
-    const status = await wallet.getTransactionStatus(tx.txHash);
+    const status = await wallet.getTransactionStatus(tx.txHash, "base-sepolia");
     console.log(`   Status: ${status.status}`);
     if (status.confirmations) {
       console.log(`   Confirmations: ${status.confirmations}`);
