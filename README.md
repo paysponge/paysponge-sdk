@@ -1,6 +1,6 @@
-# SpongeWallet SDK
+# Sponge SDK
 
-SDK for creating and managing wallets for AI agents with Claude Agent SDK integration.
+Wallet and platform SDK for agent builders using Sponge.
 
 ## Installation
 
@@ -10,32 +10,69 @@ npm install @paysponge/sdk
 bun add @paysponge/sdk
 ```
 
-## Quick Start
+## Documentation
+
+Full docs: [docs.paysponge.com](https://docs.paysponge.com)
+
+- [Welcome](https://docs.paysponge.com)
+- [Platforms](https://docs.paysponge.com/quickstart-platforms)
+- [AI Agents](https://docs.paysponge.com/quickstart-ai-agents)
+- [Self-Registration](https://docs.paysponge.com/quickstart-self-registration)
+- [CLI](https://docs.paysponge.com/cli)
+- [Authentication](https://docs.paysponge.com/authentication)
+- [Wallets & Transfers](https://docs.paysponge.com/wallets-and-transfers)
+- [Claude Integration](https://docs.paysponge.com/claude-integration)
+- [SDK Reference](https://docs.paysponge.com/sdk-reference)
+
+## How Sponge Works
+
+Sponge has two SDK clients:
+
+- `SpongeWallet`: the agent-scoped runtime client
+- `SpongePlatform`: the platform control-plane client for creating and managing many agents
+
+Use `SpongeWallet` when one agent is acting with its own wallet. Use `SpongePlatform` when your backend needs to provision agents, rotate keys, or manage a fleet.
+
+## Agent Keys
+
+Agent API keys are scoped to one agent. Use them with `SpongeWallet`.
+
+You can get an agent-scoped API key in a few ways:
+
+- from the dashboard for an existing agent
+- `npx spongewallet init` to create an agent immediately and claim it later
+- `SpongeWallet.connect()` device flow if you want browser auth and cached local credentials
+- `SpongePlatform.createAgent()` if your platform is provisioning agents server-side
+- `POST /api/agents/register` for self-registration flows
+
+Example:
 
 ```typescript
 import { SpongeWallet } from "@paysponge/sdk";
 
-// Connect (handles auth automatically via browser)
-const wallet = await SpongeWallet.connect();
-
-// Get addresses
-const addresses = await wallet.getAddresses();
-console.log(addresses.base);    // 0x...
-console.log(addresses.solana);  // 5x...
-
-// Check balances
-const balances = await wallet.getBalances();
-
-// Transfer tokens
-await wallet.transfer({
-  chain: "base",
-  to: "0x...",
-  amount: "10",
-  currency: "USDC",
+const wallet = await SpongeWallet.connect({
+  apiKey: process.env.SPONGE_API_KEY,
 });
+
+const addresses = await wallet.getAddresses();
+console.log(addresses.base);
+console.log(await wallet.getBalances());
 ```
 
-## Platforms
+## Platform Keys
+
+Platform API keys are account-level keys with the `sponge_master_...` prefix. Create them in Dashboard -> Settings -> Master API Keys, then use them with `SpongePlatform`.
+
+Platform keys are for control-plane actions:
+
+- create agents
+- list and update agents
+- rotate agent API keys
+- manage many agents from one backend
+
+Each agent still gets its own runtime API key. Your platform backend should use the platform key to provision agents, then store the returned agent key per agent and use that key at runtime.
+
+Example:
 
 ```typescript
 import { SpongePlatform } from "@paysponge/sdk";
@@ -52,13 +89,27 @@ const wallet = await platform.connectAgent({ apiKey });
 console.log(agent.id, await wallet.getAddresses());
 ```
 
+## Platforms
+
+If you are building a product that manages hundreds of agents, the intended pattern is:
+
+1. Your backend authenticates with `SpongePlatform` using a platform key.
+2. It creates one Sponge agent per user, bot, or worker.
+3. It stores the returned agent API key with your own internal record.
+4. Each running agent connects with `SpongeWallet` using its own agent key.
+
+That keeps provisioning and runtime separate:
+
+- platform key: create and administer agents
+- agent key: spend, swap, transfer, MCP, and tools for one agent
+
 ## Authentication
 
 ### Device Flow (Browser)
 
 On first run, `connect()` opens your browser for login. After approval, credentials are cached at `~/.spongewallet/credentials.json`.
 
-### API Key
+### Agent API Key
 
 ```typescript
 const wallet = await SpongeWallet.connect({
@@ -70,6 +121,14 @@ Or via environment variable:
 
 ```bash
 SPONGE_API_KEY=sponge_test_xxx node my-bot.js
+```
+
+### Platform API Key
+
+```typescript
+const platform = await SpongePlatform.connect({
+  apiKey: process.env.SPONGE_MASTER_KEY,
+});
 ```
 
 ## Claude Agent SDK Integration
@@ -94,8 +153,10 @@ for await (const msg of query({
 
 ## Supported Chains
 
-- **EVM**: Ethereum, Base, Monad, Sepolia, Base Sepolia, Tempo
-- **Solana**: Mainnet, Devnet
+- Ethereum
+- Base
+- Tempo
+- Solana
 
 ## Features
 
@@ -104,22 +165,7 @@ for await (const msg of query({
 - MCP server for Claude Agent SDK
 - Anthropic SDK tool definitions
 - Spending limits and allowlists
-- x402 payment protocol support
-
-## Documentation
-
-Full docs: [docs.paysponge.com](https://docs.paysponge.com)
-
-- [Welcome](https://docs.paysponge.com)
-- [Self-Registration](https://docs.paysponge.com/quickstart-self-registration)
-- [Platforms](https://docs.paysponge.com/quickstart-platforms)
-- [AI Agents](https://docs.paysponge.com/quickstart-ai-agents)
-- [Trading & Payments](https://docs.paysponge.com/quickstart-trading)
-- [CLI](https://docs.paysponge.com/cli)
-- [Authentication](https://docs.paysponge.com/authentication)
-- [Wallets & Transfers](https://docs.paysponge.com/wallets-and-transfers)
-- [Claude Integration](https://docs.paysponge.com/claude-integration)
-- [SDK Reference](https://docs.paysponge.com/sdk-reference)
+- x402 and MPP payment protocol support
 
 ## CLI
 
@@ -156,6 +202,7 @@ npx spongewallet logout
 | Variable | Description |
 |----------|-------------|
 | `SPONGE_API_KEY` | Agent API key (skips device flow) |
+| `SPONGE_MASTER_KEY` | Platform API key for `SpongePlatform` |
 | `SPONGE_API_URL` | Custom API URL |
 
 ## License
