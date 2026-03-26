@@ -5,6 +5,7 @@ import {
   type Balance,
   type TransferOptions,
   type SwapOptions,
+  type TempoSwapOptions,
   type TransactionResult,
   type TransactionStatus,
   type Agent,
@@ -312,6 +313,13 @@ export class SpongeWallet {
   }
 
   /**
+   * Swap stablecoins on Tempo via the native StablecoinExchange DEX
+   */
+  async tempoSwap(options: TempoSwapOptions): Promise<TransactionResult> {
+    return this.transactions.tempoSwap(options);
+  }
+
+  /**
    * Get transaction status
    *
    * @example
@@ -511,7 +519,7 @@ export class SpongeWallet {
     title: string;
     reasoning?: string;
     steps: Array<
-      | { type: "swap"; input_token: string; output_token: string; amount: string; reason: string }
+      | { type: "swap"; chain?: string; input_token: string; output_token: string; amount: string; reason: string }
       | { type: "transfer"; chain: string; to: string; amount: string; currency: string; reason: string }
       | { type: "bridge"; source_chain: string; destination_chain: string; token: string; amount: string; destination_token?: string; reason: string }
     >;
@@ -534,6 +542,7 @@ export class SpongeWallet {
     output_token: string;
     amount: string;
     reason: string;
+    chain?: string;
   }): Promise<unknown> {
     return this.http.post<unknown>("/api/trades/propose", args);
   }

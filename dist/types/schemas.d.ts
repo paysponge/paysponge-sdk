@@ -1145,6 +1145,26 @@ export declare const SwapOptionsSchema: z.ZodObject<{
     slippageBps?: number | undefined;
 }>;
 export type SwapOptions = z.infer<typeof SwapOptionsSchema>;
+export declare const TempoSwapOptionsSchema: z.ZodObject<{
+    chain: z.ZodUnion<[z.ZodLiteral<"tempo">, z.ZodLiteral<"tempo-testnet">]>;
+    from: z.ZodString;
+    to: z.ZodString;
+    amount: z.ZodString;
+    slippageBps: z.ZodOptional<z.ZodNumber>;
+}, "strip", z.ZodTypeAny, {
+    amount: string;
+    chain: "tempo-testnet" | "tempo";
+    to: string;
+    from: string;
+    slippageBps?: number | undefined;
+}, {
+    amount: string;
+    chain: "tempo-testnet" | "tempo";
+    to: string;
+    from: string;
+    slippageBps?: number | undefined;
+}>;
+export type TempoSwapOptions = z.infer<typeof TempoSwapOptionsSchema>;
 export declare const DetailedTokenBalanceSchema: z.ZodObject<{
     token: z.ZodString;
     amount: z.ZodString;
@@ -1918,15 +1938,15 @@ export type ToolResult = z.infer<typeof ToolResultSchema>;
 export declare const ApiErrorSchema: z.ZodObject<{
     error: z.ZodString;
     message: z.ZodString;
-    statusCode: z.ZodNumber;
+    statusCode: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     message: string;
     error: string;
-    statusCode: number;
+    statusCode?: number | undefined;
 }, {
     message: string;
     error: string;
-    statusCode: number;
+    statusCode?: number | undefined;
 }>;
 export type ApiError = z.infer<typeof ApiErrorSchema>;
 export declare const ChainInfoSchema: z.ZodObject<{

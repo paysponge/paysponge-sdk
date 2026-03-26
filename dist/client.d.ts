@@ -1,4 +1,4 @@
-import { type ConnectOptions, type Chain, type Balance, type TransferOptions, type SwapOptions, type TransactionResult, type TransactionStatus, type Agent, type CreateAgentOptions, type McpConfig } from "./types/schemas.js";
+import { type ConnectOptions, type Chain, type Balance, type TransferOptions, type SwapOptions, type TempoSwapOptions, type TransactionResult, type TransactionStatus, type Agent, type CreateAgentOptions, type McpConfig } from "./types/schemas.js";
 /**
  * SpongeWallet - The main SDK client for managing agent wallets
  *
@@ -155,6 +155,10 @@ export declare class SpongeWallet {
      * ```
      */
     swap(options: SwapOptions): Promise<TransactionResult>;
+    /**
+     * Swap stablecoins on Tempo via the native StablecoinExchange DEX
+     */
+    tempoSwap(options: TempoSwapOptions): Promise<TransactionResult>;
     /**
      * Get transaction status
      *
@@ -429,6 +433,7 @@ export declare class SpongeWallet {
         reasoning?: string;
         steps: Array<{
             type: "swap";
+            chain?: string;
             input_token: string;
             output_token: string;
             amount: string;
@@ -462,6 +467,7 @@ export declare class SpongeWallet {
         output_token: string;
         amount: string;
         reason: string;
+        chain?: string;
     }): Promise<unknown>;
     /**
      * Create a new agent

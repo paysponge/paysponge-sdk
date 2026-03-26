@@ -246,6 +246,12 @@ export class SpongeWallet {
         return this.transactions.swap(options);
     }
     /**
+     * Swap stablecoins on Tempo via the native StablecoinExchange DEX
+     */
+    async tempoSwap(options) {
+        return this.transactions.tempoSwap(options);
+    }
+    /**
      * Get transaction status
      *
      * @example

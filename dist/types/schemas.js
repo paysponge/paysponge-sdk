@@ -324,6 +324,13 @@ export const SwapOptionsSchema = z.object({
     amount: z.string(),
     slippageBps: z.number().min(0).max(10000).optional(), // Basis points
 });
+export const TempoSwapOptionsSchema = z.object({
+    chain: z.literal("tempo").or(z.literal("tempo-testnet")),
+    from: z.string(),
+    to: z.string(),
+    amount: z.string(),
+    slippageBps: z.number().min(0).max(10000).optional(),
+});
 // ============================================================================
 // Public Tool Types (REST API helpers)
 // ============================================================================
@@ -553,7 +560,7 @@ export const ToolResultSchema = z.discriminatedUnion("status", [
 export const ApiErrorSchema = z.object({
     error: z.string(),
     message: z.string(),
-    statusCode: z.number(),
+    statusCode: z.number().optional(),
 });
 // ============================================================================
 // Chain Info

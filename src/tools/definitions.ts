@@ -384,6 +384,42 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     cli_output: txOutput("Swap submitted"),
   },
   {
+    name: "tempo_swap",
+    description:
+      "Swap stablecoins on Tempo using the native StablecoinExchange DEX. Supports pathUSD, USDC.e, and other Tempo stablecoin flavors.",
+    input_schema: {
+      type: "object",
+      properties: {
+        chain: {
+          type: "string",
+          enum: ["tempo", "tempo-testnet"],
+          description: "The Tempo network to use",
+        },
+        inputToken: {
+          type: "string",
+          description:
+            "The token to swap from (symbol like 'pathUSD', 'USDC.e', or token address)",
+        },
+        outputToken: {
+          type: "string",
+          description:
+            "The token to swap to (symbol like 'pathUSD', 'USDC.e', or token address)",
+        },
+        amount: {
+          type: "string",
+          description: "The amount of input token to swap (e.g., '1.0')",
+        },
+        slippageBps: {
+          type: "number",
+          description:
+            "Slippage tolerance in basis points (default: 50 = 0.5%)",
+        },
+      },
+      required: ["chain", "inputToken", "outputToken", "amount"],
+    },
+    cli_output: txOutput("Swap submitted"),
+  },
+  {
     name: "bridge",
     description:
       "Bridge tokens between different blockchains using deBridge. Supports Ethereum, Base, and Solana.",
@@ -1209,7 +1245,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     description:
       "Propose a single token swap for user approval. Fetches a quote and creates a pending trade proposal. " +
       "Use only when the user explicitly asks for a proposal or review-before-execute flow. " +
-      "For direct execution, use solana_swap or base_swap instead. " +
+      "For direct execution, use solana_swap, base_swap, or tempo_swap instead. " +
       "For multi-step flows, use submit_plan instead.",
     input_schema: {
       type: "object",
@@ -1229,6 +1265,10 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
         reason: {
           type: "string",
           description: "Your reasoning for this trade — shown to the user",
+        },
+        chain: {
+          type: "string",
+          description: "Optional chain to trade on (e.g., 'solana', 'base', 'tempo', 'tempo-testnet')",
         },
       },
       required: ["input_token", "output_token", "amount", "reason"],

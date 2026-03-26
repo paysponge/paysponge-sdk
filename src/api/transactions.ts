@@ -4,12 +4,14 @@ import {
   TransactionStatusSchema,
   TransferOptionsSchema,
   SwapOptionsSchema,
+  TempoSwapOptionsSchema,
   SubmitTransactionSchema,
   CHAIN_IDS,
   type TransactionResult,
   type TransactionStatus,
   type TransferOptions,
   type SwapOptions,
+  type TempoSwapOptions,
   type Chain,
 } from "../types/schemas.js";
 import type { HttpClient } from "./http.js";
@@ -166,6 +168,35 @@ export class TransactionsApi {
 
     const response = await client.request(
       client.api.postApiTransactionsSwapRequestOpts({
+        postApiTransactionsSwapRequest: {
+          chain: validated.chain,
+          inputToken: validated.from,
+          outputToken: validated.to,
+          amount: validated.amount,
+          slippageBps: validated.slippageBps,
+        },
+      }),
+    );
+
+    const parsed = SwapResponseSchema.parse(response);
+
+    return TransactionResultSchema.parse({
+      txHash: parsed.signature,
+      status: "confirmed",
+      explorerUrl: parsed.explorerUrl,
+    });
+  }
+
+  /**
+   * Swap stablecoins on Tempo via the native StablecoinExchange DEX
+   * Uses the /api/transactions/tempo-swap endpoint
+   */
+  async tempoSwap(options: TempoSwapOptions): Promise<TransactionResult> {
+    const client = createGeneratedApiClient(this.http);
+    const validated = TempoSwapOptionsSchema.parse(options);
+
+    const response = await client.request(
+      client.api.postApiTransactionsTempoSwapRequestOpts({
         postApiTransactionsSwapRequest: {
           chain: validated.chain,
           inputToken: validated.from,

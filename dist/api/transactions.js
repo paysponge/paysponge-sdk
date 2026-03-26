@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { TransactionResultSchema, TransactionStatusSchema, TransferOptionsSchema, SwapOptionsSchema, SubmitTransactionSchema, CHAIN_IDS, } from "../types/schemas.js";
+import { TransactionResultSchema, TransactionStatusSchema, TransferOptionsSchema, SwapOptionsSchema, TempoSwapOptionsSchema, SubmitTransactionSchema, CHAIN_IDS, } from "../types/schemas.js";
 import { createGeneratedApiClient } from "./generated/openapi-adapter.js";
 // Swap response from API
 const SwapResponseSchema = z.object({
@@ -129,6 +129,29 @@ export class TransactionsApi {
         const client = createGeneratedApiClient(this.http);
         const validated = SwapOptionsSchema.parse(options);
         const response = await client.request(client.api.postApiTransactionsSwapRequestOpts({
+            postApiTransactionsSwapRequest: {
+                chain: validated.chain,
+                inputToken: validated.from,
+                outputToken: validated.to,
+                amount: validated.amount,
+                slippageBps: validated.slippageBps,
+            },
+        }));
+        const parsed = SwapResponseSchema.parse(response);
+        return TransactionResultSchema.parse({
+            txHash: parsed.signature,
+            status: "confirmed",
+            explorerUrl: parsed.explorerUrl,
+        });
+    }
+    /**
+     * Swap stablecoins on Tempo via the native StablecoinExchange DEX
+     * Uses the /api/transactions/tempo-swap endpoint
+     */
+    async tempoSwap(options) {
+        const client = createGeneratedApiClient(this.http);
+        const validated = TempoSwapOptionsSchema.parse(options);
+        const response = await client.request(client.api.postApiTransactionsTempoSwapRequestOpts({
             postApiTransactionsSwapRequest: {
                 chain: validated.chain,
                 inputToken: validated.from,

@@ -111,6 +111,23 @@ export class ToolExecutor {
                     amount: args.amount,
                     slippageBps: args.slippageBps ?? args.slippage_bps,
                 });
+            case "tempo_swap":
+                return this.http.post("/api/transactions/tempo-swap", {
+                    chain: args.chain,
+                    inputToken: args.inputToken ?? args.input_token,
+                    outputToken: args.outputToken ?? args.output_token,
+                    amount: args.amount,
+                    slippageBps: args.slippageBps ?? args.slippage_bps,
+                });
+            case "bridge":
+                return this.http.post("/api/transactions/bridge", {
+                    sourceChain: args.sourceChain ?? args.source_chain,
+                    destinationChain: args.destinationChain ?? args.destination_chain,
+                    token: args.token,
+                    amount: args.amount,
+                    destinationToken: args.destinationToken ?? args.destination_token,
+                    recipientAddress: args.recipientAddress ?? args.recipient_address,
+                });
             case "jupiter_swap_quote":
                 return this.http.post("/api/transactions/swap/quote", {
                     chain: args.chain,
@@ -268,6 +285,7 @@ export class ToolExecutor {
                     output_token: args.output_token,
                     amount: args.amount,
                     reason: args.reason,
+                    chain: args.chain,
                 });
             default:
                 throw new Error(`Tool not implemented: ${name}`);

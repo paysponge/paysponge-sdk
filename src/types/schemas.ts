@@ -439,6 +439,15 @@ export const SwapOptionsSchema = z.object({
 });
 export type SwapOptions = z.infer<typeof SwapOptionsSchema>;
 
+export const TempoSwapOptionsSchema = z.object({
+  chain: z.literal("tempo").or(z.literal("tempo-testnet")),
+  from: z.string(),
+  to: z.string(),
+  amount: z.string(),
+  slippageBps: z.number().min(0).max(10000).optional(),
+});
+export type TempoSwapOptions = z.infer<typeof TempoSwapOptionsSchema>;
+
 // ============================================================================
 // Public Tool Types (REST API helpers)
 // ============================================================================
@@ -727,7 +736,7 @@ export type ToolResult = z.infer<typeof ToolResultSchema>;
 export const ApiErrorSchema = z.object({
   error: z.string(),
   message: z.string(),
-  statusCode: z.number(),
+  statusCode: z.number().optional(),
 });
 export type ApiError = z.infer<typeof ApiErrorSchema>;
 

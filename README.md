@@ -183,9 +183,10 @@ npx spongewallet init --email alice@example.com
 npx spongewallet login
 
 # Curated wallet workflows
-npx spongewallet wallet balance
-npx spongewallet wallet send --chain base --to 0xabc... --amount 10 --asset USDC
-npx spongewallet tx status --chain base --tx-hash 0x123...
+npx spongewallet balance
+npx spongewallet send base 0xabc... USDC 10
+npx spongewallet swap tempo pathUSD USDC.e 1
+npx spongewallet tx status base 0x123...
 
 # Raw tool commands remain available under "advanced"
 npx spongewallet advanced get-balance --chain base

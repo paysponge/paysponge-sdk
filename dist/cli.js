@@ -1,4 +1,4 @@
-import { Command, Option } from "commander";
+import { Command, Help, Option } from "commander";
 import * as p from "@clack/prompts";
 import { SpongeWallet } from "./client.js";
 import { deviceFlowAuth } from "./auth/device-flow.js";
@@ -17,6 +17,8 @@ export function buildCliProgram(metadata = {}) {
         .name(cmdName)
         .description(`${pkgName} – CLI for managing agent wallets`)
         .version(`${pkgName} v${version}`, "-v, --version");
+    program.showSuggestionAfterError();
+    program.showHelpAfterError();
     const shared = (cmd) => cmd
         .option("--base-url <url>", "custom API URL")
         .option("--credentials-path <path>", "custom credentials file path");
@@ -48,6 +50,7 @@ export function buildCliProgram(metadata = {}) {
         .command("advanced")
         .description("Low-level commands mirroring the raw tool surface");
     registerToolCommands(advancedCmd, shared);
+    applyHelpTheme(program, metadata);
     return program;
 }
 export async function runCli(args, metadata = {}) {
@@ -221,6 +224,39 @@ async function continueClaimFlow(creds, opts) {
     p.log.info("After the browser claim completes, the cached API key will keep working for this agent.");
     p.outro("Claim flow ready");
 }
+function requiredInput(opts, positional, optionKey, flagName) {
+    const fromOption = opts[optionKey];
+    const value = positional
+        ?? (typeof fromOption === "string" ? fromOption : undefined);
+    if (!value) {
+        throw new Error(`missing required argument or option: ${flagName}`);
+    }
+    return value;
+}
+function isTempoChain(chain) {
+    return chain === "tempo" || chain === "tempo-testnet";
+}
+function normalizeTempoTokenSymbol(token, chain) {
+    const trimmed = token.trim();
+    if (trimmed.startsWith("0x") && trimmed.length === 42) {
+        return trimmed;
+    }
+    const normalized = trimmed.toLowerCase().replace(/[\s_-]/g, "");
+    const aliasMap = {
+        path: "pathUSD",
+        pathusd: "pathUSD",
+        alpha: "AlphaUSD",
+        alphausd: "AlphaUSD",
+        beta: "BetaUSD",
+        betausd: "BetaUSD",
+        theta: "ThetaUSD",
+        thetausd: "ThetaUSD",
+        usdc: chain === "tempo" ? "USDC.e" : "pathUSD",
+        "usdc.e": chain === "tempo" ? "USDC.e" : "pathUSD",
+        usdce: chain === "tempo" ? "USDC.e" : "pathUSD",
+    };
+    return aliasMap[normalized] ?? trimmed;
+}
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -230,6 +266,89 @@ function defaultAgentName(email) {
         ?.replace(/[^a-z0-9_-]+/g, "-")
         .replace(/^-+|-+$/g, "");
     return slug ? `agent-${slug}` : "sponge-agent";
+}
+const ANSI_PATTERN = /\u001B\[[0-9;]*m/g;
+const HELP_COLOR_ENABLED = Boolean(!process.env.NO_COLOR
+    && (process.stdout.isTTY || process.env.FORCE_COLOR));
+function ansi(text, open, close = "\u001B[0m") {
+    if (!HELP_COLOR_ENABLED)
+        return text;
+    return `${open}${text}${close}`;
+}
+function stripAnsi(text) {
+    return text.replace(ANSI_PATTERN, "");
+}
+function bold(text) {
+    return ansi(text, "\u001B[1m");
+}
+function cyan(text) {
+    return ansi(text, "\u001B[36m");
+}
+function green(text) {
+    return ansi(text, "\u001B[32m");
+}
+function dim(text) {
+    return ansi(text, "\u001B[2m");
+}
+function toTitleCase(value) {
+    return value
+        .split(/[\s-]+/)
+        .filter(Boolean)
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+}
+function commandPath(command) {
+    const parts = [];
+    let current = command;
+    while (current) {
+        parts.unshift(current.name());
+        current = current.parent ?? null;
+    }
+    return parts;
+}
+function buildHelpBanner(command, metadata) {
+    const path = commandPath(command);
+    const rootName = metadata.commandName ?? "spongewallet";
+    const title = path.length === 1
+        ? "Sponge Wallet CLI"
+        : `Sponge Wallet ${path.slice(1).map(toTitleCase).join(" ")}`;
+    const subtitle = path.length === 1
+        ? "Manage agent wallets, swaps, payments, and MCP setup."
+        : command.description() || `${rootName} command help`;
+    const lines = [bold(green(title)), "", dim(subtitle)];
+    const width = Math.max(...lines.map((line) => stripAnsi(line).length));
+    const top = cyan(`╭${"─".repeat(width + 2)}╮`);
+    const bottom = cyan(`╰${"─".repeat(width + 2)}╯`);
+    const body = lines.map((line) => {
+        const padding = " ".repeat(width - stripAnsi(line).length);
+        return `${cyan("│")} ${line}${padding} ${cyan("│")}`;
+    });
+    return [top, ...body, bottom].join("\n");
+}
+function applyHelpTheme(command, metadata) {
+    command.configureHelp({
+        commandDescription: () => "",
+        styleTitle: (text) => bold(cyan(text)),
+        styleCommandText: (text) => bold(green(text)),
+        styleSubcommandText: (text) => green(text),
+        styleOptionText: (text) => cyan(text),
+        styleArgumentText: (text) => bold(text),
+        styleDescriptionText: (text) => text,
+        formatHelp(cmd, helper) {
+            const description = cmd.description();
+            const lines = Help.prototype.formatHelp.call(helper, cmd, helper)
+                .trimEnd()
+                .split("\n");
+            if (description && lines[2] === description && lines[3] === "") {
+                lines.splice(2, 2);
+            }
+            const body = lines.join("\n");
+            return `${buildHelpBanner(cmd, metadata)}\n\n${body}\n`;
+        },
+    });
+    for (const subcommand of command.commands) {
+        applyHelpTheme(subcommand, metadata);
+    }
 }
 // ---------------------------------------------------------------------------
 // Curated command tree
@@ -246,12 +365,12 @@ const CHAIN_VALUES = [
 ];
 const EVM_CHAIN_VALUES = ["ethereum", "base", "sepolia", "base-sepolia"];
 const SOLANA_CHAIN_VALUES = ["solana", "solana-devnet"];
+const TEMPO_CHAIN_VALUES = ["tempo", "tempo-testnet"];
 const ONRAMP_CHAIN_VALUES = ["base", "solana", "polygon"];
 const PAY_CHAIN_VALUES = ["base", "solana", "tempo", "ethereum"];
 const PREFERRED_X402_CHAINS = ["base", "solana", "ethereum"];
 function registerCuratedCommands(program, shared) {
-    const walletCmd = program.command("wallet").description("Wallet balances, transfers, and addresses");
-    shared(walletCmd.command("balance").description("Show wallet balances"))
+    shared(program.command("balance").description("Show wallet balances"))
         .addOption(new Option("--chain <chain>", "specific chain").choices([...CHAIN_VALUES, "all"]))
         .option("--allowed-chains <chains>", "comma-separated chain allowlist")
         .option("--only-usdc", "only show USDC balances")
@@ -264,58 +383,97 @@ function registerCuratedCommands(program, shared) {
         });
         displayToolResult(getToolDefinition("get_balance"), data);
     });
-    shared(walletCmd.command("send").description("Send assets on EVM, Solana, or Tempo"))
-        .addOption(new Option("--chain <chain>", "destination chain").choices(CHAIN_VALUES).makeOptionMandatory())
-        .requiredOption("--to <address>", "recipient address")
-        .requiredOption("--amount <amount>", "amount to send")
-        .requiredOption("--asset <asset>", "currency symbol or token symbol/address")
-        .action(async (opts) => {
+    shared(program.command("send").description("Send assets on EVM, Solana, or Tempo"))
+        .usage("<chain> <to> <asset> <amount> [options]")
+        .argument("<chain>", "destination chain")
+        .argument("<to>", "recipient address")
+        .argument("<asset>", "currency symbol or token symbol/address")
+        .argument("<amount>", "amount to send")
+        .option("--chain <chain>", "destination chain")
+        .option("--to <address>", "recipient address")
+        .option("--amount <amount>", "amount to send")
+        .option("--asset <asset>", "currency symbol or token symbol/address")
+        .addHelpText("after", "\nExamples:\n  spongewallet send base 0xabc... USDC 10\n  spongewallet send tempo 0xabc... usdce 1\n")
+        .action(async (chainArg, toArg, assetArg, amountArg, opts) => {
         const wallet = await connectWallet(opts);
-        const chain = String(opts.chain);
-        const asset = String(opts.asset);
+        const chain = requiredInput(opts, chainArg, "chain", "--chain");
+        const asset = isTempoChain(chain)
+            ? normalizeTempoTokenSymbol(requiredInput(opts, assetArg, "asset", "--asset"), chain)
+            : requiredInput(opts, assetArg, "asset", "--asset");
         const input = chain === "tempo" || chain === "tempo-testnet"
-            ? { chain, to: String(opts.to), amount: String(opts.amount), token: asset }
-            : { chain, to: String(opts.to), amount: String(opts.amount), currency: asset };
+            ? {
+                chain,
+                to: requiredInput(opts, toArg, "to", "--to"),
+                amount: requiredInput(opts, amountArg, "amount", "--amount"),
+                token: asset,
+            }
+            : {
+                chain,
+                to: requiredInput(opts, toArg, "to", "--to"),
+                amount: requiredInput(opts, amountArg, "amount", "--amount"),
+                currency: asset,
+            };
         const data = await wallet.transfer(input);
         displayToolResult(getToolDefinition(chain.startsWith("solana") ? "solana_transfer" : "evm_transfer"), data);
     });
-    shared(walletCmd.command("history").description("Show recent transaction history"))
+    shared(program.command("history").description("Show recent transaction history"))
+        .usage("[limit] [options]")
+        .argument("[limit]", "maximum number of transactions")
         .option("--limit <n>", "maximum number of transactions", parseInt)
         .addOption(new Option("--chain <chain>", "filter by chain").choices(CHAIN_VALUES))
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet history\n  spongewallet history 20 --chain base\n")
+        .action(async (limitArg, opts) => {
         const wallet = await connectWallet(opts);
+        const limit = limitArg !== undefined
+            ? parseInt(limitArg, 10)
+            : opts.limit;
         const data = await wallet.getTransactionHistoryDetailed({
-            limit: opts.limit,
+            limit: Number.isFinite(limit) ? limit : undefined,
             chain: opts.chain,
         });
         displayToolResult(getToolDefinition("get_transaction_history"), data);
     });
-    shared(walletCmd.command("tokens").description("List Solana wallet tokens"))
-        .addOption(new Option("--chain <chain>", "Solana network").choices(SOLANA_CHAIN_VALUES).default("solana"))
-        .action(async (opts) => {
+    shared(program.command("tokens").description("List Solana wallet tokens"))
+        .usage("[chain] [options]")
+        .argument("[chain]", "Solana network")
+        .option("--chain <chain>", "Solana network")
+        .addHelpText("after", "\nExamples:\n  spongewallet tokens\n  spongewallet tokens solana-devnet\n")
+        .action(async (chainArg, opts) => {
         const wallet = await connectWallet(opts);
-        const data = await wallet.getSolanaTokens(opts.chain);
+        const chain = (chainArg ?? opts.chain ?? "solana");
+        const data = await wallet.getSolanaTokens(chain);
         displayToolResult(getToolDefinition("get_solana_tokens"), data);
     });
-    shared(walletCmd.command("search-tokens").description("Search the Solana token list"))
-        .requiredOption("--query <query>", "token symbol or name")
+    shared(program.command("search-tokens").description("Search the Solana token list"))
+        .usage("<query> [limit] [options]")
+        .argument("<query>", "token symbol or name")
+        .argument("[limit]", "maximum results")
+        .option("--query <query>", "token symbol or name")
         .option("--limit <n>", "maximum results", parseInt)
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet search-tokens BONK\n  spongewallet search-tokens BONK 5\n")
+        .action(async (queryArg, limitArg, opts) => {
         const wallet = await connectWallet(opts);
-        const data = await wallet.searchSolanaTokens(String(opts.query), opts.limit);
+        const limit = limitArg !== undefined
+            ? parseInt(limitArg, 10)
+            : opts.limit;
+        const data = await wallet.searchSolanaTokens(requiredInput(opts, queryArg, "query", "--query"), Number.isFinite(limit) ? limit : undefined);
         displayToolResult(getToolDefinition("search_solana_tokens"), data);
     });
-    shared(walletCmd.command("onramp").description("Create a fiat-to-crypto onramp link"))
-        .addOption(new Option("--chain <chain>", "destination chain").choices(ONRAMP_CHAIN_VALUES).default("base"))
+    shared(program.command("onramp").description("Create a fiat-to-crypto onramp link"))
+        .usage("[chain] [fiatAmount] [options]")
+        .argument("[chain]", "destination chain")
+        .argument("[fiatAmount]", "prefill fiat amount")
+        .option("--chain <chain>", "destination chain")
         .option("--wallet-address <address>", "destination wallet address (defaults to agent wallet)")
         .addOption(new Option("--provider <provider>", "onramp provider").choices(["auto", "stripe", "coinbase"]).default("auto"))
         .option("--fiat-amount <amount>", "prefill fiat amount")
         .option("--fiat-currency <code>", "fiat currency code")
         .option("--lock-wallet-address", "lock destination wallet address")
         .option("--redirect-url <url>", "redirect URL after checkout")
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet onramp\n  spongewallet onramp base 100\n  spongewallet onramp solana 250 --fiat-currency usd\n")
+        .action(async (chainArg, fiatAmountArg, opts) => {
         const wallet = await connectWallet(opts);
-        const chain = String(opts.chain ?? "base");
+        const chain = String(chainArg ?? opts.chain ?? "base");
         const walletAddress = opts.walletAddress
             ?? (await wallet.getAddress(chain))
             ?? "";
@@ -323,7 +481,7 @@ function registerCuratedCommands(program, shared) {
             wallet_address: walletAddress,
             chain: chain,
             provider: opts.provider,
-            fiat_amount: opts.fiatAmount,
+            fiat_amount: (fiatAmountArg ?? opts.fiatAmount),
             fiat_currency: opts.fiatCurrency,
             lock_wallet_address: Boolean(opts.lockWalletAddress),
             redirect_url: opts.redirectUrl,
@@ -332,11 +490,15 @@ function registerCuratedCommands(program, shared) {
     });
     const txCmd = program.command("tx").description("Transaction status and signing");
     shared(txCmd.command("status").description("Check transaction status"))
-        .requiredOption("--tx-hash <hash>", "transaction hash or signature")
-        .addOption(new Option("--chain <chain>", "transaction chain").choices(CHAIN_VALUES).makeOptionMandatory())
-        .action(async (opts) => {
+        .usage("<chain> <txHash> [options]")
+        .argument("<chain>", "transaction chain")
+        .argument("<txHash>", "transaction hash or signature")
+        .option("--tx-hash <hash>", "transaction hash or signature")
+        .option("--chain <chain>", "transaction chain")
+        .addHelpText("after", "\nExamples:\n  spongewallet tx status base 0x123...\n  spongewallet tx status solana 5K2...\n")
+        .action(async (chainArg, txHashArg, opts) => {
         const wallet = await connectWallet(opts);
-        const data = await wallet.getTransactionStatus(String(opts.txHash), opts.chain);
+        const data = await wallet.getTransactionStatus(requiredInput(opts, txHashArg, "txHash", "--tx-hash"), requiredInput(opts, chainArg, "chain", "--chain"));
         displayToolResult(getToolDefinition("get_transaction_status"), data);
     });
     shared(txCmd.command("sign").description("Sign a Solana transaction without submitting"))
@@ -355,70 +517,115 @@ function registerCuratedCommands(program, shared) {
     });
     const swapCmd = program.command("swap").description("Quotes and swaps");
     shared(swapCmd.command("solana").description("Swap on Solana"))
+        .usage("[from] [to] [amount] [options]")
+        .argument("[from]", "input token")
+        .argument("[to]", "output token")
+        .argument("[amount]", "amount to swap")
         .addOption(new Option("--chain <chain>", "Solana network").choices(SOLANA_CHAIN_VALUES).default("solana"))
-        .requiredOption("--from <token>", "input token")
-        .requiredOption("--to <token>", "output token")
-        .requiredOption("--amount <amount>", "amount to swap")
+        .option("--from <token>", "input token")
+        .option("--to <token>", "output token")
+        .option("--amount <amount>", "amount to swap")
         .option("--slippage-bps <bps>", "slippage in basis points", parseInt)
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet swap solana SOL USDC 1\n  spongewallet swap solana --chain solana --from SOL --to USDC --amount 1\n")
+        .action(async (fromArg, toArg, amountArg, opts) => {
         const wallet = await connectWallet(opts);
         const data = await wallet.swap({
             chain: opts.chain,
-            from: String(opts.from),
-            to: String(opts.to),
-            amount: String(opts.amount),
+            from: requiredInput(opts, fromArg, "from", "--from"),
+            to: requiredInput(opts, toArg, "to", "--to"),
+            amount: requiredInput(opts, amountArg, "amount", "--amount"),
             slippageBps: opts.slippageBps,
         });
         displayToolResult(getToolDefinition("solana_swap"), data);
     });
     shared(swapCmd.command("quote").description("Get a Jupiter quote without executing"))
+        .usage("[from] [to] [amount] [options]")
+        .argument("[from]", "input token")
+        .argument("[to]", "output token")
+        .argument("[amount]", "amount to quote")
         .addOption(new Option("--chain <chain>", "Solana network").choices(SOLANA_CHAIN_VALUES).default("solana"))
-        .requiredOption("--from <token>", "input token")
-        .requiredOption("--to <token>", "output token")
-        .requiredOption("--amount <amount>", "amount to swap")
+        .option("--from <token>", "input token")
+        .option("--to <token>", "output token")
+        .option("--amount <amount>", "amount to quote")
         .option("--slippage-bps <bps>", "slippage in basis points", parseInt)
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet swap quote SOL USDC 1\n  spongewallet swap quote --chain solana --from SOL --to USDC --amount 1\n")
+        .action(async (fromArg, toArg, amountArg, opts) => {
         await executeToolCommand(opts, "jupiter_swap_quote", {
             chain: opts.chain,
-            input_token: opts.from,
-            output_token: opts.to,
-            amount: opts.amount,
+            input_token: requiredInput(opts, fromArg, "from", "--from"),
+            output_token: requiredInput(opts, toArg, "to", "--to"),
+            amount: requiredInput(opts, amountArg, "amount", "--amount"),
             slippage_bps: opts.slippageBps,
         });
     });
     shared(swapCmd.command("execute").description("Execute a previously quoted Jupiter swap"))
-        .requiredOption("--quote-id <id>", "quote ID to execute")
-        .action(async (opts) => {
+        .usage("<quoteId> [options]")
+        .argument("<quoteId>", "quote ID to execute")
+        .option("--quote-id <id>", "quote ID to execute")
+        .addHelpText("after", "\nExamples:\n  spongewallet swap execute quote_123\n")
+        .action(async (quoteIdArg, opts) => {
         await executeToolCommand(opts, "jupiter_swap_execute", {
-            quote_id: String(opts.quoteId),
+            quote_id: requiredInput(opts, quoteIdArg, "quoteId", "--quote-id"),
         });
     });
     shared(swapCmd.command("base").description("Swap on Base via 0x"))
-        .requiredOption("--from <token>", "input token")
-        .requiredOption("--to <token>", "output token")
-        .requiredOption("--amount <amount>", "amount to swap")
+        .usage("[from] [to] [amount] [options]")
+        .argument("[from]", "input token")
+        .argument("[to]", "output token")
+        .argument("[amount]", "amount to swap")
+        .option("--from <token>", "input token")
+        .option("--to <token>", "output token")
+        .option("--amount <amount>", "amount to swap")
         .option("--slippage-bps <bps>", "slippage in basis points", parseInt)
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet swap base ETH USDC 0.1\n  spongewallet swap base --from ETH --to USDC --amount 0.1\n")
+        .action(async (fromArg, toArg, amountArg, opts) => {
         await executeToolCommand(opts, "base_swap", {
-            input_token: opts.from,
-            output_token: opts.to,
-            amount: opts.amount,
+            input_token: requiredInput(opts, fromArg, "from", "--from"),
+            output_token: requiredInput(opts, toArg, "to", "--to"),
+            amount: requiredInput(opts, amountArg, "amount", "--amount"),
+            slippage_bps: opts.slippageBps,
+        });
+    });
+    shared(swapCmd.command("tempo").description("Swap stablecoins on Tempo via native DEX"))
+        .usage("[from] [to] [amount] [options]")
+        .argument("[from]", "input token")
+        .argument("[to]", "output token")
+        .argument("[amount]", "amount to swap")
+        .addOption(new Option("--chain <chain>", "Tempo network").choices(TEMPO_CHAIN_VALUES).default("tempo"))
+        .option("--from <token>", "input token")
+        .option("--to <token>", "output token")
+        .option("--amount <amount>", "amount to swap")
+        .option("--slippage-bps <bps>", "slippage in basis points", parseInt)
+        .addHelpText("after", "\nExamples:\n  spongewallet swap tempo pathUSD USDC.e 1\n  spongewallet swap tempo --chain tempo --from pathUSD --to USDC.e --amount 1\n")
+        .action(async (fromArg, toArg, amountArg, opts) => {
+        const chain = String(opts.chain ?? "tempo");
+        await executeToolCommand(opts, "tempo_swap", {
+            chain,
+            input_token: normalizeTempoTokenSymbol(requiredInput(opts, fromArg, "from", "--from"), chain),
+            output_token: normalizeTempoTokenSymbol(requiredInput(opts, toArg, "to", "--to"), chain),
+            amount: requiredInput(opts, amountArg, "amount", "--amount"),
             slippage_bps: opts.slippageBps,
         });
     });
     shared(program.command("bridge").description("Bridge assets between chains"))
-        .requiredOption("--source-chain <chain>", "source chain")
-        .requiredOption("--destination-chain <chain>", "destination chain")
-        .requiredOption("--token <token>", "token to bridge")
-        .requiredOption("--amount <amount>", "amount to bridge")
+        .usage("[sourceChain] [destinationChain] [token] [amount] [options]")
+        .argument("[sourceChain]", "source chain")
+        .argument("[destinationChain]", "destination chain")
+        .argument("[token]", "token to bridge")
+        .argument("[amount]", "amount to bridge")
+        .option("--source-chain <chain>", "source chain")
+        .option("--destination-chain <chain>", "destination chain")
+        .option("--token <token>", "token to bridge")
+        .option("--amount <amount>", "amount to bridge")
         .option("--destination-token <token>", "token to receive on destination")
         .option("--recipient-address <address>", "recipient address on destination")
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet bridge base solana USDC 25\n  spongewallet bridge base hyperliquid USDC 50\n  spongewallet bridge --source-chain base --destination-chain polymarket --token USDC --amount 50\n")
+        .action(async (sourceChainArg, destinationChainArg, tokenArg, amountArg, opts) => {
         await executeToolCommand(opts, "bridge", {
-            source_chain: opts.sourceChain,
-            destination_chain: opts.destinationChain,
-            token: opts.token,
-            amount: opts.amount,
+            source_chain: requiredInput(opts, sourceChainArg, "sourceChain", "--source-chain"),
+            destination_chain: requiredInput(opts, destinationChainArg, "destinationChain", "--destination-chain"),
+            token: requiredInput(opts, tokenArg, "token", "--token"),
+            amount: requiredInput(opts, amountArg, "amount", "--amount"),
             destination_token: opts.destinationToken,
             recipient_address: opts.recipientAddress,
         });
@@ -479,21 +686,28 @@ function registerCuratedCommands(program, shared) {
         await executeToolCommand(opts, "get_key_list", {});
     });
     shared(keysCmd.command("get").description("Get a stored key value"))
-        .requiredOption("--service <service>", "service name")
-        .action(async (opts) => {
+        .usage("<service> [options]")
+        .argument("<service>", "service name")
+        .option("--service <service>", "service name")
+        .addHelpText("after", "\nExamples:\n  spongewallet keys get openai\n")
+        .action(async (serviceArg, opts) => {
         await executeToolCommand(opts, "get_key_value", {
-            service: String(opts.service),
+            service: requiredInput(opts, serviceArg, "service", "--service"),
         });
     });
     shared(keysCmd.command("set").description("Store a service key"))
-        .requiredOption("--service <service>", "service name")
-        .requiredOption("--key <secret>", "key or secret to store")
+        .usage("<service> <key> [options]")
+        .argument("<service>", "service name")
+        .argument("<key>", "key or secret to store")
+        .option("--service <service>", "service name")
+        .option("--key <secret>", "key or secret to store")
         .option("--label <label>", "friendly label")
         .option("--metadata <json>", "metadata as JSON", parseJsonObject)
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet keys set openai sk-... --label primary\n")
+        .action(async (serviceArg, keyArg, opts) => {
         await executeToolCommand(opts, "store_key", {
-            service: opts.service,
-            key: opts.key,
+            service: requiredInput(opts, serviceArg, "service", "--service"),
+            key: requiredInput(opts, keyArg, "key", "--key"),
             label: opts.label,
             metadata: opts.metadata,
         });
@@ -560,41 +774,53 @@ function registerCuratedCommands(program, shared) {
         displayToolResult(getToolDefinition("submit_plan"), data);
     });
     shared(planCmd.command("approve").description("Approve and execute a submitted plan"))
-        .requiredOption("--plan-id <id>", "plan ID")
-        .action(async (opts) => {
+        .usage("<planId> [options]")
+        .argument("<planId>", "plan ID")
+        .option("--plan-id <id>", "plan ID")
+        .addHelpText("after", "\nExamples:\n  spongewallet plan approve plan_123\n")
+        .action(async (planIdArg, opts) => {
         const wallet = await connectWallet(opts);
-        const data = await wallet.approvePlan(String(opts.planId));
+        const data = await wallet.approvePlan(requiredInput(opts, planIdArg, "planId", "--plan-id"));
         displayToolResult(getToolDefinition("approve_plan"), data);
     });
     const tradeCmd = program.command("trade").description("Single trade proposal flow");
     shared(tradeCmd.command("propose").description("Propose a trade for approval"))
-        .requiredOption("--from <token>", "input token")
-        .requiredOption("--to <token>", "output token")
-        .requiredOption("--amount <amount>", "amount to trade")
+        .usage("<from> <to> <amount> --reason <text> [options]")
+        .argument("<from>", "input token")
+        .argument("<to>", "output token")
+        .argument("<amount>", "amount to trade")
+        .option("--from <token>", "input token")
+        .option("--to <token>", "output token")
+        .option("--amount <amount>", "amount to trade")
         .requiredOption("--reason <text>", "reason shown to the user")
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet trade propose ETH USDC 0.5 --reason \"Reduce exposure\"\n")
+        .action(async (fromArg, toArg, amountArg, opts) => {
         const wallet = await connectWallet(opts);
         const data = await wallet.proposeTrade({
-            input_token: String(opts.from),
-            output_token: String(opts.to),
-            amount: String(opts.amount),
+            input_token: requiredInput(opts, fromArg, "from", "--from"),
+            output_token: requiredInput(opts, toArg, "to", "--to"),
+            amount: requiredInput(opts, amountArg, "amount", "--amount"),
             reason: String(opts.reason),
         });
         displayToolResult(getToolDefinition("propose_trade"), data);
     });
     const authCmd = program.command("auth").description("Authentication helpers");
     shared(authCmd.command("siwe").description("Generate a SIWE signature"))
-        .requiredOption("--domain <domain>", "requesting domain")
-        .requiredOption("--uri <uri>", "resource URI")
+        .usage("<domain> <uri> [options]")
+        .argument("<domain>", "requesting domain")
+        .argument("<uri>", "resource URI")
+        .option("--domain <domain>", "requesting domain")
+        .option("--uri <uri>", "resource URI")
         .option("--statement <text>", "human-readable statement")
         .option("--chain-id <id>", "chain ID", parseInt)
         .option("--expiration-time <iso>", "expiration time")
         .option("--not-before <iso>", "not before time")
         .option("--resources <json>", "resources array as JSON", parseJsonValue)
-        .action(async (opts) => {
+        .addHelpText("after", "\nExamples:\n  spongewallet auth siwe app.example.com https://app.example.com\n")
+        .action(async (domainArg, uriArg, opts) => {
         await executeToolCommand(opts, "generate_siwe", {
-            domain: opts.domain,
-            uri: opts.uri,
+            domain: requiredInput(opts, domainArg, "domain", "--domain"),
+            uri: requiredInput(opts, uriArg, "uri", "--uri"),
             statement: opts.statement,
             chain_id: opts.chainId,
             expiration_time: opts.expirationTime,
@@ -603,7 +829,105 @@ function registerCuratedCommands(program, shared) {
         });
     });
     const marketCmd = program.command("market").description("Trading venue integrations");
-    shared(marketCmd.command("hyperliquid").description("Trade or inspect Hyperliquid"))
+    const hyperliquidCmd = marketCmd.command("hyperliquid").description("Trade or inspect Hyperliquid");
+    shared(hyperliquidCmd.command("status").description("Show Hyperliquid account status"))
+        .action(async (opts) => {
+        await executeHyperliquidAction(opts, { action: "status" });
+    });
+    shared(hyperliquidCmd.command("markets").description("List Hyperliquid markets"))
+        .usage("[limit] [offset] [options]")
+        .argument("[limit]", "result limit")
+        .argument("[offset]", "result offset")
+        .option("--limit <n>", "result limit", parseInt)
+        .option("--offset <n>", "result offset", parseInt)
+        .addHelpText("after", "\nExamples:\n  spongewallet market hyperliquid markets\n  spongewallet market hyperliquid markets 10\n")
+        .action(async (limitArg, offsetArg, opts) => {
+        await executeHyperliquidAction(opts, {
+            action: "markets",
+            limit: limitArg !== undefined ? parseInt(limitArg, 10) : opts.limit,
+            offset: offsetArg !== undefined ? parseInt(offsetArg, 10) : opts.offset,
+        });
+    });
+    shared(hyperliquidCmd.command("positions").description("List open Hyperliquid positions"))
+        .action(async (opts) => {
+        await executeHyperliquidAction(opts, { action: "positions" });
+    });
+    shared(hyperliquidCmd.command("orders").description("List open Hyperliquid orders"))
+        .usage("[limit] [offset] [options]")
+        .argument("[limit]", "result limit")
+        .argument("[offset]", "result offset")
+        .option("--limit <n>", "result limit", parseInt)
+        .option("--offset <n>", "result offset", parseInt)
+        .addHelpText("after", "\nExamples:\n  spongewallet market hyperliquid orders\n  spongewallet market hyperliquid orders 20\n")
+        .action(async (limitArg, offsetArg, opts) => {
+        await executeHyperliquidAction(opts, {
+            action: "orders",
+            limit: limitArg !== undefined ? parseInt(limitArg, 10) : opts.limit,
+            offset: offsetArg !== undefined ? parseInt(offsetArg, 10) : opts.offset,
+        });
+    });
+    shared(hyperliquidCmd.command("fills").description("List recent Hyperliquid fills"))
+        .usage("[limit] [offset] [options]")
+        .argument("[limit]", "result limit")
+        .argument("[offset]", "result offset")
+        .option("--limit <n>", "result limit", parseInt)
+        .option("--offset <n>", "result offset", parseInt)
+        .addHelpText("after", "\nExamples:\n  spongewallet market hyperliquid fills\n  spongewallet market hyperliquid fills 20\n")
+        .action(async (limitArg, offsetArg, opts) => {
+        await executeHyperliquidAction(opts, {
+            action: "fills",
+            limit: limitArg !== undefined ? parseInt(limitArg, 10) : opts.limit,
+            offset: offsetArg !== undefined ? parseInt(offsetArg, 10) : opts.offset,
+        });
+    });
+    shared(hyperliquidCmd.command("order").description("Place a Hyperliquid order"))
+        .argument("<symbol>", "market symbol")
+        .argument("<side>", "buy or sell")
+        .argument("<type>", "order type")
+        .argument("<amount>", "order amount")
+        .argument("[price]", "limit price")
+        .option("--symbol <symbol>", "market symbol")
+        .option("--side <side>", "buy or sell")
+        .option("--type <type>", "order type")
+        .option("--amount <amount>", "order amount")
+        .option("--price <price>", "limit price")
+        .addHelpText("after", "\nExamples:\n  spongewallet market hyperliquid order ETH buy market 0.1\n  spongewallet market hyperliquid order ETH buy limit 0.1 3000\n")
+        .action(async (symbolArg, sideArg, typeArg, amountArg, priceArg, opts) => {
+        await executeHyperliquidAction(opts, {
+            action: "order",
+            symbol: requiredInput(opts, symbolArg, "symbol", "--symbol"),
+            side: requiredInput(opts, sideArg, "side", "--side"),
+            type: requiredInput(opts, typeArg, "type", "--type"),
+            amount: requiredInput(opts, amountArg, "amount", "--amount"),
+            price: priceArg ?? opts.price,
+        });
+    });
+    shared(hyperliquidCmd.command("cancel").description("Cancel a Hyperliquid order"))
+        .argument("<orderId>", "order ID")
+        .option("--order-id <id>", "order ID")
+        .action(async (orderIdArg, opts) => {
+        await executeHyperliquidAction(opts, {
+            action: "cancel",
+            order_id: requiredInput(opts, orderIdArg, "orderId", "--order-id"),
+        });
+    });
+    shared(hyperliquidCmd.command("cancel-all").description("Cancel all Hyperliquid orders"))
+        .action(async (opts) => {
+        await executeHyperliquidAction(opts, { action: "cancel_all" });
+    });
+    shared(hyperliquidCmd.command("leverage").description("Set Hyperliquid leverage"))
+        .argument("<symbol>", "market symbol")
+        .argument("<leverage>", "leverage")
+        .option("--symbol <symbol>", "market symbol")
+        .option("--leverage <n>", "leverage", parseFloat)
+        .action(async (symbolArg, leverageArg, opts) => {
+        await executeHyperliquidAction(opts, {
+            action: "set_leverage",
+            symbol: requiredInput(opts, symbolArg, "symbol", "--symbol"),
+            leverage: leverageArg !== undefined ? parseFloat(leverageArg) : opts.leverage,
+        });
+    });
+    shared(hyperliquidCmd.command("raw").description("Call a raw Hyperliquid action"))
         .requiredOption("--action <action>", "hyperliquid action")
         .option("--symbol <symbol>", "market symbol")
         .option("--side <side>", "buy or sell")
@@ -616,8 +940,7 @@ function registerCuratedCommands(program, shared) {
         .option("--offset <n>", "result offset", parseInt)
         .option("--json <json>", "additional args as JSON", parseJsonObject)
         .action(async (opts) => {
-        const wallet = await connectWallet(opts);
-        const data = await wallet.hyperliquid({
+        await executeHyperliquidAction(opts, {
             ...opts.json,
             action: String(opts.action),
             symbol: opts.symbol,
@@ -630,7 +953,6 @@ function registerCuratedCommands(program, shared) {
             limit: opts.limit,
             offset: opts.offset,
         });
-        displayToolResult(getToolDefinition("hyperliquid"), data);
     });
 }
 async function connectWallet(opts) {
@@ -638,6 +960,11 @@ async function connectWallet(opts) {
         baseUrl: opts.baseUrl,
         credentialsPath: opts.credentialsPath,
     });
+}
+async function executeHyperliquidAction(opts, input) {
+    const wallet = await connectWallet(opts);
+    const data = await wallet.hyperliquid(input);
+    displayToolResult(getToolDefinition("hyperliquid"), data);
 }
 async function executeToolCommand(opts, toolName, input) {
     const wallet = await connectWallet(opts);
@@ -792,6 +1119,7 @@ const toolFormatters = {
         const chains = data;
         const rows = [];
         let emptyCount = 0;
+        let totalUsd = 0;
         for (const [chain, info] of Object.entries(chains)) {
             if (TESTNET_CHAINS.has(chain))
                 continue;
@@ -806,6 +1134,11 @@ const toolFormatters = {
                     amount: b.amount,
                     usd: b.usdValue ? `$${b.usdValue}` : "-",
                 });
+                if (b.usdValue) {
+                    const parsed = Number(b.usdValue);
+                    if (Number.isFinite(parsed))
+                        totalUsd += parsed;
+                }
             }
         }
         if (rows.length === 0) {
@@ -826,9 +1159,146 @@ const toolFormatters = {
             console.log(row(r.chain, r.token, r.amount, r.usd));
         }
         console.log();
+        console.log(`  Total: $${totalUsd.toFixed(2)}`);
+        console.log();
         if (emptyCount > 0) {
             p.log.step(`${emptyCount} chain${emptyCount !== 1 ? "s" : ""} with no balance`);
         }
+    },
+    hyperliquid(data) {
+        if (!isRecord(data)) {
+            p.log.success("Hyperliquid");
+            console.log(JSON.stringify(data, null, 2));
+            return;
+        }
+        const action = getValueByKey(data, "tool_call.arguments.action");
+        const title = action
+            ? `Hyperliquid ${toTitleCase(String(action).replace(/_/g, " "))}`
+            : "Hyperliquid";
+        if (getValueByKey(data, "address") && isRecord(getValueByKey(data, "balances"))) {
+            const perps = getValueByKey(data, "balances.perps");
+            const spot = getValueByKey(data, "balances.spot");
+            const openOrders = getValueByKey(data, "openOrders");
+            const spotRows = Object.entries(spot ?? {}).map(([symbol, value]) => ({
+                symbol,
+                amount: getValueByKey(value, "amount"),
+                usdValue: getValueByKey(value, "usdValue"),
+            }));
+            p.log.success(title);
+            p.log.info([
+                `Wallet: ${formatInlineValue(getValueByKey(data, "address"))}`,
+                `Perps total: ${formatInlineValue(getValueByKey(perps, "total.USDC"))} USDC`,
+                `Perps free: ${formatInlineValue(getValueByKey(perps, "free.USDC"))} USDC`,
+                `Perps used: ${formatInlineValue(getValueByKey(perps, "used.USDC"))} USDC`,
+                `Spot assets: ${spotRows.length}`,
+                `Open orders: ${formatInlineValue(getValueByKey(data, "openOrderCount"))}`,
+            ].join("\n"));
+            if (spotRows.length > 0) {
+                renderTable("Spot balances", [
+                    { key: "symbol", label: "Symbol" },
+                    { key: "amount", label: "Amount" },
+                    { key: "usdValue", label: "USD Value" },
+                ], spotRows);
+            }
+            if (Array.isArray(openOrders) && openOrders.length > 0) {
+                renderTable("Open orders", [
+                    { key: "symbol", label: "Symbol" },
+                    { key: "side", label: "Side" },
+                    { key: "price", label: "Price" },
+                    { key: "remaining", label: "Remaining" },
+                    { key: "status", label: "Status" },
+                ], openOrders);
+            }
+            return;
+        }
+        const positions = getValueByKey(data, "positions");
+        if (Array.isArray(positions)) {
+            if (positions.length === 0) {
+                p.log.info("No open Hyperliquid positions.");
+                return;
+            }
+            renderTable(title, [
+                { key: "symbol", label: "Symbol" },
+                { key: "side", label: "Side" },
+                { key: "contracts", label: "Size" },
+                { key: "entryPrice", label: "Entry" },
+                { key: "markPrice", label: "Mark" },
+                { key: "leverage", label: "Lev" },
+                { key: "unrealizedPnl", label: "PnL" },
+            ], positions);
+            return;
+        }
+        const orders = getValueByKey(data, "orders");
+        if (Array.isArray(orders)) {
+            if (orders.length === 0) {
+                p.log.info("No open Hyperliquid orders.");
+                return;
+            }
+            renderTable(title, [
+                { key: "symbol", label: "Symbol" },
+                { key: "side", label: "Side" },
+                { key: "price", label: "Price" },
+                { key: "remaining", label: "Remaining" },
+                { key: "reduceOnly", label: "Reduce" },
+                { key: "status", label: "Status" },
+            ], orders);
+            return;
+        }
+        const fills = getValueByKey(data, "fills");
+        if (Array.isArray(fills)) {
+            if (fills.length === 0) {
+                p.log.info("No recent Hyperliquid fills.");
+                return;
+            }
+            renderTable(title, [
+                { key: "symbol", label: "Symbol" },
+                { key: "side", label: "Side" },
+                { key: "price", label: "Price" },
+                { key: "amount", label: "Amount" },
+                { key: "closedPnl", label: "PnL" },
+                { key: "datetime", label: "Time" },
+            ], fills);
+            return;
+        }
+        const markets = getValueByKey(data, "markets");
+        if (Array.isArray(markets)) {
+            if (markets.length === 0) {
+                p.log.info("No Hyperliquid markets found.");
+                return;
+            }
+            renderTable(title, [
+                { key: "symbol", label: "Symbol" },
+                { key: "type", label: "Type" },
+                { key: "base", label: "Base" },
+                { key: "quote", label: "Quote" },
+                { key: "maxLeverage", label: "Max Lev" },
+            ], markets);
+            const total = getValueByKey(data, "total");
+            const nextOffset = getValueByKey(data, "nextOffset");
+            if (total !== undefined) {
+                p.log.info(`Showing ${markets.length} of ${formatInlineValue(total)} markets.`);
+            }
+            if (nextOffset !== null && nextOffset !== undefined) {
+                p.log.info(`Next offset: ${formatInlineValue(nextOffset)}`);
+            }
+            return;
+        }
+        const cleanData = Object.fromEntries(Object.entries(data).filter(([key]) => key !== "tool_call"));
+        if (renderFields(title, [
+            { key: "message", label: "Message" },
+            { key: "status", label: "Status" },
+            { key: "orderId", label: "Order ID" },
+            { key: "clientOrderId", label: "Client Order ID" },
+            { key: "symbol", label: "Symbol" },
+            { key: "leverage", label: "Leverage" },
+            { key: "cancelled", label: "Cancelled" },
+            { key: "address", label: "Address" },
+            { key: "webChartUrl", label: "Chart" },
+        ], cleanData)) {
+            return;
+        }
+        p.log.success(title);
+        console.log(JSON.stringify(cleanData, null, 2));
     },
 };
 function isRecord(value) {
@@ -926,9 +1396,25 @@ function renderTxOutput(title, data) {
     if (!isRecord(data))
         return false;
     const hash = getValueByKey(data, ["transactionHash", "txHash", "signature"]);
+    const inputAmount = getValueByKey(data, ["inputToken.amount", "input_token.amount"]);
+    const inputSymbol = getValueByKey(data, ["inputToken.symbol", "input_token.symbol"]);
+    const outputAmount = getValueByKey(data, ["outputToken.amount", "output_token.amount"]);
+    const outputSymbol = getValueByKey(data, ["outputToken.symbol", "output_token.symbol"]);
+    const flow = inputAmount && inputSymbol && outputAmount && outputSymbol
+        ? `${formatInlineValue(inputAmount)} ${formatInlineValue(inputSymbol)} -> ${formatInlineValue(outputAmount)} ${formatInlineValue(outputSymbol)}`
+        : undefined;
+    const sourceChain = getValueByKey(data, ["sourceChain", "source_chain"]);
+    const destinationChain = getValueByKey(data, ["destinationChain", "destination_chain"]);
+    const route = sourceChain && destinationChain
+        ? `${formatInlineValue(sourceChain)} -> ${formatInlineValue(destinationChain)}`
+        : undefined;
     const lines = [
+        route ? `Route: ${route}` : undefined,
+        flow ? `Flow: ${flow}` : undefined,
         hash ? `Transaction: ${formatInlineValue(hash)}` : undefined,
         getValueByKey(data, "status") ? `Status: ${formatInlineValue(getValueByKey(data, "status"))}` : undefined,
+        getValueByKey(data, "priceImpactPct") ? `Price impact: ${formatInlineValue(getValueByKey(data, "priceImpactPct"))}%` : undefined,
+        getValueByKey(data, "gasUsed") ? `Gas used: ${formatInlineValue(getValueByKey(data, "gasUsed"))}` : undefined,
         getValueByKey(data, "explorerUrl") ? `Explorer: ${formatInlineValue(getValueByKey(data, "explorerUrl"))}` : undefined,
         getValueByKey(data, "chain") ? `Chain: ${formatInlineValue(getValueByKey(data, "chain"))}` : undefined,
         getValueByKey(data, "from") ? `Signer: ${formatInlineValue(getValueByKey(data, "from"))}` : undefined,
