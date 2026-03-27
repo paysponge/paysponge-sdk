@@ -16,7 +16,12 @@ describe("CLI command tree", () => {
       "logout",
       "whoami",
       "mcp",
-      "wallet",
+      "balance",
+      "send",
+      "history",
+      "tokens",
+      "search-tokens",
+      "onramp",
       "tx",
       "swap",
       "bridge",
@@ -42,18 +47,18 @@ describe("CLI command tree", () => {
     expect(commandNames(advanced!)).toContain("generate-siwe");
   });
 
-  it("groups wallet workflows under wallet", () => {
+  it("keeps wallet workflows as direct top-level commands", () => {
     const program = buildCliProgram();
-    const wallet = program.commands.find((entry) => entry.name() === "wallet");
+    const topLevel = commandNames(program);
 
-    expect(wallet).toBeDefined();
-    expect(commandNames(wallet!)).toEqual([
+    expect(topLevel).not.toContain("wallet");
+    expect(topLevel).toEqual(expect.arrayContaining([
       "balance",
       "send",
       "history",
       "tokens",
       "search-tokens",
       "onramp",
-    ]);
+    ]));
   });
 });
