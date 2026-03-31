@@ -7918,6 +7918,14 @@
                     }
                   },
                   "body": {},
+                  "preferred_chain": {
+                    "type": "string",
+                    "enum": [
+                      "base",
+                      "solana",
+                      "ethereum"
+                    ]
+                  },
                   "agentId": {
                     "type": "string"
                   }
@@ -7953,6 +7961,14 @@
                     }
                   },
                   "body": {},
+                  "preferred_chain": {
+                    "type": "string",
+                    "enum": [
+                      "base",
+                      "solana",
+                      "ethereum"
+                    ]
+                  },
                   "agentId": {
                     "type": "string"
                   }
@@ -7988,6 +8004,14 @@
                     }
                   },
                   "body": {},
+                  "preferred_chain": {
+                    "type": "string",
+                    "enum": [
+                      "base",
+                      "solana",
+                      "ethereum"
+                    ]
+                  },
                   "agentId": {
                     "type": "string"
                   }

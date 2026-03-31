@@ -41,6 +41,12 @@ export interface PostApiX402FetchRequest {
     body?: any | null;
     /**
      *
+     * @type {PostApiX402FetchRequestPreferredChainEnum}
+     * @memberof PostApiX402FetchRequest
+     */
+    preferred_chain?: PostApiX402FetchRequestPreferredChainEnum;
+    /**
+     *
      * @type {string}
      * @memberof PostApiX402FetchRequest
      */
@@ -57,6 +63,15 @@ export declare const PostApiX402FetchRequestMethodEnum: {
     readonly Patch: "PATCH";
 };
 export type PostApiX402FetchRequestMethodEnum = typeof PostApiX402FetchRequestMethodEnum[keyof typeof PostApiX402FetchRequestMethodEnum];
+/**
+ * @export
+ */
+export declare const PostApiX402FetchRequestPreferredChainEnum: {
+    readonly Base: "base";
+    readonly Solana: "solana";
+    readonly Ethereum: "ethereum";
+};
+export type PostApiX402FetchRequestPreferredChainEnum = typeof PostApiX402FetchRequestPreferredChainEnum[keyof typeof PostApiX402FetchRequestPreferredChainEnum];
 /**
  * Check if a given object implements the PostApiX402FetchRequest interface.
  */

@@ -22,6 +22,14 @@ export const PostApiX402FetchRequestMethodEnum = {
     Patch: 'PATCH'
 };
 /**
+ * @export
+ */
+export const PostApiX402FetchRequestPreferredChainEnum = {
+    Base: 'base',
+    Solana: 'solana',
+    Ethereum: 'ethereum'
+};
+/**
  * Check if a given object implements the PostApiX402FetchRequest interface.
  */
 export function instanceOfPostApiX402FetchRequest(value) {
@@ -41,6 +49,7 @@ export function PostApiX402FetchRequestFromJSONTyped(json, ignoreDiscriminator) 
         'method': json['method'] == null ? undefined : json['method'],
         'headers': json['headers'] == null ? undefined : json['headers'],
         'body': json['body'] == null ? undefined : json['body'],
+        'preferred_chain': json['preferred_chain'] == null ? undefined : json['preferred_chain'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
@@ -56,6 +65,7 @@ export function PostApiX402FetchRequestToJSONTyped(value, ignoreDiscriminator = 
         'method': value['method'],
         'headers': value['headers'],
         'body': value['body'],
+        'preferred_chain': value['preferred_chain'],
         'agentId': value['agentId'],
     };
 }

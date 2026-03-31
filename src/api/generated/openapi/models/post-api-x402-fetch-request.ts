@@ -45,6 +45,12 @@ export interface PostApiX402FetchRequest {
     body?: any | null;
     /**
      * 
+     * @type {PostApiX402FetchRequestPreferredChainEnum}
+     * @memberof PostApiX402FetchRequest
+     */
+    preferred_chain?: PostApiX402FetchRequestPreferredChainEnum;
+    /**
+     * 
      * @type {string}
      * @memberof PostApiX402FetchRequest
      */
@@ -63,6 +69,16 @@ export const PostApiX402FetchRequestMethodEnum = {
     Patch: 'PATCH'
 } as const;
 export type PostApiX402FetchRequestMethodEnum = typeof PostApiX402FetchRequestMethodEnum[keyof typeof PostApiX402FetchRequestMethodEnum];
+
+/**
+ * @export
+ */
+export const PostApiX402FetchRequestPreferredChainEnum = {
+    Base: 'base',
+    Solana: 'solana',
+    Ethereum: 'ethereum'
+} as const;
+export type PostApiX402FetchRequestPreferredChainEnum = typeof PostApiX402FetchRequestPreferredChainEnum[keyof typeof PostApiX402FetchRequestPreferredChainEnum];
 
 
 /**
@@ -87,6 +103,7 @@ export function PostApiX402FetchRequestFromJSONTyped(json: any, ignoreDiscrimina
         'method': json['method'] == null ? undefined : json['method'],
         'headers': json['headers'] == null ? undefined : json['headers'],
         'body': json['body'] == null ? undefined : json['body'],
+        'preferred_chain': json['preferred_chain'] == null ? undefined : json['preferred_chain'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
@@ -106,6 +123,7 @@ export function PostApiX402FetchRequestToJSONTyped(value?: PostApiX402FetchReque
         'method': value['method'],
         'headers': value['headers'],
         'body': value['body'],
+        'preferred_chain': value['preferred_chain'],
         'agentId': value['agentId'],
     };
 }
