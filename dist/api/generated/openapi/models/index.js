@@ -40,6 +40,7 @@ export * from './post-api-chat-rate-limit-report-request.js';
 export * from './post-api-checkout-amazon-search-request.js';
 export * from './post-api-checkout-request.js';
 export * from './post-api-checkout-request-shipping-address.js';
+export * from './post-api-checkout-stream-request.js';
 export * from './post-api-coinbase-onramp-callback-request.js';
 export * from './post-api-coinbase-onramp-url-request.js';
 export * from './post-api-credit-cards-request.js';

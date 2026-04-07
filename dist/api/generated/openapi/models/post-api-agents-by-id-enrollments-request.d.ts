@@ -45,6 +45,12 @@ export interface PostApiAgentsByIdEnrollmentsRequest {
      * @memberof PostApiAgentsByIdEnrollmentsRequest
      */
     paymentMethodId?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdEnrollmentsRequest
+     */
+    countryCode?: string;
 }
 /**
  * Check if a given object implements the PostApiAgentsByIdEnrollmentsRequest interface.

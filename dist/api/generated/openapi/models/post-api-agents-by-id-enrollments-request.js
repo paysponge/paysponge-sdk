@@ -34,6 +34,7 @@ export function PostApiAgentsByIdEnrollmentsRequestFromJSONTyped(json, ignoreDis
         'cardLast4': json['cardLast4'] == null ? undefined : json['cardLast4'],
         'cardBrand': json['cardBrand'] == null ? undefined : json['cardBrand'],
         'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
+        'countryCode': json['countryCode'] == null ? undefined : json['countryCode'],
     };
 }
 export function PostApiAgentsByIdEnrollmentsRequestToJSON(json) {
@@ -49,6 +50,7 @@ export function PostApiAgentsByIdEnrollmentsRequestToJSONTyped(value, ignoreDisc
         'cardLast4': value['cardLast4'],
         'cardBrand': value['cardBrand'],
         'paymentMethodId': value['paymentMethodId'],
+        'countryCode': value['countryCode'],
     };
 }
 //# sourceMappingURL=post-api-agents-by-id-enrollments-request.js.map

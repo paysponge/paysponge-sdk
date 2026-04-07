@@ -49,6 +49,7 @@ import type {
   PostApiChatRateLimitReportRequest,
   PostApiCheckoutAmazonSearchRequest,
   PostApiCheckoutRequest,
+  PostApiCheckoutStreamRequest,
   PostApiCoinbaseOnrampCallbackRequest,
   PostApiCoinbaseOnrampUrlRequest,
   PostApiCreditCardsRequest,
@@ -178,6 +179,8 @@ import {
     PostApiCheckoutAmazonSearchRequestToJSON,
     PostApiCheckoutRequestFromJSON,
     PostApiCheckoutRequestToJSON,
+    PostApiCheckoutStreamRequestFromJSON,
+    PostApiCheckoutStreamRequestToJSON,
     PostApiCoinbaseOnrampCallbackRequestFromJSON,
     PostApiCoinbaseOnrampCallbackRequestToJSON,
     PostApiCoinbaseOnrampUrlRequestFromJSON,
@@ -691,6 +694,11 @@ export interface DefaultApiPostApiAgentsByIdEnrollmentsOperationRequest {
     postApiAgentsByIdEnrollmentsRequest: PostApiAgentsByIdEnrollmentsRequest;
 }
 
+export interface DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequest {
+    id: string;
+    enrollmentId: string;
+}
+
 export interface DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyRequest {
     id: string;
     enrollmentId: string;
@@ -870,6 +878,10 @@ export interface DefaultApiPostApiCheckoutOperationRequest {
 
 export interface DefaultApiPostApiCheckoutAmazonSearchOperationRequest {
     postApiCheckoutAmazonSearchRequest: PostApiCheckoutAmazonSearchRequest;
+}
+
+export interface DefaultApiPostApiCheckoutStreamOperationRequest {
+    postApiCheckoutStreamRequest: PostApiCheckoutStreamRequest;
 }
 
 export interface DefaultApiPostApiCoinbaseOnrampCallbackOperationRequest {
@@ -3761,6 +3773,29 @@ export interface DefaultApiInterface {
     postApiAgentsByIdEnrollments(requestParameters: DefaultApiPostApiAgentsByIdEnrollmentsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiAgentsByIdEnrollmentsByEnrollmentIdRetry without sending the request
+     * @param {string} id 
+     * @param {string} enrollmentId 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} enrollmentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdEnrollmentsByEnrollmentIdRetryRaw(requestParameters: DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdEnrollmentsByEnrollmentIdRetry(requestParameters: DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiAgentsByIdEnrollmentsByEnrollmentIdVerify without sending the request
      * @param {string} id 
      * @param {string} enrollmentId 
@@ -4647,6 +4682,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiCheckoutAmazonSearch(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiCheckoutStream without sending the request
+     * @param {PostApiCheckoutStreamRequest} postApiCheckoutStreamRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiCheckoutStreamRequest} postApiCheckoutStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiCheckoutStreamRaw(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiCheckoutStream(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiCoinbaseOnrampCallback without sending the request
@@ -11271,6 +11327,56 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiAgentsByIdEnrollmentsByEnrollmentIdRetry without sending the request
+     */
+    async postApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdEnrollmentsByEnrollmentIdRetry().'
+            );
+        }
+
+        if (requestParameters['enrollmentId'] == null) {
+            throw new runtime.RequiredError(
+                'enrollmentId',
+                'Required parameter "enrollmentId" was null or undefined when calling postApiAgentsByIdEnrollmentsByEnrollmentIdRetry().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/enrollments/{enrollmentId}/retry`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        urlPath = urlPath.replace(`{${"enrollmentId"}}`, encodeURIComponent(String(requestParameters['enrollmentId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdEnrollmentsByEnrollmentIdRetryRaw(requestParameters: DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdEnrollmentsByEnrollmentIdRetry(requestParameters: DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdEnrollmentsByEnrollmentIdRetryRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiAgentsByIdEnrollmentsByEnrollmentIdVerify without sending the request
      */
     async postApiAgentsByIdEnrollmentsByEnrollmentIdVerifyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyRequest): Promise<runtime.RequestOpts> {
@@ -13196,6 +13302,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiCheckoutAmazonSearch(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiCheckoutAmazonSearchRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiCheckoutStream without sending the request
+     */
+    async postApiCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiCheckoutStreamRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiCheckoutStreamRequest',
+                'Required parameter "postApiCheckoutStreamRequest" was null or undefined when calling postApiCheckoutStream().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/checkout/stream`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiCheckoutStreamRequestToJSON(requestParameters['postApiCheckoutStreamRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiCheckoutStreamRaw(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiCheckoutStreamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiCheckoutStream(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiCheckoutStreamRaw(requestParameters, initOverrides);
     }
 
     /**

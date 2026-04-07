@@ -49,6 +49,12 @@ export interface PostApiAgentsByIdEnrollmentsRequest {
      * @memberof PostApiAgentsByIdEnrollmentsRequest
      */
     paymentMethodId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiAgentsByIdEnrollmentsRequest
+     */
+    countryCode?: string;
 }
 
 /**
@@ -75,6 +81,7 @@ export function PostApiAgentsByIdEnrollmentsRequestFromJSONTyped(json: any, igno
         'cardLast4': json['cardLast4'] == null ? undefined : json['cardLast4'],
         'cardBrand': json['cardBrand'] == null ? undefined : json['cardBrand'],
         'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
+        'countryCode': json['countryCode'] == null ? undefined : json['countryCode'],
     };
 }
 
@@ -94,6 +101,7 @@ export function PostApiAgentsByIdEnrollmentsRequestToJSONTyped(value?: PostApiAg
         'cardLast4': value['cardLast4'],
         'cardBrand': value['cardBrand'],
         'paymentMethodId': value['paymentMethodId'],
+        'countryCode': value['countryCode'],
     };
 }
 
