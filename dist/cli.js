@@ -378,14 +378,16 @@ function applyHelpTheme(command, metadata) {
 const CHAIN_VALUES = [
     "ethereum",
     "base",
+    "polygon",
     "sepolia",
     "base-sepolia",
+    "polygon-amoy",
     "tempo-testnet",
     "tempo",
     "solana",
     "solana-devnet",
 ];
-const EVM_CHAIN_VALUES = ["ethereum", "base", "sepolia", "base-sepolia"];
+const EVM_CHAIN_VALUES = ["ethereum", "base", "polygon", "sepolia", "base-sepolia", "polygon-amoy"];
 const SOLANA_CHAIN_VALUES = ["solana", "solana-devnet"];
 const TEMPO_CHAIN_VALUES = ["tempo", "tempo-testnet"];
 const ONRAMP_CHAIN_VALUES = ["base", "solana", "polygon"];

@@ -149,7 +149,7 @@ export const zPostApiTransfersEvmData = z.object({
         chain: z.string(),
         to: z.string(),
         amount: z.string(),
-        currency: z.enum(['ETH', 'USDC']),
+        currency: z.enum(['ETH', 'POL', 'USDC']),
         agentId: z.string().optional()
     }),
     path: z.never().optional(),

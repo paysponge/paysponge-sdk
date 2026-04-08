@@ -548,15 +548,17 @@ function applyHelpTheme(command: Command, metadata: CliMetadata) {
 const CHAIN_VALUES = [
   "ethereum",
   "base",
+  "polygon",
   "sepolia",
   "base-sepolia",
+  "polygon-amoy",
   "tempo-testnet",
   "tempo",
   "solana",
   "solana-devnet",
 ] as const;
 
-const EVM_CHAIN_VALUES = ["ethereum", "base", "sepolia", "base-sepolia"] as const;
+const EVM_CHAIN_VALUES = ["ethereum", "base", "polygon", "sepolia", "base-sepolia", "polygon-amoy"] as const;
 const SOLANA_CHAIN_VALUES = ["solana", "solana-devnet"] as const;
 const TEMPO_CHAIN_VALUES = ["tempo", "tempo-testnet"] as const;
 const ONRAMP_CHAIN_VALUES = ["base", "solana", "polygon"] as const;

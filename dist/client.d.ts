@@ -117,10 +117,10 @@ export declare class SpongeWallet {
      * Transfer on EVM chains (allowlist + spending limits enforced)
      */
     evmTransfer(options: {
-        chain: "ethereum" | "base" | "sepolia" | "base-sepolia";
+        chain: "ethereum" | "base" | "polygon" | "sepolia" | "base-sepolia" | "polygon-amoy";
         to: string;
         amount: string;
-        currency: "ETH" | "USDC";
+        currency: "ETH" | "POL" | "USDC";
     }): Promise<{
         status: string;
         transactionHash: string;
@@ -250,7 +250,7 @@ export declare class SpongeWallet {
         provider: "stripe" | "coinbase";
         success: true;
         sessionId: string;
-        destinationChain: "base" | "solana" | "polygon";
+        destinationChain: "base" | "polygon" | "solana";
         clientSecret?: string | undefined;
     }>;
     /**

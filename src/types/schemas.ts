@@ -8,8 +8,10 @@ export const ChainSchema = z.enum([
   "ethereum",
   "base",
   "monad",
+  "polygon",
   "sepolia",
   "base-sepolia",
+  "polygon-amoy",
   "tempo-testnet",
   "tempo",
   "solana",
@@ -27,8 +29,10 @@ export const EvmChainSchema = z.enum([
   "ethereum",
   "base",
   "monad",
+  "polygon",
   "sepolia",
   "base-sepolia",
+  "polygon-amoy",
 ]);
 export type EvmChain = z.infer<typeof EvmChainSchema>;
 
@@ -36,13 +40,14 @@ export const SolanaChainSchema = z.enum(["solana", "solana-devnet"]);
 export type SolanaChain = z.infer<typeof SolanaChainSchema>;
 
 // Mainnet chains only
-export const MainnetChainSchema = z.enum(["ethereum", "base", "monad", "tempo", "solana"]);
+export const MainnetChainSchema = z.enum(["ethereum", "base", "monad", "polygon", "tempo", "solana"]);
 export type MainnetChain = z.infer<typeof MainnetChainSchema>;
 
 // Testnet chains only
 export const TestnetChainSchema = z.enum([
   "sepolia",
   "base-sepolia",
+  "polygon-amoy",
   "tempo-testnet",
   "solana-devnet",
 ]);
@@ -472,7 +477,7 @@ export const EvmTransferOptionsSchema = z.object({
   chain: EvmChainSchema,
   to: EthereumAddressSchema,
   amount: z.string(),
-  currency: z.enum(["ETH", "USDC"]),
+  currency: z.enum(["ETH", "POL", "USDC"]),
 });
 export type EvmTransferOptions = z.infer<typeof EvmTransferOptionsSchema>;
 
@@ -759,8 +764,10 @@ export const CHAIN_IDS: Record<Chain, number> = {
   ethereum: 1,
   base: 8453,
   monad: 143,
+  polygon: 137,
   sepolia: 11155111,
   "base-sepolia": 84532,
+  "polygon-amoy": 80002,
   "tempo-testnet": 42431,
   tempo: 4217,
   solana: 101,

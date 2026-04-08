@@ -275,10 +275,10 @@ export class SpongeWallet {
    * Transfer on EVM chains (allowlist + spending limits enforced)
    */
   async evmTransfer(options: {
-    chain: "ethereum" | "base" | "sepolia" | "base-sepolia";
+    chain: "ethereum" | "base" | "polygon" | "sepolia" | "base-sepolia" | "polygon-amoy";
     to: string;
     amount: string;
-    currency: "ETH" | "USDC";
+    currency: "ETH" | "POL" | "USDC";
   }) {
     return this.publicTools.evmTransfer(options);
   }

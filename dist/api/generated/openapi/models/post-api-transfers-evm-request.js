@@ -16,6 +16,7 @@
  */
 export const PostApiTransfersEvmRequestCurrencyEnum = {
     Eth: 'ETH',
+    Pol: 'POL',
     Usdc: 'USDC'
 };
 /**

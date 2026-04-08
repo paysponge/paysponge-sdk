@@ -106,7 +106,7 @@ export class TransactionsApi {
         }
         // EVM transfers
         const normalizedCurrency = this.normalizeCurrencySymbol(validated.currency ?? "");
-        if (normalizedCurrency !== "ETH" && normalizedCurrency !== "USDC") {
+        if (normalizedCurrency !== "ETH" && normalizedCurrency !== "POL" && normalizedCurrency !== "USDC") {
             throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
         }
         const response = await client.request(client.api.postApiTransfersEvmRequestOpts({

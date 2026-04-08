@@ -149,13 +149,13 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   {
     name: "evm_transfer",
     description:
-      "Transfer ETH or USDC on Ethereum, Base, or their testnets. Supports native ETH and USDC transfers.",
+      "Transfer native tokens or USDC on Ethereum, Base, Polygon, or their testnets. Supports native (ETH/POL) and USDC transfers.",
     input_schema: {
       type: "object",
       properties: {
         chain: {
           type: "string",
-          enum: ["ethereum", "base", "sepolia", "base-sepolia"],
+          enum: ["ethereum", "base", "polygon", "sepolia", "base-sepolia", "polygon-amoy"],
           description: "The chain to transfer on",
         },
         to: {
@@ -165,12 +165,12 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
         amount: {
           type: "string",
           description:
-            "The amount to transfer (e.g., '0.1' for 0.1 ETH or '100' for 100 USDC)",
+            "The amount to transfer (e.g., '0.1' for 0.1 ETH/POL or '100' for 100 USDC)",
         },
         currency: {
           type: "string",
-          enum: ["ETH", "USDC"],
-          description: "The currency to transfer",
+          enum: ["ETH", "POL", "USDC"],
+          description: "The currency to transfer (ETH for Ethereum/Base, POL for Polygon, or USDC)",
         },
       },
       required: ["chain", "to", "amount", "currency"],

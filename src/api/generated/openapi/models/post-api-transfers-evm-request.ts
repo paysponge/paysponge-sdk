@@ -57,6 +57,7 @@ export interface PostApiTransfersEvmRequest {
  */
 export const PostApiTransfersEvmRequestCurrencyEnum = {
     Eth: 'ETH',
+    Pol: 'POL',
     Usdc: 'USDC'
 } as const;
 export type PostApiTransfersEvmRequestCurrencyEnum = typeof PostApiTransfersEvmRequestCurrencyEnum[keyof typeof PostApiTransfersEvmRequestCurrencyEnum];
