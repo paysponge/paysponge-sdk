@@ -12691,7 +12691,7 @@
                 "properties": {
                   "amount": {
                     "minLength": 1,
-                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
                     "type": "string"
                   }
                 }
@@ -12706,7 +12706,7 @@
                 "properties": {
                   "amount": {
                     "minLength": 1,
-                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
                     "type": "string"
                   }
                 }
@@ -12721,7 +12721,7 @@
                 "properties": {
                   "amount": {
                     "minLength": 1,
-                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
                     "type": "string"
                   }
                 }
