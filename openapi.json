@@ -12602,6 +12602,21 @@
         "operationId": "getApiRainContracts"
       }
     },
+    "/api/rain/contracts/{contractId}/balance": {
+      "get": {
+        "parameters": [
+          {
+            "name": "contractId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiRainContractsByContractIdBalance"
+      }
+    },
     "/api/rain/contracts/{contractId}/fund": {
       "post": {
         "parameters": [

@@ -3001,6 +3001,36 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiRainContractsRaw(initOverrides);
     }
     /**
+     * Creates request options for getApiRainContractsByContractIdBalance without sending the request
+     */
+    async getApiRainContractsByContractIdBalanceRequestOpts(requestParameters) {
+        if (requestParameters['contractId'] == null) {
+            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling getApiRainContractsByContractIdBalance().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/rain/contracts/{contractId}/balance`;
+        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiRainContractsByContractIdBalanceRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiRainContractsByContractIdBalanceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiRainContractsByContractIdBalance(requestParameters, initOverrides) {
+        await this.getApiRainContractsByContractIdBalanceRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiRainCustomer without sending the request
      */
     async getApiRainCustomerRequestOpts(requestParameters) {

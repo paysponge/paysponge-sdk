@@ -231,6 +231,9 @@ export interface DefaultApiGetApiPromoKv2Jm7DZOIDGi6D2FreemoneyRequest {
     walletAddress: string;
     transactionHash: string;
 }
+export interface DefaultApiGetApiRainContractsByContractIdBalanceRequest {
+    contractId: string;
+}
 export interface DefaultApiGetApiRainCustomerRequest {
     forceRefresh?: GetApiBridgeFiatCustomerForceRefreshParameter;
 }
@@ -2530,6 +2533,24 @@ export interface DefaultApiInterface {
     /**
      */
     getApiRainContracts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiRainContractsByContractIdBalance without sending the request
+     * @param {string} contractId
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainContractsByContractIdBalanceRequestOpts(requestParameters: DefaultApiGetApiRainContractsByContractIdBalanceRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} contractId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainContractsByContractIdBalanceRaw(requestParameters: DefaultApiGetApiRainContractsByContractIdBalanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiRainContractsByContractIdBalance(requestParameters: DefaultApiGetApiRainContractsByContractIdBalanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiRainCustomer without sending the request
      * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh]
@@ -6291,6 +6312,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiRainContracts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiRainContractsByContractIdBalance without sending the request
+     */
+    getApiRainContractsByContractIdBalanceRequestOpts(requestParameters: DefaultApiGetApiRainContractsByContractIdBalanceRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiRainContractsByContractIdBalanceRaw(requestParameters: DefaultApiGetApiRainContractsByContractIdBalanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiRainContractsByContractIdBalance(requestParameters: DefaultApiGetApiRainContractsByContractIdBalanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiRainCustomer without sending the request
      */
