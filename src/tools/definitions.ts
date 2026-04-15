@@ -1093,13 +1093,13 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     input_schema: {
       type: "object",
       properties: {
-        amount: { type: "string", description: "Transaction amount (e.g., '99.99')" },
+        amount: { type: "string", description: "Transaction amount (e.g., '99.99'). Required only if spending limits are configured." },
         currency: { type: "string", description: "ISO 4217 currency code (default: USD)" },
         merchant_name: { type: "string", description: "Merchant name" },
         merchant_url: { type: "string", description: "Merchant website URL" },
         payment_method_id: { type: "string", description: "Specific payment method ID (uses default if omitted)" },
       },
-      required: ["amount"],
+      required: [],
     },
     cli_output: fieldsOutput(
       [
