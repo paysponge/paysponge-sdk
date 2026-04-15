@@ -922,6 +922,42 @@ export const TOOL_DEFINITIONS = [
         ], "Virtual card"),
     },
     {
+        name: "get_card_session",
+        description: "Get a secure session to retrieve full card details (PAN, expiry, CVC) from a vaulted payment method.\n\n" +
+            "Returns a short-lived session key and a retrieve URL. You MUST immediately fetch the card data yourself using the session key before it expires.\n\n" +
+            "IMPORTANT: Use the BT-API-KEY header (NOT Authorization: Bearer) to authenticate.\n\n" +
+            "Step 1: Call this tool to get session_key and retrieve_url.\n" +
+            "Step 2: Immediately make this HTTP request (e.g. via paid_fetch or web_fetch):\n\n" +
+            "  GET {retrieve_url}\n" +
+            "  BT-API-KEY: {session_key}\n\n" +
+            "Step 3: Parse the JSON response — the card data is in:\n" +
+            "  - data.number (full card number)\n" +
+            "  - data.expiration_month\n" +
+            "  - data.expiration_year\n" +
+            "  - data.cvc\n\n" +
+            "The session expires quickly — do not delay between steps 1 and 2.",
+        input_schema: {
+            type: "object",
+            properties: {
+                amount: { type: "string", description: "Transaction amount (e.g., '99.99')" },
+                currency: { type: "string", description: "ISO 4217 currency code (default: USD)" },
+                merchant_name: { type: "string", description: "Merchant name" },
+                merchant_url: { type: "string", description: "Merchant website URL" },
+                payment_method_id: { type: "string", description: "Specific payment method ID (uses default if omitted)" },
+            },
+            required: ["amount"],
+        },
+        cli_output: fieldsOutput([
+            { key: "session_key", label: "Session key" },
+            { key: "retrieve_url", label: "Retrieve URL" },
+            { key: "token_id", label: "Token ID" },
+            { key: "expires_at", label: "Expires at" },
+            { key: "card_brand", label: "Card brand" },
+            { key: "card_last4", label: "Card last 4" },
+            { key: "payment_method_id", label: "Payment method ID" },
+        ], "Card session"),
+    },
+    {
         name: "get_key_list",
         description: "Retrieve a list of stored keys for this agent. " +
             "Returns metadata only (no decrypted key values).",

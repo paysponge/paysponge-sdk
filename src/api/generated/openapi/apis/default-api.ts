@@ -110,6 +110,7 @@ import type {
   PostOauthRevokeRequest,
   PostOauthTokenRequest,
   PutApiAgentRequestsByIdApproveRequest,
+  PutApiAgentRequestsByIdRespondRequest,
   PutApiAgentRequestsPlansByPlanIdRejectRequest,
   PutApiAgentsByIdRequest,
   PutApiFlowsByIdRequest,
@@ -306,6 +307,8 @@ import {
     PostOauthTokenRequestToJSON,
     PutApiAgentRequestsByIdApproveRequestFromJSON,
     PutApiAgentRequestsByIdApproveRequestToJSON,
+    PutApiAgentRequestsByIdRespondRequestFromJSON,
+    PutApiAgentRequestsByIdRespondRequestToJSON,
     PutApiAgentRequestsPlansByPlanIdRejectRequestFromJSON,
     PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON,
     PutApiAgentsByIdRequestFromJSON,
@@ -1189,6 +1192,11 @@ export interface DefaultApiPutApiAgentRequestsByIdApproveOperationRequest {
 export interface DefaultApiPutApiAgentRequestsByIdRejectRequest {
     id: string;
     putApiAgentRequestsPlansByPlanIdRejectRequest: PutApiAgentRequestsPlansByPlanIdRejectRequest;
+}
+
+export interface DefaultApiPutApiAgentRequestsByIdRespondOperationRequest {
+    id: string;
+    putApiAgentRequestsByIdRespondRequest: PutApiAgentRequestsByIdRespondRequest;
 }
 
 export interface DefaultApiPutApiAgentRequestsByIdSkipRequest {
@@ -6414,6 +6422,29 @@ export interface DefaultApiInterface {
     /**
      */
     putApiAgentRequestsByIdReject(requestParameters: DefaultApiPutApiAgentRequestsByIdRejectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for putApiAgentRequestsByIdRespond without sending the request
+     * @param {string} id 
+     * @param {PutApiAgentRequestsByIdRespondRequest} putApiAgentRequestsByIdRespondRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    putApiAgentRequestsByIdRespondRequestOpts(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PutApiAgentRequestsByIdRespondRequest} putApiAgentRequestsByIdRespondRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    putApiAgentRequestsByIdRespondRaw(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    putApiAgentRequestsByIdRespond(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for putApiAgentRequestsByIdSkip without sending the request
@@ -17121,6 +17152,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async putApiAgentRequestsByIdReject(requestParameters: DefaultApiPutApiAgentRequestsByIdRejectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.putApiAgentRequestsByIdRejectRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for putApiAgentRequestsByIdRespond without sending the request
+     */
+    async putApiAgentRequestsByIdRespondRequestOpts(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling putApiAgentRequestsByIdRespond().'
+            );
+        }
+
+        if (requestParameters['putApiAgentRequestsByIdRespondRequest'] == null) {
+            throw new runtime.RequiredError(
+                'putApiAgentRequestsByIdRespondRequest',
+                'Required parameter "putApiAgentRequestsByIdRespondRequest" was null or undefined when calling putApiAgentRequestsByIdRespond().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agent-requests/{id}/respond`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PutApiAgentRequestsByIdRespondRequestToJSON(requestParameters['putApiAgentRequestsByIdRespondRequest']),
+        };
+    }
+
+    /**
+     */
+    async putApiAgentRequestsByIdRespondRaw(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.putApiAgentRequestsByIdRespondRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async putApiAgentRequestsByIdRespond(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.putApiAgentRequestsByIdRespondRaw(requestParameters, initOverrides);
     }
 
     /**

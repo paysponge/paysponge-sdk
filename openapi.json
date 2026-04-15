@@ -3905,6 +3905,65 @@
         "operationId": "putApiAgent-requestsByIdReject"
       }
     },
+    "/api/agent-requests/{id}/respond": {
+      "put": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "responseText"
+                ],
+                "properties": {
+                  "responseText": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "responseText"
+                ],
+                "properties": {
+                  "responseText": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "responseText"
+                ],
+                "properties": {
+                  "responseText": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "putApiAgent-requestsByIdRespond"
+      }
+    },
     "/api/rpc/{chainId}": {
       "post": {
         "parameters": [
