@@ -3741,6 +3741,36 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiAgentKeysRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for postApiAgentRequestsByIdCvcSession without sending the request
+     */
+    async postApiAgentRequestsByIdCvcSessionRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling postApiAgentRequestsByIdCvcSession().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/agent-requests/{id}/cvc-session`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiAgentRequestsByIdCvcSessionRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiAgentRequestsByIdCvcSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiAgentRequestsByIdCvcSession(requestParameters, initOverrides) {
+        await this.postApiAgentRequestsByIdCvcSessionRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for postApiAgents without sending the request
      */
     async postApiAgentsRequestOpts(requestParameters) {
@@ -7591,6 +7621,36 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async putApiAgentRequestsByIdRespond(requestParameters, initOverrides) {
         await this.putApiAgentRequestsByIdRespondRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for putApiAgentRequestsByIdRespondCvc without sending the request
+     */
+    async putApiAgentRequestsByIdRespondCvcRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling putApiAgentRequestsByIdRespondCvc().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/agent-requests/{id}/respond-cvc`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async putApiAgentRequestsByIdRespondCvcRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.putApiAgentRequestsByIdRespondCvcRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async putApiAgentRequestsByIdRespondCvc(requestParameters, initOverrides) {
+        await this.putApiAgentRequestsByIdRespondCvcRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for putApiAgentRequestsByIdSkip without sending the request

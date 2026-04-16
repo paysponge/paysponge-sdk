@@ -3873,6 +3873,36 @@
         "operationId": "putApiAgent-requestsByIdSkip"
       }
     },
+    "/api/agent-requests/{id}/cvc-session": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgent-requestsByIdCvc-session"
+      }
+    },
+    "/api/agent-requests/{id}/respond-cvc": {
+      "put": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "putApiAgent-requestsByIdRespond-cvc"
+      }
+    },
     "/api/agent-requests/{id}/reject": {
       "put": {
         "parameters": [

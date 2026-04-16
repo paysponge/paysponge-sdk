@@ -696,6 +696,10 @@ export interface DefaultApiPostApiAgentKeysOperationRequest {
     postApiAgentKeysRequest: PostApiAgentKeysRequest;
 }
 
+export interface DefaultApiPostApiAgentRequestsByIdCvcSessionRequest {
+    id: string;
+}
+
 export interface DefaultApiPostApiAgentsOperationRequest {
     postApiAgentsRequest: PostApiAgentsRequest;
 }
@@ -1197,6 +1201,10 @@ export interface DefaultApiPutApiAgentRequestsByIdRejectRequest {
 export interface DefaultApiPutApiAgentRequestsByIdRespondOperationRequest {
     id: string;
     putApiAgentRequestsByIdRespondRequest: PutApiAgentRequestsByIdRespondRequest;
+}
+
+export interface DefaultApiPutApiAgentRequestsByIdRespondCvcRequest {
+    id: string;
 }
 
 export interface DefaultApiPutApiAgentRequestsByIdSkipRequest {
@@ -3851,6 +3859,27 @@ export interface DefaultApiInterface {
     postApiAgentKeys(requestParameters: DefaultApiPostApiAgentKeysOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiAgentRequestsByIdCvcSession without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentRequestsByIdCvcSessionRequestOpts(requestParameters: DefaultApiPostApiAgentRequestsByIdCvcSessionRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentRequestsByIdCvcSessionRaw(requestParameters: DefaultApiPostApiAgentRequestsByIdCvcSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentRequestsByIdCvcSession(requestParameters: DefaultApiPostApiAgentRequestsByIdCvcSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiAgents without sending the request
      * @param {PostApiAgentsRequest} postApiAgentsRequest 
      * @throws {RequiredError}
@@ -6445,6 +6474,27 @@ export interface DefaultApiInterface {
     /**
      */
     putApiAgentRequestsByIdRespond(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for putApiAgentRequestsByIdRespondCvc without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    putApiAgentRequestsByIdRespondCvcRequestOpts(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondCvcRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    putApiAgentRequestsByIdRespondCvcRaw(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondCvcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    putApiAgentRequestsByIdRespondCvc(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondCvcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for putApiAgentRequestsByIdSkip without sending the request
@@ -11668,6 +11718,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentKeys(requestParameters: DefaultApiPostApiAgentKeysOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentKeysRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentRequestsByIdCvcSession without sending the request
+     */
+    async postApiAgentRequestsByIdCvcSessionRequestOpts(requestParameters: DefaultApiPostApiAgentRequestsByIdCvcSessionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentRequestsByIdCvcSession().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agent-requests/{id}/cvc-session`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiAgentRequestsByIdCvcSessionRaw(requestParameters: DefaultApiPostApiAgentRequestsByIdCvcSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentRequestsByIdCvcSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentRequestsByIdCvcSession(requestParameters: DefaultApiPostApiAgentRequestsByIdCvcSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentRequestsByIdCvcSessionRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -17204,6 +17296,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async putApiAgentRequestsByIdRespond(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.putApiAgentRequestsByIdRespondRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for putApiAgentRequestsByIdRespondCvc without sending the request
+     */
+    async putApiAgentRequestsByIdRespondCvcRequestOpts(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondCvcRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling putApiAgentRequestsByIdRespondCvc().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agent-requests/{id}/respond-cvc`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async putApiAgentRequestsByIdRespondCvcRaw(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondCvcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.putApiAgentRequestsByIdRespondCvcRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async putApiAgentRequestsByIdRespondCvc(requestParameters: DefaultApiPutApiAgentRequestsByIdRespondCvcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.putApiAgentRequestsByIdRespondCvcRaw(requestParameters, initOverrides);
     }
 
     /**
