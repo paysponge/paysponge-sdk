@@ -2538,6 +2538,9 @@
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
+                      "polygon-amoy",
+                      "arbitrum-sepolia",
+                      "monad-testnet",
                       "solana",
                       "solana-devnet"
                     ]
@@ -2554,6 +2557,9 @@
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
+                      "polygon-amoy",
+                      "arbitrum-sepolia",
+                      "monad-testnet",
                       "solana",
                       "solana-devnet",
                       "polymarket"
@@ -2599,6 +2605,9 @@
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
+                      "polygon-amoy",
+                      "arbitrum-sepolia",
+                      "monad-testnet",
                       "solana",
                       "solana-devnet"
                     ]
@@ -2615,6 +2624,9 @@
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
+                      "polygon-amoy",
+                      "arbitrum-sepolia",
+                      "monad-testnet",
                       "solana",
                       "solana-devnet",
                       "polymarket"
@@ -2660,6 +2672,9 @@
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
+                      "polygon-amoy",
+                      "arbitrum-sepolia",
+                      "monad-testnet",
                       "solana",
                       "solana-devnet"
                     ]
@@ -2676,6 +2691,9 @@
                       "hyperliquid",
                       "sepolia",
                       "base-sepolia",
+                      "polygon-amoy",
+                      "arbitrum-sepolia",
+                      "monad-testnet",
                       "solana",
                       "solana-devnet",
                       "polymarket"
@@ -9165,6 +9183,18 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "polygon-amoy",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "arbitrum-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad-testnet",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "solana",
                                   "type": "string"
                                 },
@@ -9210,6 +9240,18 @@
                                 },
                                 {
                                   "const": "base-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "polygon-amoy",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "arbitrum-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad-testnet",
                                   "type": "string"
                                 },
                                 {
@@ -9377,6 +9419,18 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "polygon-amoy",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "arbitrum-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad-testnet",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "solana",
                                   "type": "string"
                                 },
@@ -9422,6 +9476,18 @@
                                 },
                                 {
                                   "const": "base-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "polygon-amoy",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "arbitrum-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad-testnet",
                                   "type": "string"
                                 },
                                 {
@@ -9589,6 +9655,18 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "polygon-amoy",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "arbitrum-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad-testnet",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "solana",
                                   "type": "string"
                                 },
@@ -9634,6 +9712,18 @@
                                 },
                                 {
                                   "const": "base-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "polygon-amoy",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "arbitrum-sepolia",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "monad-testnet",
                                   "type": "string"
                                 },
                                 {

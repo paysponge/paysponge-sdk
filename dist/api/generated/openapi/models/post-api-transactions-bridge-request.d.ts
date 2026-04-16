@@ -71,6 +71,9 @@ export declare const PostApiTransactionsBridgeRequestSourceChainEnum: {
     readonly Hyperliquid: "hyperliquid";
     readonly Sepolia: "sepolia";
     readonly BaseSepolia: "base-sepolia";
+    readonly PolygonAmoy: "polygon-amoy";
+    readonly ArbitrumSepolia: "arbitrum-sepolia";
+    readonly MonadTestnet: "monad-testnet";
     readonly Solana: "solana";
     readonly SolanaDevnet: "solana-devnet";
 };
@@ -88,6 +91,9 @@ export declare const PostApiTransactionsBridgeRequestDestinationChainEnum: {
     readonly Hyperliquid: "hyperliquid";
     readonly Sepolia: "sepolia";
     readonly BaseSepolia: "base-sepolia";
+    readonly PolygonAmoy: "polygon-amoy";
+    readonly ArbitrumSepolia: "arbitrum-sepolia";
+    readonly MonadTestnet: "monad-testnet";
     readonly Solana: "solana";
     readonly SolanaDevnet: "solana-devnet";
     readonly Polymarket: "polymarket";

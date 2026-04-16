@@ -24,6 +24,9 @@ export const PostApiTransactionsBridgeRequestSourceChainEnum = {
     Hyperliquid: 'hyperliquid',
     Sepolia: 'sepolia',
     BaseSepolia: 'base-sepolia',
+    PolygonAmoy: 'polygon-amoy',
+    ArbitrumSepolia: 'arbitrum-sepolia',
+    MonadTestnet: 'monad-testnet',
     Solana: 'solana',
     SolanaDevnet: 'solana-devnet'
 };
@@ -40,6 +43,9 @@ export const PostApiTransactionsBridgeRequestDestinationChainEnum = {
     Hyperliquid: 'hyperliquid',
     Sepolia: 'sepolia',
     BaseSepolia: 'base-sepolia',
+    PolygonAmoy: 'polygon-amoy',
+    ArbitrumSepolia: 'arbitrum-sepolia',
+    MonadTestnet: 'monad-testnet',
     Solana: 'solana',
     SolanaDevnet: 'solana-devnet',
     Polymarket: 'polymarket'
