@@ -4,11 +4,18 @@ import { SpongeWallet } from "./client.js";
 import { deviceFlowAuth } from "./auth/device-flow.js";
 import {
   deleteCredentials,
+  hasCredentials,
   getCredentialsPath,
   loadCredentials,
   saveCredentials,
 } from "./auth/credentials.js";
 import { registerAgentFirst } from "./registration.js";
+import {
+  captureCliCommandEvent,
+  classifyBaseUrl,
+  sanitizeErrorForTelemetry,
+  shutdownCliTelemetry,
+} from "./telemetry.js";
 import {
   TOOL_DEFINITIONS,
   type CliOutputColumn,
@@ -140,7 +147,17 @@ export async function runCli(
   metadata: CliMetadata = {}
 ): Promise<void> {
   const program = buildCliProgram(metadata);
-  await program.parseAsync(args, { from: "user" });
+  const telemetry = attachCliTelemetry(program, args, metadata);
+
+  try {
+    await program.parseAsync(args, { from: "user" });
+    await telemetry.track("succeeded");
+  } catch (error) {
+    await telemetry.track("failed", error);
+    throw error;
+  } finally {
+    await shutdownCliTelemetry();
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -487,6 +504,113 @@ function commandPath(command: Command): string[] {
   }
 
   return parts;
+}
+
+interface CliExecutionTelemetry {
+  track(status: "succeeded" | "failed", error?: unknown): Promise<void>;
+}
+
+function attachCliTelemetry(
+  program: Command,
+  rawArgs: string[],
+  metadata: CliMetadata
+): CliExecutionTelemetry {
+  const state: {
+    actionCommand: Command | null;
+    startedAt: number;
+    tracked: boolean;
+  } = {
+    actionCommand: null,
+    startedAt: 0,
+    tracked: false,
+  };
+
+  const register = (command: Command) => {
+    command.hook("preAction", (_thisCommand, actionCommand) => {
+      state.actionCommand = actionCommand;
+      if (state.startedAt === 0) {
+        state.startedAt = Date.now();
+      }
+    });
+
+    for (const subcommand of command.commands) {
+      register(subcommand);
+    }
+  };
+
+  register(program);
+
+  return {
+    async track(status, error) {
+      if (state.tracked || !state.actionCommand) {
+        return;
+      }
+
+      state.tracked = true;
+
+      const opts = getCommandTelemetryOptions(state.actionCommand);
+      const credentialsPath = opts.credentialsPath;
+
+      await captureCliCommandEvent({
+        status,
+        command_name: state.actionCommand.name(),
+        command_path: commandPath(state.actionCommand).slice(1).join(" "),
+        command_group: commandPath(state.actionCommand)[1] ?? state.actionCommand.name(),
+        duration_ms: Math.max(Date.now() - state.startedAt, 0),
+        raw_arg_count: rawArgs.length,
+        flags: extractFlagNames(rawArgs),
+        auth_source: getCliAuthSource(credentialsPath),
+        has_cached_credentials: hasCredentials(credentialsPath),
+        has_custom_credentials_path: Boolean(credentialsPath),
+        base_url_kind: classifyBaseUrl(opts.baseUrl),
+        package_name: metadata.packageName,
+        package_version: metadata.version,
+        command_name_override: metadata.commandName,
+        ...sanitizeErrorForTelemetry(error),
+      }, credentialsPath);
+    },
+  };
+}
+
+function getCommandTelemetryOptions(command: Command): SharedOpts {
+  const value =
+    typeof (command as Command & { optsWithGlobals?: () => Record<string, unknown> }).optsWithGlobals === "function"
+      ? (command as Command & { optsWithGlobals: () => Record<string, unknown> }).optsWithGlobals()
+      : command.opts();
+
+  return {
+    baseUrl: typeof value.baseUrl === "string" ? value.baseUrl : undefined,
+    credentialsPath:
+      typeof value.credentialsPath === "string" ? value.credentialsPath : undefined,
+  };
+}
+
+function getCliAuthSource(
+  credentialsPath?: string
+): "env_api_key" | "cached_credentials" | "interactive_or_public" {
+  if (process.env.SPONGE_API_KEY) {
+    return "env_api_key";
+  }
+
+  if (hasCredentials(credentialsPath)) {
+    return "cached_credentials";
+  }
+
+  return "interactive_or_public";
+}
+
+function extractFlagNames(rawArgs: string[]): string[] {
+  const flags = new Set<string>();
+
+  for (const arg of rawArgs) {
+    if (!arg.startsWith("-")) {
+      continue;
+    }
+
+    flags.add(arg.includes("=") ? arg.slice(0, arg.indexOf("=")) : arg);
+  }
+
+  return [...flags];
 }
 
 function buildHelpBanner(command: Command, metadata: CliMetadata): string {

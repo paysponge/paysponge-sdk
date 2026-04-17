@@ -204,6 +204,18 @@ npx spongewallet mcp print
 npx spongewallet logout
 ```
 
+## CLI telemetry
+
+The CLI emits anonymous usage events to Sponge's PostHog project so we can measure command adoption and authentication success rates. It does not send raw command arguments, API keys, wallet addresses, or email values.
+
+Telemetry includes high-level metadata such as:
+
+- command path and status
+- duration
+- flag names without values
+- whether auth came from env vars or cached credentials
+- coarse base URL classification (`default`, `localhost`, or `custom`)
+
 ## Environment Variables
 
 | Variable | Description |

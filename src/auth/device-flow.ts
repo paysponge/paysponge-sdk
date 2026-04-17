@@ -6,6 +6,11 @@ import {
   type Credentials,
 } from "../types/schemas.js";
 import { saveCredentials, getCredentialsPath } from "./credentials.js";
+import {
+  captureCliAuthEvent,
+  classifyBaseUrl,
+  sanitizeErrorForTelemetry,
+} from "../telemetry.js";
 
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 
@@ -40,82 +45,112 @@ export async function deviceFlowAuth(
   options: DeviceFlowOptions = {}
 ): Promise<TokenResponse> {
   const baseUrl = options.baseUrl ?? DEFAULT_BASE_URL;
+  const startedAt = Date.now();
 
-  // Step 1: Request device code
-  console.log("Starting authentication...\n");
-
-  const deviceCodeResponse = await requestDeviceCode(baseUrl, {
-    testnet: options.testnet,
-    agentName: options.agentName,
-    keyType: options.keyType,
-    email: options.email,
-  });
-
-  // Step 2: Display instructions and optionally open browser
-  console.log("To authenticate, visit:");
-  console.log(`  ${deviceCodeResponse.verificationUri}\n`);
-  console.log(`Enter this code: ${deviceCodeResponse.userCode}\n`);
-
-  // Try to copy to clipboard
   try {
-    const clipboardy = await import("clipboardy");
-    await clipboardy.default.write(deviceCodeResponse.userCode);
-    console.log("(Code copied to clipboard)\n");
-  } catch {
-    // Clipboard not available, that's fine
-  }
+    // Step 1: Request device code
+    console.log("Starting authentication...\n");
 
-  // Try to open browser
-  if (!options.noBrowser) {
-    try {
-      const open = await import("open");
-      await open.default(deviceCodeResponse.verificationUri);
-      console.log("Opening browser...\n");
-    } catch {
-      // Browser not available, that's fine
-    }
-  }
-
-  console.log("Waiting for approval...");
-
-  // Step 3: Poll for token
-  const tokenResponse = await pollForToken(
-    baseUrl,
-    deviceCodeResponse.deviceCode,
-    deviceCodeResponse.interval,
-    deviceCodeResponse.expiresIn
-  );
-
-  // Step 4: Save credentials (only for agent keys with agentId)
-  if (tokenResponse.agentId) {
-    const credentials: Credentials = {
-      apiKey: tokenResponse.apiKey,
-      agentId: tokenResponse.agentId,
+    const deviceCodeResponse = await requestDeviceCode(baseUrl, {
       testnet: options.testnet,
-      createdAt: new Date(),
-      baseUrl: baseUrl !== DEFAULT_BASE_URL ? baseUrl : undefined,
-    };
-    saveCredentials(credentials, options.credentialsPath);
-  }
+      agentName: options.agentName,
+      keyType: options.keyType,
+      email: options.email,
+    });
 
-  // Step 5: Display success message with API key
-  const isMaster = options.keyType === "master";
-  console.log("\n" + "=".repeat(60));
-  console.log("Authentication successful!\n");
-  console.log(`Your ${isMaster ? "master " : ""}API key: ${tokenResponse.apiKey}\n`);
-  if (isMaster) {
-    console.log("Use this key to create agents programmatically:");
-    console.log("  - Set SPONGE_MASTER_KEY environment variable, or");
-    console.log("  - Use as Bearer token with POST /api/agents\n");
-  } else {
-    console.log("Save this key for other machines/deployments:");
-    console.log("  - Set SPONGE_API_KEY environment variable, or");
-    console.log("  - Pass directly: SpongeWallet.connect({ apiKey: '...' })\n");
-    console.log(`Key cached locally at ${getCredentialsPath(options.credentialsPath)}`);
-  }
-  console.log("=".repeat(60) + "\n");
+    // Step 2: Display instructions and optionally open browser
+    console.log("To authenticate, visit:");
+    console.log(`  ${deviceCodeResponse.verificationUri}\n`);
+    console.log(`Enter this code: ${deviceCodeResponse.userCode}\n`);
 
-  return tokenResponse;
+    // Try to copy to clipboard
+    try {
+      const clipboardy = await import("clipboardy");
+      await clipboardy.default.write(deviceCodeResponse.userCode);
+      console.log("(Code copied to clipboard)\n");
+    } catch {
+      // Clipboard not available, that's fine
+    }
+
+    // Try to open browser
+    if (!options.noBrowser) {
+      try {
+        const open = await import("open");
+        await open.default(deviceCodeResponse.verificationUri);
+        console.log("Opening browser...\n");
+      } catch {
+        // Browser not available, that's fine
+      }
+    }
+
+    console.log("Waiting for approval...");
+
+    // Step 3: Poll for token
+    const tokenResponse = await pollForToken(
+      baseUrl,
+      deviceCodeResponse.deviceCode,
+      deviceCodeResponse.interval,
+      deviceCodeResponse.expiresIn
+    );
+
+    // Step 4: Save credentials (only for agent keys with agentId)
+    if (tokenResponse.agentId) {
+      const credentials: Credentials = {
+        apiKey: tokenResponse.apiKey,
+        agentId: tokenResponse.agentId,
+        testnet: options.testnet,
+        createdAt: new Date(),
+        baseUrl: baseUrl !== DEFAULT_BASE_URL ? baseUrl : undefined,
+      };
+      saveCredentials(credentials, options.credentialsPath);
+    }
+
+    // Step 5: Display success message with API key
+    const isMaster = options.keyType === "master";
+    console.log("\n" + "=".repeat(60));
+    console.log("Authentication successful!\n");
+    console.log(`Your ${isMaster ? "master " : ""}API key: ${tokenResponse.apiKey}\n`);
+    if (isMaster) {
+      console.log("Use this key to create agents programmatically:");
+      console.log("  - Set SPONGE_MASTER_KEY environment variable, or");
+      console.log("  - Use as Bearer token with POST /api/agents\n");
+    } else {
+      console.log("Save this key for other machines/deployments:");
+      console.log("  - Set SPONGE_API_KEY environment variable, or");
+      console.log("  - Pass directly: SpongeWallet.connect({ apiKey: '...' })\n");
+      console.log(`Key cached locally at ${getCredentialsPath(options.credentialsPath)}`);
+    }
+    console.log("=".repeat(60) + "\n");
+
+    await captureCliAuthEvent({
+      status: "succeeded",
+      auth_flow: "device_code",
+      duration_ms: Date.now() - startedAt,
+      key_type: options.keyType === "master" ? "master" : "agent",
+      no_browser: Boolean(options.noBrowser),
+      has_email: Boolean(options.email),
+      has_agent_name: Boolean(options.agentName),
+      base_url_kind: classifyBaseUrl(baseUrl),
+      credentials_cached: Boolean(tokenResponse.agentId),
+    }, options.credentialsPath);
+
+    return tokenResponse;
+  } catch (error) {
+    await captureCliAuthEvent({
+      status: "failed",
+      auth_flow: "device_code",
+      duration_ms: Date.now() - startedAt,
+      key_type: options.keyType === "master" ? "master" : "agent",
+      no_browser: Boolean(options.noBrowser),
+      has_email: Boolean(options.email),
+      has_agent_name: Boolean(options.agentName),
+      base_url_kind: classifyBaseUrl(baseUrl),
+      credentials_cached: false,
+      ...sanitizeErrorForTelemetry(error),
+    }, options.credentialsPath);
+
+    throw error;
+  }
 }
 
 /**

@@ -2,8 +2,9 @@ import { Command, Help, Option } from "commander";
 import * as p from "@clack/prompts";
 import { SpongeWallet } from "./client.js";
 import { deviceFlowAuth } from "./auth/device-flow.js";
-import { deleteCredentials, getCredentialsPath, loadCredentials, saveCredentials, } from "./auth/credentials.js";
+import { deleteCredentials, hasCredentials, getCredentialsPath, loadCredentials, saveCredentials, } from "./auth/credentials.js";
 import { registerAgentFirst } from "./registration.js";
+import { captureCliCommandEvent, classifyBaseUrl, sanitizeErrorForTelemetry, shutdownCliTelemetry, } from "./telemetry.js";
 import { TOOL_DEFINITIONS, } from "./tools/definitions.js";
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 // ---------------------------------------------------------------------------
@@ -58,7 +59,18 @@ export function buildCliProgram(metadata = {}) {
 }
 export async function runCli(args, metadata = {}) {
     const program = buildCliProgram(metadata);
-    await program.parseAsync(args, { from: "user" });
+    const telemetry = attachCliTelemetry(program, args, metadata);
+    try {
+        await program.parseAsync(args, { from: "user" });
+        await telemetry.track("succeeded");
+    }
+    catch (error) {
+        await telemetry.track("failed", error);
+        throw error;
+    }
+    finally {
+        await shutdownCliTelemetry();
+    }
 }
 // ---------------------------------------------------------------------------
 // Handlers
@@ -327,6 +339,80 @@ function commandPath(command) {
         current = current.parent ?? null;
     }
     return parts;
+}
+function attachCliTelemetry(program, rawArgs, metadata) {
+    const state = {
+        actionCommand: null,
+        startedAt: 0,
+        tracked: false,
+    };
+    const register = (command) => {
+        command.hook("preAction", (_thisCommand, actionCommand) => {
+            state.actionCommand = actionCommand;
+            if (state.startedAt === 0) {
+                state.startedAt = Date.now();
+            }
+        });
+        for (const subcommand of command.commands) {
+            register(subcommand);
+        }
+    };
+    register(program);
+    return {
+        async track(status, error) {
+            if (state.tracked || !state.actionCommand) {
+                return;
+            }
+            state.tracked = true;
+            const opts = getCommandTelemetryOptions(state.actionCommand);
+            const credentialsPath = opts.credentialsPath;
+            await captureCliCommandEvent({
+                status,
+                command_name: state.actionCommand.name(),
+                command_path: commandPath(state.actionCommand).slice(1).join(" "),
+                command_group: commandPath(state.actionCommand)[1] ?? state.actionCommand.name(),
+                duration_ms: Math.max(Date.now() - state.startedAt, 0),
+                raw_arg_count: rawArgs.length,
+                flags: extractFlagNames(rawArgs),
+                auth_source: getCliAuthSource(credentialsPath),
+                has_cached_credentials: hasCredentials(credentialsPath),
+                has_custom_credentials_path: Boolean(credentialsPath),
+                base_url_kind: classifyBaseUrl(opts.baseUrl),
+                package_name: metadata.packageName,
+                package_version: metadata.version,
+                command_name_override: metadata.commandName,
+                ...sanitizeErrorForTelemetry(error),
+            }, credentialsPath);
+        },
+    };
+}
+function getCommandTelemetryOptions(command) {
+    const value = typeof command.optsWithGlobals === "function"
+        ? command.optsWithGlobals()
+        : command.opts();
+    return {
+        baseUrl: typeof value.baseUrl === "string" ? value.baseUrl : undefined,
+        credentialsPath: typeof value.credentialsPath === "string" ? value.credentialsPath : undefined,
+    };
+}
+function getCliAuthSource(credentialsPath) {
+    if (process.env.SPONGE_API_KEY) {
+        return "env_api_key";
+    }
+    if (hasCredentials(credentialsPath)) {
+        return "cached_credentials";
+    }
+    return "interactive_or_public";
+}
+function extractFlagNames(rawArgs) {
+    const flags = new Set();
+    for (const arg of rawArgs) {
+        if (!arg.startsWith("-")) {
+            continue;
+        }
+        flags.add(arg.includes("=") ? arg.slice(0, arg.indexOf("=")) : arg);
+    }
+    return [...flags];
 }
 function buildHelpBanner(command, metadata) {
     const path = commandPath(command);
