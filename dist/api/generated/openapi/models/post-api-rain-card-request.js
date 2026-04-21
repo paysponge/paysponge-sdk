@@ -13,9 +13,18 @@
  */
 import { PostApiRainCustomerRequestAddressFromJSON, PostApiRainCustomerRequestAddressToJSON, } from './post-api-rain-customer-request-address.js';
 /**
+ * @export
+ */
+export const PostApiRainCardRequestEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
+/**
  * Check if a given object implements the PostApiRainCardRequest interface.
  */
 export function instanceOfPostApiRainCardRequest(value) {
+    if (!('environment' in value) || value['environment'] === undefined)
+        return false;
     if (!('billing' in value) || value['billing'] === undefined)
         return false;
     return true;
@@ -28,6 +37,7 @@ export function PostApiRainCardRequestFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'environment': json['environment'],
         'billing': PostApiRainCustomerRequestAddressFromJSON(json['billing']),
     };
 }
@@ -39,6 +49,7 @@ export function PostApiRainCardRequestToJSONTyped(value, ignoreDiscriminator = f
         return value;
     }
     return {
+        'environment': value['environment'],
         'billing': PostApiRainCustomerRequestAddressToJSON(value['billing']),
     };
 }

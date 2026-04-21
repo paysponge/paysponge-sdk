@@ -21,16 +21,34 @@ import { mapValues } from '../runtime.js';
 export interface PostApiRainContractsByContractIdWithdrawRequest {
     /**
      * 
+     * @type {PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum}
+     * @memberof PostApiRainContractsByContractIdWithdrawRequest
+     */
+    environment: PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum;
+    /**
+     * 
      * @type {string}
      * @memberof PostApiRainContractsByContractIdWithdrawRequest
      */
     amount: string;
 }
 
+
+/**
+ * @export
+ */
+export const PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+} as const;
+export type PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum = typeof PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum[keyof typeof PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum];
+
+
 /**
  * Check if a given object implements the PostApiRainContractsByContractIdWithdrawRequest interface.
  */
 export function instanceOfPostApiRainContractsByContractIdWithdrawRequest(value: object): value is PostApiRainContractsByContractIdWithdrawRequest {
+    if (!('environment' in value) || value['environment'] === undefined) return false;
     if (!('amount' in value) || value['amount'] === undefined) return false;
     return true;
 }
@@ -45,6 +63,7 @@ export function PostApiRainContractsByContractIdWithdrawRequestFromJSONTyped(jso
     }
     return {
         
+        'environment': json['environment'],
         'amount': json['amount'],
     };
 }
@@ -60,6 +79,7 @@ export function PostApiRainContractsByContractIdWithdrawRequestToJSONTyped(value
 
     return {
         
+        'environment': value['environment'],
         'amount': value['amount'],
     };
 }

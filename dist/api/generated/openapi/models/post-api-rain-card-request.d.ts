@@ -18,11 +18,25 @@ import type { PostApiRainCustomerRequestAddress } from './post-api-rain-customer
 export interface PostApiRainCardRequest {
     /**
      *
+     * @type {PostApiRainCardRequestEnvironmentEnum}
+     * @memberof PostApiRainCardRequest
+     */
+    environment: PostApiRainCardRequestEnvironmentEnum;
+    /**
+     *
      * @type {PostApiRainCustomerRequestAddress}
      * @memberof PostApiRainCardRequest
      */
     billing: PostApiRainCustomerRequestAddress;
 }
+/**
+ * @export
+ */
+export declare const PostApiRainCardRequestEnvironmentEnum: {
+    readonly Dev: "dev";
+    readonly Production: "production";
+};
+export type PostApiRainCardRequestEnvironmentEnum = typeof PostApiRainCardRequestEnvironmentEnum[keyof typeof PostApiRainCardRequestEnvironmentEnum];
 /**
  * Check if a given object implements the PostApiRainCardRequest interface.
  */

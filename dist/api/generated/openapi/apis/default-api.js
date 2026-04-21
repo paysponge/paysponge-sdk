@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRainCardRequestToJSON, PostApiRainCardsByCardIdSecretsRequestToJSON, PostApiRainContractsByContractIdFundRequestToJSON, PostApiRainContractsByContractIdWithdrawRequestToJSON, PostApiRainCustomerRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRainCardRequestToJSON, PostApiRainCardsByCardIdSecretsRequestToJSON, PostApiRainContractsByContractIdFundRequestToJSON, PostApiRainContractsByContractIdWithdrawRequestToJSON, PostApiRainCustomerRefreshRequestToJSON, PostApiRainCustomerRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -812,8 +812,14 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Creates request options for deleteApiRainCustomer without sending the request
      */
-    async deleteApiRainCustomerRequestOpts() {
+    async deleteApiRainCustomerRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling deleteApiRainCustomer().');
+        }
         const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
         const headerParameters = {};
         let urlPath = `/api/rain/customer`;
         return {
@@ -825,15 +831,15 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async deleteApiRainCustomerRaw(initOverrides) {
-        const requestOptions = await this.deleteApiRainCustomerRequestOpts();
+    async deleteApiRainCustomerRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.deleteApiRainCustomerRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async deleteApiRainCustomer(initOverrides) {
-        await this.deleteApiRainCustomerRaw(initOverrides);
+    async deleteApiRainCustomer(requestParameters, initOverrides) {
+        await this.deleteApiRainCustomerRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for deleteApiSpendingLimitsById without sending the request
@@ -2899,8 +2905,14 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Creates request options for getApiRainBalances without sending the request
      */
-    async getApiRainBalancesRequestOpts() {
+    async getApiRainBalancesRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainBalances().');
+        }
         const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
         const headerParameters = {};
         let urlPath = `/api/rain/balances`;
         return {
@@ -2912,21 +2924,27 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async getApiRainBalancesRaw(initOverrides) {
-        const requestOptions = await this.getApiRainBalancesRequestOpts();
+    async getApiRainBalancesRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiRainBalancesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async getApiRainBalances(initOverrides) {
-        await this.getApiRainBalancesRaw(initOverrides);
+    async getApiRainBalances(requestParameters, initOverrides) {
+        await this.getApiRainBalancesRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiRainCards without sending the request
      */
-    async getApiRainCardsRequestOpts() {
+    async getApiRainCardsRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainCards().');
+        }
         const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
         const headerParameters = {};
         let urlPath = `/api/rain/cards`;
         return {
@@ -2938,15 +2956,15 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async getApiRainCardsRaw(initOverrides) {
-        const requestOptions = await this.getApiRainCardsRequestOpts();
+    async getApiRainCardsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiRainCardsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async getApiRainCards(initOverrides) {
-        await this.getApiRainCardsRaw(initOverrides);
+    async getApiRainCards(requestParameters, initOverrides) {
+        await this.getApiRainCardsRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiRainConfig without sending the request
@@ -2977,8 +2995,14 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Creates request options for getApiRainContracts without sending the request
      */
-    async getApiRainContractsRequestOpts() {
+    async getApiRainContractsRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainContracts().');
+        }
         const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
         const headerParameters = {};
         let urlPath = `/api/rain/contracts`;
         return {
@@ -2990,15 +3014,15 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async getApiRainContractsRaw(initOverrides) {
-        const requestOptions = await this.getApiRainContractsRequestOpts();
+    async getApiRainContractsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiRainContractsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async getApiRainContracts(initOverrides) {
-        await this.getApiRainContractsRaw(initOverrides);
+    async getApiRainContracts(requestParameters, initOverrides) {
+        await this.getApiRainContractsRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiRainContractsByContractIdBalance without sending the request
@@ -3007,7 +3031,13 @@ export class DefaultApi extends runtime.BaseAPI {
         if (requestParameters['contractId'] == null) {
             throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling getApiRainContractsByContractIdBalance().');
         }
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainContractsByContractIdBalance().');
+        }
         const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
         const headerParameters = {};
         let urlPath = `/api/rain/contracts/{contractId}/balance`;
         urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
@@ -3034,7 +3064,13 @@ export class DefaultApi extends runtime.BaseAPI {
      * Creates request options for getApiRainCustomer without sending the request
      */
     async getApiRainCustomerRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainCustomer().');
+        }
         const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
         if (requestParameters['forceRefresh'] != null) {
             queryParameters['forceRefresh'] = requestParameters['forceRefresh'];
         }
@@ -3056,7 +3092,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async getApiRainCustomer(requestParameters = {}, initOverrides) {
+    async getApiRainCustomer(requestParameters, initOverrides) {
         await this.getApiRainCustomerRaw(requestParameters, initOverrides);
     }
     /**
@@ -6407,28 +6443,33 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Creates request options for postApiRainCustomerRefresh without sending the request
      */
-    async postApiRainCustomerRefreshRequestOpts() {
+    async postApiRainCustomerRefreshRequestOpts(requestParameters) {
+        if (requestParameters['postApiRainCustomerRefreshRequest'] == null) {
+            throw new runtime.RequiredError('postApiRainCustomerRefreshRequest', 'Required parameter "postApiRainCustomerRefreshRequest" was null or undefined when calling postApiRainCustomerRefresh().');
+        }
         const queryParameters = {};
         const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
         let urlPath = `/api/rain/customer/refresh`;
         return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: PostApiRainCustomerRefreshRequestToJSON(requestParameters['postApiRainCustomerRefreshRequest']),
         };
     }
     /**
      */
-    async postApiRainCustomerRefreshRaw(initOverrides) {
-        const requestOptions = await this.postApiRainCustomerRefreshRequestOpts();
+    async postApiRainCustomerRefreshRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiRainCustomerRefreshRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async postApiRainCustomerRefresh(initOverrides) {
-        await this.postApiRainCustomerRefreshRaw(initOverrides);
+    async postApiRainCustomerRefresh(requestParameters, initOverrides) {
+        await this.postApiRainCustomerRefreshRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiRpcByChainId without sending the request
@@ -7853,4 +7894,46 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.putApiSpendingLimitsByIdRaw(requestParameters, initOverrides);
     }
 }
+/**
+ * @export
+ */
+export const DeleteApiRainCustomerEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
+/**
+ * @export
+ */
+export const GetApiRainBalancesEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
+/**
+ * @export
+ */
+export const GetApiRainCardsEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
+/**
+ * @export
+ */
+export const GetApiRainContractsEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
+/**
+ * @export
+ */
+export const GetApiRainContractsByContractIdBalanceEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
+/**
+ * @export
+ */
+export const GetApiRainCustomerEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
 //# sourceMappingURL=default-api.js.map

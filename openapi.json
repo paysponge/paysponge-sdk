@@ -12205,6 +12205,18 @@
       "get": {
         "parameters": [
           {
+            "name": "environment",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "dev",
+                "production"
+              ]
+            }
+          },
+          {
             "name": "forceRefresh",
             "in": "query",
             "required": false,
@@ -12232,6 +12244,7 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "email",
                   "firstName",
                   "lastName",
@@ -12242,6 +12255,13 @@
                   "occupation"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "email": {
                     "format": "email",
                     "type": "string"
@@ -12338,6 +12358,7 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "email",
                   "firstName",
                   "lastName",
@@ -12348,6 +12369,13 @@
                   "occupation"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "email": {
                     "format": "email",
                     "type": "string"
@@ -12444,6 +12472,7 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "email",
                   "firstName",
                   "lastName",
@@ -12454,6 +12483,13 @@
                   "occupation"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "email": {
                     "format": "email",
                     "type": "string"
@@ -12551,11 +12587,81 @@
         "operationId": "postApiRainCustomer"
       },
       "delete": {
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "dev",
+                "production"
+              ]
+            }
+          }
+        ],
         "operationId": "deleteApiRainCustomer"
       }
     },
     "/api/rain/customer/refresh": {
       "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "environment"
+                ],
+                "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "environment"
+                ],
+                "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "environment"
+                ],
+                "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "postApiRainCustomerRefresh"
       }
     },
@@ -12568,9 +12674,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "billing"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "billing": {
                     "type": "object",
                     "required": [
@@ -12619,9 +12733,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "billing"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "billing": {
                     "type": "object",
                     "required": [
@@ -12670,9 +12792,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "billing"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "billing": {
                     "type": "object",
                     "required": [
@@ -12724,6 +12854,20 @@
     },
     "/api/rain/cards": {
       "get": {
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "dev",
+                "production"
+              ]
+            }
+          }
+        ],
         "operationId": "getApiRainCards"
       }
     },
@@ -12791,11 +12935,39 @@
     },
     "/api/rain/balances": {
       "get": {
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "dev",
+                "production"
+              ]
+            }
+          }
+        ],
         "operationId": "getApiRainBalances"
       }
     },
     "/api/rain/contracts": {
       "get": {
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "dev",
+                "production"
+              ]
+            }
+          }
+        ],
         "operationId": "getApiRainContracts"
       }
     },
@@ -12808,6 +12980,18 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "environment",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "dev",
+                "production"
+              ]
             }
           }
         ],
@@ -12833,9 +13017,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "amount"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "amount": {
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d+)?$",
@@ -12848,9 +13040,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "amount"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "amount": {
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d+)?$",
@@ -12863,9 +13063,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "amount"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "amount": {
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d+)?$",
@@ -12898,9 +13106,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "amount"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "amount": {
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d{1,2})?$",
@@ -12913,9 +13129,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "amount"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "amount": {
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d{1,2})?$",
@@ -12928,9 +13152,17 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "environment",
                   "amount"
                 ],
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  },
                   "amount": {
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d{1,2})?$",

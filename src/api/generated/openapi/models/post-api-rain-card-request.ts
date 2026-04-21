@@ -29,16 +29,34 @@ import {
 export interface PostApiRainCardRequest {
     /**
      * 
+     * @type {PostApiRainCardRequestEnvironmentEnum}
+     * @memberof PostApiRainCardRequest
+     */
+    environment: PostApiRainCardRequestEnvironmentEnum;
+    /**
+     * 
      * @type {PostApiRainCustomerRequestAddress}
      * @memberof PostApiRainCardRequest
      */
     billing: PostApiRainCustomerRequestAddress;
 }
 
+
+/**
+ * @export
+ */
+export const PostApiRainCardRequestEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+} as const;
+export type PostApiRainCardRequestEnvironmentEnum = typeof PostApiRainCardRequestEnvironmentEnum[keyof typeof PostApiRainCardRequestEnvironmentEnum];
+
+
 /**
  * Check if a given object implements the PostApiRainCardRequest interface.
  */
 export function instanceOfPostApiRainCardRequest(value: object): value is PostApiRainCardRequest {
+    if (!('environment' in value) || value['environment'] === undefined) return false;
     if (!('billing' in value) || value['billing'] === undefined) return false;
     return true;
 }
@@ -53,6 +71,7 @@ export function PostApiRainCardRequestFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
+        'environment': json['environment'],
         'billing': PostApiRainCustomerRequestAddressFromJSON(json['billing']),
     };
 }
@@ -68,6 +87,7 @@ export function PostApiRainCardRequestToJSONTyped(value?: PostApiRainCardRequest
 
     return {
         
+        'environment': value['environment'],
         'billing': PostApiRainCustomerRequestAddressToJSON(value['billing']),
     };
 }

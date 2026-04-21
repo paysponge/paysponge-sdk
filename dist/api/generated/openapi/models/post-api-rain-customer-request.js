@@ -13,9 +13,18 @@
  */
 import { PostApiRainCustomerRequestAddressFromJSON, PostApiRainCustomerRequestAddressToJSON, } from './post-api-rain-customer-request-address.js';
 /**
+ * @export
+ */
+export const PostApiRainCustomerRequestEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
+/**
  * Check if a given object implements the PostApiRainCustomerRequest interface.
  */
 export function instanceOfPostApiRainCustomerRequest(value) {
+    if (!('environment' in value) || value['environment'] === undefined)
+        return false;
     if (!('email' in value) || value['email'] === undefined)
         return false;
     if (!('firstName' in value) || value['firstName'] === undefined)
@@ -42,6 +51,7 @@ export function PostApiRainCustomerRequestFromJSONTyped(json, ignoreDiscriminato
         return json;
     }
     return {
+        'environment': json['environment'],
         'email': json['email'],
         'firstName': json['firstName'],
         'lastName': json['lastName'],
@@ -63,6 +73,7 @@ export function PostApiRainCustomerRequestToJSONTyped(value, ignoreDiscriminator
         return value;
     }
     return {
+        'environment': value['environment'],
         'email': value['email'],
         'firstName': value['firstName'],
         'lastName': value['lastName'],

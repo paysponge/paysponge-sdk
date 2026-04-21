@@ -29,6 +29,12 @@ import {
 export interface PostApiRainCustomerRequest {
     /**
      * 
+     * @type {PostApiRainCustomerRequestEnvironmentEnum}
+     * @memberof PostApiRainCustomerRequest
+     */
+    environment: PostApiRainCustomerRequestEnvironmentEnum;
+    /**
+     * 
      * @type {string}
      * @memberof PostApiRainCustomerRequest
      */
@@ -95,10 +101,22 @@ export interface PostApiRainCustomerRequest {
     walletId?: string;
 }
 
+
+/**
+ * @export
+ */
+export const PostApiRainCustomerRequestEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+} as const;
+export type PostApiRainCustomerRequestEnvironmentEnum = typeof PostApiRainCustomerRequestEnvironmentEnum[keyof typeof PostApiRainCustomerRequestEnvironmentEnum];
+
+
 /**
  * Check if a given object implements the PostApiRainCustomerRequest interface.
  */
 export function instanceOfPostApiRainCustomerRequest(value: object): value is PostApiRainCustomerRequest {
+    if (!('environment' in value) || value['environment'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('firstName' in value) || value['firstName'] === undefined) return false;
     if (!('lastName' in value) || value['lastName'] === undefined) return false;
@@ -120,6 +138,7 @@ export function PostApiRainCustomerRequestFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'environment': json['environment'],
         'email': json['email'],
         'firstName': json['firstName'],
         'lastName': json['lastName'],
@@ -145,6 +164,7 @@ export function PostApiRainCustomerRequestToJSONTyped(value?: PostApiRainCustome
 
     return {
         
+        'environment': value['environment'],
         'email': value['email'],
         'firstName': value['firstName'],
         'lastName': value['lastName'],

@@ -18,6 +18,12 @@ import type { PostApiRainCustomerRequestAddress } from './post-api-rain-customer
 export interface PostApiRainCustomerRequest {
     /**
      *
+     * @type {PostApiRainCustomerRequestEnvironmentEnum}
+     * @memberof PostApiRainCustomerRequest
+     */
+    environment: PostApiRainCustomerRequestEnvironmentEnum;
+    /**
+     *
      * @type {string}
      * @memberof PostApiRainCustomerRequest
      */
@@ -83,6 +89,14 @@ export interface PostApiRainCustomerRequest {
      */
     walletId?: string;
 }
+/**
+ * @export
+ */
+export declare const PostApiRainCustomerRequestEnvironmentEnum: {
+    readonly Dev: "dev";
+    readonly Production: "production";
+};
+export type PostApiRainCustomerRequestEnvironmentEnum = typeof PostApiRainCustomerRequestEnvironmentEnum[keyof typeof PostApiRainCustomerRequestEnvironmentEnum];
 /**
  * Check if a given object implements the PostApiRainCustomerRequest interface.
  */

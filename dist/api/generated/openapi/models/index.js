@@ -80,6 +80,7 @@ export * from './post-api-rain-card-request.js';
 export * from './post-api-rain-cards-by-card-id-secrets-request.js';
 export * from './post-api-rain-contracts-by-contract-id-fund-request.js';
 export * from './post-api-rain-contracts-by-contract-id-withdraw-request.js';
+export * from './post-api-rain-customer-refresh-request.js';
 export * from './post-api-rain-customer-request.js';
 export * from './post-api-rain-customer-request-address.js';
 export * from './post-api-rpc-by-chain-id-request.js';

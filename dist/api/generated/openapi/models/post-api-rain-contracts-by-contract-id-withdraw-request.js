@@ -12,9 +12,18 @@
  * Do not edit the class manually.
  */
 /**
+ * @export
+ */
+export const PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum = {
+    Dev: 'dev',
+    Production: 'production'
+};
+/**
  * Check if a given object implements the PostApiRainContractsByContractIdWithdrawRequest interface.
  */
 export function instanceOfPostApiRainContractsByContractIdWithdrawRequest(value) {
+    if (!('environment' in value) || value['environment'] === undefined)
+        return false;
     if (!('amount' in value) || value['amount'] === undefined)
         return false;
     return true;
@@ -27,6 +36,7 @@ export function PostApiRainContractsByContractIdWithdrawRequestFromJSONTyped(jso
         return json;
     }
     return {
+        'environment': json['environment'],
         'amount': json['amount'],
     };
 }
@@ -38,6 +48,7 @@ export function PostApiRainContractsByContractIdWithdrawRequestToJSONTyped(value
         return value;
     }
     return {
+        'environment': value['environment'],
         'amount': value['amount'],
     };
 }

@@ -17,11 +17,25 @@
 export interface PostApiRainContractsByContractIdFundRequest {
     /**
      *
+     * @type {PostApiRainContractsByContractIdFundRequestEnvironmentEnum}
+     * @memberof PostApiRainContractsByContractIdFundRequest
+     */
+    environment: PostApiRainContractsByContractIdFundRequestEnvironmentEnum;
+    /**
+     *
      * @type {string}
      * @memberof PostApiRainContractsByContractIdFundRequest
      */
     amount: string;
 }
+/**
+ * @export
+ */
+export declare const PostApiRainContractsByContractIdFundRequestEnvironmentEnum: {
+    readonly Dev: "dev";
+    readonly Production: "production";
+};
+export type PostApiRainContractsByContractIdFundRequestEnvironmentEnum = typeof PostApiRainContractsByContractIdFundRequestEnvironmentEnum[keyof typeof PostApiRainContractsByContractIdFundRequestEnvironmentEnum];
 /**
  * Check if a given object implements the PostApiRainContractsByContractIdFundRequest interface.
  */

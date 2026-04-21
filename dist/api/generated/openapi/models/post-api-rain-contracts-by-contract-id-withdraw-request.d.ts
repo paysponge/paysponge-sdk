@@ -17,11 +17,25 @@
 export interface PostApiRainContractsByContractIdWithdrawRequest {
     /**
      *
+     * @type {PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum}
+     * @memberof PostApiRainContractsByContractIdWithdrawRequest
+     */
+    environment: PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum;
+    /**
+     *
      * @type {string}
      * @memberof PostApiRainContractsByContractIdWithdrawRequest
      */
     amount: string;
 }
+/**
+ * @export
+ */
+export declare const PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum: {
+    readonly Dev: "dev";
+    readonly Production: "production";
+};
+export type PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum = typeof PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum[keyof typeof PostApiRainContractsByContractIdWithdrawRequestEnvironmentEnum];
 /**
  * Check if a given object implements the PostApiRainContractsByContractIdWithdrawRequest interface.
  */
