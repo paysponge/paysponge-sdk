@@ -41,6 +41,8 @@ export function instanceOfPostApiSpongeCardCustomerRequest(value) {
         return false;
     if (!('occupation' in value) || value['occupation'] === undefined)
         return false;
+    if (!('agentId' in value) || value['agentId'] === undefined)
+        return false;
     return true;
 }
 export function PostApiSpongeCardCustomerRequestFromJSON(json) {
@@ -62,7 +64,7 @@ export function PostApiSpongeCardCustomerRequestFromJSONTyped(json, ignoreDiscri
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'address': PostApiSpongeCardCustomerRequestAddressFromJSON(json['address']),
         'occupation': json['occupation'],
-        'walletId': json['walletId'] == null ? undefined : json['walletId'],
+        'agentId': json['agentId'],
     };
 }
 export function PostApiSpongeCardCustomerRequestToJSON(json) {
@@ -84,7 +86,7 @@ export function PostApiSpongeCardCustomerRequestToJSONTyped(value, ignoreDiscrim
         'phoneNumber': value['phoneNumber'],
         'address': PostApiSpongeCardCustomerRequestAddressToJSON(value['address']),
         'occupation': value['occupation'],
-        'walletId': value['walletId'],
+        'agentId': value['agentId'],
     };
 }
 //# sourceMappingURL=post-api-sponge-card-customer-request.js.map

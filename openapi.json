@@ -12252,7 +12252,8 @@
                   "nationalId",
                   "countryOfIssue",
                   "address",
-                  "occupation"
+                  "occupation",
+                  "agentId"
                 ],
                 "properties": {
                   "environment": {
@@ -12348,7 +12349,8 @@
                     "maxLength": 50,
                     "type": "string"
                   },
-                  "walletId": {
+                  "agentId": {
+                    "minLength": 1,
                     "type": "string"
                   }
                 }
@@ -12366,7 +12368,8 @@
                   "nationalId",
                   "countryOfIssue",
                   "address",
-                  "occupation"
+                  "occupation",
+                  "agentId"
                 ],
                 "properties": {
                   "environment": {
@@ -12462,7 +12465,8 @@
                     "maxLength": 50,
                     "type": "string"
                   },
-                  "walletId": {
+                  "agentId": {
+                    "minLength": 1,
                     "type": "string"
                   }
                 }
@@ -12480,7 +12484,8 @@
                   "nationalId",
                   "countryOfIssue",
                   "address",
-                  "occupation"
+                  "occupation",
+                  "agentId"
                 ],
                 "properties": {
                   "environment": {
@@ -12576,7 +12581,8 @@
                     "maxLength": 50,
                     "type": "string"
                   },
-                  "walletId": {
+                  "agentId": {
+                    "minLength": 1,
                     "type": "string"
                   }
                 }

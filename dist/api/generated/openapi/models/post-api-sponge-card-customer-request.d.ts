@@ -87,7 +87,7 @@ export interface PostApiSpongeCardCustomerRequest {
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    walletId?: string;
+    agentId: string;
 }
 /**
  * @export

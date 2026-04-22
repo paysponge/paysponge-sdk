@@ -98,7 +98,7 @@ export interface PostApiSpongeCardCustomerRequest {
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    walletId?: string;
+    agentId: string;
 }
 
 
@@ -125,6 +125,7 @@ export function instanceOfPostApiSpongeCardCustomerRequest(value: object): value
     if (!('countryOfIssue' in value) || value['countryOfIssue'] === undefined) return false;
     if (!('address' in value) || value['address'] === undefined) return false;
     if (!('occupation' in value) || value['occupation'] === undefined) return false;
+    if (!('agentId' in value) || value['agentId'] === undefined) return false;
     return true;
 }
 
@@ -149,7 +150,7 @@ export function PostApiSpongeCardCustomerRequestFromJSONTyped(json: any, ignoreD
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'address': PostApiSpongeCardCustomerRequestAddressFromJSON(json['address']),
         'occupation': json['occupation'],
-        'walletId': json['walletId'] == null ? undefined : json['walletId'],
+        'agentId': json['agentId'],
     };
 }
 
@@ -175,7 +176,7 @@ export function PostApiSpongeCardCustomerRequestToJSONTyped(value?: PostApiSpong
         'phoneNumber': value['phoneNumber'],
         'address': PostApiSpongeCardCustomerRequestAddressToJSON(value['address']),
         'occupation': value['occupation'],
-        'walletId': value['walletId'],
+        'agentId': value['agentId'],
     };
 }
 
