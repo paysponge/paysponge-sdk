@@ -6631,6 +6631,37 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiSpongeCardCustomerRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for postApiSpongeCardCustomerConsent without sending the request
+     */
+    async postApiSpongeCardCustomerConsentRequestOpts(requestParameters) {
+        if (requestParameters['postApiSpongeCardCustomerRefreshRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardCustomerRefreshRequest', 'Required parameter "postApiSpongeCardCustomerRefreshRequest" was null or undefined when calling postApiSpongeCardCustomerConsent().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/customer/consent`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardCustomerRefreshRequestToJSON(requestParameters['postApiSpongeCardCustomerRefreshRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardCustomerConsentRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardCustomerConsentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardCustomerConsent(requestParameters, initOverrides) {
+        await this.postApiSpongeCardCustomerConsentRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for postApiSpongeCardCustomerRefresh without sending the request
      */
     async postApiSpongeCardCustomerRefreshRequestOpts(requestParameters) {

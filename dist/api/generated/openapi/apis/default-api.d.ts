@@ -621,6 +621,9 @@ export interface DefaultApiPostApiSpongeCardContractsByContractIdWithdrawOperati
 export interface DefaultApiPostApiSpongeCardCustomerOperationRequest {
     postApiSpongeCardCustomerRequest: PostApiSpongeCardCustomerRequest;
 }
+export interface DefaultApiPostApiSpongeCardCustomerConsentRequest {
+    postApiSpongeCardCustomerRefreshRequest: PostApiSpongeCardCustomerRefreshRequest;
+}
 export interface DefaultApiPostApiSpongeCardCustomerRefreshOperationRequest {
     postApiSpongeCardCustomerRefreshRequest: PostApiSpongeCardCustomerRefreshRequest;
 }
@@ -4669,6 +4672,24 @@ export interface DefaultApiInterface {
      */
     postApiSpongeCardCustomer(requestParameters: DefaultApiPostApiSpongeCardCustomerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiSpongeCardCustomerConsent without sending the request
+     * @param {PostApiSpongeCardCustomerRefreshRequest} postApiSpongeCardCustomerRefreshRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardCustomerConsentRequestOpts(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiSpongeCardCustomerRefreshRequest} postApiSpongeCardCustomerRefreshRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardCustomerConsentRaw(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiSpongeCardCustomerConsent(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiSpongeCardCustomerRefresh without sending the request
      * @param {PostApiSpongeCardCustomerRefreshRequest} postApiSpongeCardCustomerRefreshRequest
      * @throws {RequiredError}
@@ -7509,6 +7530,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiSpongeCardCustomer(requestParameters: DefaultApiPostApiSpongeCardCustomerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiSpongeCardCustomerConsent without sending the request
+     */
+    postApiSpongeCardCustomerConsentRequestOpts(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiSpongeCardCustomerConsentRaw(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiSpongeCardCustomerConsent(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiSpongeCardCustomerRefresh without sending the request
      */

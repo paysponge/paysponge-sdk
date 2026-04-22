@@ -1098,6 +1098,10 @@ export interface DefaultApiPostApiSpongeCardCustomerOperationRequest {
     postApiSpongeCardCustomerRequest: PostApiSpongeCardCustomerRequest;
 }
 
+export interface DefaultApiPostApiSpongeCardCustomerConsentRequest {
+    postApiSpongeCardCustomerRefreshRequest: PostApiSpongeCardCustomerRefreshRequest;
+}
+
 export interface DefaultApiPostApiSpongeCardCustomerRefreshOperationRequest {
     postApiSpongeCardCustomerRefreshRequest: PostApiSpongeCardCustomerRefreshRequest;
 }
@@ -5812,6 +5816,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiSpongeCardCustomer(requestParameters: DefaultApiPostApiSpongeCardCustomerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiSpongeCardCustomerConsent without sending the request
+     * @param {PostApiSpongeCardCustomerRefreshRequest} postApiSpongeCardCustomerRefreshRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardCustomerConsentRequestOpts(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiSpongeCardCustomerRefreshRequest} postApiSpongeCardCustomerRefreshRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardCustomerConsentRaw(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiSpongeCardCustomerConsent(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiSpongeCardCustomerRefresh without sending the request
@@ -15943,6 +15968,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiSpongeCardCustomer(requestParameters: DefaultApiPostApiSpongeCardCustomerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiSpongeCardCustomerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiSpongeCardCustomerConsent without sending the request
+     */
+    async postApiSpongeCardCustomerConsentRequestOpts(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiSpongeCardCustomerRefreshRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiSpongeCardCustomerRefreshRequest',
+                'Required parameter "postApiSpongeCardCustomerRefreshRequest" was null or undefined when calling postApiSpongeCardCustomerConsent().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/sponge-card/customer/consent`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardCustomerRefreshRequestToJSON(requestParameters['postApiSpongeCardCustomerRefreshRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiSpongeCardCustomerConsentRaw(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiSpongeCardCustomerConsentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiSpongeCardCustomerConsent(requestParameters: DefaultApiPostApiSpongeCardCustomerConsentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiSpongeCardCustomerConsentRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -12671,6 +12671,67 @@
         "operationId": "postApiSponge-cardCustomerRefresh"
       }
     },
+    "/api/sponge-card/customer/consent": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "environment"
+                ],
+                "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "environment"
+                ],
+                "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "environment"
+                ],
+                "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "dev",
+                      "production"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiSponge-cardCustomerConsent"
+      }
+    },
     "/api/sponge-card/card": {
       "post": {
         "requestBody": {
