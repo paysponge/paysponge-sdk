@@ -12813,7 +12813,11 @@
                       "countryCode"
                     ],
                     "properties": {
-                      "name": {
+                      "firstName": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "lastName": {
                         "maxLength": 100,
                         "type": "string"
                       },
@@ -12927,7 +12931,11 @@
                       "countryCode"
                     ],
                     "properties": {
-                      "name": {
+                      "firstName": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "lastName": {
                         "maxLength": 100,
                         "type": "string"
                       },
@@ -13041,7 +13049,11 @@
                       "countryCode"
                     ],
                     "properties": {
-                      "name": {
+                      "firstName": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "lastName": {
                         "maxLength": 100,
                         "type": "string"
                       },

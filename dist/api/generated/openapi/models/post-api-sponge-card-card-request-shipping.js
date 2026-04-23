@@ -35,7 +35,8 @@ export function PostApiSpongeCardCardRequestShippingFromJSONTyped(json, ignoreDi
         return json;
     }
     return {
-        'name': json['name'] == null ? undefined : json['name'],
+        'firstName': json['firstName'] == null ? undefined : json['firstName'],
+        'lastName': json['lastName'] == null ? undefined : json['lastName'],
         'line1': json['line1'],
         'line2': json['line2'] == null ? undefined : json['line2'],
         'city': json['city'],
@@ -52,7 +53,8 @@ export function PostApiSpongeCardCardRequestShippingToJSONTyped(value, ignoreDis
         return value;
     }
     return {
-        'name': value['name'],
+        'firstName': value['firstName'],
+        'lastName': value['lastName'],
         'line1': value['line1'],
         'line2': value['line2'],
         'city': value['city'],

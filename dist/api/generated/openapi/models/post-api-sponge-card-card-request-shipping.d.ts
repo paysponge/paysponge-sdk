@@ -20,7 +20,13 @@ export interface PostApiSpongeCardCardRequestShipping {
      * @type {string}
      * @memberof PostApiSpongeCardCardRequestShipping
      */
-    name?: string;
+    firstName?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiSpongeCardCardRequestShipping
+     */
+    lastName?: string;
     /**
      *
      * @type {string}
