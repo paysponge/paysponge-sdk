@@ -37,7 +37,24 @@ export interface PostApiBridgeFiatTransfersRequest {
      * @memberof PostApiBridgeFiatTransfersRequest
      */
     amount: string;
+    /**
+     * 
+     * @type {PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum}
+     * @memberof PostApiBridgeFiatTransfersRequest
+     */
+    destinationPaymentRail?: PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum;
 }
+
+
+/**
+ * @export
+ */
+export const PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum = {
+    Ach: 'ach',
+    Wire: 'wire'
+} as const;
+export type PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum = typeof PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum[keyof typeof PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum];
+
 
 /**
  * Check if a given object implements the PostApiBridgeFiatTransfersRequest interface.
@@ -62,6 +79,7 @@ export function PostApiBridgeFiatTransfersRequestFromJSONTyped(json: any, ignore
         'walletId': json['walletId'],
         'externalAccountId': json['externalAccountId'],
         'amount': json['amount'],
+        'destinationPaymentRail': json['destinationPaymentRail'] == null ? undefined : json['destinationPaymentRail'],
     };
 }
 
@@ -79,6 +97,7 @@ export function PostApiBridgeFiatTransfersRequestToJSONTyped(value?: PostApiBrid
         'walletId': value['walletId'],
         'externalAccountId': value['externalAccountId'],
         'amount': value['amount'],
+        'destinationPaymentRail': value['destinationPaymentRail'],
     };
 }
 

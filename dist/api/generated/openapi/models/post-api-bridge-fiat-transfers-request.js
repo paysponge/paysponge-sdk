@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 /**
+ * @export
+ */
+export const PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum = {
+    Ach: 'ach',
+    Wire: 'wire'
+};
+/**
  * Check if a given object implements the PostApiBridgeFiatTransfersRequest interface.
  */
 export function instanceOfPostApiBridgeFiatTransfersRequest(value) {
@@ -34,6 +41,7 @@ export function PostApiBridgeFiatTransfersRequestFromJSONTyped(json, ignoreDiscr
         'walletId': json['walletId'],
         'externalAccountId': json['externalAccountId'],
         'amount': json['amount'],
+        'destinationPaymentRail': json['destinationPaymentRail'] == null ? undefined : json['destinationPaymentRail'],
     };
 }
 export function PostApiBridgeFiatTransfersRequestToJSON(json) {
@@ -47,6 +55,7 @@ export function PostApiBridgeFiatTransfersRequestToJSONTyped(value, ignoreDiscri
         'walletId': value['walletId'],
         'externalAccountId': value['externalAccountId'],
         'amount': value['amount'],
+        'destinationPaymentRail': value['destinationPaymentRail'],
     };
 }
 //# sourceMappingURL=post-api-bridge-fiat-transfers-request.js.map

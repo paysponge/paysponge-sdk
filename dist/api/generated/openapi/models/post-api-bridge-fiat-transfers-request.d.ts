@@ -33,7 +33,21 @@ export interface PostApiBridgeFiatTransfersRequest {
      * @memberof PostApiBridgeFiatTransfersRequest
      */
     amount: string;
+    /**
+     *
+     * @type {PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum}
+     * @memberof PostApiBridgeFiatTransfersRequest
+     */
+    destinationPaymentRail?: PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum;
 }
+/**
+ * @export
+ */
+export declare const PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum: {
+    readonly Ach: "ach";
+    readonly Wire: "wire";
+};
+export type PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum = typeof PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum[keyof typeof PostApiBridgeFiatTransfersRequestDestinationPaymentRailEnum];
 /**
  * Check if a given object implements the PostApiBridgeFiatTransfersRequest interface.
  */
