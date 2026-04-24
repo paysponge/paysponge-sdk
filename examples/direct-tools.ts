@@ -14,7 +14,7 @@
  *   bun run examples/direct-tools.ts
  *
  * Environment variables:
- *   SPONGE_API_KEY - Your API key (optional, will do device flow if not set)
+ *   SPONGE_API_KEY - Your API key (optional, will use the browser auth flow if not set)
  *   SPONGE_API_URL - Backend URL (optional, defaults to production)
  */
 

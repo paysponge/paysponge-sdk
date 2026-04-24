@@ -44,7 +44,7 @@ You can get an agent-scoped API key in a few ways:
 
 - from the dashboard for an existing agent
 - `npx spongewallet init` to create an agent immediately and claim it later
-- `SpongeWallet.connect()` device flow if you want browser auth and cached local credentials
+- `SpongeWallet.connect()` browser auth flow if you want browser auth and cached local credentials
 - `SpongePlatform.createAgent()` if your platform is provisioning agents server-side
 - `POST /api/agents/register` for self-registration flows
 
@@ -108,7 +108,7 @@ That keeps provisioning and runtime separate:
 
 ## Authentication
 
-### Device Flow (Browser)
+### Browser Auth Flow
 
 On first run, `connect()` opens your browser for login. After approval, credentials are cached at `~/.spongewallet/credentials.json`.
 
@@ -220,7 +220,7 @@ Telemetry includes high-level metadata such as:
 
 | Variable | Description |
 |----------|-------------|
-| `SPONGE_API_KEY` | Agent API key (skips device flow) |
+| `SPONGE_API_KEY` | Agent API key (skips the browser auth flow) |
 | `SPONGE_MASTER_KEY` | Platform API key for `SpongePlatform` |
 | `SPONGE_API_URL` | Custom API URL |
 

@@ -13779,6 +13779,496 @@
         "operationId": "postApiSponge-cardWithdraw"
       }
     },
+    "/api/bank/onboard": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "redirect_uri": {
+                    "type": "string"
+                  },
+                  "customer_type": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "redirect_uri": {
+                    "type": "string"
+                  },
+                  "customer_type": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "redirect_uri": {
+                    "type": "string"
+                  },
+                  "customer_type": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBankOnboard"
+      }
+    },
+    "/api/bank/status": {
+      "get": {
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiBankStatus"
+      }
+    },
+    "/api/bank/virtual-account": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "wallet_id"
+                ],
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "wallet_id"
+                ],
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "wallet_id"
+                ],
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBankVirtual-account"
+      },
+      "get": {
+        "parameters": [
+          {
+            "name": "wallet_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiBankVirtual-account"
+      }
+    },
+    "/api/bank/external-accounts": {
+      "get": {
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiBankExternal-accounts"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "bank_name",
+                  "account_owner_name",
+                  "routing_number",
+                  "account_number",
+                  "checking_or_savings",
+                  "street_line_1",
+                  "city",
+                  "state",
+                  "postal_code"
+                ],
+                "properties": {
+                  "bank_name": {
+                    "type": "string"
+                  },
+                  "account_owner_name": {
+                    "type": "string"
+                  },
+                  "routing_number": {
+                    "type": "string"
+                  },
+                  "account_number": {
+                    "type": "string"
+                  },
+                  "checking_or_savings": {
+                    "type": "string",
+                    "enum": [
+                      "checking",
+                      "savings"
+                    ]
+                  },
+                  "street_line_1": {
+                    "type": "string"
+                  },
+                  "street_line_2": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "postal_code": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "bank_name",
+                  "account_owner_name",
+                  "routing_number",
+                  "account_number",
+                  "checking_or_savings",
+                  "street_line_1",
+                  "city",
+                  "state",
+                  "postal_code"
+                ],
+                "properties": {
+                  "bank_name": {
+                    "type": "string"
+                  },
+                  "account_owner_name": {
+                    "type": "string"
+                  },
+                  "routing_number": {
+                    "type": "string"
+                  },
+                  "account_number": {
+                    "type": "string"
+                  },
+                  "checking_or_savings": {
+                    "type": "string",
+                    "enum": [
+                      "checking",
+                      "savings"
+                    ]
+                  },
+                  "street_line_1": {
+                    "type": "string"
+                  },
+                  "street_line_2": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "postal_code": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "bank_name",
+                  "account_owner_name",
+                  "routing_number",
+                  "account_number",
+                  "checking_or_savings",
+                  "street_line_1",
+                  "city",
+                  "state",
+                  "postal_code"
+                ],
+                "properties": {
+                  "bank_name": {
+                    "type": "string"
+                  },
+                  "account_owner_name": {
+                    "type": "string"
+                  },
+                  "routing_number": {
+                    "type": "string"
+                  },
+                  "account_number": {
+                    "type": "string"
+                  },
+                  "checking_or_savings": {
+                    "type": "string",
+                    "enum": [
+                      "checking",
+                      "savings"
+                    ]
+                  },
+                  "street_line_1": {
+                    "type": "string"
+                  },
+                  "street_line_2": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "postal_code": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBankExternal-accounts"
+      }
+    },
+    "/api/bank/send": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "wallet_id",
+                  "external_account_id",
+                  "amount"
+                ],
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "external_account_id": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
+                    "type": "string"
+                  },
+                  "payment_rail": {
+                    "type": "string",
+                    "enum": [
+                      "ach",
+                      "wire"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "wallet_id",
+                  "external_account_id",
+                  "amount"
+                ],
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "external_account_id": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
+                    "type": "string"
+                  },
+                  "payment_rail": {
+                    "type": "string",
+                    "enum": [
+                      "ach",
+                      "wire"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "wallet_id",
+                  "external_account_id",
+                  "amount"
+                ],
+                "properties": {
+                  "wallet_id": {
+                    "type": "string"
+                  },
+                  "external_account_id": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
+                    "type": "string"
+                  },
+                  "payment_rail": {
+                    "type": "string",
+                    "enum": [
+                      "ach",
+                      "wire"
+                    ]
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBankSend"
+      }
+    },
+    "/api/bank/transfers": {
+      "get": {
+        "parameters": [
+          {
+            "name": "transfer_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiBankTransfers"
+      }
+    },
     "/api/card-access-requests/": {
       "post": {
         "requestBody": {

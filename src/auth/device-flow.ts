@@ -13,6 +13,7 @@ import {
 } from "../telemetry.js";
 
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
+const DEFAULT_DEVICE_FLOW_SCOPE = "mcp:tools";
 
 export interface DeviceFlowOptions {
   /** Base URL for the API */
@@ -32,7 +33,7 @@ export interface DeviceFlowOptions {
 }
 
 /**
- * Start the OAuth Device Flow authentication
+ * Start the browser-based OAuth authentication flow
  *
  * This flow:
  * 1. Requests a device code from the server
@@ -167,7 +168,7 @@ async function requestDeviceCode(
     },
     body: JSON.stringify({
       clientId: "spongewallet-sdk",
-      scope: "wallet:read wallet:write transaction:sign",
+      scope: DEFAULT_DEVICE_FLOW_SCOPE,
       testnet: options.testnet,
       agentName: options.agentName,
       keyType: options.keyType,
@@ -177,7 +178,7 @@ async function requestDeviceCode(
 
   if (!response.ok) {
     const error = await response.text();
-    throw new Error(`Failed to start device flow: ${error}`);
+    throw new Error(`Failed to start auth flow: ${error}`);
   }
 
   const data = await response.json();

@@ -81,13 +81,13 @@ export const ConnectOptionsSchema = z.object({
   name: z.string().min(1).max(255).optional(),
   /** Existing agent ID to connect to */
   agentId: z.string().uuid().optional(),
-  /** API key to use (skips device flow) */
+  /** API key to use (skips the browser auth flow) */
   apiKey: z.string().optional(),
   /** Use testnets only */
   testnet: z.boolean().optional(),
   /** Base URL for the API (defaults to production) */
   baseUrl: z.string().url().optional(),
-  /** Disable browser auto-open during device flow */
+  /** Disable browser auto-open during the browser auth flow */
   noBrowser: z.boolean().optional(),
   /** Custom path to store credentials file (defaults to ~/.spongewallet/credentials.json) */
   credentialsPath: z.string().optional(),

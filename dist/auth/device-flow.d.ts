@@ -16,7 +16,7 @@ export interface DeviceFlowOptions {
     email?: string;
 }
 /**
- * Start the OAuth Device Flow authentication
+ * Start the browser-based OAuth authentication flow
  *
  * This flow:
  * 1. Requests a device code from the server

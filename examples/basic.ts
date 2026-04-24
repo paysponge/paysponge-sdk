@@ -2,7 +2,7 @@
  * Basic SDK Test
  *
  * Tests the core functionality:
- * 1. Connect (device flow or API key)
+ * 1. Connect (browser auth flow or API key)
  * 2. Get wallet addresses
  * 3. Get balances
  *
@@ -27,7 +27,7 @@ async function main() {
   if (apiKey) {
     console.log("Using API key from environment variable");
   } else {
-    console.log("No API key found - will start device flow");
+    console.log("No API key found - will start browser auth flow");
   }
   console.log();
 

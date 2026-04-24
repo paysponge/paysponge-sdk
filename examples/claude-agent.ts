@@ -15,7 +15,7 @@
  *   ANTHROPIC_API_KEY=sk-ant-xxx bun run examples/claude-agent.ts
  *
  * Environment variables:
- *   SPONGE_API_KEY - Your API key (optional, will do device flow if not set)
+ *   SPONGE_API_KEY - Your API key (optional, will use the browser auth flow if not set)
  *   SPONGE_API_URL - Backend URL (optional, defaults to production)
  *   ANTHROPIC_API_KEY - Your Anthropic API key (required)
  */

@@ -89,7 +89,7 @@ export class SpongeWallet {
    *
    * This method handles everything:
    * 1. Checks for cached credentials or environment variable
-   * 2. If none, starts OAuth Device Flow
+   * 2. If none, starts the browser auth flow
    * 3. Creates a default agent if needed
    * 4. Returns a connected SpongeWallet instance
    *
@@ -120,7 +120,7 @@ export class SpongeWallet {
     let agentId = validated.agentId;
     let credentials: Credentials | null = null;
 
-    // Step 2: If no API key, do device flow
+    // Step 2: If no API key, run the browser auth flow
     if (!apiKey) {
       const tokenResponse = await deviceFlowAuth({
         baseUrl,

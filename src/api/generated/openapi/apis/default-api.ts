@@ -38,6 +38,10 @@ import type {
   PostApiAgentsRegisterRequest,
   PostApiAgentsRequest,
   PostApiAllowlistRequest,
+  PostApiBankExternalAccountsRequest,
+  PostApiBankOnboardRequest,
+  PostApiBankSendRequest,
+  PostApiBankVirtualAccountRequest,
   PostApiBridgeFiatCustomerKycLinkRequest,
   PostApiBridgeFiatCustomerSandboxRequest,
   PostApiBridgeFiatExternalAccountsRequest,
@@ -167,6 +171,14 @@ import {
     PostApiAgentsRequestToJSON,
     PostApiAllowlistRequestFromJSON,
     PostApiAllowlistRequestToJSON,
+    PostApiBankExternalAccountsRequestFromJSON,
+    PostApiBankExternalAccountsRequestToJSON,
+    PostApiBankOnboardRequestFromJSON,
+    PostApiBankOnboardRequestToJSON,
+    PostApiBankSendRequestFromJSON,
+    PostApiBankSendRequestToJSON,
+    PostApiBankVirtualAccountRequestFromJSON,
+    PostApiBankVirtualAccountRequestToJSON,
     PostApiBridgeFiatCustomerKycLinkRequestFromJSON,
     PostApiBridgeFiatCustomerKycLinkRequestToJSON,
     PostApiBridgeFiatCustomerSandboxRequestFromJSON,
@@ -514,6 +526,24 @@ export interface DefaultApiGetApiBalancesRequest {
     chain?: string;
     allowedChains?: string;
     onlyUsdc?: string;
+    agentId?: string;
+}
+
+export interface DefaultApiGetApiBankExternalAccountsRequest {
+    agentId?: string;
+}
+
+export interface DefaultApiGetApiBankStatusRequest {
+    agentId?: string;
+}
+
+export interface DefaultApiGetApiBankTransfersRequest {
+    transferId?: string;
+    agentId?: string;
+}
+
+export interface DefaultApiGetApiBankVirtualAccountRequest {
+    walletId?: string;
     agentId?: string;
 }
 
@@ -907,6 +937,22 @@ export interface DefaultApiPostApiAgentsRegisterOperationRequest {
 
 export interface DefaultApiPostApiAllowlistOperationRequest {
     postApiAllowlistRequest: PostApiAllowlistRequest;
+}
+
+export interface DefaultApiPostApiBankExternalAccountsOperationRequest {
+    postApiBankExternalAccountsRequest: PostApiBankExternalAccountsRequest;
+}
+
+export interface DefaultApiPostApiBankOnboardOperationRequest {
+    postApiBankOnboardRequest: PostApiBankOnboardRequest;
+}
+
+export interface DefaultApiPostApiBankSendOperationRequest {
+    postApiBankSendRequest: PostApiBankSendRequest;
+}
+
+export interface DefaultApiPostApiBankVirtualAccountOperationRequest {
+    postApiBankVirtualAccountRequest: PostApiBankVirtualAccountRequest;
 }
 
 export interface DefaultApiPostApiBridgeFiatCustomerKycLinkOperationRequest {
@@ -2638,6 +2684,94 @@ export interface DefaultApiInterface {
     /**
      */
     getApiBalances(requestParameters: DefaultApiGetApiBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiBankExternalAccounts without sending the request
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiGetApiBankExternalAccountsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankExternalAccountsRaw(requestParameters: DefaultApiGetApiBankExternalAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiBankExternalAccounts(requestParameters: DefaultApiGetApiBankExternalAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiBankStatus without sending the request
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankStatusRequestOpts(requestParameters: DefaultApiGetApiBankStatusRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankStatusRaw(requestParameters: DefaultApiGetApiBankStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiBankStatus(requestParameters: DefaultApiGetApiBankStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiBankTransfers without sending the request
+     * @param {string} [transferId] 
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankTransfersRequestOpts(requestParameters: DefaultApiGetApiBankTransfersRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [transferId] 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankTransfersRaw(requestParameters: DefaultApiGetApiBankTransfersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiBankTransfers(requestParameters: DefaultApiGetApiBankTransfersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiBankVirtualAccount without sending the request
+     * @param {string} [walletId] 
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankVirtualAccountRequestOpts(requestParameters: DefaultApiGetApiBankVirtualAccountRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [walletId] 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankVirtualAccountRaw(requestParameters: DefaultApiGetApiBankVirtualAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiBankVirtualAccount(requestParameters: DefaultApiGetApiBankVirtualAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiBridgeFiatConfig without sending the request
@@ -4791,6 +4925,90 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAllowlist(requestParameters: DefaultApiPostApiAllowlistOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiBankExternalAccounts without sending the request
+     * @param {PostApiBankExternalAccountsRequest} postApiBankExternalAccountsRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiBankExternalAccountsRequest} postApiBankExternalAccountsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankExternalAccountsRaw(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiBankExternalAccounts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiBankOnboard without sending the request
+     * @param {PostApiBankOnboardRequest} postApiBankOnboardRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankOnboardRequestOpts(requestParameters: DefaultApiPostApiBankOnboardOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiBankOnboardRequest} postApiBankOnboardRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankOnboardRaw(requestParameters: DefaultApiPostApiBankOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiBankOnboard(requestParameters: DefaultApiPostApiBankOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiBankSend without sending the request
+     * @param {PostApiBankSendRequest} postApiBankSendRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankSendRequestOpts(requestParameters: DefaultApiPostApiBankSendOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiBankSendRequest} postApiBankSendRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankSendRaw(requestParameters: DefaultApiPostApiBankSendOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiBankSend(requestParameters: DefaultApiPostApiBankSendOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiBankVirtualAccount without sending the request
+     * @param {PostApiBankVirtualAccountRequest} postApiBankVirtualAccountRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankVirtualAccountRequestOpts(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiBankVirtualAccountRequest} postApiBankVirtualAccountRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankVirtualAccountRaw(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiBankVirtualAccount(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiBridgeFiatCustomerKycLink without sending the request
@@ -9523,6 +9741,166 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiBankExternalAccounts without sending the request
+     */
+    async getApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiGetApiBankExternalAccountsRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/bank/external-accounts`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiBankExternalAccountsRaw(requestParameters: DefaultApiGetApiBankExternalAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiBankExternalAccountsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiBankExternalAccounts(requestParameters: DefaultApiGetApiBankExternalAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiBankExternalAccountsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiBankStatus without sending the request
+     */
+    async getApiBankStatusRequestOpts(requestParameters: DefaultApiGetApiBankStatusRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/bank/status`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiBankStatusRaw(requestParameters: DefaultApiGetApiBankStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiBankStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiBankStatus(requestParameters: DefaultApiGetApiBankStatusRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiBankStatusRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiBankTransfers without sending the request
+     */
+    async getApiBankTransfersRequestOpts(requestParameters: DefaultApiGetApiBankTransfersRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['transferId'] != null) {
+            queryParameters['transfer_id'] = requestParameters['transferId'];
+        }
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/bank/transfers`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiBankTransfersRaw(requestParameters: DefaultApiGetApiBankTransfersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiBankTransfersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiBankTransfers(requestParameters: DefaultApiGetApiBankTransfersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiBankTransfersRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiBankVirtualAccount without sending the request
+     */
+    async getApiBankVirtualAccountRequestOpts(requestParameters: DefaultApiGetApiBankVirtualAccountRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['walletId'] != null) {
+            queryParameters['wallet_id'] = requestParameters['walletId'];
+        }
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/bank/virtual-account`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiBankVirtualAccountRaw(requestParameters: DefaultApiGetApiBankVirtualAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiBankVirtualAccountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiBankVirtualAccount(requestParameters: DefaultApiGetApiBankVirtualAccountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiBankVirtualAccountRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiBridgeFiatConfig without sending the request
      */
     async getApiBridgeFiatConfigRequestOpts(): Promise<runtime.RequestOpts> {
@@ -13935,6 +14313,182 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAllowlist(requestParameters: DefaultApiPostApiAllowlistOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAllowlistRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiBankExternalAccounts without sending the request
+     */
+    async postApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiBankExternalAccountsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiBankExternalAccountsRequest',
+                'Required parameter "postApiBankExternalAccountsRequest" was null or undefined when calling postApiBankExternalAccounts().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/bank/external-accounts`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBankExternalAccountsRequestToJSON(requestParameters['postApiBankExternalAccountsRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiBankExternalAccountsRaw(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiBankExternalAccountsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiBankExternalAccounts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiBankExternalAccountsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiBankOnboard without sending the request
+     */
+    async postApiBankOnboardRequestOpts(requestParameters: DefaultApiPostApiBankOnboardOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiBankOnboardRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiBankOnboardRequest',
+                'Required parameter "postApiBankOnboardRequest" was null or undefined when calling postApiBankOnboard().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/bank/onboard`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBankOnboardRequestToJSON(requestParameters['postApiBankOnboardRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiBankOnboardRaw(requestParameters: DefaultApiPostApiBankOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiBankOnboardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiBankOnboard(requestParameters: DefaultApiPostApiBankOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiBankOnboardRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiBankSend without sending the request
+     */
+    async postApiBankSendRequestOpts(requestParameters: DefaultApiPostApiBankSendOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiBankSendRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiBankSendRequest',
+                'Required parameter "postApiBankSendRequest" was null or undefined when calling postApiBankSend().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/bank/send`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBankSendRequestToJSON(requestParameters['postApiBankSendRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiBankSendRaw(requestParameters: DefaultApiPostApiBankSendOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiBankSendRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiBankSend(requestParameters: DefaultApiPostApiBankSendOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiBankSendRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiBankVirtualAccount without sending the request
+     */
+    async postApiBankVirtualAccountRequestOpts(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiBankVirtualAccountRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiBankVirtualAccountRequest',
+                'Required parameter "postApiBankVirtualAccountRequest" was null or undefined when calling postApiBankVirtualAccount().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/bank/virtual-account`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBankVirtualAccountRequestToJSON(requestParameters['postApiBankVirtualAccountRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiBankVirtualAccountRaw(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiBankVirtualAccountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiBankVirtualAccount(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiBankVirtualAccountRaw(requestParameters, initOverrides);
     }
 
     /**

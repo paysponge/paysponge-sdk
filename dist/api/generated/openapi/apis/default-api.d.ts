@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiExtensionPushSubscribeRequest, PostApiExtensionPushUnsubscribeRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiExtensionPushSubscribeRequest, PostApiExtensionPushUnsubscribeRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -157,6 +157,20 @@ export interface DefaultApiGetApiBalancesRequest {
     chain?: string;
     allowedChains?: string;
     onlyUsdc?: string;
+    agentId?: string;
+}
+export interface DefaultApiGetApiBankExternalAccountsRequest {
+    agentId?: string;
+}
+export interface DefaultApiGetApiBankStatusRequest {
+    agentId?: string;
+}
+export interface DefaultApiGetApiBankTransfersRequest {
+    transferId?: string;
+    agentId?: string;
+}
+export interface DefaultApiGetApiBankVirtualAccountRequest {
+    walletId?: string;
     agentId?: string;
 }
 export interface DefaultApiGetApiBridgeFiatCustomerRequest {
@@ -471,6 +485,18 @@ export interface DefaultApiPostApiAgentsRegisterOperationRequest {
 }
 export interface DefaultApiPostApiAllowlistOperationRequest {
     postApiAllowlistRequest: PostApiAllowlistRequest;
+}
+export interface DefaultApiPostApiBankExternalAccountsOperationRequest {
+    postApiBankExternalAccountsRequest: PostApiBankExternalAccountsRequest;
+}
+export interface DefaultApiPostApiBankOnboardOperationRequest {
+    postApiBankOnboardRequest: PostApiBankOnboardRequest;
+}
+export interface DefaultApiPostApiBankSendOperationRequest {
+    postApiBankSendRequest: PostApiBankSendRequest;
+}
+export interface DefaultApiPostApiBankVirtualAccountOperationRequest {
+    postApiBankVirtualAccountRequest: PostApiBankVirtualAccountRequest;
 }
 export interface DefaultApiPostApiBridgeFiatCustomerKycLinkOperationRequest {
     postApiBridgeFiatCustomerKycLinkRequest: PostApiBridgeFiatCustomerKycLinkRequest;
@@ -1920,6 +1946,82 @@ export interface DefaultApiInterface {
     /**
      */
     getApiBalances(requestParameters: DefaultApiGetApiBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiBankExternalAccounts without sending the request
+     * @param {string} [agentId]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiGetApiBankExternalAccountsRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankExternalAccountsRaw(requestParameters: DefaultApiGetApiBankExternalAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiBankExternalAccounts(requestParameters: DefaultApiGetApiBankExternalAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiBankStatus without sending the request
+     * @param {string} [agentId]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankStatusRequestOpts(requestParameters: DefaultApiGetApiBankStatusRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankStatusRaw(requestParameters: DefaultApiGetApiBankStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiBankStatus(requestParameters: DefaultApiGetApiBankStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiBankTransfers without sending the request
+     * @param {string} [transferId]
+     * @param {string} [agentId]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankTransfersRequestOpts(requestParameters: DefaultApiGetApiBankTransfersRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [transferId]
+     * @param {string} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankTransfersRaw(requestParameters: DefaultApiGetApiBankTransfersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiBankTransfers(requestParameters: DefaultApiGetApiBankTransfersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiBankVirtualAccount without sending the request
+     * @param {string} [walletId]
+     * @param {string} [agentId]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankVirtualAccountRequestOpts(requestParameters: DefaultApiGetApiBankVirtualAccountRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [walletId]
+     * @param {string} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiBankVirtualAccountRaw(requestParameters: DefaultApiGetApiBankVirtualAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiBankVirtualAccount(requestParameters: DefaultApiGetApiBankVirtualAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiBridgeFiatConfig without sending the request
      * @throws {RequiredError}
@@ -3782,6 +3884,78 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAllowlist(requestParameters: DefaultApiPostApiAllowlistOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBankExternalAccounts without sending the request
+     * @param {PostApiBankExternalAccountsRequest} postApiBankExternalAccountsRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiBankExternalAccountsRequest} postApiBankExternalAccountsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankExternalAccountsRaw(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBankExternalAccounts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBankOnboard without sending the request
+     * @param {PostApiBankOnboardRequest} postApiBankOnboardRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankOnboardRequestOpts(requestParameters: DefaultApiPostApiBankOnboardOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiBankOnboardRequest} postApiBankOnboardRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankOnboardRaw(requestParameters: DefaultApiPostApiBankOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBankOnboard(requestParameters: DefaultApiPostApiBankOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBankSend without sending the request
+     * @param {PostApiBankSendRequest} postApiBankSendRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankSendRequestOpts(requestParameters: DefaultApiPostApiBankSendOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiBankSendRequest} postApiBankSendRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankSendRaw(requestParameters: DefaultApiPostApiBankSendOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBankSend(requestParameters: DefaultApiPostApiBankSendOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBankVirtualAccount without sending the request
+     * @param {PostApiBankVirtualAccountRequest} postApiBankVirtualAccountRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankVirtualAccountRequestOpts(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiBankVirtualAccountRequest} postApiBankVirtualAccountRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBankVirtualAccountRaw(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBankVirtualAccount(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiBridgeFiatCustomerKycLink without sending the request
      * @param {PostApiBridgeFiatCustomerKycLinkRequest} postApiBridgeFiatCustomerKycLinkRequest
@@ -6250,6 +6424,46 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiBalances(requestParameters?: DefaultApiGetApiBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiBankExternalAccounts without sending the request
+     */
+    getApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiGetApiBankExternalAccountsRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiBankExternalAccountsRaw(requestParameters: DefaultApiGetApiBankExternalAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiBankExternalAccounts(requestParameters?: DefaultApiGetApiBankExternalAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiBankStatus without sending the request
+     */
+    getApiBankStatusRequestOpts(requestParameters: DefaultApiGetApiBankStatusRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiBankStatusRaw(requestParameters: DefaultApiGetApiBankStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiBankStatus(requestParameters?: DefaultApiGetApiBankStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiBankTransfers without sending the request
+     */
+    getApiBankTransfersRequestOpts(requestParameters: DefaultApiGetApiBankTransfersRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiBankTransfersRaw(requestParameters: DefaultApiGetApiBankTransfersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiBankTransfers(requestParameters?: DefaultApiGetApiBankTransfersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiBankVirtualAccount without sending the request
+     */
+    getApiBankVirtualAccountRequestOpts(requestParameters: DefaultApiGetApiBankVirtualAccountRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiBankVirtualAccountRaw(requestParameters: DefaultApiGetApiBankVirtualAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiBankVirtualAccount(requestParameters?: DefaultApiGetApiBankVirtualAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiBridgeFiatConfig without sending the request
      */
     getApiBridgeFiatConfigRequestOpts(): Promise<runtime.RequestOpts>;
@@ -7219,6 +7433,46 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiAllowlist(requestParameters: DefaultApiPostApiAllowlistOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBankExternalAccounts without sending the request
+     */
+    postApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiBankExternalAccountsRaw(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBankExternalAccounts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBankOnboard without sending the request
+     */
+    postApiBankOnboardRequestOpts(requestParameters: DefaultApiPostApiBankOnboardOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiBankOnboardRaw(requestParameters: DefaultApiPostApiBankOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBankOnboard(requestParameters: DefaultApiPostApiBankOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBankSend without sending the request
+     */
+    postApiBankSendRequestOpts(requestParameters: DefaultApiPostApiBankSendOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiBankSendRaw(requestParameters: DefaultApiPostApiBankSendOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBankSend(requestParameters: DefaultApiPostApiBankSendOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBankVirtualAccount without sending the request
+     */
+    postApiBankVirtualAccountRequestOpts(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiBankVirtualAccountRaw(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBankVirtualAccount(requestParameters: DefaultApiPostApiBankVirtualAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiBridgeFiatCustomerKycLink without sending the request
      */

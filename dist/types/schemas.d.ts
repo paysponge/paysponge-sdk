@@ -21,13 +21,13 @@ export declare const ConnectOptionsSchema: z.ZodObject<{
     name: z.ZodOptional<z.ZodString>;
     /** Existing agent ID to connect to */
     agentId: z.ZodOptional<z.ZodString>;
-    /** API key to use (skips device flow) */
+    /** API key to use (skips the browser auth flow) */
     apiKey: z.ZodOptional<z.ZodString>;
     /** Use testnets only */
     testnet: z.ZodOptional<z.ZodBoolean>;
     /** Base URL for the API (defaults to production) */
     baseUrl: z.ZodOptional<z.ZodString>;
-    /** Disable browser auto-open during device flow */
+    /** Disable browser auto-open during the browser auth flow */
     noBrowser: z.ZodOptional<z.ZodBoolean>;
     /** Custom path to store credentials file (defaults to ~/.spongewallet/credentials.json) */
     credentialsPath: z.ZodOptional<z.ZodString>;

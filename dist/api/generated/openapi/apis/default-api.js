@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -1897,6 +1897,128 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiBalances(requestParameters = {}, initOverrides) {
         await this.getApiBalancesRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiBankExternalAccounts without sending the request
+     */
+    async getApiBankExternalAccountsRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/bank/external-accounts`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiBankExternalAccountsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiBankExternalAccountsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiBankExternalAccounts(requestParameters = {}, initOverrides) {
+        await this.getApiBankExternalAccountsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiBankStatus without sending the request
+     */
+    async getApiBankStatusRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/bank/status`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiBankStatusRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiBankStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiBankStatus(requestParameters = {}, initOverrides) {
+        await this.getApiBankStatusRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiBankTransfers without sending the request
+     */
+    async getApiBankTransfersRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['transferId'] != null) {
+            queryParameters['transfer_id'] = requestParameters['transferId'];
+        }
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/bank/transfers`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiBankTransfersRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiBankTransfersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiBankTransfers(requestParameters = {}, initOverrides) {
+        await this.getApiBankTransfersRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiBankVirtualAccount without sending the request
+     */
+    async getApiBankVirtualAccountRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['walletId'] != null) {
+            queryParameters['wallet_id'] = requestParameters['walletId'];
+        }
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/bank/virtual-account`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiBankVirtualAccountRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiBankVirtualAccountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiBankVirtualAccount(requestParameters = {}, initOverrides) {
+        await this.getApiBankVirtualAccountRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiBridgeFiatConfig without sending the request
@@ -5038,6 +5160,130 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiAllowlist(requestParameters, initOverrides) {
         await this.postApiAllowlistRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiBankExternalAccounts without sending the request
+     */
+    async postApiBankExternalAccountsRequestOpts(requestParameters) {
+        if (requestParameters['postApiBankExternalAccountsRequest'] == null) {
+            throw new runtime.RequiredError('postApiBankExternalAccountsRequest', 'Required parameter "postApiBankExternalAccountsRequest" was null or undefined when calling postApiBankExternalAccounts().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/bank/external-accounts`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBankExternalAccountsRequestToJSON(requestParameters['postApiBankExternalAccountsRequest']),
+        };
+    }
+    /**
+     */
+    async postApiBankExternalAccountsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiBankExternalAccountsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiBankExternalAccounts(requestParameters, initOverrides) {
+        await this.postApiBankExternalAccountsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiBankOnboard without sending the request
+     */
+    async postApiBankOnboardRequestOpts(requestParameters) {
+        if (requestParameters['postApiBankOnboardRequest'] == null) {
+            throw new runtime.RequiredError('postApiBankOnboardRequest', 'Required parameter "postApiBankOnboardRequest" was null or undefined when calling postApiBankOnboard().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/bank/onboard`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBankOnboardRequestToJSON(requestParameters['postApiBankOnboardRequest']),
+        };
+    }
+    /**
+     */
+    async postApiBankOnboardRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiBankOnboardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiBankOnboard(requestParameters, initOverrides) {
+        await this.postApiBankOnboardRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiBankSend without sending the request
+     */
+    async postApiBankSendRequestOpts(requestParameters) {
+        if (requestParameters['postApiBankSendRequest'] == null) {
+            throw new runtime.RequiredError('postApiBankSendRequest', 'Required parameter "postApiBankSendRequest" was null or undefined when calling postApiBankSend().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/bank/send`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBankSendRequestToJSON(requestParameters['postApiBankSendRequest']),
+        };
+    }
+    /**
+     */
+    async postApiBankSendRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiBankSendRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiBankSend(requestParameters, initOverrides) {
+        await this.postApiBankSendRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiBankVirtualAccount without sending the request
+     */
+    async postApiBankVirtualAccountRequestOpts(requestParameters) {
+        if (requestParameters['postApiBankVirtualAccountRequest'] == null) {
+            throw new runtime.RequiredError('postApiBankVirtualAccountRequest', 'Required parameter "postApiBankVirtualAccountRequest" was null or undefined when calling postApiBankVirtualAccount().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/bank/virtual-account`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBankVirtualAccountRequestToJSON(requestParameters['postApiBankVirtualAccountRequest']),
+        };
+    }
+    /**
+     */
+    async postApiBankVirtualAccountRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiBankVirtualAccountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiBankVirtualAccount(requestParameters, initOverrides) {
+        await this.postApiBankVirtualAccountRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiBridgeFiatCustomerKycLink without sending the request
