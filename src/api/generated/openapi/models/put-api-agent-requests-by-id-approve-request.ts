@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { PutApiAgentRequestsByIdApproveRequestDoordashEdits } from './put-api-agent-requests-by-id-approve-request-doordash-edits.js';
-import {
-    PutApiAgentRequestsByIdApproveRequestDoordashEditsFromJSON,
-    PutApiAgentRequestsByIdApproveRequestDoordashEditsFromJSONTyped,
-    PutApiAgentRequestsByIdApproveRequestDoordashEditsToJSON,
-    PutApiAgentRequestsByIdApproveRequestDoordashEditsToJSONTyped,
-} from './put-api-agent-requests-by-id-approve-request-doordash-edits.js';
-
 /**
  * 
  * @export
@@ -51,12 +43,6 @@ export interface PutApiAgentRequestsByIdApproveRequest {
      * @memberof PutApiAgentRequestsByIdApproveRequest
      */
     savePreferences?: boolean;
-    /**
-     * 
-     * @type {PutApiAgentRequestsByIdApproveRequestDoordashEdits}
-     * @memberof PutApiAgentRequestsByIdApproveRequest
-     */
-    doordashEdits?: PutApiAgentRequestsByIdApproveRequestDoordashEdits;
 }
 
 /**
@@ -80,7 +66,6 @@ export function PutApiAgentRequestsByIdApproveRequestFromJSONTyped(json: any, ig
         'forceExecute': json['forceExecute'] == null ? undefined : json['forceExecute'],
         'selectedOptions': json['selectedOptions'] == null ? undefined : json['selectedOptions'],
         'savePreferences': json['savePreferences'] == null ? undefined : json['savePreferences'],
-        'doordashEdits': json['doordashEdits'] == null ? undefined : PutApiAgentRequestsByIdApproveRequestDoordashEditsFromJSON(json['doordashEdits']),
     };
 }
 
@@ -99,7 +84,6 @@ export function PutApiAgentRequestsByIdApproveRequestToJSONTyped(value?: PutApiA
         'forceExecute': value['forceExecute'],
         'selectedOptions': value['selectedOptions'],
         'savePreferences': value['savePreferences'],
-        'doordashEdits': PutApiAgentRequestsByIdApproveRequestDoordashEditsToJSON(value['doordashEdits']),
     };
 }
 

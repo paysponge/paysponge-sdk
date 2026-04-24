@@ -3753,38 +3753,6 @@
                   },
                   "savePreferences": {
                     "type": "boolean"
-                  },
-                  "doordashEdits": {
-                    "type": "object",
-                    "properties": {
-                      "restaurantName": {
-                        "type": "string"
-                      },
-                      "items": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "required": [
-                            "name",
-                            "quantity"
-                          ],
-                          "properties": {
-                            "name": {
-                              "type": "string"
-                            },
-                            "quantity": {
-                              "type": "number"
-                            },
-                            "specialInstructions": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      },
-                      "deliveryAddress": {
-                        "type": "string"
-                      }
-                    }
                   }
                 }
               }
@@ -3809,38 +3777,6 @@
                   },
                   "savePreferences": {
                     "type": "boolean"
-                  },
-                  "doordashEdits": {
-                    "type": "object",
-                    "properties": {
-                      "restaurantName": {
-                        "type": "string"
-                      },
-                      "items": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "required": [
-                            "name",
-                            "quantity"
-                          ],
-                          "properties": {
-                            "name": {
-                              "type": "string"
-                            },
-                            "quantity": {
-                              "type": "number"
-                            },
-                            "specialInstructions": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      },
-                      "deliveryAddress": {
-                        "type": "string"
-                      }
-                    }
                   }
                 }
               }
@@ -3865,38 +3801,6 @@
                   },
                   "savePreferences": {
                     "type": "boolean"
-                  },
-                  "doordashEdits": {
-                    "type": "object",
-                    "properties": {
-                      "restaurantName": {
-                        "type": "string"
-                      },
-                      "items": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "required": [
-                            "name",
-                            "quantity"
-                          ],
-                          "properties": {
-                            "name": {
-                              "type": "string"
-                            },
-                            "quantity": {
-                              "type": "number"
-                            },
-                            "specialInstructions": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      },
-                      "deliveryAddress": {
-                        "type": "string"
-                      }
-                    }
                   }
                 }
               }

@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PutApiAgentRequestsByIdApproveRequestDoordashEdits } from './put-api-agent-requests-by-id-approve-request-doordash-edits.js';
 /**
  *
  * @export
@@ -40,12 +39,6 @@ export interface PutApiAgentRequestsByIdApproveRequest {
      * @memberof PutApiAgentRequestsByIdApproveRequest
      */
     savePreferences?: boolean;
-    /**
-     *
-     * @type {PutApiAgentRequestsByIdApproveRequestDoordashEdits}
-     * @memberof PutApiAgentRequestsByIdApproveRequest
-     */
-    doordashEdits?: PutApiAgentRequestsByIdApproveRequestDoordashEdits;
 }
 /**
  * Check if a given object implements the PutApiAgentRequestsByIdApproveRequest interface.

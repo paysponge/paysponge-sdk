@@ -11,7 +11,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PutApiAgentRequestsByIdApproveRequestDoordashEditsFromJSON, PutApiAgentRequestsByIdApproveRequestDoordashEditsToJSON, } from './put-api-agent-requests-by-id-approve-request-doordash-edits.js';
 /**
  * Check if a given object implements the PutApiAgentRequestsByIdApproveRequest interface.
  */
@@ -30,7 +29,6 @@ export function PutApiAgentRequestsByIdApproveRequestFromJSONTyped(json, ignoreD
         'forceExecute': json['forceExecute'] == null ? undefined : json['forceExecute'],
         'selectedOptions': json['selectedOptions'] == null ? undefined : json['selectedOptions'],
         'savePreferences': json['savePreferences'] == null ? undefined : json['savePreferences'],
-        'doordashEdits': json['doordashEdits'] == null ? undefined : PutApiAgentRequestsByIdApproveRequestDoordashEditsFromJSON(json['doordashEdits']),
     };
 }
 export function PutApiAgentRequestsByIdApproveRequestToJSON(json) {
@@ -45,7 +43,6 @@ export function PutApiAgentRequestsByIdApproveRequestToJSONTyped(value, ignoreDi
         'forceExecute': value['forceExecute'],
         'selectedOptions': value['selectedOptions'],
         'savePreferences': value['savePreferences'],
-        'doordashEdits': PutApiAgentRequestsByIdApproveRequestDoordashEditsToJSON(value['doordashEdits']),
     };
 }
 //# sourceMappingURL=put-api-agent-requests-by-id-approve-request.js.map
