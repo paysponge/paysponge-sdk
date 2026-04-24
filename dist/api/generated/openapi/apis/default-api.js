@@ -810,6 +810,39 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.deleteApiMasterKeysByIdRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for deleteApiPaymentLinksByPaymentLinkId without sending the request
+     */
+    async deleteApiPaymentLinksByPaymentLinkIdRequestOpts(requestParameters) {
+        if (requestParameters['paymentLinkId'] == null) {
+            throw new runtime.RequiredError('paymentLinkId', 'Required parameter "paymentLinkId" was null or undefined when calling deleteApiPaymentLinksByPaymentLinkId().');
+        }
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/payment-links/{paymentLinkId}`;
+        urlPath = urlPath.replace(`{${"paymentLinkId"}}`, encodeURIComponent(String(requestParameters['paymentLinkId'])));
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async deleteApiPaymentLinksByPaymentLinkIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.deleteApiPaymentLinksByPaymentLinkIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async deleteApiPaymentLinksByPaymentLinkId(requestParameters, initOverrides) {
+        await this.deleteApiPaymentLinksByPaymentLinkIdRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for deleteApiSpendingLimitsById without sending the request
      */
     async deleteApiSpendingLimitsByIdRequestOpts(requestParameters) {

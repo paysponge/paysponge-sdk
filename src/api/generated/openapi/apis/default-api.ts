@@ -377,6 +377,11 @@ export interface DefaultApiDeleteApiMasterKeysByIdRequest {
     id: string;
 }
 
+export interface DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest {
+    paymentLinkId: string;
+    agentId?: string;
+}
+
 export interface DefaultApiDeleteApiSpendingLimitsByIdRequest {
     id: string;
 }
@@ -1875,6 +1880,29 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiMasterKeysById(requestParameters: DefaultApiDeleteApiMasterKeysByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for deleteApiPaymentLinksByPaymentLinkId without sending the request
+     * @param {string} paymentLinkId 
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiPaymentLinksByPaymentLinkIdRequestOpts(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} paymentLinkId 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiPaymentLinksByPaymentLinkIdRaw(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    deleteApiPaymentLinksByPaymentLinkId(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for deleteApiSpendingLimitsById without sending the request
@@ -7989,6 +8017,52 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async deleteApiMasterKeysById(requestParameters: DefaultApiDeleteApiMasterKeysByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteApiMasterKeysByIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteApiPaymentLinksByPaymentLinkId without sending the request
+     */
+    async deleteApiPaymentLinksByPaymentLinkIdRequestOpts(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['paymentLinkId'] == null) {
+            throw new runtime.RequiredError(
+                'paymentLinkId',
+                'Required parameter "paymentLinkId" was null or undefined when calling deleteApiPaymentLinksByPaymentLinkId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/payment-links/{paymentLinkId}`;
+        urlPath = urlPath.replace(`{${"paymentLinkId"}}`, encodeURIComponent(String(requestParameters['paymentLinkId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteApiPaymentLinksByPaymentLinkIdRaw(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteApiPaymentLinksByPaymentLinkIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteApiPaymentLinksByPaymentLinkId(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteApiPaymentLinksByPaymentLinkIdRaw(requestParameters, initOverrides);
     }
 
     /**

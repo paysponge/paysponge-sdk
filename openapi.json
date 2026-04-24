@@ -8116,6 +8116,27 @@
           }
         ],
         "operationId": "getApiPayment-linksByPaymentLinkId"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "paymentLinkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "deleteApiPayment-linksByPaymentLinkId"
       }
     },
     "/api/payment-events": {

@@ -47,6 +47,10 @@ export interface DefaultApiDeleteApiFlowsByIdRequest {
 export interface DefaultApiDeleteApiMasterKeysByIdRequest {
     id: string;
 }
+export interface DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest {
+    paymentLinkId: string;
+    agentId?: string;
+}
 export interface DefaultApiDeleteApiSpendingLimitsByIdRequest {
     id: string;
 }
@@ -1260,6 +1264,26 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiMasterKeysById(requestParameters: DefaultApiDeleteApiMasterKeysByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for deleteApiPaymentLinksByPaymentLinkId without sending the request
+     * @param {string} paymentLinkId
+     * @param {string} [agentId]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiPaymentLinksByPaymentLinkIdRequestOpts(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} paymentLinkId
+     * @param {string} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiPaymentLinksByPaymentLinkIdRaw(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    deleteApiPaymentLinksByPaymentLinkId(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for deleteApiSpendingLimitsById without sending the request
      * @param {string} id
@@ -5885,6 +5909,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     deleteApiMasterKeysById(requestParameters: DefaultApiDeleteApiMasterKeysByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for deleteApiPaymentLinksByPaymentLinkId without sending the request
+     */
+    deleteApiPaymentLinksByPaymentLinkIdRequestOpts(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    deleteApiPaymentLinksByPaymentLinkIdRaw(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    deleteApiPaymentLinksByPaymentLinkId(requestParameters: DefaultApiDeleteApiPaymentLinksByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for deleteApiSpendingLimitsById without sending the request
      */
