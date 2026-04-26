@@ -12862,6 +12862,89 @@
         "operationId": "postApiWebhooksBridge"
       }
     },
+    "/api/persona-kyc/config": {
+      "get": {
+        "operationId": "getApiPersona-kycConfig"
+      }
+    },
+    "/api/persona-kyc/profile": {
+      "get": {
+        "parameters": [
+          {
+            "name": "forceRefresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "format": "boolean",
+                  "default": false,
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
+        "operationId": "getApiPersona-kycProfile"
+      }
+    },
+    "/api/persona-kyc/inquiry": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "restart": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "restart": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "restart": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiPersona-kycInquiry"
+      }
+    },
+    "/api/webhooks/persona": {
+      "post": {
+        "operationId": "postApiWebhooksPersona"
+      }
+    },
     "/api/sponge-card/config": {
       "get": {
         "operationId": "getApiSponge-cardConfig"

@@ -74,6 +74,7 @@ export * from './post-api-oauth-device-token-request.js';
 export * from './post-api-onramp-crypto-request.js';
 export * from './post-api-paid-fetch-request.js';
 export * from './post-api-payment-links-request.js';
+export * from './post-api-persona-kyc-inquiry-request.js';
 export * from './post-api-plans-approve-request.js';
 export * from './post-api-plans-submit-request.js';
 export * from './post-api-plans-submit-request-steps-inner.js';

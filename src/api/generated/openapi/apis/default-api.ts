@@ -80,6 +80,7 @@ import type {
   PostApiOnrampCryptoRequest,
   PostApiPaidFetchRequest,
   PostApiPaymentLinksRequest,
+  PostApiPersonaKycInquiryRequest,
   PostApiPlansApproveRequest,
   PostApiPlansSubmitRequest,
   PostApiPolymarketRequest,
@@ -261,6 +262,8 @@ import {
     PostApiPaidFetchRequestToJSON,
     PostApiPaymentLinksRequestFromJSON,
     PostApiPaymentLinksRequestToJSON,
+    PostApiPersonaKycInquiryRequestFromJSON,
+    PostApiPersonaKycInquiryRequestToJSON,
     PostApiPlansApproveRequestFromJSON,
     PostApiPlansApproveRequestToJSON,
     PostApiPlansSubmitRequestFromJSON,
@@ -665,6 +668,10 @@ export interface DefaultApiGetApiPaymentLinksByPaymentLinkIdRequest {
 
 export interface DefaultApiGetApiPaymentLinksPublicByPaymentLinkIdRequest {
     paymentLinkId: string;
+}
+
+export interface DefaultApiGetApiPersonaKycProfileRequest {
+    forceRefresh?: GetApiBridgeFiatCustomerForceRefreshParameter;
 }
 
 export interface DefaultApiGetApiPromoKv2Jm7DZOIDGi6D2FreemoneyRequest {
@@ -1147,6 +1154,10 @@ export interface DefaultApiPostApiPaidFetchOperationRequest {
 
 export interface DefaultApiPostApiPaymentLinksOperationRequest {
     postApiPaymentLinksRequest: PostApiPaymentLinksRequest;
+}
+
+export interface DefaultApiPostApiPersonaKycInquiryOperationRequest {
+    postApiPersonaKycInquiryRequest: PostApiPersonaKycInquiryRequest;
 }
 
 export interface DefaultApiPostApiPlansApproveOperationRequest {
@@ -3556,6 +3567,46 @@ export interface DefaultApiInterface {
     /**
      */
     getApiPaymentLinksPublicByPaymentLinkId(requestParameters: DefaultApiGetApiPaymentLinksPublicByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiPersonaKycConfig without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiPersonaKycConfigRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiPersonaKycConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiPersonaKycConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiPersonaKycProfile without sending the request
+     * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiPersonaKycProfileRequestOpts(requestParameters: DefaultApiGetApiPersonaKycProfileRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiPersonaKycProfileRaw(requestParameters: DefaultApiGetApiPersonaKycProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiPersonaKycProfile(requestParameters: DefaultApiGetApiPersonaKycProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiPromoKv2Jm7DZOIDGi6D2Freemoney without sending the request
@@ -6007,6 +6058,27 @@ export interface DefaultApiInterface {
     postApiPaymentLinks(requestParameters: DefaultApiPostApiPaymentLinksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiPersonaKycInquiry without sending the request
+     * @param {PostApiPersonaKycInquiryRequest} postApiPersonaKycInquiryRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiPersonaKycInquiryRequestOpts(requestParameters: DefaultApiPostApiPersonaKycInquiryOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiPersonaKycInquiryRequest} postApiPersonaKycInquiryRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiPersonaKycInquiryRaw(requestParameters: DefaultApiPostApiPersonaKycInquiryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiPersonaKycInquiry(requestParameters: DefaultApiPostApiPersonaKycInquiryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiPlansApprove without sending the request
      * @param {PostApiPlansApproveRequest} postApiPlansApproveRequest 
      * @throws {RequiredError}
@@ -6962,6 +7034,25 @@ export interface DefaultApiInterface {
     /**
      */
     postApiWebhooksBridge(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiWebhooksPersona without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiWebhooksPersonaRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiWebhooksPersonaRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiWebhooksPersona(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiWebhooksStripeOnramp without sending the request
@@ -11487,6 +11578,78 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiPaymentLinksPublicByPaymentLinkId(requestParameters: DefaultApiGetApiPaymentLinksPublicByPaymentLinkIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiPaymentLinksPublicByPaymentLinkIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiPersonaKycConfig without sending the request
+     */
+    async getApiPersonaKycConfigRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/persona-kyc/config`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiPersonaKycConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiPersonaKycConfigRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiPersonaKycConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiPersonaKycConfigRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiPersonaKycProfile without sending the request
+     */
+    async getApiPersonaKycProfileRequestOpts(requestParameters: DefaultApiGetApiPersonaKycProfileRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['forceRefresh'] != null) {
+            queryParameters['forceRefresh'] = requestParameters['forceRefresh'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/persona-kyc/profile`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiPersonaKycProfileRaw(requestParameters: DefaultApiGetApiPersonaKycProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiPersonaKycProfileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiPersonaKycProfile(requestParameters: DefaultApiGetApiPersonaKycProfileRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiPersonaKycProfileRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -16664,6 +16827,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiPersonaKycInquiry without sending the request
+     */
+    async postApiPersonaKycInquiryRequestOpts(requestParameters: DefaultApiPostApiPersonaKycInquiryOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiPersonaKycInquiryRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiPersonaKycInquiryRequest',
+                'Required parameter "postApiPersonaKycInquiryRequest" was null or undefined when calling postApiPersonaKycInquiry().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/persona-kyc/inquiry`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiPersonaKycInquiryRequestToJSON(requestParameters['postApiPersonaKycInquiryRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiPersonaKycInquiryRaw(requestParameters: DefaultApiPostApiPersonaKycInquiryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiPersonaKycInquiryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiPersonaKycInquiry(requestParameters: DefaultApiPostApiPersonaKycInquiryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiPersonaKycInquiryRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiPlansApprove without sending the request
      */
     async postApiPlansApproveRequestOpts(requestParameters: DefaultApiPostApiPlansApproveOperationRequest): Promise<runtime.RequestOpts> {
@@ -18675,6 +18882,40 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiWebhooksBridge(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiWebhooksBridgeRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiWebhooksPersona without sending the request
+     */
+    async postApiWebhooksPersonaRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/webhooks/persona`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiWebhooksPersonaRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiWebhooksPersonaRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiWebhooksPersona(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiWebhooksPersonaRaw(initOverrides);
     }
 
     /**
