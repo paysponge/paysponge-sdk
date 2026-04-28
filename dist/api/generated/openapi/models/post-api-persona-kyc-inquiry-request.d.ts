@@ -17,6 +17,12 @@
 export interface PostApiPersonaKycInquiryRequest {
     /**
      *
+     * @type {PostApiPersonaKycInquiryRequestEnvironmentEnum}
+     * @memberof PostApiPersonaKycInquiryRequest
+     */
+    environment?: PostApiPersonaKycInquiryRequestEnvironmentEnum;
+    /**
+     *
      * @type {string}
      * @memberof PostApiPersonaKycInquiryRequest
      */
@@ -28,6 +34,14 @@ export interface PostApiPersonaKycInquiryRequest {
      */
     restart?: boolean;
 }
+/**
+ * @export
+ */
+export declare const PostApiPersonaKycInquiryRequestEnvironmentEnum: {
+    readonly Sandbox: "sandbox";
+    readonly Production: "production";
+};
+export type PostApiPersonaKycInquiryRequestEnvironmentEnum = typeof PostApiPersonaKycInquiryRequestEnvironmentEnum[keyof typeof PostApiPersonaKycInquiryRequestEnvironmentEnum];
 /**
  * Check if a given object implements the PostApiPersonaKycInquiryRequest interface.
  */

@@ -21,6 +21,12 @@ import { mapValues } from '../runtime.js';
 export interface PostApiPersonaKycInquiryRequest {
     /**
      * 
+     * @type {PostApiPersonaKycInquiryRequestEnvironmentEnum}
+     * @memberof PostApiPersonaKycInquiryRequest
+     */
+    environment?: PostApiPersonaKycInquiryRequestEnvironmentEnum;
+    /**
+     * 
      * @type {string}
      * @memberof PostApiPersonaKycInquiryRequest
      */
@@ -32,6 +38,17 @@ export interface PostApiPersonaKycInquiryRequest {
      */
     restart?: boolean;
 }
+
+
+/**
+ * @export
+ */
+export const PostApiPersonaKycInquiryRequestEnvironmentEnum = {
+    Sandbox: 'sandbox',
+    Production: 'production'
+} as const;
+export type PostApiPersonaKycInquiryRequestEnvironmentEnum = typeof PostApiPersonaKycInquiryRequestEnvironmentEnum[keyof typeof PostApiPersonaKycInquiryRequestEnvironmentEnum];
+
 
 /**
  * Check if a given object implements the PostApiPersonaKycInquiryRequest interface.
@@ -50,6 +67,7 @@ export function PostApiPersonaKycInquiryRequestFromJSONTyped(json: any, ignoreDi
     }
     return {
         
+        'environment': json['environment'] == null ? undefined : json['environment'],
         'redirectUri': json['redirectUri'] == null ? undefined : json['redirectUri'],
         'restart': json['restart'] == null ? undefined : json['restart'],
     };
@@ -66,6 +84,7 @@ export function PostApiPersonaKycInquiryRequestToJSONTyped(value?: PostApiPerson
 
     return {
         
+        'environment': value['environment'],
         'redirectUri': value['redirectUri'],
         'restart': value['restart'],
     };

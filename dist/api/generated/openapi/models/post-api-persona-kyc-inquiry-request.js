@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 /**
+ * @export
+ */
+export const PostApiPersonaKycInquiryRequestEnvironmentEnum = {
+    Sandbox: 'sandbox',
+    Production: 'production'
+};
+/**
  * Check if a given object implements the PostApiPersonaKycInquiryRequest interface.
  */
 export function instanceOfPostApiPersonaKycInquiryRequest(value) {
@@ -25,6 +32,7 @@ export function PostApiPersonaKycInquiryRequestFromJSONTyped(json, ignoreDiscrim
         return json;
     }
     return {
+        'environment': json['environment'] == null ? undefined : json['environment'],
         'redirectUri': json['redirectUri'] == null ? undefined : json['redirectUri'],
         'restart': json['restart'] == null ? undefined : json['restart'],
     };
@@ -37,6 +45,7 @@ export function PostApiPersonaKycInquiryRequestToJSONTyped(value, ignoreDiscrimi
         return value;
     }
     return {
+        'environment': value['environment'],
         'redirectUri': value['redirectUri'],
         'restart': value['restart'],
     };

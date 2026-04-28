@@ -671,6 +671,7 @@ export interface DefaultApiGetApiPaymentLinksPublicByPaymentLinkIdRequest {
 }
 
 export interface DefaultApiGetApiPersonaKycProfileRequest {
+    environment?: GetApiPersonaKycProfileEnvironmentEnum;
     forceRefresh?: GetApiBridgeFiatCustomerForceRefreshParameter;
 }
 
@@ -3589,6 +3590,7 @@ export interface DefaultApiInterface {
 
     /**
      * Creates request options for getApiPersonaKycProfile without sending the request
+     * @param {'sandbox' | 'production'} [environment] 
      * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh] 
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -3597,6 +3599,7 @@ export interface DefaultApiInterface {
 
     /**
      * 
+     * @param {'sandbox' | 'production'} [environment] 
      * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11619,6 +11622,10 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiPersonaKycProfileRequestOpts(requestParameters: DefaultApiGetApiPersonaKycProfileRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
+
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
 
         if (requestParameters['forceRefresh'] != null) {
             queryParameters['forceRefresh'] = requestParameters['forceRefresh'];
@@ -19750,6 +19757,14 @@ export const DeleteApiSpongeCardCustomerEnvironmentEnum = {
     Production: 'production'
 } as const;
 export type DeleteApiSpongeCardCustomerEnvironmentEnum = typeof DeleteApiSpongeCardCustomerEnvironmentEnum[keyof typeof DeleteApiSpongeCardCustomerEnvironmentEnum];
+/**
+ * @export
+ */
+export const GetApiPersonaKycProfileEnvironmentEnum = {
+    Sandbox: 'sandbox',
+    Production: 'production'
+} as const;
+export type GetApiPersonaKycProfileEnvironmentEnum = typeof GetApiPersonaKycProfileEnvironmentEnum[keyof typeof GetApiPersonaKycProfileEnvironmentEnum];
 /**
  * @export
  */

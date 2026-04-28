@@ -254,6 +254,7 @@ export interface DefaultApiGetApiPaymentLinksPublicByPaymentLinkIdRequest {
     paymentLinkId: string;
 }
 export interface DefaultApiGetApiPersonaKycProfileRequest {
+    environment?: GetApiPersonaKycProfileEnvironmentEnum;
     forceRefresh?: GetApiBridgeFiatCustomerForceRefreshParameter;
 }
 export interface DefaultApiGetApiPromoKv2Jm7DZOIDGi6D2FreemoneyRequest {
@@ -2700,6 +2701,7 @@ export interface DefaultApiInterface {
     getApiPersonaKycConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiPersonaKycProfile without sending the request
+     * @param {'sandbox' | 'production'} [environment]
      * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh]
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -2707,6 +2709,7 @@ export interface DefaultApiInterface {
     getApiPersonaKycProfileRequestOpts(requestParameters: DefaultApiGetApiPersonaKycProfileRequest): Promise<runtime.RequestOpts>;
     /**
      *
+     * @param {'sandbox' | 'production'} [environment]
      * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -8826,6 +8829,14 @@ export declare const DeleteApiSpongeCardCustomerEnvironmentEnum: {
     readonly Production: "production";
 };
 export type DeleteApiSpongeCardCustomerEnvironmentEnum = typeof DeleteApiSpongeCardCustomerEnvironmentEnum[keyof typeof DeleteApiSpongeCardCustomerEnvironmentEnum];
+/**
+ * @export
+ */
+export declare const GetApiPersonaKycProfileEnvironmentEnum: {
+    readonly Sandbox: "sandbox";
+    readonly Production: "production";
+};
+export type GetApiPersonaKycProfileEnvironmentEnum = typeof GetApiPersonaKycProfileEnvironmentEnum[keyof typeof GetApiPersonaKycProfileEnvironmentEnum];
 /**
  * @export
  */

@@ -3085,6 +3085,9 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiPersonaKycProfileRequestOpts(requestParameters) {
         const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
         if (requestParameters['forceRefresh'] != null) {
             queryParameters['forceRefresh'] = requestParameters['forceRefresh'];
         }
@@ -8787,6 +8790,13 @@ export class DefaultApi extends runtime.BaseAPI {
  */
 export const DeleteApiSpongeCardCustomerEnvironmentEnum = {
     Dev: 'dev',
+    Production: 'production'
+};
+/**
+ * @export
+ */
+export const GetApiPersonaKycProfileEnvironmentEnum = {
+    Sandbox: 'sandbox',
     Production: 'production'
 };
 /**

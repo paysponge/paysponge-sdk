@@ -12871,6 +12871,18 @@
       "get": {
         "parameters": [
           {
+            "name": "environment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "sandbox",
+                "production"
+              ]
+            }
+          },
+          {
             "name": "forceRefresh",
             "in": "query",
             "required": false,
@@ -12900,6 +12912,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "sandbox",
+                      "production"
+                    ]
+                  },
                   "redirectUri": {
                     "type": "string"
                   },
@@ -12913,6 +12932,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "sandbox",
+                      "production"
+                    ]
+                  },
                   "redirectUri": {
                     "type": "string"
                   },
@@ -12926,6 +12952,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "environment": {
+                    "type": "string",
+                    "enum": [
+                      "sandbox",
+                      "production"
+                    ]
+                  },
                   "redirectUri": {
                     "type": "string"
                   },
