@@ -38,37 +38,37 @@ export interface PostApiSpongeCardCustomerRequest {
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    email: string;
+    email?: string;
     /**
      * 
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    firstName: string;
+    firstName?: string;
     /**
      * 
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    lastName: string;
+    lastName?: string;
     /**
      * 
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    birthDate: string;
+    birthDate?: string;
     /**
      * 
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    nationalId: string;
+    nationalId?: string;
     /**
      * 
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    countryOfIssue: string;
+    countryOfIssue?: string;
     /**
      * 
      * @type {string}
@@ -86,7 +86,7 @@ export interface PostApiSpongeCardCustomerRequest {
      * @type {PostApiSpongeCardCustomerRequestAddress}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    address: PostApiSpongeCardCustomerRequestAddress;
+    address?: PostApiSpongeCardCustomerRequestAddress;
     /**
      * 
      * @type {string}
@@ -117,13 +117,6 @@ export type PostApiSpongeCardCustomerRequestEnvironmentEnum = typeof PostApiSpon
  */
 export function instanceOfPostApiSpongeCardCustomerRequest(value: object): value is PostApiSpongeCardCustomerRequest {
     if (!('environment' in value) || value['environment'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('firstName' in value) || value['firstName'] === undefined) return false;
-    if (!('lastName' in value) || value['lastName'] === undefined) return false;
-    if (!('birthDate' in value) || value['birthDate'] === undefined) return false;
-    if (!('nationalId' in value) || value['nationalId'] === undefined) return false;
-    if (!('countryOfIssue' in value) || value['countryOfIssue'] === undefined) return false;
-    if (!('address' in value) || value['address'] === undefined) return false;
     if (!('occupation' in value) || value['occupation'] === undefined) return false;
     if (!('agentId' in value) || value['agentId'] === undefined) return false;
     return true;
@@ -140,15 +133,15 @@ export function PostApiSpongeCardCustomerRequestFromJSONTyped(json: any, ignoreD
     return {
         
         'environment': json['environment'],
-        'email': json['email'],
-        'firstName': json['firstName'],
-        'lastName': json['lastName'],
-        'birthDate': json['birthDate'],
-        'nationalId': json['nationalId'],
-        'countryOfIssue': json['countryOfIssue'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'firstName': json['firstName'] == null ? undefined : json['firstName'],
+        'lastName': json['lastName'] == null ? undefined : json['lastName'],
+        'birthDate': json['birthDate'] == null ? undefined : json['birthDate'],
+        'nationalId': json['nationalId'] == null ? undefined : json['nationalId'],
+        'countryOfIssue': json['countryOfIssue'] == null ? undefined : json['countryOfIssue'],
         'phoneCountryCode': json['phoneCountryCode'] == null ? undefined : json['phoneCountryCode'],
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
-        'address': PostApiSpongeCardCustomerRequestAddressFromJSON(json['address']),
+        'address': json['address'] == null ? undefined : PostApiSpongeCardCustomerRequestAddressFromJSON(json['address']),
         'occupation': json['occupation'],
         'agentId': json['agentId'],
     };

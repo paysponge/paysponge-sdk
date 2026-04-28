@@ -13027,13 +13027,6 @@
                 "type": "object",
                 "required": [
                   "environment",
-                  "email",
-                  "firstName",
-                  "lastName",
-                  "birthDate",
-                  "nationalId",
-                  "countryOfIssue",
-                  "address",
                   "occupation",
                   "agentId"
                 ],
@@ -13143,13 +13136,6 @@
                 "type": "object",
                 "required": [
                   "environment",
-                  "email",
-                  "firstName",
-                  "lastName",
-                  "birthDate",
-                  "nationalId",
-                  "countryOfIssue",
-                  "address",
                   "occupation",
                   "agentId"
                 ],
@@ -13259,13 +13245,6 @@
                 "type": "object",
                 "required": [
                   "environment",
-                  "email",
-                  "firstName",
-                  "lastName",
-                  "birthDate",
-                  "nationalId",
-                  "countryOfIssue",
-                  "address",
                   "occupation",
                   "agentId"
                 ],

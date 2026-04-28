@@ -27,37 +27,37 @@ export interface PostApiSpongeCardCustomerRequest {
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    email: string;
+    email?: string;
     /**
      *
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    firstName: string;
+    firstName?: string;
     /**
      *
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    lastName: string;
+    lastName?: string;
     /**
      *
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    birthDate: string;
+    birthDate?: string;
     /**
      *
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    nationalId: string;
+    nationalId?: string;
     /**
      *
      * @type {string}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    countryOfIssue: string;
+    countryOfIssue?: string;
     /**
      *
      * @type {string}
@@ -75,7 +75,7 @@ export interface PostApiSpongeCardCustomerRequest {
      * @type {PostApiSpongeCardCustomerRequestAddress}
      * @memberof PostApiSpongeCardCustomerRequest
      */
-    address: PostApiSpongeCardCustomerRequestAddress;
+    address?: PostApiSpongeCardCustomerRequestAddress;
     /**
      *
      * @type {string}
