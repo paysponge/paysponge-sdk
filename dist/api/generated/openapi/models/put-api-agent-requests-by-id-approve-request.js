@@ -29,6 +29,7 @@ export function PutApiAgentRequestsByIdApproveRequestFromJSONTyped(json, ignoreD
         'forceExecute': json['forceExecute'] == null ? undefined : json['forceExecute'],
         'selectedOptions': json['selectedOptions'] == null ? undefined : json['selectedOptions'],
         'savePreferences': json['savePreferences'] == null ? undefined : json['savePreferences'],
+        'forceSpendingLimit': json['forceSpendingLimit'] == null ? undefined : json['forceSpendingLimit'],
     };
 }
 export function PutApiAgentRequestsByIdApproveRequestToJSON(json) {
@@ -43,6 +44,7 @@ export function PutApiAgentRequestsByIdApproveRequestToJSONTyped(value, ignoreDi
         'forceExecute': value['forceExecute'],
         'selectedOptions': value['selectedOptions'],
         'savePreferences': value['savePreferences'],
+        'forceSpendingLimit': value['forceSpendingLimit'],
     };
 }
 //# sourceMappingURL=put-api-agent-requests-by-id-approve-request.js.map

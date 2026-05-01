@@ -43,6 +43,12 @@ export interface PutApiAgentRequestsByIdApproveRequest {
      * @memberof PutApiAgentRequestsByIdApproveRequest
      */
     savePreferences?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PutApiAgentRequestsByIdApproveRequest
+     */
+    forceSpendingLimit?: boolean;
 }
 
 /**
@@ -66,6 +72,7 @@ export function PutApiAgentRequestsByIdApproveRequestFromJSONTyped(json: any, ig
         'forceExecute': json['forceExecute'] == null ? undefined : json['forceExecute'],
         'selectedOptions': json['selectedOptions'] == null ? undefined : json['selectedOptions'],
         'savePreferences': json['savePreferences'] == null ? undefined : json['savePreferences'],
+        'forceSpendingLimit': json['forceSpendingLimit'] == null ? undefined : json['forceSpendingLimit'],
     };
 }
 
@@ -84,6 +91,7 @@ export function PutApiAgentRequestsByIdApproveRequestToJSONTyped(value?: PutApiA
         'forceExecute': value['forceExecute'],
         'selectedOptions': value['selectedOptions'],
         'savePreferences': value['savePreferences'],
+        'forceSpendingLimit': value['forceSpendingLimit'],
     };
 }
 

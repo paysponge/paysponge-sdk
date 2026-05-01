@@ -39,6 +39,12 @@ export interface PutApiAgentRequestsByIdApproveRequest {
      * @memberof PutApiAgentRequestsByIdApproveRequest
      */
     savePreferences?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof PutApiAgentRequestsByIdApproveRequest
+     */
+    forceSpendingLimit?: boolean;
 }
 /**
  * Check if a given object implements the PutApiAgentRequestsByIdApproveRequest interface.

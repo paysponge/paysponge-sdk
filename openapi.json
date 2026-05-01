@@ -3753,6 +3753,9 @@
                   },
                   "savePreferences": {
                     "type": "boolean"
+                  },
+                  "forceSpendingLimit": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -3777,6 +3780,9 @@
                   },
                   "savePreferences": {
                     "type": "boolean"
+                  },
+                  "forceSpendingLimit": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -3800,6 +3806,9 @@
                     }
                   },
                   "savePreferences": {
+                    "type": "boolean"
+                  },
+                  "forceSpendingLimit": {
                     "type": "boolean"
                   }
                 }
