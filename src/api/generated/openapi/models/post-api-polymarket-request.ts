@@ -110,6 +110,8 @@ export interface PostApiPolymarketRequest {
  * @export
  */
 export const PostApiPolymarketRequestActionEnum = {
+    Enable: 'enable',
+    Signup: 'signup',
     Status: 'status',
     Order: 'order',
     Positions: 'positions',

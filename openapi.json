@@ -9051,6 +9051,8 @@
                   "action": {
                     "type": "string",
                     "enum": [
+                      "enable",
+                      "signup",
                       "status",
                       "order",
                       "positions",
@@ -9137,6 +9139,8 @@
                   "action": {
                     "type": "string",
                     "enum": [
+                      "enable",
+                      "signup",
                       "status",
                       "order",
                       "positions",
@@ -9223,6 +9227,8 @@
                   "action": {
                     "type": "string",
                     "enum": [
+                      "enable",
+                      "signup",
                       "status",
                       "order",
                       "positions",

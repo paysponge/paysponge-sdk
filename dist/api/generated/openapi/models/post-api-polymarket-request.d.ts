@@ -104,6 +104,8 @@ export interface PostApiPolymarketRequest {
  * @export
  */
 export declare const PostApiPolymarketRequestActionEnum: {
+    readonly Enable: "enable";
+    readonly Signup: "signup";
     readonly Status: "status";
     readonly Order: "order";
     readonly Positions: "positions";
