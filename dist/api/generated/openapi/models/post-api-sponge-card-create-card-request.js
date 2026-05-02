@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import { PostApiSpongeCardCreateCardRequestShippingFromJSON, PostApiSpongeCardCreateCardRequestShippingToJSON, } from './post-api-sponge-card-create-card-request-shipping.js';
-import { PostApiSpongeCardOnboardRequestAddressFromJSON, PostApiSpongeCardOnboardRequestAddressToJSON, } from './post-api-sponge-card-onboard-request-address.js';
+import { PostApiSpongeCardCreateCardRequestBillingFromJSON, PostApiSpongeCardCreateCardRequestBillingToJSON, } from './post-api-sponge-card-create-card-request-billing.js';
 /**
  * Check if a given object implements the PostApiSpongeCardCreateCardRequest interface.
  */
@@ -34,7 +34,7 @@ export function PostApiSpongeCardCreateCardRequestFromJSONTyped(json, ignoreDisc
     }
     return {
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
-        'billing': PostApiSpongeCardOnboardRequestAddressFromJSON(json['billing']),
+        'billing': PostApiSpongeCardCreateCardRequestBillingFromJSON(json['billing']),
         'email': json['email'],
         'phone': json['phone'],
         'shipping': json['shipping'] == null ? undefined : PostApiSpongeCardCreateCardRequestShippingFromJSON(json['shipping']),
@@ -49,7 +49,7 @@ export function PostApiSpongeCardCreateCardRequestToJSONTyped(value, ignoreDiscr
     }
     return {
         'agentId': value['agentId'],
-        'billing': PostApiSpongeCardOnboardRequestAddressToJSON(value['billing']),
+        'billing': PostApiSpongeCardCreateCardRequestBillingToJSON(value['billing']),
         'email': value['email'],
         'phone': value['phone'],
         'shipping': PostApiSpongeCardCreateCardRequestShippingToJSON(value['shipping']),

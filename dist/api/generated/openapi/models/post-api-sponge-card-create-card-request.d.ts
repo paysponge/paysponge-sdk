@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import type { PostApiSpongeCardCreateCardRequestShipping } from './post-api-sponge-card-create-card-request-shipping.js';
-import type { PostApiSpongeCardOnboardRequestAddress } from './post-api-sponge-card-onboard-request-address.js';
+import type { PostApiSpongeCardCreateCardRequestBilling } from './post-api-sponge-card-create-card-request-billing.js';
 /**
  *
  * @export
@@ -25,10 +25,10 @@ export interface PostApiSpongeCardCreateCardRequest {
     agentId?: string;
     /**
      *
-     * @type {PostApiSpongeCardOnboardRequestAddress}
+     * @type {PostApiSpongeCardCreateCardRequestBilling}
      * @memberof PostApiSpongeCardCreateCardRequest
      */
-    billing: PostApiSpongeCardOnboardRequestAddress;
+    billing: PostApiSpongeCardCreateCardRequestBilling;
     /**
      *
      * @type {string}

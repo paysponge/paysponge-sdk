@@ -12,25 +12,25 @@
  * Do not edit the class manually.
  */
 /**
- * Check if a given object implements the PostApiSpongeCardOnboardRequestAddress interface.
+ * Check if a given object implements the PostApiSpongeCardCardRequestBilling interface.
  */
-export function instanceOfPostApiSpongeCardOnboardRequestAddress(value) {
+export function instanceOfPostApiSpongeCardCardRequestBilling(value) {
     if (!('line1' in value) || value['line1'] === undefined)
         return false;
     if (!('city' in value) || value['city'] === undefined)
         return false;
     if (!('region' in value) || value['region'] === undefined)
         return false;
-    if (!('postal_code' in value) || value['postal_code'] === undefined)
+    if (!('postalCode' in value) || value['postalCode'] === undefined)
         return false;
-    if (!('country_code' in value) || value['country_code'] === undefined)
+    if (!('countryCode' in value) || value['countryCode'] === undefined)
         return false;
     return true;
 }
-export function PostApiSpongeCardOnboardRequestAddressFromJSON(json) {
-    return PostApiSpongeCardOnboardRequestAddressFromJSONTyped(json, false);
+export function PostApiSpongeCardCardRequestBillingFromJSON(json) {
+    return PostApiSpongeCardCardRequestBillingFromJSONTyped(json, false);
 }
-export function PostApiSpongeCardOnboardRequestAddressFromJSONTyped(json, ignoreDiscriminator) {
+export function PostApiSpongeCardCardRequestBillingFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
@@ -39,14 +39,14 @@ export function PostApiSpongeCardOnboardRequestAddressFromJSONTyped(json, ignore
         'line2': json['line2'] == null ? undefined : json['line2'],
         'city': json['city'],
         'region': json['region'],
-        'postal_code': json['postal_code'],
-        'country_code': json['country_code'],
+        'postalCode': json['postalCode'],
+        'countryCode': json['countryCode'],
     };
 }
-export function PostApiSpongeCardOnboardRequestAddressToJSON(json) {
-    return PostApiSpongeCardOnboardRequestAddressToJSONTyped(json, false);
+export function PostApiSpongeCardCardRequestBillingToJSON(json) {
+    return PostApiSpongeCardCardRequestBillingToJSONTyped(json, false);
 }
-export function PostApiSpongeCardOnboardRequestAddressToJSONTyped(value, ignoreDiscriminator = false) {
+export function PostApiSpongeCardCardRequestBillingToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
@@ -55,8 +55,8 @@ export function PostApiSpongeCardOnboardRequestAddressToJSONTyped(value, ignoreD
         'line2': value['line2'],
         'city': value['city'],
         'region': value['region'],
-        'postal_code': value['postal_code'],
-        'country_code': value['country_code'],
+        'postalCode': value['postalCode'],
+        'countryCode': value['countryCode'],
     };
 }
-//# sourceMappingURL=post-api-sponge-card-onboard-request-address.js.map
+//# sourceMappingURL=post-api-sponge-card-card-request-billing.js.map

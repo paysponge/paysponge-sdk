@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { PostApiSpongeCardCardRequestBilling } from './post-api-sponge-card-card-request-billing.js';
+import {
+    PostApiSpongeCardCardRequestBillingFromJSON,
+    PostApiSpongeCardCardRequestBillingFromJSONTyped,
+    PostApiSpongeCardCardRequestBillingToJSON,
+    PostApiSpongeCardCardRequestBillingToJSONTyped,
+} from './post-api-sponge-card-card-request-billing.js';
 import type { PostApiSpongeCardCardRequestShipping } from './post-api-sponge-card-card-request-shipping.js';
 import {
     PostApiSpongeCardCardRequestShippingFromJSON,
@@ -20,13 +27,6 @@ import {
     PostApiSpongeCardCardRequestShippingToJSON,
     PostApiSpongeCardCardRequestShippingToJSONTyped,
 } from './post-api-sponge-card-card-request-shipping.js';
-import type { PostApiSpongeCardCustomerRequestAddress } from './post-api-sponge-card-customer-request-address.js';
-import {
-    PostApiSpongeCardCustomerRequestAddressFromJSON,
-    PostApiSpongeCardCustomerRequestAddressFromJSONTyped,
-    PostApiSpongeCardCustomerRequestAddressToJSON,
-    PostApiSpongeCardCustomerRequestAddressToJSONTyped,
-} from './post-api-sponge-card-customer-request-address.js';
 
 /**
  * 
@@ -42,10 +42,10 @@ export interface PostApiSpongeCardCardRequest {
     environment: PostApiSpongeCardCardRequestEnvironmentEnum;
     /**
      * 
-     * @type {PostApiSpongeCardCustomerRequestAddress}
+     * @type {PostApiSpongeCardCardRequestBilling}
      * @memberof PostApiSpongeCardCardRequest
      */
-    billing: PostApiSpongeCardCustomerRequestAddress;
+    billing: PostApiSpongeCardCardRequestBilling;
     /**
      * 
      * @type {string}
@@ -97,7 +97,7 @@ export function PostApiSpongeCardCardRequestFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'environment': json['environment'],
-        'billing': PostApiSpongeCardCustomerRequestAddressFromJSON(json['billing']),
+        'billing': PostApiSpongeCardCardRequestBillingFromJSON(json['billing']),
         'email': json['email'] == null ? undefined : json['email'],
         'phone': json['phone'] == null ? undefined : json['phone'],
         'shipping': json['shipping'] == null ? undefined : PostApiSpongeCardCardRequestShippingFromJSON(json['shipping']),
@@ -116,7 +116,7 @@ export function PostApiSpongeCardCardRequestToJSONTyped(value?: PostApiSpongeCar
     return {
         
         'environment': value['environment'],
-        'billing': PostApiSpongeCardCustomerRequestAddressToJSON(value['billing']),
+        'billing': PostApiSpongeCardCardRequestBillingToJSON(value['billing']),
         'email': value['email'],
         'phone': value['phone'],
         'shipping': PostApiSpongeCardCardRequestShippingToJSON(value['shipping']),

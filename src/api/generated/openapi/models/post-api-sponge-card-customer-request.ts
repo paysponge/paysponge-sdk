@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { PostApiSpongeCardCustomerRequestAddress } from './post-api-sponge-card-customer-request-address.js';
-import {
-    PostApiSpongeCardCustomerRequestAddressFromJSON,
-    PostApiSpongeCardCustomerRequestAddressFromJSONTyped,
-    PostApiSpongeCardCustomerRequestAddressToJSON,
-    PostApiSpongeCardCustomerRequestAddressToJSONTyped,
-} from './post-api-sponge-card-customer-request-address.js';
-
 /**
  * 
  * @export
@@ -33,60 +25,6 @@ export interface PostApiSpongeCardCustomerRequest {
      * @memberof PostApiSpongeCardCustomerRequest
      */
     environment: PostApiSpongeCardCustomerRequestEnvironmentEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    email?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    firstName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    lastName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    birthDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    nationalId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    countryOfIssue?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    phoneCountryCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    phoneNumber?: string;
-    /**
-     * 
-     * @type {PostApiSpongeCardCustomerRequestAddress}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    address?: PostApiSpongeCardCustomerRequestAddress;
     /**
      * 
      * @type {string}
@@ -133,15 +71,6 @@ export function PostApiSpongeCardCustomerRequestFromJSONTyped(json: any, ignoreD
     return {
         
         'environment': json['environment'],
-        'email': json['email'] == null ? undefined : json['email'],
-        'firstName': json['firstName'] == null ? undefined : json['firstName'],
-        'lastName': json['lastName'] == null ? undefined : json['lastName'],
-        'birthDate': json['birthDate'] == null ? undefined : json['birthDate'],
-        'nationalId': json['nationalId'] == null ? undefined : json['nationalId'],
-        'countryOfIssue': json['countryOfIssue'] == null ? undefined : json['countryOfIssue'],
-        'phoneCountryCode': json['phoneCountryCode'] == null ? undefined : json['phoneCountryCode'],
-        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
-        'address': json['address'] == null ? undefined : PostApiSpongeCardCustomerRequestAddressFromJSON(json['address']),
         'occupation': json['occupation'],
         'agentId': json['agentId'],
     };
@@ -159,15 +88,6 @@ export function PostApiSpongeCardCustomerRequestToJSONTyped(value?: PostApiSpong
     return {
         
         'environment': value['environment'],
-        'email': value['email'],
-        'firstName': value['firstName'],
-        'lastName': value['lastName'],
-        'birthDate': value['birthDate'],
-        'nationalId': value['nationalId'],
-        'countryOfIssue': value['countryOfIssue'],
-        'phoneCountryCode': value['phoneCountryCode'],
-        'phoneNumber': value['phoneNumber'],
-        'address': PostApiSpongeCardCustomerRequestAddressToJSON(value['address']),
         'occupation': value['occupation'],
         'agentId': value['agentId'],
     };

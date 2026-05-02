@@ -534,6 +534,21 @@
         "operationId": "getApiAgentsByIdPolymarketPositions"
       }
     },
+    "/api/agents/{id}/polymarket/prepare-collateral": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgentsByIdPolymarketPrepare-collateral"
+      }
+    },
     "/api/agents/{id}/polymarket/redeem": {
       "post": {
         "parameters": [
@@ -12447,6 +12462,155 @@
         "operationId": "postApiBridge-fiatCustomerKyc-link"
       }
     },
+    "/api/bridge-fiat/customer/persona-tos-link": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "redirectUri": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBridge-fiatCustomerPersona-tos-link"
+      }
+    },
+    "/api/bridge-fiat/customer/persona": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "signedAgreementId"
+                ],
+                "properties": {
+                  "signedAgreementId": {
+                    "type": "string"
+                  },
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "signedAgreementId"
+                ],
+                "properties": {
+                  "signedAgreementId": {
+                    "type": "string"
+                  },
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "signedAgreementId"
+                ],
+                "properties": {
+                  "signedAgreementId": {
+                    "type": "string"
+                  },
+                  "walletId": {
+                    "type": "string"
+                  },
+                  "customerType": {
+                    "type": "string",
+                    "enum": [
+                      "individual",
+                      "business"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiBridge-fiatCustomerPersona"
+      }
+    },
     "/api/bridge-fiat/external-accounts": {
       "get": {
         "operationId": "getApiBridge-fiatExternal-accounts"
@@ -13083,87 +13247,6 @@
                       "production"
                     ]
                   },
-                  "email": {
-                    "format": "email",
-                    "type": "string"
-                  },
-                  "firstName": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "lastName": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "birthDate": {
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                    "type": "string"
-                  },
-                  "nationalId": {
-                    "minLength": 1,
-                    "maxLength": 30,
-                    "type": "string"
-                  },
-                  "countryOfIssue": {
-                    "minLength": 2,
-                    "maxLength": 2,
-                    "type": "string"
-                  },
-                  "phoneCountryCode": {
-                    "minLength": 1,
-                    "maxLength": 3,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "phoneNumber": {
-                    "minLength": 1,
-                    "maxLength": 15,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "object",
-                    "required": [
-                      "line1",
-                      "city",
-                      "region",
-                      "postalCode",
-                      "countryCode"
-                    ],
-                    "properties": {
-                      "line1": {
-                        "minLength": 1,
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "line2": {
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "city": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "region": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "minLength": 1,
-                        "maxLength": 15,
-                        "type": "string"
-                      },
-                      "countryCode": {
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "type": "string"
-                      }
-                    }
-                  },
                   "occupation": {
                     "minLength": 1,
                     "maxLength": 50,
@@ -13192,87 +13275,6 @@
                       "production"
                     ]
                   },
-                  "email": {
-                    "format": "email",
-                    "type": "string"
-                  },
-                  "firstName": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "lastName": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "birthDate": {
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                    "type": "string"
-                  },
-                  "nationalId": {
-                    "minLength": 1,
-                    "maxLength": 30,
-                    "type": "string"
-                  },
-                  "countryOfIssue": {
-                    "minLength": 2,
-                    "maxLength": 2,
-                    "type": "string"
-                  },
-                  "phoneCountryCode": {
-                    "minLength": 1,
-                    "maxLength": 3,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "phoneNumber": {
-                    "minLength": 1,
-                    "maxLength": 15,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "object",
-                    "required": [
-                      "line1",
-                      "city",
-                      "region",
-                      "postalCode",
-                      "countryCode"
-                    ],
-                    "properties": {
-                      "line1": {
-                        "minLength": 1,
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "line2": {
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "city": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "region": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "minLength": 1,
-                        "maxLength": 15,
-                        "type": "string"
-                      },
-                      "countryCode": {
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "type": "string"
-                      }
-                    }
-                  },
                   "occupation": {
                     "minLength": 1,
                     "maxLength": 50,
@@ -13300,87 +13302,6 @@
                       "dev",
                       "production"
                     ]
-                  },
-                  "email": {
-                    "format": "email",
-                    "type": "string"
-                  },
-                  "firstName": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "lastName": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "birthDate": {
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                    "type": "string"
-                  },
-                  "nationalId": {
-                    "minLength": 1,
-                    "maxLength": 30,
-                    "type": "string"
-                  },
-                  "countryOfIssue": {
-                    "minLength": 2,
-                    "maxLength": 2,
-                    "type": "string"
-                  },
-                  "phoneCountryCode": {
-                    "minLength": 1,
-                    "maxLength": 3,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "phoneNumber": {
-                    "minLength": 1,
-                    "maxLength": 15,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "object",
-                    "required": [
-                      "line1",
-                      "city",
-                      "region",
-                      "postalCode",
-                      "countryCode"
-                    ],
-                    "properties": {
-                      "line1": {
-                        "minLength": 1,
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "line2": {
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "city": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "region": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "minLength": 1,
-                        "maxLength": 15,
-                        "type": "string"
-                      },
-                      "countryCode": {
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "type": "string"
-                      }
-                    }
                   },
                   "occupation": {
                     "minLength": 1,
@@ -14267,12 +14188,6 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "first_name",
-                  "last_name",
-                  "birth_date",
-                  "national_id",
-                  "country_of_issue",
-                  "address",
                   "occupation",
                   "e_sign_consent",
                   "sponge_card_terms",
@@ -14282,88 +14197,6 @@
                 "properties": {
                   "agentId": {
                     "type": "string"
-                  },
-                  "email": {
-                    "format": "email",
-                    "maxLength": 320,
-                    "type": "string"
-                  },
-                  "first_name": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "last_name": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "birth_date": {
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                    "type": "string"
-                  },
-                  "national_id": {
-                    "minLength": 1,
-                    "maxLength": 30,
-                    "type": "string"
-                  },
-                  "country_of_issue": {
-                    "minLength": 2,
-                    "maxLength": 2,
-                    "type": "string"
-                  },
-                  "phone_country_code": {
-                    "minLength": 1,
-                    "maxLength": 3,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "phone_number": {
-                    "minLength": 1,
-                    "maxLength": 15,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "object",
-                    "required": [
-                      "line1",
-                      "city",
-                      "region",
-                      "postal_code",
-                      "country_code"
-                    ],
-                    "properties": {
-                      "line1": {
-                        "minLength": 1,
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "line2": {
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "city": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "region": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "postal_code": {
-                        "minLength": 1,
-                        "maxLength": 15,
-                        "type": "string"
-                      },
-                      "country_code": {
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "type": "string"
-                      }
-                    }
                   },
                   "occupation": {
                     "minLength": 1,
@@ -14392,12 +14225,6 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "first_name",
-                  "last_name",
-                  "birth_date",
-                  "national_id",
-                  "country_of_issue",
-                  "address",
                   "occupation",
                   "e_sign_consent",
                   "sponge_card_terms",
@@ -14407,88 +14234,6 @@
                 "properties": {
                   "agentId": {
                     "type": "string"
-                  },
-                  "email": {
-                    "format": "email",
-                    "maxLength": 320,
-                    "type": "string"
-                  },
-                  "first_name": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "last_name": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "birth_date": {
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                    "type": "string"
-                  },
-                  "national_id": {
-                    "minLength": 1,
-                    "maxLength": 30,
-                    "type": "string"
-                  },
-                  "country_of_issue": {
-                    "minLength": 2,
-                    "maxLength": 2,
-                    "type": "string"
-                  },
-                  "phone_country_code": {
-                    "minLength": 1,
-                    "maxLength": 3,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "phone_number": {
-                    "minLength": 1,
-                    "maxLength": 15,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "object",
-                    "required": [
-                      "line1",
-                      "city",
-                      "region",
-                      "postal_code",
-                      "country_code"
-                    ],
-                    "properties": {
-                      "line1": {
-                        "minLength": 1,
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "line2": {
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "city": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "region": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "postal_code": {
-                        "minLength": 1,
-                        "maxLength": 15,
-                        "type": "string"
-                      },
-                      "country_code": {
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "type": "string"
-                      }
-                    }
                   },
                   "occupation": {
                     "minLength": 1,
@@ -14517,12 +14262,6 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "first_name",
-                  "last_name",
-                  "birth_date",
-                  "national_id",
-                  "country_of_issue",
-                  "address",
                   "occupation",
                   "e_sign_consent",
                   "sponge_card_terms",
@@ -14532,88 +14271,6 @@
                 "properties": {
                   "agentId": {
                     "type": "string"
-                  },
-                  "email": {
-                    "format": "email",
-                    "maxLength": 320,
-                    "type": "string"
-                  },
-                  "first_name": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "last_name": {
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "type": "string"
-                  },
-                  "birth_date": {
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                    "type": "string"
-                  },
-                  "national_id": {
-                    "minLength": 1,
-                    "maxLength": 30,
-                    "type": "string"
-                  },
-                  "country_of_issue": {
-                    "minLength": 2,
-                    "maxLength": 2,
-                    "type": "string"
-                  },
-                  "phone_country_code": {
-                    "minLength": 1,
-                    "maxLength": 3,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "phone_number": {
-                    "minLength": 1,
-                    "maxLength": 15,
-                    "pattern": "^[0-9]+$",
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "object",
-                    "required": [
-                      "line1",
-                      "city",
-                      "region",
-                      "postal_code",
-                      "country_code"
-                    ],
-                    "properties": {
-                      "line1": {
-                        "minLength": 1,
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "line2": {
-                        "maxLength": 100,
-                        "type": "string"
-                      },
-                      "city": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "region": {
-                        "minLength": 1,
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      "postal_code": {
-                        "minLength": 1,
-                        "maxLength": 15,
-                        "type": "string"
-                      },
-                      "country_code": {
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "type": "string"
-                      }
-                    }
                   },
                   "occupation": {
                     "minLength": 1,

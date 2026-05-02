@@ -11,23 +11,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PostApiSpongeCardOnboardRequestAddressFromJSON, PostApiSpongeCardOnboardRequestAddressToJSON, } from './post-api-sponge-card-onboard-request-address.js';
 /**
  * Check if a given object implements the PostApiSpongeCardOnboardRequest interface.
  */
 export function instanceOfPostApiSpongeCardOnboardRequest(value) {
-    if (!('first_name' in value) || value['first_name'] === undefined)
-        return false;
-    if (!('last_name' in value) || value['last_name'] === undefined)
-        return false;
-    if (!('birth_date' in value) || value['birth_date'] === undefined)
-        return false;
-    if (!('national_id' in value) || value['national_id'] === undefined)
-        return false;
-    if (!('country_of_issue' in value) || value['country_of_issue'] === undefined)
-        return false;
-    if (!('address' in value) || value['address'] === undefined)
-        return false;
     if (!('occupation' in value) || value['occupation'] === undefined)
         return false;
     if (!('e_sign_consent' in value) || value['e_sign_consent'] === undefined)
@@ -49,15 +36,6 @@ export function PostApiSpongeCardOnboardRequestFromJSONTyped(json, ignoreDiscrim
     }
     return {
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
-        'email': json['email'] == null ? undefined : json['email'],
-        'first_name': json['first_name'],
-        'last_name': json['last_name'],
-        'birth_date': json['birth_date'],
-        'national_id': json['national_id'],
-        'country_of_issue': json['country_of_issue'],
-        'phone_country_code': json['phone_country_code'] == null ? undefined : json['phone_country_code'],
-        'phone_number': json['phone_number'] == null ? undefined : json['phone_number'],
-        'address': PostApiSpongeCardOnboardRequestAddressFromJSON(json['address']),
         'occupation': json['occupation'],
         'e_sign_consent': json['e_sign_consent'],
         'account_opening_privacy_notice': json['account_opening_privacy_notice'] == null ? undefined : json['account_opening_privacy_notice'],
@@ -75,15 +53,6 @@ export function PostApiSpongeCardOnboardRequestToJSONTyped(value, ignoreDiscrimi
     }
     return {
         'agentId': value['agentId'],
-        'email': value['email'],
-        'first_name': value['first_name'],
-        'last_name': value['last_name'],
-        'birth_date': value['birth_date'],
-        'national_id': value['national_id'],
-        'country_of_issue': value['country_of_issue'],
-        'phone_country_code': value['phone_country_code'],
-        'phone_number': value['phone_number'],
-        'address': PostApiSpongeCardOnboardRequestAddressToJSON(value['address']),
         'occupation': value['occupation'],
         'e_sign_consent': value['e_sign_consent'],
         'account_opening_privacy_notice': value['account_opening_privacy_notice'],

@@ -20,13 +20,13 @@ import {
     PostApiSpongeCardCreateCardRequestShippingToJSON,
     PostApiSpongeCardCreateCardRequestShippingToJSONTyped,
 } from './post-api-sponge-card-create-card-request-shipping.js';
-import type { PostApiSpongeCardOnboardRequestAddress } from './post-api-sponge-card-onboard-request-address.js';
+import type { PostApiSpongeCardCreateCardRequestBilling } from './post-api-sponge-card-create-card-request-billing.js';
 import {
-    PostApiSpongeCardOnboardRequestAddressFromJSON,
-    PostApiSpongeCardOnboardRequestAddressFromJSONTyped,
-    PostApiSpongeCardOnboardRequestAddressToJSON,
-    PostApiSpongeCardOnboardRequestAddressToJSONTyped,
-} from './post-api-sponge-card-onboard-request-address.js';
+    PostApiSpongeCardCreateCardRequestBillingFromJSON,
+    PostApiSpongeCardCreateCardRequestBillingFromJSONTyped,
+    PostApiSpongeCardCreateCardRequestBillingToJSON,
+    PostApiSpongeCardCreateCardRequestBillingToJSONTyped,
+} from './post-api-sponge-card-create-card-request-billing.js';
 
 /**
  * 
@@ -42,10 +42,10 @@ export interface PostApiSpongeCardCreateCardRequest {
     agentId?: string;
     /**
      * 
-     * @type {PostApiSpongeCardOnboardRequestAddress}
+     * @type {PostApiSpongeCardCreateCardRequestBilling}
      * @memberof PostApiSpongeCardCreateCardRequest
      */
-    billing: PostApiSpongeCardOnboardRequestAddress;
+    billing: PostApiSpongeCardCreateCardRequestBilling;
     /**
      * 
      * @type {string}
@@ -87,7 +87,7 @@ export function PostApiSpongeCardCreateCardRequestFromJSONTyped(json: any, ignor
     return {
         
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
-        'billing': PostApiSpongeCardOnboardRequestAddressFromJSON(json['billing']),
+        'billing': PostApiSpongeCardCreateCardRequestBillingFromJSON(json['billing']),
         'email': json['email'],
         'phone': json['phone'],
         'shipping': json['shipping'] == null ? undefined : PostApiSpongeCardCreateCardRequestShippingFromJSON(json['shipping']),
@@ -106,7 +106,7 @@ export function PostApiSpongeCardCreateCardRequestToJSONTyped(value?: PostApiSpo
     return {
         
         'agentId': value['agentId'],
-        'billing': PostApiSpongeCardOnboardRequestAddressToJSON(value['billing']),
+        'billing': PostApiSpongeCardCreateCardRequestBillingToJSON(value['billing']),
         'email': value['email'],
         'phone': value['phone'],
         'shipping': PostApiSpongeCardCreateCardRequestShippingToJSON(value['shipping']),

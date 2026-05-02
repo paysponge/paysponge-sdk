@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PostApiSpongeCardOnboardRequestAddress } from './post-api-sponge-card-onboard-request-address.js';
 /**
  *
  * @export
@@ -22,60 +21,6 @@ export interface PostApiSpongeCardOnboardRequest {
      * @memberof PostApiSpongeCardOnboardRequest
      */
     agentId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    email?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    first_name: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    last_name: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    birth_date: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    national_id: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    country_of_issue: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    phone_country_code?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    phone_number?: string;
-    /**
-     *
-     * @type {PostApiSpongeCardOnboardRequestAddress}
-     * @memberof PostApiSpongeCardOnboardRequest
-     */
-    address: PostApiSpongeCardOnboardRequestAddress;
     /**
      *
      * @type {string}

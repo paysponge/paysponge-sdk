@@ -43,6 +43,7 @@ import type {
   PostApiBankSendRequest,
   PostApiBankVirtualAccountRequest,
   PostApiBridgeFiatCustomerKycLinkRequest,
+  PostApiBridgeFiatCustomerPersonaRequest,
   PostApiBridgeFiatCustomerSandboxRequest,
   PostApiBridgeFiatExternalAccountsRequest,
   PostApiBridgeFiatLiquidationAddressesRequest,
@@ -188,6 +189,8 @@ import {
     PostApiBankVirtualAccountRequestToJSON,
     PostApiBridgeFiatCustomerKycLinkRequestFromJSON,
     PostApiBridgeFiatCustomerKycLinkRequestToJSON,
+    PostApiBridgeFiatCustomerPersonaRequestFromJSON,
+    PostApiBridgeFiatCustomerPersonaRequestToJSON,
     PostApiBridgeFiatCustomerSandboxRequestFromJSON,
     PostApiBridgeFiatCustomerSandboxRequestToJSON,
     PostApiBridgeFiatExternalAccountsRequestFromJSON,
@@ -945,6 +948,10 @@ export interface DefaultApiPostApiAgentsByIdPolymarketFundOperationRequest {
     postApiAgentsByIdPolymarketFundRequest: PostApiAgentsByIdPolymarketFundRequest;
 }
 
+export interface DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest {
+    id: string;
+}
+
 export interface DefaultApiPostApiAgentsByIdPolymarketRedeemOperationRequest {
     id: string;
     postApiAgentsByIdPolymarketRedeemRequest: PostApiAgentsByIdPolymarketRedeemRequest;
@@ -995,6 +1002,14 @@ export interface DefaultApiPostApiBankVirtualAccountOperationRequest {
 }
 
 export interface DefaultApiPostApiBridgeFiatCustomerKycLinkOperationRequest {
+    postApiBridgeFiatCustomerKycLinkRequest: PostApiBridgeFiatCustomerKycLinkRequest;
+}
+
+export interface DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest {
+    postApiBridgeFiatCustomerPersonaRequest: PostApiBridgeFiatCustomerPersonaRequest;
+}
+
+export interface DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest {
     postApiBridgeFiatCustomerKycLinkRequest: PostApiBridgeFiatCustomerKycLinkRequest;
 }
 
@@ -4944,6 +4959,27 @@ export interface DefaultApiInterface {
     postApiAgentsByIdPolymarketFund(requestParameters: DefaultApiPostApiAgentsByIdPolymarketFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiAgentsByIdPolymarketPrepareCollateral without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdPolymarketPrepareCollateralRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdPolymarketPrepareCollateralRaw(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdPolymarketPrepareCollateral(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiAgentsByIdPolymarketRedeem without sending the request
      * @param {string} id 
      * @param {PostApiAgentsByIdPolymarketRedeemRequest} postApiAgentsByIdPolymarketRedeemRequest 
@@ -5204,6 +5240,48 @@ export interface DefaultApiInterface {
     /**
      */
     postApiBridgeFiatCustomerKycLink(requestParameters: DefaultApiPostApiBridgeFiatCustomerKycLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiBridgeFiatCustomerPersona without sending the request
+     * @param {PostApiBridgeFiatCustomerPersonaRequest} postApiBridgeFiatCustomerPersonaRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBridgeFiatCustomerPersonaRequestOpts(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiBridgeFiatCustomerPersonaRequest} postApiBridgeFiatCustomerPersonaRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBridgeFiatCustomerPersonaRaw(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiBridgeFiatCustomerPersona(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiBridgeFiatCustomerPersonaTosLink without sending the request
+     * @param {PostApiBridgeFiatCustomerKycLinkRequest} postApiBridgeFiatCustomerKycLinkRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBridgeFiatCustomerPersonaTosLinkRequestOpts(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiBridgeFiatCustomerKycLinkRequest} postApiBridgeFiatCustomerKycLinkRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBridgeFiatCustomerPersonaTosLinkRaw(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiBridgeFiatCustomerPersonaTosLink(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiBridgeFiatCustomerSandbox without sending the request
@@ -14512,6 +14590,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiAgentsByIdPolymarketPrepareCollateral without sending the request
+     */
+    async postApiAgentsByIdPolymarketPrepareCollateralRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdPolymarketPrepareCollateral().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/polymarket/prepare-collateral`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdPolymarketPrepareCollateralRaw(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdPolymarketPrepareCollateralRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdPolymarketPrepareCollateral(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdPolymarketPrepareCollateralRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiAgentsByIdPolymarketRedeem without sending the request
      */
     async postApiAgentsByIdPolymarketRedeemRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPolymarketRedeemOperationRequest): Promise<runtime.RequestOpts> {
@@ -15075,6 +15195,94 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiBridgeFiatCustomerKycLink(requestParameters: DefaultApiPostApiBridgeFiatCustomerKycLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiBridgeFiatCustomerKycLinkRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiBridgeFiatCustomerPersona without sending the request
+     */
+    async postApiBridgeFiatCustomerPersonaRequestOpts(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiBridgeFiatCustomerPersonaRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiBridgeFiatCustomerPersonaRequest',
+                'Required parameter "postApiBridgeFiatCustomerPersonaRequest" was null or undefined when calling postApiBridgeFiatCustomerPersona().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/bridge-fiat/customer/persona`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBridgeFiatCustomerPersonaRequestToJSON(requestParameters['postApiBridgeFiatCustomerPersonaRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiBridgeFiatCustomerPersonaRaw(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiBridgeFiatCustomerPersonaRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiBridgeFiatCustomerPersona(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiBridgeFiatCustomerPersonaRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiBridgeFiatCustomerPersonaTosLink without sending the request
+     */
+    async postApiBridgeFiatCustomerPersonaTosLinkRequestOpts(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiBridgeFiatCustomerKycLinkRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiBridgeFiatCustomerKycLinkRequest',
+                'Required parameter "postApiBridgeFiatCustomerKycLinkRequest" was null or undefined when calling postApiBridgeFiatCustomerPersonaTosLink().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/bridge-fiat/customer/persona-tos-link`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiBridgeFiatCustomerKycLinkRequestToJSON(requestParameters['postApiBridgeFiatCustomerKycLinkRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiBridgeFiatCustomerPersonaTosLinkRaw(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiBridgeFiatCustomerPersonaTosLinkRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiBridgeFiatCustomerPersonaTosLink(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiBridgeFiatCustomerPersonaTosLinkRaw(requestParameters, initOverrides);
     }
 
     /**

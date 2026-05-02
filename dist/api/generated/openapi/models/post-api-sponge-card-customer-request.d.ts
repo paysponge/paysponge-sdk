@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PostApiSpongeCardCustomerRequestAddress } from './post-api-sponge-card-customer-request-address.js';
 /**
  *
  * @export
@@ -22,60 +21,6 @@ export interface PostApiSpongeCardCustomerRequest {
      * @memberof PostApiSpongeCardCustomerRequest
      */
     environment: PostApiSpongeCardCustomerRequestEnvironmentEnum;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    email?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    firstName?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    lastName?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    birthDate?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    nationalId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    countryOfIssue?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    phoneCountryCode?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    phoneNumber?: string;
-    /**
-     *
-     * @type {PostApiSpongeCardCustomerRequestAddress}
-     * @memberof PostApiSpongeCardCustomerRequest
-     */
-    address?: PostApiSpongeCardCustomerRequestAddress;
     /**
      *
      * @type {string}

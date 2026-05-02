@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { PostApiSpongeCardCardRequestBilling } from './post-api-sponge-card-card-request-billing.js';
 import type { PostApiSpongeCardCardRequestShipping } from './post-api-sponge-card-card-request-shipping.js';
-import type { PostApiSpongeCardCustomerRequestAddress } from './post-api-sponge-card-customer-request-address.js';
 /**
  *
  * @export
@@ -25,10 +25,10 @@ export interface PostApiSpongeCardCardRequest {
     environment: PostApiSpongeCardCardRequestEnvironmentEnum;
     /**
      *
-     * @type {PostApiSpongeCardCustomerRequestAddress}
+     * @type {PostApiSpongeCardCardRequestBilling}
      * @memberof PostApiSpongeCardCardRequest
      */
-    billing: PostApiSpongeCardCustomerRequestAddress;
+    billing: PostApiSpongeCardCardRequestBilling;
     /**
      *
      * @type {string}

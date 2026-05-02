@@ -16,51 +16,51 @@ import { mapValues } from '../runtime.js';
 /**
  * 
  * @export
- * @interface PostApiSpongeCardOnboardRequestAddress
+ * @interface PostApiSpongeCardCreateCardRequestBilling
  */
-export interface PostApiSpongeCardOnboardRequestAddress {
+export interface PostApiSpongeCardCreateCardRequestBilling {
     /**
      * 
      * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequestAddress
+     * @memberof PostApiSpongeCardCreateCardRequestBilling
      */
     line1: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequestAddress
+     * @memberof PostApiSpongeCardCreateCardRequestBilling
      */
     line2?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequestAddress
+     * @memberof PostApiSpongeCardCreateCardRequestBilling
      */
     city: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequestAddress
+     * @memberof PostApiSpongeCardCreateCardRequestBilling
      */
     region: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequestAddress
+     * @memberof PostApiSpongeCardCreateCardRequestBilling
      */
     postal_code: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiSpongeCardOnboardRequestAddress
+     * @memberof PostApiSpongeCardCreateCardRequestBilling
      */
     country_code: string;
 }
 
 /**
- * Check if a given object implements the PostApiSpongeCardOnboardRequestAddress interface.
+ * Check if a given object implements the PostApiSpongeCardCreateCardRequestBilling interface.
  */
-export function instanceOfPostApiSpongeCardOnboardRequestAddress(value: object): value is PostApiSpongeCardOnboardRequestAddress {
+export function instanceOfPostApiSpongeCardCreateCardRequestBilling(value: object): value is PostApiSpongeCardCreateCardRequestBilling {
     if (!('line1' in value) || value['line1'] === undefined) return false;
     if (!('city' in value) || value['city'] === undefined) return false;
     if (!('region' in value) || value['region'] === undefined) return false;
@@ -69,11 +69,11 @@ export function instanceOfPostApiSpongeCardOnboardRequestAddress(value: object):
     return true;
 }
 
-export function PostApiSpongeCardOnboardRequestAddressFromJSON(json: any): PostApiSpongeCardOnboardRequestAddress {
-    return PostApiSpongeCardOnboardRequestAddressFromJSONTyped(json, false);
+export function PostApiSpongeCardCreateCardRequestBillingFromJSON(json: any): PostApiSpongeCardCreateCardRequestBilling {
+    return PostApiSpongeCardCreateCardRequestBillingFromJSONTyped(json, false);
 }
 
-export function PostApiSpongeCardOnboardRequestAddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostApiSpongeCardOnboardRequestAddress {
+export function PostApiSpongeCardCreateCardRequestBillingFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostApiSpongeCardCreateCardRequestBilling {
     if (json == null) {
         return json;
     }
@@ -88,11 +88,11 @@ export function PostApiSpongeCardOnboardRequestAddressFromJSONTyped(json: any, i
     };
 }
 
-export function PostApiSpongeCardOnboardRequestAddressToJSON(json: any): PostApiSpongeCardOnboardRequestAddress {
-    return PostApiSpongeCardOnboardRequestAddressToJSONTyped(json, false);
+export function PostApiSpongeCardCreateCardRequestBillingToJSON(json: any): PostApiSpongeCardCreateCardRequestBilling {
+    return PostApiSpongeCardCreateCardRequestBillingToJSONTyped(json, false);
 }
 
-export function PostApiSpongeCardOnboardRequestAddressToJSONTyped(value?: PostApiSpongeCardOnboardRequestAddress | null, ignoreDiscriminator: boolean = false): any {
+export function PostApiSpongeCardCreateCardRequestBillingToJSONTyped(value?: PostApiSpongeCardCreateCardRequestBilling | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

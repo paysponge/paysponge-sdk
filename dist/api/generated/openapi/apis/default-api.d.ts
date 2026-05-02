@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiExtensionPushSubscribeRequest, PostApiExtensionPushUnsubscribeRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiExtensionPushSubscribeRequest, PostApiExtensionPushUnsubscribeRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -474,6 +474,9 @@ export interface DefaultApiPostApiAgentsByIdPolymarketFundOperationRequest {
     id: string;
     postApiAgentsByIdPolymarketFundRequest: PostApiAgentsByIdPolymarketFundRequest;
 }
+export interface DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest {
+    id: string;
+}
 export interface DefaultApiPostApiAgentsByIdPolymarketRedeemOperationRequest {
     id: string;
     postApiAgentsByIdPolymarketRedeemRequest: PostApiAgentsByIdPolymarketRedeemRequest;
@@ -513,6 +516,12 @@ export interface DefaultApiPostApiBankVirtualAccountOperationRequest {
     postApiBankVirtualAccountRequest: PostApiBankVirtualAccountRequest;
 }
 export interface DefaultApiPostApiBridgeFiatCustomerKycLinkOperationRequest {
+    postApiBridgeFiatCustomerKycLinkRequest: PostApiBridgeFiatCustomerKycLinkRequest;
+}
+export interface DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest {
+    postApiBridgeFiatCustomerPersonaRequest: PostApiBridgeFiatCustomerPersonaRequest;
+}
+export interface DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest {
     postApiBridgeFiatCustomerKycLinkRequest: PostApiBridgeFiatCustomerKycLinkRequest;
 }
 export interface DefaultApiPostApiBridgeFiatCustomerSandboxOperationRequest {
@@ -3876,6 +3885,24 @@ export interface DefaultApiInterface {
      */
     postApiAgentsByIdPolymarketFund(requestParameters: DefaultApiPostApiAgentsByIdPolymarketFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiAgentsByIdPolymarketPrepareCollateral without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdPolymarketPrepareCollateralRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdPolymarketPrepareCollateralRaw(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdPolymarketPrepareCollateral(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiAgentsByIdPolymarketRedeem without sending the request
      * @param {string} id
      * @param {PostApiAgentsByIdPolymarketRedeemRequest} postApiAgentsByIdPolymarketRedeemRequest
@@ -4101,6 +4128,42 @@ export interface DefaultApiInterface {
     /**
      */
     postApiBridgeFiatCustomerKycLink(requestParameters: DefaultApiPostApiBridgeFiatCustomerKycLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBridgeFiatCustomerPersona without sending the request
+     * @param {PostApiBridgeFiatCustomerPersonaRequest} postApiBridgeFiatCustomerPersonaRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBridgeFiatCustomerPersonaRequestOpts(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiBridgeFiatCustomerPersonaRequest} postApiBridgeFiatCustomerPersonaRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBridgeFiatCustomerPersonaRaw(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBridgeFiatCustomerPersona(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBridgeFiatCustomerPersonaTosLink without sending the request
+     * @param {PostApiBridgeFiatCustomerKycLinkRequest} postApiBridgeFiatCustomerKycLinkRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBridgeFiatCustomerPersonaTosLinkRequestOpts(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiBridgeFiatCustomerKycLinkRequest} postApiBridgeFiatCustomerKycLinkRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiBridgeFiatCustomerPersonaTosLinkRaw(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBridgeFiatCustomerPersonaTosLink(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiBridgeFiatCustomerSandbox without sending the request
      * @param {PostApiBridgeFiatCustomerSandboxRequest} postApiBridgeFiatCustomerSandboxRequest
@@ -7683,6 +7746,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     postApiAgentsByIdPolymarketFund(requestParameters: DefaultApiPostApiAgentsByIdPolymarketFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiAgentsByIdPolymarketPrepareCollateral without sending the request
+     */
+    postApiAgentsByIdPolymarketPrepareCollateralRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAgentsByIdPolymarketPrepareCollateralRaw(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdPolymarketPrepareCollateral(requestParameters: DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiAgentsByIdPolymarketRedeem without sending the request
      */
     postApiAgentsByIdPolymarketRedeemRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPolymarketRedeemOperationRequest): Promise<runtime.RequestOpts>;
@@ -7802,6 +7875,26 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiBridgeFiatCustomerKycLink(requestParameters: DefaultApiPostApiBridgeFiatCustomerKycLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBridgeFiatCustomerPersona without sending the request
+     */
+    postApiBridgeFiatCustomerPersonaRequestOpts(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiBridgeFiatCustomerPersonaRaw(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBridgeFiatCustomerPersona(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiBridgeFiatCustomerPersonaTosLink without sending the request
+     */
+    postApiBridgeFiatCustomerPersonaTosLinkRequestOpts(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiBridgeFiatCustomerPersonaTosLinkRaw(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiBridgeFiatCustomerPersonaTosLink(requestParameters: DefaultApiPostApiBridgeFiatCustomerPersonaTosLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiBridgeFiatCustomerSandbox without sending the request
      */
