@@ -29,6 +29,7 @@ import type {
   PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest,
   PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest,
   PostApiAgentsByIdInstructionsRequest,
+  PostApiAgentsByIdLinkPaymentMethodsRequest,
   PostApiAgentsByIdPaymentMethodsRequest,
   PostApiAgentsByIdPolymarketFundRequest,
   PostApiAgentsByIdPolymarketRedeemRequest,
@@ -69,6 +70,7 @@ import type {
   PostApiInvitesRedeemRequest,
   PostApiInvitesRegisterDirectRequest,
   PostApiInvitesValidateRequest,
+  PostApiLinkCliAuthLoginRequest,
   PostApiMasterKeysRequest,
   PostApiMppFetchRequest,
   PostApiMppSessionCloseRequest,
@@ -161,6 +163,8 @@ import {
     PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON,
     PostApiAgentsByIdInstructionsRequestFromJSON,
     PostApiAgentsByIdInstructionsRequestToJSON,
+    PostApiAgentsByIdLinkPaymentMethodsRequestFromJSON,
+    PostApiAgentsByIdLinkPaymentMethodsRequestToJSON,
     PostApiAgentsByIdPaymentMethodsRequestFromJSON,
     PostApiAgentsByIdPaymentMethodsRequestToJSON,
     PostApiAgentsByIdPolymarketFundRequestFromJSON,
@@ -241,6 +245,8 @@ import {
     PostApiInvitesRegisterDirectRequestToJSON,
     PostApiInvitesValidateRequestFromJSON,
     PostApiInvitesValidateRequestToJSON,
+    PostApiLinkCliAuthLoginRequestFromJSON,
+    PostApiLinkCliAuthLoginRequestToJSON,
     PostApiMasterKeysRequestFromJSON,
     PostApiMasterKeysRequestToJSON,
     PostApiMppFetchRequestFromJSON,
@@ -386,6 +392,11 @@ export interface DefaultApiDeleteApiAgentsByIdEnrollmentsByEnrollmentIdRequest {
     enrollmentId: string;
 }
 
+export interface DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest {
+    id: string;
+    methodId: string;
+}
+
 export interface DefaultApiDeleteApiAgentsByIdPaymentMethodsByPaymentMethodIdRequest {
     id: string;
     paymentMethodId: string;
@@ -507,6 +518,10 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest {
 }
 
 export interface DefaultApiGetApiAgentsByIdInstructionsPendingRequest {
+    id: string;
+}
+
+export interface DefaultApiGetApiAgentsByIdLinkPaymentMethodsRequest {
     id: string;
 }
 
@@ -925,6 +940,11 @@ export interface DefaultApiPostApiAgentsByIdInstructionsByInstructionIdVerifyPas
     postApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest: PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest;
 }
 
+export interface DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest {
+    id: string;
+    postApiAgentsByIdLinkPaymentMethodsRequest: PostApiAgentsByIdLinkPaymentMethodsRequest;
+}
+
 export interface DefaultApiPostApiAgentsByIdPaymentMethodsOperationRequest {
     id: string;
     postApiAgentsByIdPaymentMethodsRequest: PostApiAgentsByIdPaymentMethodsRequest;
@@ -1130,6 +1150,10 @@ export interface DefaultApiPostApiInvitesRegisterDirectOperationRequest {
 
 export interface DefaultApiPostApiInvitesValidateOperationRequest {
     postApiInvitesValidateRequest: PostApiInvitesValidateRequest;
+}
+
+export interface DefaultApiPostApiLinkCliAuthLoginOperationRequest {
+    postApiLinkCliAuthLoginRequest: PostApiLinkCliAuthLoginRequest;
 }
 
 export interface DefaultApiPostApiMasterKeysOperationRequest {
@@ -1840,6 +1864,29 @@ export interface DefaultApiInterface {
     deleteApiAgentsByIdEnrollmentsByEnrollmentId(requestParameters: DefaultApiDeleteApiAgentsByIdEnrollmentsByEnrollmentIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for deleteApiAgentsByIdLinkPaymentMethodsByMethodId without sending the request
+     * @param {string} id 
+     * @param {string} methodId 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} methodId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAgentsByIdLinkPaymentMethodsByMethodIdRaw(requestParameters: DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    deleteApiAgentsByIdLinkPaymentMethodsByMethodId(requestParameters: DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for deleteApiAgentsByIdPaymentMethodsByPaymentMethodId without sending the request
      * @param {string} id 
      * @param {string} paymentMethodId 
@@ -2538,6 +2585,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdInstructionsPending(requestParameters: DefaultApiGetApiAgentsByIdInstructionsPendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiAgentsByIdLinkPaymentMethods without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdLinkPaymentMethodsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdLinkPaymentMethodsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdLinkPaymentMethodsRaw(requestParameters: DefaultApiGetApiAgentsByIdLinkPaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiAgentsByIdLinkPaymentMethods(requestParameters: DefaultApiGetApiAgentsByIdLinkPaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiAgentsByIdPaymentMethods without sending the request
@@ -3457,6 +3525,44 @@ export interface DefaultApiInterface {
     /**
      */
     getApiInvitesStatus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiLinkCliAuthStatus without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiLinkCliAuthStatusRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiLinkCliAuthStatusRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiLinkCliAuthStatus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiLinkCliPaymentMethods without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiLinkCliPaymentMethodsRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiLinkCliPaymentMethodsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiLinkCliPaymentMethods(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiMasterKeys without sending the request
@@ -4848,6 +4954,29 @@ export interface DefaultApiInterface {
     postApiAgentsByIdInstructionsByInstructionIdVerifyPasskey(requestParameters: DefaultApiPostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiAgentsByIdLinkPaymentMethods without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdLinkPaymentMethodsRequest} postApiAgentsByIdLinkPaymentMethodsRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdLinkPaymentMethodsRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdLinkPaymentMethodsRequest} postApiAgentsByIdLinkPaymentMethodsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdLinkPaymentMethodsRaw(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdLinkPaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiAgentsByIdPaymentMethods without sending the request
      * @param {string} id 
      * @param {PostApiAgentsByIdPaymentMethodsRequest} postApiAgentsByIdPaymentMethodsRequest 
@@ -5935,6 +6064,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiInvitesValidate(requestParameters: DefaultApiPostApiInvitesValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiLinkCliAuthLogin without sending the request
+     * @param {PostApiLinkCliAuthLoginRequest} postApiLinkCliAuthLoginRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiLinkCliAuthLoginRequestOpts(requestParameters: DefaultApiPostApiLinkCliAuthLoginOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiLinkCliAuthLoginRequest} postApiLinkCliAuthLoginRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiLinkCliAuthLoginRaw(requestParameters: DefaultApiPostApiLinkCliAuthLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiLinkCliAuthLogin(requestParameters: DefaultApiPostApiLinkCliAuthLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiMasterKeys without sending the request
@@ -8316,6 +8466,56 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for deleteApiAgentsByIdLinkPaymentMethodsByMethodId without sending the request
+     */
+    async deleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteApiAgentsByIdLinkPaymentMethodsByMethodId().'
+            );
+        }
+
+        if (requestParameters['methodId'] == null) {
+            throw new runtime.RequiredError(
+                'methodId',
+                'Required parameter "methodId" was null or undefined when calling deleteApiAgentsByIdLinkPaymentMethodsByMethodId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/link-payment-methods/{methodId}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        urlPath = urlPath.replace(`{${"methodId"}}`, encodeURIComponent(String(requestParameters['methodId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteApiAgentsByIdLinkPaymentMethodsByMethodIdRaw(requestParameters: DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteApiAgentsByIdLinkPaymentMethodsByMethodId(requestParameters: DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteApiAgentsByIdLinkPaymentMethodsByMethodIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deleteApiAgentsByIdPaymentMethodsByPaymentMethodId without sending the request
      */
     async deleteApiAgentsByIdPaymentMethodsByPaymentMethodIdRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdPaymentMethodsByPaymentMethodIdRequest): Promise<runtime.RequestOpts> {
@@ -9716,6 +9916,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiAgentsByIdInstructionsPending(requestParameters: DefaultApiGetApiAgentsByIdInstructionsPendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiAgentsByIdInstructionsPendingRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiAgentsByIdLinkPaymentMethods without sending the request
+     */
+    async getApiAgentsByIdLinkPaymentMethodsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdLinkPaymentMethodsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiAgentsByIdLinkPaymentMethods().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/link-payment-methods`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAgentsByIdLinkPaymentMethodsRaw(requestParameters: DefaultApiGetApiAgentsByIdLinkPaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiAgentsByIdLinkPaymentMethodsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiAgentsByIdLinkPaymentMethods(requestParameters: DefaultApiGetApiAgentsByIdLinkPaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiAgentsByIdLinkPaymentMethodsRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -11453,6 +11695,74 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiInvitesStatus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiInvitesStatusRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiLinkCliAuthStatus without sending the request
+     */
+    async getApiLinkCliAuthStatusRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/link-cli/auth/status`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiLinkCliAuthStatusRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiLinkCliAuthStatusRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiLinkCliAuthStatus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiLinkCliAuthStatusRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiLinkCliPaymentMethods without sending the request
+     */
+    async getApiLinkCliPaymentMethodsRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/link-cli/payment-methods`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiLinkCliPaymentMethodsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiLinkCliPaymentMethodsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiLinkCliPaymentMethods(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiLinkCliPaymentMethodsRaw(initOverrides);
     }
 
     /**
@@ -14352,6 +14662,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiAgentsByIdLinkPaymentMethods without sending the request
+     */
+    async postApiAgentsByIdLinkPaymentMethodsRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdLinkPaymentMethods().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdLinkPaymentMethodsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdLinkPaymentMethodsRequest',
+                'Required parameter "postApiAgentsByIdLinkPaymentMethodsRequest" was null or undefined when calling postApiAgentsByIdLinkPaymentMethods().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/link-payment-methods`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdLinkPaymentMethodsRequestToJSON(requestParameters['postApiAgentsByIdLinkPaymentMethodsRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdLinkPaymentMethodsRaw(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdLinkPaymentMethodsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdLinkPaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdLinkPaymentMethodsRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiAgentsByIdPaymentMethods without sending the request
      */
     async postApiAgentsByIdPaymentMethodsRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPaymentMethodsOperationRequest): Promise<runtime.RequestOpts> {
@@ -16645,6 +17007,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiInvitesValidate(requestParameters: DefaultApiPostApiInvitesValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiInvitesValidateRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiLinkCliAuthLogin without sending the request
+     */
+    async postApiLinkCliAuthLoginRequestOpts(requestParameters: DefaultApiPostApiLinkCliAuthLoginOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiLinkCliAuthLoginRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiLinkCliAuthLoginRequest',
+                'Required parameter "postApiLinkCliAuthLoginRequest" was null or undefined when calling postApiLinkCliAuthLogin().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/link-cli/auth/login`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiLinkCliAuthLoginRequestToJSON(requestParameters['postApiLinkCliAuthLoginRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiLinkCliAuthLoginRaw(requestParameters: DefaultApiPostApiLinkCliAuthLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiLinkCliAuthLoginRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiLinkCliAuthLogin(requestParameters: DefaultApiPostApiLinkCliAuthLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiLinkCliAuthLoginRaw(requestParameters, initOverrides);
     }
 
     /**
