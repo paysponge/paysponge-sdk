@@ -281,7 +281,6 @@ describe("ToolExecutor", () => {
         state: "CA",
         postalCode: "94105",
         country: "US",
-        phone: "+14155550123",
       },
     });
 
@@ -300,7 +299,6 @@ describe("ToolExecutor", () => {
         state: "CA",
         postalCode: "94105",
         country: "US",
-        phone: "+14155550123",
       },
     });
   });

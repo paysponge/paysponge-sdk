@@ -27,8 +27,6 @@ export function instanceOfPostApiAgentsByIdLinkPaymentMethodsRequestBilling(valu
         return false;
     if (!('country' in value) || value['country'] === undefined)
         return false;
-    if (!('phone' in value) || value['phone'] === undefined)
-        return false;
     return true;
 }
 export function PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json) {
@@ -46,7 +44,6 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSONTyped(j
         'state': json['state'],
         'postalCode': json['postalCode'],
         'country': json['country'],
-        'phone': json['phone'],
     };
 }
 export function PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(json) {
@@ -64,7 +61,6 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSONTyped(val
         'state': value['state'],
         'postalCode': value['postalCode'],
         'country': value['country'],
-        'phone': value['phone'],
     };
 }
 //# sourceMappingURL=post-api-agents-by-id-link-payment-methods-request-billing.js.map

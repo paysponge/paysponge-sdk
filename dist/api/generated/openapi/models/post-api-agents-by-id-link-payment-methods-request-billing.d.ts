@@ -57,12 +57,6 @@ export interface PostApiAgentsByIdLinkPaymentMethodsRequestBilling {
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
      */
     country: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
-     */
-    phone: string;
 }
 /**
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsRequestBilling interface.
