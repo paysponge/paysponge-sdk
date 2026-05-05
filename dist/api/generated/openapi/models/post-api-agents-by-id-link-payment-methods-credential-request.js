@@ -15,12 +15,6 @@
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsCredentialRequest interface.
  */
 export function instanceOfPostApiAgentsByIdLinkPaymentMethodsCredentialRequest(value) {
-    if (!('amount' in value) || value['amount'] === undefined)
-        return false;
-    if (!('merchantName' in value) || value['merchantName'] === undefined)
-        return false;
-    if (!('merchantUrl' in value) || value['merchantUrl'] === undefined)
-        return false;
     return true;
 }
 export function PostApiAgentsByIdLinkPaymentMethodsCredentialRequestFromJSON(json) {
@@ -32,12 +26,12 @@ export function PostApiAgentsByIdLinkPaymentMethodsCredentialRequestFromJSONType
     }
     return {
         'linkPaymentMethodId': json['linkPaymentMethodId'] == null ? undefined : json['linkPaymentMethodId'],
-        'amount': json['amount'],
+        'spendRequestId': json['spendRequestId'] == null ? undefined : json['spendRequestId'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
         'currency': json['currency'] == null ? undefined : json['currency'],
-        'merchantName': json['merchantName'],
-        'merchantUrl': json['merchantUrl'],
+        'merchantName': json['merchantName'] == null ? undefined : json['merchantName'],
+        'merchantUrl': json['merchantUrl'] == null ? undefined : json['merchantUrl'],
         'context': json['context'] == null ? undefined : json['context'],
-        'timeoutMs': json['timeoutMs'] == null ? undefined : json['timeoutMs'],
     };
 }
 export function PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON(json) {
@@ -49,12 +43,12 @@ export function PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSONTyped(
     }
     return {
         'linkPaymentMethodId': value['linkPaymentMethodId'],
+        'spendRequestId': value['spendRequestId'],
         'amount': value['amount'],
         'currency': value['currency'],
         'merchantName': value['merchantName'],
         'merchantUrl': value['merchantUrl'],
         'context': value['context'],
-        'timeoutMs': value['timeoutMs'],
     };
 }
 //# sourceMappingURL=post-api-agents-by-id-link-payment-methods-credential-request.js.map

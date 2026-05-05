@@ -317,7 +317,6 @@ describe("ToolExecutor", () => {
       merchant_name: "Netflix",
       merchant_url: "https://www.netflix.com",
       context: "Monthly subscription",
-      timeout_ms: 120000,
     });
 
     expect(result.status).toBe("success");
@@ -330,7 +329,33 @@ describe("ToolExecutor", () => {
         merchantName: "Netflix",
         merchantUrl: "https://www.netflix.com",
         context: "Monthly subscription",
-        timeoutMs: 120000,
+      },
+    );
+  });
+
+  it("routes create_link_payment_credential retrieval to agent Link credential endpoint", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ status: "credential_created" }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("create_link_payment_credential", {
+      link_payment_method_id: "saved-link-pm-123",
+      spend_request_id: "sr_123",
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith(
+      "/api/agents/agent-1/link-payment-methods/credential",
+      {
+        linkPaymentMethodId: "saved-link-pm-123",
+        spendRequestId: "sr_123",
+        amount: undefined,
+        currency: undefined,
+        merchantName: undefined,
+        merchantUrl: undefined,
+        context: undefined,
       },
     );
   });

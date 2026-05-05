@@ -1153,7 +1153,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       "Generate a one-time Link card credential from a saved Link payment method for a specific merchant and amount. " +
       "Use this after `add_link_payment_method` has saved a Link method to the agent. " +
       "If link_payment_method_id is omitted, the default saved Link payment method is used. " +
-      "The call may wait for the user to approve the Link spend request.",
+      "First call with amount and merchant details returns approval_required when user approval is needed; after approval, call again with spend_request_id to retrieve the credential.",
     input_schema: {
       type: "object",
       properties: {
@@ -1162,9 +1162,15 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
           description:
             "Saved Link payment method id. May be either Sponge's saved method id or Link's payment method id. Defaults to the agent's default saved Link method.",
         },
+        spend_request_id: {
+          type: "string",
+          description:
+            "Existing Link spend request id returned by an approval_required response. Use after the user approves.",
+        },
         amount: {
           type: "string",
-          description: "Purchase amount as a decimal string, e.g. '49.99'.",
+          description:
+            "Purchase amount as a decimal string, e.g. '49.99'. Required when creating a new spend request.",
         },
         currency: {
           type: "string",
@@ -1172,22 +1178,18 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
         },
         merchant_name: {
           type: "string",
-          description: "Merchant name for the Link spend request.",
+          description: "Merchant name for the Link spend request. Required when creating a new spend request.",
         },
         merchant_url: {
           type: "string",
-          description: "Merchant URL for the Link spend request.",
+          description: "Merchant URL for the Link spend request. Required when creating a new spend request.",
         },
         context: {
           type: "string",
           description: "Optional context shown to the user during Link approval.",
         },
-        timeout_ms: {
-          type: "number",
-          description: "Optional timeout in milliseconds while waiting for Link approval.",
-        },
       },
-      required: ["amount", "merchant_name", "merchant_url"],
+      required: [],
     },
   },
   {

@@ -261,12 +261,12 @@ export class ToolExecutor {
             case "create_link_payment_credential":
                 return this.http.post(`/api/agents/${encodeURIComponent(this.agentId)}/link-payment-methods/credential`, {
                     linkPaymentMethodId: args.linkPaymentMethodId ?? args.link_payment_method_id,
+                    spendRequestId: args.spendRequestId ?? args.spend_request_id,
                     amount: args.amount,
                     currency: args.currency,
                     merchantName: args.merchantName ?? args.merchant_name,
                     merchantUrl: args.merchantUrl ?? args.merchant_url,
                     context: args.context,
-                    timeoutMs: args.timeoutMs ?? args.timeout_ms,
                 });
             case "get_key_list":
                 return this.http.get("/api/agent-keys", {});

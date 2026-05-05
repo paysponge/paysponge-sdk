@@ -30,7 +30,13 @@ export interface PostApiAgentsByIdLinkPaymentMethodsCredentialRequest {
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
      */
-    amount: string;
+    spendRequestId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
+     */
+    amount?: string;
     /**
      * 
      * @type {string}
@@ -42,34 +48,25 @@ export interface PostApiAgentsByIdLinkPaymentMethodsCredentialRequest {
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
      */
-    merchantName: string;
+    merchantName?: string;
     /**
      * 
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
      */
-    merchantUrl: string;
+    merchantUrl?: string;
     /**
      * 
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
      */
     context?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
-     */
-    timeoutMs?: number;
 }
 
 /**
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsCredentialRequest interface.
  */
 export function instanceOfPostApiAgentsByIdLinkPaymentMethodsCredentialRequest(value: object): value is PostApiAgentsByIdLinkPaymentMethodsCredentialRequest {
-    if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('merchantName' in value) || value['merchantName'] === undefined) return false;
-    if (!('merchantUrl' in value) || value['merchantUrl'] === undefined) return false;
     return true;
 }
 
@@ -84,12 +81,12 @@ export function PostApiAgentsByIdLinkPaymentMethodsCredentialRequestFromJSONType
     return {
         
         'linkPaymentMethodId': json['linkPaymentMethodId'] == null ? undefined : json['linkPaymentMethodId'],
-        'amount': json['amount'],
+        'spendRequestId': json['spendRequestId'] == null ? undefined : json['spendRequestId'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
         'currency': json['currency'] == null ? undefined : json['currency'],
-        'merchantName': json['merchantName'],
-        'merchantUrl': json['merchantUrl'],
+        'merchantName': json['merchantName'] == null ? undefined : json['merchantName'],
+        'merchantUrl': json['merchantUrl'] == null ? undefined : json['merchantUrl'],
         'context': json['context'] == null ? undefined : json['context'],
-        'timeoutMs': json['timeoutMs'] == null ? undefined : json['timeoutMs'],
     };
 }
 
@@ -105,12 +102,12 @@ export function PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSONTyped(
     return {
         
         'linkPaymentMethodId': value['linkPaymentMethodId'],
+        'spendRequestId': value['spendRequestId'],
         'amount': value['amount'],
         'currency': value['currency'],
         'merchantName': value['merchantName'],
         'merchantUrl': value['merchantUrl'],
         'context': value['context'],
-        'timeoutMs': value['timeoutMs'],
     };
 }
 

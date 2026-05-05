@@ -5403,13 +5403,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "amount",
-                  "merchantName",
-                  "merchantUrl"
-                ],
                 "properties": {
                   "linkPaymentMethodId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "spendRequestId": {
                     "minLength": 1,
                     "type": "string"
                   },
@@ -5431,9 +5430,6 @@
                   },
                   "context": {
                     "type": "string"
-                  },
-                  "timeoutMs": {
-                    "type": "number"
                   }
                 }
               }
@@ -5441,13 +5437,12 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "amount",
-                  "merchantName",
-                  "merchantUrl"
-                ],
                 "properties": {
                   "linkPaymentMethodId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "spendRequestId": {
                     "minLength": 1,
                     "type": "string"
                   },
@@ -5469,9 +5464,6 @@
                   },
                   "context": {
                     "type": "string"
-                  },
-                  "timeoutMs": {
-                    "type": "number"
                   }
                 }
               }
@@ -5479,13 +5471,12 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "amount",
-                  "merchantName",
-                  "merchantUrl"
-                ],
                 "properties": {
                   "linkPaymentMethodId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "spendRequestId": {
                     "minLength": 1,
                     "type": "string"
                   },
@@ -5507,9 +5498,6 @@
                   },
                   "context": {
                     "type": "string"
-                  },
-                  "timeoutMs": {
-                    "type": "number"
                   }
                 }
               }

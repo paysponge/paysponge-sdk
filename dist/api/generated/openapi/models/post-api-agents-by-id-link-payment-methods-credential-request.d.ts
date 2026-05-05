@@ -26,7 +26,13 @@ export interface PostApiAgentsByIdLinkPaymentMethodsCredentialRequest {
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
      */
-    amount: string;
+    spendRequestId?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
+     */
+    amount?: string;
     /**
      *
      * @type {string}
@@ -38,25 +44,19 @@ export interface PostApiAgentsByIdLinkPaymentMethodsCredentialRequest {
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
      */
-    merchantName: string;
+    merchantName?: string;
     /**
      *
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
      */
-    merchantUrl: string;
+    merchantUrl?: string;
     /**
      *
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
      */
     context?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof PostApiAgentsByIdLinkPaymentMethodsCredentialRequest
-     */
-    timeoutMs?: number;
 }
 /**
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsCredentialRequest interface.
