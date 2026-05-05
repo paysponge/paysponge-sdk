@@ -39,6 +39,9 @@ import type {
   PostApiAgentsRegisterRequest,
   PostApiAgentsRequest,
   PostApiAllowlistRequest,
+  PostApiAmazonCheckoutAmazonSearchRequest,
+  PostApiAmazonCheckoutRequest,
+  PostApiAmazonCheckoutStreamRequest,
   PostApiBankExternalAccountsRequest,
   PostApiBankOnboardRequest,
   PostApiBankSendRequest,
@@ -55,9 +58,7 @@ import type {
   PostApiCardsRequest,
   PostApiChatMessagesRequest,
   PostApiChatRateLimitReportRequest,
-  PostApiCheckoutAmazonSearchRequest,
   PostApiCheckoutRequest,
-  PostApiCheckoutStreamRequest,
   PostApiCoinbaseOnrampCallbackRequest,
   PostApiCoinbaseOnrampUrlRequest,
   PostApiCreditCardsRequest,
@@ -181,6 +182,12 @@ import {
     PostApiAgentsRequestToJSON,
     PostApiAllowlistRequestFromJSON,
     PostApiAllowlistRequestToJSON,
+    PostApiAmazonCheckoutAmazonSearchRequestFromJSON,
+    PostApiAmazonCheckoutAmazonSearchRequestToJSON,
+    PostApiAmazonCheckoutRequestFromJSON,
+    PostApiAmazonCheckoutRequestToJSON,
+    PostApiAmazonCheckoutStreamRequestFromJSON,
+    PostApiAmazonCheckoutStreamRequestToJSON,
     PostApiBankExternalAccountsRequestFromJSON,
     PostApiBankExternalAccountsRequestToJSON,
     PostApiBankOnboardRequestFromJSON,
@@ -213,12 +220,8 @@ import {
     PostApiChatMessagesRequestToJSON,
     PostApiChatRateLimitReportRequestFromJSON,
     PostApiChatRateLimitReportRequestToJSON,
-    PostApiCheckoutAmazonSearchRequestFromJSON,
-    PostApiCheckoutAmazonSearchRequestToJSON,
     PostApiCheckoutRequestFromJSON,
     PostApiCheckoutRequestToJSON,
-    PostApiCheckoutStreamRequestFromJSON,
-    PostApiCheckoutStreamRequestToJSON,
     PostApiCoinbaseOnrampCallbackRequestFromJSON,
     PostApiCoinbaseOnrampCallbackRequestToJSON,
     PostApiCoinbaseOnrampUrlRequestFromJSON,
@@ -405,7 +408,7 @@ export interface DefaultApiDeleteApiAllowlistByIdRequest {
     id: string;
 }
 
-export interface DefaultApiDeleteApiCheckoutBySessionIdRequest {
+export interface DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest {
     sessionId: string;
     agentId?: string;
 }
@@ -545,6 +548,17 @@ export interface DefaultApiGetApiAllowlistByAgentIdRequest {
     agentId: string;
 }
 
+export interface DefaultApiGetApiAmazonCheckoutBySessionIdRequest {
+    sessionId: string;
+    agentId?: string;
+}
+
+export interface DefaultApiGetApiAmazonCheckoutHistoryRequest {
+    agentId?: string;
+    limit?: string;
+    offset?: string;
+}
+
 export interface DefaultApiGetApiAuditRequest {
     agentId?: string;
     entityType?: string;
@@ -611,12 +625,6 @@ export interface DefaultApiGetApiChatHistoryByAgentIdRequest {
 export interface DefaultApiGetApiCheckoutBySessionIdRequest {
     sessionId: string;
     agentId?: string;
-}
-
-export interface DefaultApiGetApiCheckoutHistoryRequest {
-    agentId?: string;
-    limit?: string;
-    offset?: string;
 }
 
 export interface DefaultApiGetApiCoinbaseOnrampSessionBySessionTokenStatusRequest {
@@ -995,6 +1003,18 @@ export interface DefaultApiPostApiAllowlistOperationRequest {
     postApiAllowlistRequest: PostApiAllowlistRequest;
 }
 
+export interface DefaultApiPostApiAmazonCheckoutOperationRequest {
+    postApiAmazonCheckoutRequest: PostApiAmazonCheckoutRequest;
+}
+
+export interface DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest {
+    postApiAmazonCheckoutAmazonSearchRequest: PostApiAmazonCheckoutAmazonSearchRequest;
+}
+
+export interface DefaultApiPostApiAmazonCheckoutStreamOperationRequest {
+    postApiAmazonCheckoutStreamRequest: PostApiAmazonCheckoutStreamRequest;
+}
+
 export interface DefaultApiPostApiBankExternalAccountsOperationRequest {
     postApiBankExternalAccountsRequest: PostApiBankExternalAccountsRequest;
 }
@@ -1077,14 +1097,6 @@ export interface DefaultApiPostApiChatSessionsByAgentIdNewRequest {
 
 export interface DefaultApiPostApiCheckoutOperationRequest {
     postApiCheckoutRequest: PostApiCheckoutRequest;
-}
-
-export interface DefaultApiPostApiCheckoutAmazonSearchOperationRequest {
-    postApiCheckoutAmazonSearchRequest: PostApiCheckoutAmazonSearchRequest;
-}
-
-export interface DefaultApiPostApiCheckoutStreamOperationRequest {
-    postApiCheckoutStreamRequest: PostApiCheckoutStreamRequest;
 }
 
 export interface DefaultApiPostApiCoinbaseOnrampCallbackOperationRequest {
@@ -1934,6 +1946,29 @@ export interface DefaultApiInterface {
     deleteApiAllowlistById(requestParameters: DefaultApiDeleteApiAllowlistByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for deleteApiAmazonCheckoutBySessionId without sending the request
+     * @param {string} sessionId 
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAmazonCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} sessionId 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAmazonCheckoutBySessionIdRaw(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    deleteApiAmazonCheckoutBySessionId(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for deleteApiBridgeFiatCustomer without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -1970,29 +2005,6 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiBridgeFiatCustomerSandbox(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Creates request options for deleteApiCheckoutBySessionId without sending the request
-     * @param {string} sessionId 
-     * @param {string} [agentId] 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    deleteApiCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {string} sessionId 
-     * @param {string} [agentId] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    deleteApiCheckoutBySessionIdRaw(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    deleteApiCheckoutBySessionId(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for deleteApiFlowsById without sending the request
@@ -2756,6 +2768,54 @@ export interface DefaultApiInterface {
     getApiAmazonAccounts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiAmazonCheckoutBySessionId without sending the request
+     * @param {string} sessionId 
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAmazonCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} sessionId 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAmazonCheckoutBySessionIdRaw(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiAmazonCheckoutBySessionId(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiAmazonCheckoutHistory without sending the request
+     * @param {string} [agentId] 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAmazonCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [agentId] 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAmazonCheckoutHistoryRaw(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiAmazonCheckoutHistory(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiAudit without sending the request
      * @param {string} [agentId] 
      * @param {string} [entityType] 
@@ -3205,31 +3265,6 @@ export interface DefaultApiInterface {
     /**
      */
     getApiCheckoutBySessionId(requestParameters: DefaultApiGetApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Creates request options for getApiCheckoutHistory without sending the request
-     * @param {string} [agentId] 
-     * @param {string} [limit] 
-     * @param {string} [offset] 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getApiCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiCheckoutHistoryRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {string} [agentId] 
-     * @param {string} [limit] 
-     * @param {string} [offset] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getApiCheckoutHistoryRaw(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    getApiCheckoutHistory(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiCoinbaseOnrampSessionBySessionTokenStatus without sending the request
@@ -5225,6 +5260,69 @@ export interface DefaultApiInterface {
     postApiAllowlist(requestParameters: DefaultApiPostApiAllowlistOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiAmazonCheckout without sending the request
+     * @param {PostApiAmazonCheckoutRequest} postApiAmazonCheckoutRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiAmazonCheckoutRequest} postApiAmazonCheckoutRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutRaw(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAmazonCheckout(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAmazonCheckoutAmazonSearch without sending the request
+     * @param {PostApiAmazonCheckoutAmazonSearchRequest} postApiAmazonCheckoutAmazonSearchRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutAmazonSearchRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiAmazonCheckoutAmazonSearchRequest} postApiAmazonCheckoutAmazonSearchRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutAmazonSearchRaw(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAmazonCheckoutAmazonSearch(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAmazonCheckoutStream without sending the request
+     * @param {PostApiAmazonCheckoutStreamRequest} postApiAmazonCheckoutStreamRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiAmazonCheckoutStreamRequest} postApiAmazonCheckoutStreamRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutStreamRaw(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAmazonCheckoutStream(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiBankExternalAccounts without sending the request
      * @param {PostApiBankExternalAccountsRequest} postApiBankExternalAccountsRequest 
      * @throws {RequiredError}
@@ -5683,48 +5781,6 @@ export interface DefaultApiInterface {
     /**
      */
     postApiCheckout(requestParameters: DefaultApiPostApiCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Creates request options for postApiCheckoutAmazonSearch without sending the request
-     * @param {PostApiCheckoutAmazonSearchRequest} postApiCheckoutAmazonSearchRequest 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCheckoutAmazonSearchRequestOpts(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {PostApiCheckoutAmazonSearchRequest} postApiCheckoutAmazonSearchRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCheckoutAmazonSearchRaw(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    postApiCheckoutAmazonSearch(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Creates request options for postApiCheckoutStream without sending the request
-     * @param {PostApiCheckoutStreamRequest} postApiCheckoutStreamRequest 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {PostApiCheckoutStreamRequest} postApiCheckoutStreamRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCheckoutStreamRaw(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    postApiCheckoutStream(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiCoinbaseOnrampCallback without sending the request
@@ -8571,6 +8627,52 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for deleteApiAmazonCheckoutBySessionId without sending the request
+     */
+    async deleteApiAmazonCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['sessionId'] == null) {
+            throw new runtime.RequiredError(
+                'sessionId',
+                'Required parameter "sessionId" was null or undefined when calling deleteApiAmazonCheckoutBySessionId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/amazon-checkout/{sessionId}`;
+        urlPath = urlPath.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteApiAmazonCheckoutBySessionIdRaw(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteApiAmazonCheckoutBySessionIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteApiAmazonCheckoutBySessionId(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteApiAmazonCheckoutBySessionIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deleteApiBridgeFiatCustomer without sending the request
      */
     async deleteApiBridgeFiatCustomerRequestOpts(): Promise<runtime.RequestOpts> {
@@ -8636,52 +8738,6 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async deleteApiBridgeFiatCustomerSandbox(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteApiBridgeFiatCustomerSandboxRaw(initOverrides);
-    }
-
-    /**
-     * Creates request options for deleteApiCheckoutBySessionId without sending the request
-     */
-    async deleteApiCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['sessionId'] == null) {
-            throw new runtime.RequiredError(
-                'sessionId',
-                'Required parameter "sessionId" was null or undefined when calling deleteApiCheckoutBySessionId().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['agentId'] != null) {
-            queryParameters['agentId'] = requestParameters['agentId'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/checkout/{sessionId}`;
-        urlPath = urlPath.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId'])));
-
-        return {
-            path: urlPath,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async deleteApiCheckoutBySessionIdRaw(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.deleteApiCheckoutBySessionIdRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async deleteApiCheckoutBySessionId(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteApiCheckoutBySessionIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -10202,6 +10258,98 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiAmazonCheckoutBySessionId without sending the request
+     */
+    async getApiAmazonCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['sessionId'] == null) {
+            throw new runtime.RequiredError(
+                'sessionId',
+                'Required parameter "sessionId" was null or undefined when calling getApiAmazonCheckoutBySessionId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/amazon-checkout/{sessionId}`;
+        urlPath = urlPath.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAmazonCheckoutBySessionIdRaw(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiAmazonCheckoutBySessionIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiAmazonCheckoutBySessionId(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiAmazonCheckoutBySessionIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiAmazonCheckoutHistory without sending the request
+     */
+    async getApiAmazonCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/amazon-checkout/history`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAmazonCheckoutHistoryRaw(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiAmazonCheckoutHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiAmazonCheckoutHistory(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiAmazonCheckoutHistoryRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiAudit without sending the request
      */
     async getApiAuditRequestOpts(requestParameters: DefaultApiGetApiAuditRequest): Promise<runtime.RequestOpts> {
@@ -11041,52 +11189,6 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiCheckoutBySessionId(requestParameters: DefaultApiGetApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiCheckoutBySessionIdRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Creates request options for getApiCheckoutHistory without sending the request
-     */
-    async getApiCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiCheckoutHistoryRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        if (requestParameters['agentId'] != null) {
-            queryParameters['agentId'] = requestParameters['agentId'];
-        }
-
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
-        }
-
-        if (requestParameters['offset'] != null) {
-            queryParameters['offset'] = requestParameters['offset'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/checkout/history`;
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async getApiCheckoutHistoryRaw(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.getApiCheckoutHistoryRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async getApiCheckoutHistory(requestParameters: DefaultApiGetApiCheckoutHistoryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.getApiCheckoutHistoryRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -15208,6 +15310,138 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiAmazonCheckout without sending the request
+     */
+    async postApiAmazonCheckoutRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiAmazonCheckoutRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAmazonCheckoutRequest',
+                'Required parameter "postApiAmazonCheckoutRequest" was null or undefined when calling postApiAmazonCheckout().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/amazon-checkout/`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAmazonCheckoutRequestToJSON(requestParameters['postApiAmazonCheckoutRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAmazonCheckoutRaw(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAmazonCheckoutRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAmazonCheckout(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAmazonCheckoutRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAmazonCheckoutAmazonSearch without sending the request
+     */
+    async postApiAmazonCheckoutAmazonSearchRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiAmazonCheckoutAmazonSearchRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAmazonCheckoutAmazonSearchRequest',
+                'Required parameter "postApiAmazonCheckoutAmazonSearchRequest" was null or undefined when calling postApiAmazonCheckoutAmazonSearch().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/amazon-checkout/amazon-search`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAmazonCheckoutAmazonSearchRequestToJSON(requestParameters['postApiAmazonCheckoutAmazonSearchRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAmazonCheckoutAmazonSearchRaw(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAmazonCheckoutAmazonSearchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAmazonCheckoutAmazonSearch(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAmazonCheckoutAmazonSearchRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAmazonCheckoutStream without sending the request
+     */
+    async postApiAmazonCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiAmazonCheckoutStreamRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAmazonCheckoutStreamRequest',
+                'Required parameter "postApiAmazonCheckoutStreamRequest" was null or undefined when calling postApiAmazonCheckoutStream().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/amazon-checkout/stream`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAmazonCheckoutStreamRequestToJSON(requestParameters['postApiAmazonCheckoutStreamRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAmazonCheckoutStreamRaw(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAmazonCheckoutStreamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAmazonCheckoutStream(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAmazonCheckoutStreamRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiBankExternalAccounts without sending the request
      */
     async postApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest): Promise<runtime.RequestOpts> {
@@ -16157,94 +16391,6 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiCheckout(requestParameters: DefaultApiPostApiCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiCheckoutRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Creates request options for postApiCheckoutAmazonSearch without sending the request
-     */
-    async postApiCheckoutAmazonSearchRequestOpts(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['postApiCheckoutAmazonSearchRequest'] == null) {
-            throw new runtime.RequiredError(
-                'postApiCheckoutAmazonSearchRequest',
-                'Required parameter "postApiCheckoutAmazonSearchRequest" was null or undefined when calling postApiCheckoutAmazonSearch().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/checkout/amazon-search`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiCheckoutAmazonSearchRequestToJSON(requestParameters['postApiCheckoutAmazonSearchRequest']),
-        };
-    }
-
-    /**
-     */
-    async postApiCheckoutAmazonSearchRaw(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.postApiCheckoutAmazonSearchRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async postApiCheckoutAmazonSearch(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.postApiCheckoutAmazonSearchRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Creates request options for postApiCheckoutStream without sending the request
-     */
-    async postApiCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['postApiCheckoutStreamRequest'] == null) {
-            throw new runtime.RequiredError(
-                'postApiCheckoutStreamRequest',
-                'Required parameter "postApiCheckoutStreamRequest" was null or undefined when calling postApiCheckoutStream().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/checkout/stream`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiCheckoutStreamRequestToJSON(requestParameters['postApiCheckoutStreamRequest']),
-        };
-    }
-
-    /**
-     */
-    async postApiCheckoutStreamRaw(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.postApiCheckoutStreamRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async postApiCheckoutStream(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.postApiCheckoutStreamRaw(requestParameters, initOverrides);
     }
 
     /**

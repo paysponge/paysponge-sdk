@@ -14,7 +14,7 @@
 /**
  * @export
  */
-export const PostApiCheckoutAmazonSearchRequestRegionEnum = {
+export const PostApiAmazonCheckoutAmazonSearchRequestRegionEnum = {
     Us: 'us',
     Uk: 'uk',
     De: 'de',
@@ -26,17 +26,17 @@ export const PostApiCheckoutAmazonSearchRequestRegionEnum = {
     Au: 'au'
 };
 /**
- * Check if a given object implements the PostApiCheckoutAmazonSearchRequest interface.
+ * Check if a given object implements the PostApiAmazonCheckoutAmazonSearchRequest interface.
  */
-export function instanceOfPostApiCheckoutAmazonSearchRequest(value) {
+export function instanceOfPostApiAmazonCheckoutAmazonSearchRequest(value) {
     if (!('query' in value) || value['query'] === undefined)
         return false;
     return true;
 }
-export function PostApiCheckoutAmazonSearchRequestFromJSON(json) {
-    return PostApiCheckoutAmazonSearchRequestFromJSONTyped(json, false);
+export function PostApiAmazonCheckoutAmazonSearchRequestFromJSON(json) {
+    return PostApiAmazonCheckoutAmazonSearchRequestFromJSONTyped(json, false);
 }
-export function PostApiCheckoutAmazonSearchRequestFromJSONTyped(json, ignoreDiscriminator) {
+export function PostApiAmazonCheckoutAmazonSearchRequestFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
@@ -46,10 +46,10 @@ export function PostApiCheckoutAmazonSearchRequestFromJSONTyped(json, ignoreDisc
         'region': json['region'] == null ? undefined : json['region'],
     };
 }
-export function PostApiCheckoutAmazonSearchRequestToJSON(json) {
-    return PostApiCheckoutAmazonSearchRequestToJSONTyped(json, false);
+export function PostApiAmazonCheckoutAmazonSearchRequestToJSON(json) {
+    return PostApiAmazonCheckoutAmazonSearchRequestToJSONTyped(json, false);
 }
-export function PostApiCheckoutAmazonSearchRequestToJSONTyped(value, ignoreDiscriminator = false) {
+export function PostApiAmazonCheckoutAmazonSearchRequestToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
@@ -59,4 +59,4 @@ export function PostApiCheckoutAmazonSearchRequestToJSONTyped(value, ignoreDiscr
         'region': value['region'],
     };
 }
-//# sourceMappingURL=post-api-checkout-amazon-search-request.js.map
+//# sourceMappingURL=post-api-amazon-checkout-amazon-search-request.js.map

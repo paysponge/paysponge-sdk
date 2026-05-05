@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -699,6 +699,39 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.deleteApiAllowlistByIdRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for deleteApiAmazonCheckoutBySessionId without sending the request
+     */
+    async deleteApiAmazonCheckoutBySessionIdRequestOpts(requestParameters) {
+        if (requestParameters['sessionId'] == null) {
+            throw new runtime.RequiredError('sessionId', 'Required parameter "sessionId" was null or undefined when calling deleteApiAmazonCheckoutBySessionId().');
+        }
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/amazon-checkout/{sessionId}`;
+        urlPath = urlPath.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId'])));
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async deleteApiAmazonCheckoutBySessionIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.deleteApiAmazonCheckoutBySessionIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async deleteApiAmazonCheckoutBySessionId(requestParameters, initOverrides) {
+        await this.deleteApiAmazonCheckoutBySessionIdRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for deleteApiBridgeFiatCustomer without sending the request
      */
     async deleteApiBridgeFiatCustomerRequestOpts() {
@@ -749,39 +782,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async deleteApiBridgeFiatCustomerSandbox(initOverrides) {
         await this.deleteApiBridgeFiatCustomerSandboxRaw(initOverrides);
-    }
-    /**
-     * Creates request options for deleteApiCheckoutBySessionId without sending the request
-     */
-    async deleteApiCheckoutBySessionIdRequestOpts(requestParameters) {
-        if (requestParameters['sessionId'] == null) {
-            throw new runtime.RequiredError('sessionId', 'Required parameter "sessionId" was null or undefined when calling deleteApiCheckoutBySessionId().');
-        }
-        const queryParameters = {};
-        if (requestParameters['agentId'] != null) {
-            queryParameters['agentId'] = requestParameters['agentId'];
-        }
-        const headerParameters = {};
-        let urlPath = `/api/checkout/{sessionId}`;
-        urlPath = urlPath.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId'])));
-        return {
-            path: urlPath,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async deleteApiCheckoutBySessionIdRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.deleteApiCheckoutBySessionIdRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async deleteApiCheckoutBySessionId(requestParameters, initOverrides) {
-        await this.deleteApiCheckoutBySessionIdRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for deleteApiFlowsById without sending the request
@@ -1878,6 +1878,74 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiAmazonAccountsRaw(initOverrides);
     }
     /**
+     * Creates request options for getApiAmazonCheckoutBySessionId without sending the request
+     */
+    async getApiAmazonCheckoutBySessionIdRequestOpts(requestParameters) {
+        if (requestParameters['sessionId'] == null) {
+            throw new runtime.RequiredError('sessionId', 'Required parameter "sessionId" was null or undefined when calling getApiAmazonCheckoutBySessionId().');
+        }
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/amazon-checkout/{sessionId}`;
+        urlPath = urlPath.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiAmazonCheckoutBySessionIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiAmazonCheckoutBySessionIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiAmazonCheckoutBySessionId(requestParameters, initOverrides) {
+        await this.getApiAmazonCheckoutBySessionIdRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiAmazonCheckoutHistory without sending the request
+     */
+    async getApiAmazonCheckoutHistoryRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/amazon-checkout/history`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiAmazonCheckoutHistoryRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiAmazonCheckoutHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiAmazonCheckoutHistory(requestParameters = {}, initOverrides) {
+        await this.getApiAmazonCheckoutHistoryRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiAudit without sending the request
      */
     async getApiAuditRequestOpts(requestParameters) {
@@ -2506,41 +2574,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiCheckoutBySessionId(requestParameters, initOverrides) {
         await this.getApiCheckoutBySessionIdRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for getApiCheckoutHistory without sending the request
-     */
-    async getApiCheckoutHistoryRequestOpts(requestParameters) {
-        const queryParameters = {};
-        if (requestParameters['agentId'] != null) {
-            queryParameters['agentId'] = requestParameters['agentId'];
-        }
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
-        }
-        if (requestParameters['offset'] != null) {
-            queryParameters['offset'] = requestParameters['offset'];
-        }
-        const headerParameters = {};
-        let urlPath = `/api/checkout/history`;
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async getApiCheckoutHistoryRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.getApiCheckoutHistoryRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async getApiCheckoutHistory(requestParameters = {}, initOverrides) {
-        await this.getApiCheckoutHistoryRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiCoinbaseOnrampSessionBySessionTokenStatus without sending the request
@@ -5461,6 +5494,99 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiAllowlistRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for postApiAmazonCheckout without sending the request
+     */
+    async postApiAmazonCheckoutRequestOpts(requestParameters) {
+        if (requestParameters['postApiAmazonCheckoutRequest'] == null) {
+            throw new runtime.RequiredError('postApiAmazonCheckoutRequest', 'Required parameter "postApiAmazonCheckoutRequest" was null or undefined when calling postApiAmazonCheckout().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/amazon-checkout/`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAmazonCheckoutRequestToJSON(requestParameters['postApiAmazonCheckoutRequest']),
+        };
+    }
+    /**
+     */
+    async postApiAmazonCheckoutRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiAmazonCheckoutRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiAmazonCheckout(requestParameters, initOverrides) {
+        await this.postApiAmazonCheckoutRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiAmazonCheckoutAmazonSearch without sending the request
+     */
+    async postApiAmazonCheckoutAmazonSearchRequestOpts(requestParameters) {
+        if (requestParameters['postApiAmazonCheckoutAmazonSearchRequest'] == null) {
+            throw new runtime.RequiredError('postApiAmazonCheckoutAmazonSearchRequest', 'Required parameter "postApiAmazonCheckoutAmazonSearchRequest" was null or undefined when calling postApiAmazonCheckoutAmazonSearch().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/amazon-checkout/amazon-search`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAmazonCheckoutAmazonSearchRequestToJSON(requestParameters['postApiAmazonCheckoutAmazonSearchRequest']),
+        };
+    }
+    /**
+     */
+    async postApiAmazonCheckoutAmazonSearchRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiAmazonCheckoutAmazonSearchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiAmazonCheckoutAmazonSearch(requestParameters, initOverrides) {
+        await this.postApiAmazonCheckoutAmazonSearchRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiAmazonCheckoutStream without sending the request
+     */
+    async postApiAmazonCheckoutStreamRequestOpts(requestParameters) {
+        if (requestParameters['postApiAmazonCheckoutStreamRequest'] == null) {
+            throw new runtime.RequiredError('postApiAmazonCheckoutStreamRequest', 'Required parameter "postApiAmazonCheckoutStreamRequest" was null or undefined when calling postApiAmazonCheckoutStream().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/amazon-checkout/stream`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAmazonCheckoutStreamRequestToJSON(requestParameters['postApiAmazonCheckoutStreamRequest']),
+        };
+    }
+    /**
+     */
+    async postApiAmazonCheckoutStreamRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiAmazonCheckoutStreamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiAmazonCheckoutStream(requestParameters, initOverrides) {
+        await this.postApiAmazonCheckoutStreamRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for postApiBankExternalAccounts without sending the request
      */
     async postApiBankExternalAccountsRequestOpts(requestParameters) {
@@ -6133,68 +6259,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiCheckout(requestParameters, initOverrides) {
         await this.postApiCheckoutRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for postApiCheckoutAmazonSearch without sending the request
-     */
-    async postApiCheckoutAmazonSearchRequestOpts(requestParameters) {
-        if (requestParameters['postApiCheckoutAmazonSearchRequest'] == null) {
-            throw new runtime.RequiredError('postApiCheckoutAmazonSearchRequest', 'Required parameter "postApiCheckoutAmazonSearchRequest" was null or undefined when calling postApiCheckoutAmazonSearch().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        let urlPath = `/api/checkout/amazon-search`;
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiCheckoutAmazonSearchRequestToJSON(requestParameters['postApiCheckoutAmazonSearchRequest']),
-        };
-    }
-    /**
-     */
-    async postApiCheckoutAmazonSearchRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiCheckoutAmazonSearchRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiCheckoutAmazonSearch(requestParameters, initOverrides) {
-        await this.postApiCheckoutAmazonSearchRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for postApiCheckoutStream without sending the request
-     */
-    async postApiCheckoutStreamRequestOpts(requestParameters) {
-        if (requestParameters['postApiCheckoutStreamRequest'] == null) {
-            throw new runtime.RequiredError('postApiCheckoutStreamRequest', 'Required parameter "postApiCheckoutStreamRequest" was null or undefined when calling postApiCheckoutStream().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        let urlPath = `/api/checkout/stream`;
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiCheckoutStreamRequestToJSON(requestParameters['postApiCheckoutStreamRequest']),
-        };
-    }
-    /**
-     */
-    async postApiCheckoutStreamRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiCheckoutStreamRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiCheckoutStream(requestParameters, initOverrides) {
-        await this.postApiCheckoutStreamRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiCoinbaseOnrampCallback without sending the request

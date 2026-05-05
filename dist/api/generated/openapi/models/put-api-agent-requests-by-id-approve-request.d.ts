@@ -38,12 +38,6 @@ export interface PutApiAgentRequestsByIdApproveRequest {
      * @type {boolean}
      * @memberof PutApiAgentRequestsByIdApproveRequest
      */
-    savePreferences?: boolean;
-    /**
-     *
-     * @type {boolean}
-     * @memberof PutApiAgentRequestsByIdApproveRequest
-     */
     forceSpendingLimit?: boolean;
 }
 /**

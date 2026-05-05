@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -41,7 +41,7 @@ export interface DefaultApiDeleteApiAgentsByIdShippingAddressesByAddressIdReques
 export interface DefaultApiDeleteApiAllowlistByIdRequest {
     id: string;
 }
-export interface DefaultApiDeleteApiCheckoutBySessionIdRequest {
+export interface DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest {
     sessionId: string;
     agentId?: string;
 }
@@ -151,6 +151,15 @@ export interface DefaultApiGetApiAgentsByIdShippingAddressesRequest {
 export interface DefaultApiGetApiAllowlistByAgentIdRequest {
     agentId: string;
 }
+export interface DefaultApiGetApiAmazonCheckoutBySessionIdRequest {
+    sessionId: string;
+    agentId?: string;
+}
+export interface DefaultApiGetApiAmazonCheckoutHistoryRequest {
+    agentId?: string;
+    limit?: string;
+    offset?: string;
+}
 export interface DefaultApiGetApiAuditRequest {
     agentId?: string;
     entityType?: string;
@@ -204,11 +213,6 @@ export interface DefaultApiGetApiChatHistoryByAgentIdRequest {
 export interface DefaultApiGetApiCheckoutBySessionIdRequest {
     sessionId: string;
     agentId?: string;
-}
-export interface DefaultApiGetApiCheckoutHistoryRequest {
-    agentId?: string;
-    limit?: string;
-    offset?: string;
 }
 export interface DefaultApiGetApiCoinbaseOnrampSessionBySessionTokenStatusRequest {
     sessionToken: string;
@@ -511,6 +515,15 @@ export interface DefaultApiPostApiAgentsRegisterOperationRequest {
 export interface DefaultApiPostApiAllowlistOperationRequest {
     postApiAllowlistRequest: PostApiAllowlistRequest;
 }
+export interface DefaultApiPostApiAmazonCheckoutOperationRequest {
+    postApiAmazonCheckoutRequest: PostApiAmazonCheckoutRequest;
+}
+export interface DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest {
+    postApiAmazonCheckoutAmazonSearchRequest: PostApiAmazonCheckoutAmazonSearchRequest;
+}
+export interface DefaultApiPostApiAmazonCheckoutStreamOperationRequest {
+    postApiAmazonCheckoutStreamRequest: PostApiAmazonCheckoutStreamRequest;
+}
 export interface DefaultApiPostApiBankExternalAccountsOperationRequest {
     postApiBankExternalAccountsRequest: PostApiBankExternalAccountsRequest;
 }
@@ -573,12 +586,6 @@ export interface DefaultApiPostApiChatSessionsByAgentIdNewRequest {
 }
 export interface DefaultApiPostApiCheckoutOperationRequest {
     postApiCheckoutRequest: PostApiCheckoutRequest;
-}
-export interface DefaultApiPostApiCheckoutAmazonSearchOperationRequest {
-    postApiCheckoutAmazonSearchRequest: PostApiCheckoutAmazonSearchRequest;
-}
-export interface DefaultApiPostApiCheckoutStreamOperationRequest {
-    postApiCheckoutStreamRequest: PostApiCheckoutStreamRequest;
 }
 export interface DefaultApiPostApiCoinbaseOnrampCallbackOperationRequest {
     postApiCoinbaseOnrampCallbackRequest: PostApiCoinbaseOnrampCallbackRequest;
@@ -1270,6 +1277,26 @@ export interface DefaultApiInterface {
      */
     deleteApiAllowlistById(requestParameters: DefaultApiDeleteApiAllowlistByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for deleteApiAmazonCheckoutBySessionId without sending the request
+     * @param {string} sessionId
+     * @param {string} [agentId]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAmazonCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} sessionId
+     * @param {string} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAmazonCheckoutBySessionIdRaw(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    deleteApiAmazonCheckoutBySessionId(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for deleteApiBridgeFiatCustomer without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -1301,26 +1328,6 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiBridgeFiatCustomerSandbox(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for deleteApiCheckoutBySessionId without sending the request
-     * @param {string} sessionId
-     * @param {string} [agentId]
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    deleteApiCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {string} sessionId
-     * @param {string} [agentId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    deleteApiCheckoutBySessionIdRaw(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    deleteApiCheckoutBySessionId(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for deleteApiFlowsById without sending the request
      * @param {string} id
@@ -1978,6 +1985,48 @@ export interface DefaultApiInterface {
      */
     getApiAmazonAccounts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiAmazonCheckoutBySessionId without sending the request
+     * @param {string} sessionId
+     * @param {string} [agentId]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAmazonCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} sessionId
+     * @param {string} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAmazonCheckoutBySessionIdRaw(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAmazonCheckoutBySessionId(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAmazonCheckoutHistory without sending the request
+     * @param {string} [agentId]
+     * @param {string} [limit]
+     * @param {string} [offset]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAmazonCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [agentId]
+     * @param {string} [limit]
+     * @param {string} [offset]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAmazonCheckoutHistoryRaw(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAmazonCheckoutHistory(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiAudit without sending the request
      * @param {string} [agentId]
      * @param {string} [entityType]
@@ -2365,28 +2414,6 @@ export interface DefaultApiInterface {
     /**
      */
     getApiCheckoutBySessionId(requestParameters: DefaultApiGetApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for getApiCheckoutHistory without sending the request
-     * @param {string} [agentId]
-     * @param {string} [limit]
-     * @param {string} [offset]
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getApiCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiCheckoutHistoryRequest): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {string} [agentId]
-     * @param {string} [limit]
-     * @param {string} [offset]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getApiCheckoutHistoryRaw(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    getApiCheckoutHistory(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiCoinbaseOnrampSessionBySessionTokenStatus without sending the request
      * @param {string} sessionToken
@@ -4114,6 +4141,60 @@ export interface DefaultApiInterface {
      */
     postApiAllowlist(requestParameters: DefaultApiPostApiAllowlistOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiAmazonCheckout without sending the request
+     * @param {PostApiAmazonCheckoutRequest} postApiAmazonCheckoutRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiAmazonCheckoutRequest} postApiAmazonCheckoutRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutRaw(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAmazonCheckout(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAmazonCheckoutAmazonSearch without sending the request
+     * @param {PostApiAmazonCheckoutAmazonSearchRequest} postApiAmazonCheckoutAmazonSearchRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutAmazonSearchRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiAmazonCheckoutAmazonSearchRequest} postApiAmazonCheckoutAmazonSearchRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutAmazonSearchRaw(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAmazonCheckoutAmazonSearch(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAmazonCheckoutStream without sending the request
+     * @param {PostApiAmazonCheckoutStreamRequest} postApiAmazonCheckoutStreamRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiAmazonCheckoutStreamRequest} postApiAmazonCheckoutStreamRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAmazonCheckoutStreamRaw(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAmazonCheckoutStream(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiBankExternalAccounts without sending the request
      * @param {PostApiBankExternalAccountsRequest} postApiBankExternalAccountsRequest
      * @throws {RequiredError}
@@ -4507,42 +4588,6 @@ export interface DefaultApiInterface {
     /**
      */
     postApiCheckout(requestParameters: DefaultApiPostApiCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiCheckoutAmazonSearch without sending the request
-     * @param {PostApiCheckoutAmazonSearchRequest} postApiCheckoutAmazonSearchRequest
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCheckoutAmazonSearchRequestOpts(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {PostApiCheckoutAmazonSearchRequest} postApiCheckoutAmazonSearchRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCheckoutAmazonSearchRaw(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiCheckoutAmazonSearch(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiCheckoutStream without sending the request
-     * @param {PostApiCheckoutStreamRequest} postApiCheckoutStreamRequest
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {PostApiCheckoutStreamRequest} postApiCheckoutStreamRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCheckoutStreamRaw(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiCheckoutStream(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiCoinbaseOnrampCallback without sending the request
      * @param {PostApiCoinbaseOnrampCallbackRequest} postApiCoinbaseOnrampCallbackRequest
@@ -6429,6 +6474,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     deleteApiAllowlistById(requestParameters: DefaultApiDeleteApiAllowlistByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for deleteApiAmazonCheckoutBySessionId without sending the request
+     */
+    deleteApiAmazonCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    deleteApiAmazonCheckoutBySessionIdRaw(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    deleteApiAmazonCheckoutBySessionId(requestParameters: DefaultApiDeleteApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for deleteApiBridgeFiatCustomer without sending the request
      */
     deleteApiBridgeFiatCustomerRequestOpts(): Promise<runtime.RequestOpts>;
@@ -6448,16 +6503,6 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     deleteApiBridgeFiatCustomerSandbox(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for deleteApiCheckoutBySessionId without sending the request
-     */
-    deleteApiCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
-    /**
-     */
-    deleteApiCheckoutBySessionIdRaw(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    deleteApiCheckoutBySessionId(requestParameters: DefaultApiDeleteApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for deleteApiFlowsById without sending the request
      */
@@ -6809,6 +6854,26 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiAmazonAccounts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiAmazonCheckoutBySessionId without sending the request
+     */
+    getApiAmazonCheckoutBySessionIdRequestOpts(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiAmazonCheckoutBySessionIdRaw(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAmazonCheckoutBySessionId(requestParameters: DefaultApiGetApiAmazonCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAmazonCheckoutHistory without sending the request
+     */
+    getApiAmazonCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiAmazonCheckoutHistoryRaw(requestParameters: DefaultApiGetApiAmazonCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAmazonCheckoutHistory(requestParameters?: DefaultApiGetApiAmazonCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiAudit without sending the request
      */
     getApiAuditRequestOpts(requestParameters: DefaultApiGetApiAuditRequest): Promise<runtime.RequestOpts>;
@@ -7018,16 +7083,6 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiCheckoutBySessionId(requestParameters: DefaultApiGetApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for getApiCheckoutHistory without sending the request
-     */
-    getApiCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiCheckoutHistoryRequest): Promise<runtime.RequestOpts>;
-    /**
-     */
-    getApiCheckoutHistoryRaw(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    getApiCheckoutHistory(requestParameters?: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiCoinbaseOnrampSessionBySessionTokenStatus without sending the request
      */
@@ -7919,6 +7974,36 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     postApiAllowlist(requestParameters: DefaultApiPostApiAllowlistOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiAmazonCheckout without sending the request
+     */
+    postApiAmazonCheckoutRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAmazonCheckoutRaw(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAmazonCheckout(requestParameters: DefaultApiPostApiAmazonCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAmazonCheckoutAmazonSearch without sending the request
+     */
+    postApiAmazonCheckoutAmazonSearchRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAmazonCheckoutAmazonSearchRaw(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAmazonCheckoutAmazonSearch(requestParameters: DefaultApiPostApiAmazonCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAmazonCheckoutStream without sending the request
+     */
+    postApiAmazonCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAmazonCheckoutStreamRaw(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAmazonCheckoutStream(requestParameters: DefaultApiPostApiAmazonCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiBankExternalAccounts without sending the request
      */
     postApiBankExternalAccountsRequestOpts(requestParameters: DefaultApiPostApiBankExternalAccountsOperationRequest): Promise<runtime.RequestOpts>;
@@ -8138,26 +8223,6 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiCheckout(requestParameters: DefaultApiPostApiCheckoutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiCheckoutAmazonSearch without sending the request
-     */
-    postApiCheckoutAmazonSearchRequestOpts(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest): Promise<runtime.RequestOpts>;
-    /**
-     */
-    postApiCheckoutAmazonSearchRaw(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiCheckoutAmazonSearch(requestParameters: DefaultApiPostApiCheckoutAmazonSearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiCheckoutStream without sending the request
-     */
-    postApiCheckoutStreamRequestOpts(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest): Promise<runtime.RequestOpts>;
-    /**
-     */
-    postApiCheckoutStreamRaw(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiCheckoutStream(requestParameters: DefaultApiPostApiCheckoutStreamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiCoinbaseOnrampCallback without sending the request
      */

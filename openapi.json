@@ -3766,9 +3766,6 @@
                       }
                     }
                   },
-                  "savePreferences": {
-                    "type": "boolean"
-                  },
                   "forceSpendingLimit": {
                     "type": "boolean"
                   }
@@ -3793,9 +3790,6 @@
                       }
                     }
                   },
-                  "savePreferences": {
-                    "type": "boolean"
-                  },
                   "forceSpendingLimit": {
                     "type": "boolean"
                   }
@@ -3819,9 +3813,6 @@
                         "type": "string"
                       }
                     }
-                  },
-                  "savePreferences": {
-                    "type": "boolean"
                   },
                   "forceSpendingLimit": {
                     "type": "boolean"
@@ -16038,73 +16029,31 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "checkoutUrl"
+                  "productUrl"
                 ],
                 "properties": {
                   "agentId": {
                     "type": "string"
                   },
-                  "checkoutUrl": {
+                  "productUrl": {
                     "type": "string"
                   },
-                  "checkoutType": {
-                    "const": "amazon",
+                  "estimatedAmount": {
                     "type": "string"
                   },
-                  "paymentMethodId": {
+                  "email": {
                     "type": "string"
-                  },
-                  "amazonAccountId": {
-                    "type": "string"
-                  },
-                  "shippingAddressId": {
-                    "type": "string"
-                  },
-                  "shippingAddress": {
-                    "type": "object",
-                    "required": [
-                      "name",
-                      "line1",
-                      "city",
-                      "state",
-                      "postalCode"
-                    ],
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "line1": {
-                        "type": "string"
-                      },
-                      "line2": {
-                        "type": "string"
-                      },
-                      "city": {
-                        "type": "string"
-                      },
-                      "state": {
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "type": "string"
-                      },
-                      "country": {
-                        "default": "US",
-                        "type": "string"
-                      },
-                      "phone": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "liveView": {
-                    "type": "boolean"
                   },
                   "dryRun": {
                     "type": "boolean"
                   },
-                  "clearCart": {
-                    "type": "boolean"
+                  "productOptions": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -16113,73 +16062,31 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "checkoutUrl"
+                  "productUrl"
                 ],
                 "properties": {
                   "agentId": {
                     "type": "string"
                   },
-                  "checkoutUrl": {
+                  "productUrl": {
                     "type": "string"
                   },
-                  "checkoutType": {
-                    "const": "amazon",
+                  "estimatedAmount": {
                     "type": "string"
                   },
-                  "paymentMethodId": {
+                  "email": {
                     "type": "string"
-                  },
-                  "amazonAccountId": {
-                    "type": "string"
-                  },
-                  "shippingAddressId": {
-                    "type": "string"
-                  },
-                  "shippingAddress": {
-                    "type": "object",
-                    "required": [
-                      "name",
-                      "line1",
-                      "city",
-                      "state",
-                      "postalCode"
-                    ],
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "line1": {
-                        "type": "string"
-                      },
-                      "line2": {
-                        "type": "string"
-                      },
-                      "city": {
-                        "type": "string"
-                      },
-                      "state": {
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "type": "string"
-                      },
-                      "country": {
-                        "default": "US",
-                        "type": "string"
-                      },
-                      "phone": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "liveView": {
-                    "type": "boolean"
                   },
                   "dryRun": {
                     "type": "boolean"
                   },
-                  "clearCart": {
-                    "type": "boolean"
+                  "productOptions": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -16188,73 +16095,31 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "checkoutUrl"
+                  "productUrl"
                 ],
                 "properties": {
                   "agentId": {
                     "type": "string"
                   },
-                  "checkoutUrl": {
+                  "productUrl": {
                     "type": "string"
                   },
-                  "checkoutType": {
-                    "const": "amazon",
+                  "estimatedAmount": {
                     "type": "string"
                   },
-                  "paymentMethodId": {
+                  "email": {
                     "type": "string"
-                  },
-                  "amazonAccountId": {
-                    "type": "string"
-                  },
-                  "shippingAddressId": {
-                    "type": "string"
-                  },
-                  "shippingAddress": {
-                    "type": "object",
-                    "required": [
-                      "name",
-                      "line1",
-                      "city",
-                      "state",
-                      "postalCode"
-                    ],
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "line1": {
-                        "type": "string"
-                      },
-                      "line2": {
-                        "type": "string"
-                      },
-                      "city": {
-                        "type": "string"
-                      },
-                      "state": {
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "type": "string"
-                      },
-                      "country": {
-                        "default": "US",
-                        "type": "string"
-                      },
-                      "phone": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "liveView": {
-                    "type": "boolean"
                   },
                   "dryRun": {
                     "type": "boolean"
                   },
-                  "clearCart": {
-                    "type": "boolean"
+                  "productOptions": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -16285,6 +16150,264 @@
           }
         ],
         "operationId": "getApiCheckoutBySessionId"
+      }
+    },
+    "/api/amazon-checkout/": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "checkoutUrl"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "checkoutUrl": {
+                    "type": "string"
+                  },
+                  "checkoutType": {
+                    "const": "amazon",
+                    "type": "string"
+                  },
+                  "paymentMethodId": {
+                    "type": "string"
+                  },
+                  "amazonAccountId": {
+                    "type": "string"
+                  },
+                  "shippingAddressId": {
+                    "type": "string"
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "default": "US",
+                        "type": "string"
+                      },
+                      "phone": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "liveView": {
+                    "type": "boolean"
+                  },
+                  "dryRun": {
+                    "type": "boolean"
+                  },
+                  "clearCart": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "checkoutUrl"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "checkoutUrl": {
+                    "type": "string"
+                  },
+                  "checkoutType": {
+                    "const": "amazon",
+                    "type": "string"
+                  },
+                  "paymentMethodId": {
+                    "type": "string"
+                  },
+                  "amazonAccountId": {
+                    "type": "string"
+                  },
+                  "shippingAddressId": {
+                    "type": "string"
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "default": "US",
+                        "type": "string"
+                      },
+                      "phone": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "liveView": {
+                    "type": "boolean"
+                  },
+                  "dryRun": {
+                    "type": "boolean"
+                  },
+                  "clearCart": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "checkoutUrl"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "checkoutUrl": {
+                    "type": "string"
+                  },
+                  "checkoutType": {
+                    "const": "amazon",
+                    "type": "string"
+                  },
+                  "paymentMethodId": {
+                    "type": "string"
+                  },
+                  "amazonAccountId": {
+                    "type": "string"
+                  },
+                  "shippingAddressId": {
+                    "type": "string"
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "default": "US",
+                        "type": "string"
+                      },
+                      "phone": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "liveView": {
+                    "type": "boolean"
+                  },
+                  "dryRun": {
+                    "type": "boolean"
+                  },
+                  "clearCart": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAmazon-checkout"
+      }
+    },
+    "/api/amazon-checkout/{sessionId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAmazon-checkoutBySessionId"
       },
       "delete": {
         "parameters": [
@@ -16305,10 +16428,10 @@
             }
           }
         ],
-        "operationId": "deleteApiCheckoutBySessionId"
+        "operationId": "deleteApiAmazon-checkoutBySessionId"
       }
     },
-    "/api/checkout/history": {
+    "/api/amazon-checkout/history": {
       "get": {
         "parameters": [
           {
@@ -16336,10 +16459,10 @@
             }
           }
         ],
-        "operationId": "getApiCheckoutHistory"
+        "operationId": "getApiAmazon-checkoutHistory"
       }
     },
-    "/api/checkout/stream": {
+    "/api/amazon-checkout/stream": {
       "post": {
         "requestBody": {
           "required": true,
@@ -16532,10 +16655,10 @@
             }
           }
         },
-        "operationId": "postApiCheckoutStream"
+        "operationId": "postApiAmazon-checkoutStream"
       }
     },
-    "/api/checkout/amazon-search": {
+    "/api/amazon-checkout/amazon-search": {
       "post": {
         "requestBody": {
           "required": true,
@@ -16641,7 +16764,7 @@
             }
           }
         },
-        "operationId": "postApiCheckoutAmazon-search"
+        "operationId": "postApiAmazon-checkoutAmazon-search"
       }
     },
     "/api/agents/{id}/amazon-accounts/copy": {

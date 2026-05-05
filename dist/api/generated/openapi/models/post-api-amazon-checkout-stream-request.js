@@ -11,19 +11,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PostApiCheckoutRequestShippingAddressFromJSON, PostApiCheckoutRequestShippingAddressToJSON, } from './post-api-checkout-request-shipping-address.js';
+import { PostApiAmazonCheckoutRequestShippingAddressFromJSON, PostApiAmazonCheckoutRequestShippingAddressToJSON, } from './post-api-amazon-checkout-request-shipping-address.js';
 /**
- * Check if a given object implements the PostApiCheckoutStreamRequest interface.
+ * Check if a given object implements the PostApiAmazonCheckoutStreamRequest interface.
  */
-export function instanceOfPostApiCheckoutStreamRequest(value) {
+export function instanceOfPostApiAmazonCheckoutStreamRequest(value) {
     if (!('checkoutUrl' in value) || value['checkoutUrl'] === undefined)
         return false;
     return true;
 }
-export function PostApiCheckoutStreamRequestFromJSON(json) {
-    return PostApiCheckoutStreamRequestFromJSONTyped(json, false);
+export function PostApiAmazonCheckoutStreamRequestFromJSON(json) {
+    return PostApiAmazonCheckoutStreamRequestFromJSONTyped(json, false);
 }
-export function PostApiCheckoutStreamRequestFromJSONTyped(json, ignoreDiscriminator) {
+export function PostApiAmazonCheckoutStreamRequestFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
@@ -31,15 +31,15 @@ export function PostApiCheckoutStreamRequestFromJSONTyped(json, ignoreDiscrimina
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
         'checkoutUrl': json['checkoutUrl'],
         'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
-        'shippingAddress': json['shippingAddress'] == null ? undefined : PostApiCheckoutRequestShippingAddressFromJSON(json['shippingAddress']),
+        'shippingAddress': json['shippingAddress'] == null ? undefined : PostApiAmazonCheckoutRequestShippingAddressFromJSON(json['shippingAddress']),
         'email': json['email'] == null ? undefined : json['email'],
         'dryRun': json['dryRun'] == null ? undefined : json['dryRun'],
     };
 }
-export function PostApiCheckoutStreamRequestToJSON(json) {
-    return PostApiCheckoutStreamRequestToJSONTyped(json, false);
+export function PostApiAmazonCheckoutStreamRequestToJSON(json) {
+    return PostApiAmazonCheckoutStreamRequestToJSONTyped(json, false);
 }
-export function PostApiCheckoutStreamRequestToJSONTyped(value, ignoreDiscriminator = false) {
+export function PostApiAmazonCheckoutStreamRequestToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
@@ -47,9 +47,9 @@ export function PostApiCheckoutStreamRequestToJSONTyped(value, ignoreDiscriminat
         'agentId': value['agentId'],
         'checkoutUrl': value['checkoutUrl'],
         'paymentMethodId': value['paymentMethodId'],
-        'shippingAddress': PostApiCheckoutRequestShippingAddressToJSON(value['shippingAddress']),
+        'shippingAddress': PostApiAmazonCheckoutRequestShippingAddressToJSON(value['shippingAddress']),
         'email': value['email'],
         'dryRun': value['dryRun'],
     };
 }
-//# sourceMappingURL=post-api-checkout-stream-request.js.map
+//# sourceMappingURL=post-api-amazon-checkout-stream-request.js.map

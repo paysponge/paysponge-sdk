@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PostApiCheckoutRequestShippingAddress } from './post-api-checkout-request-shipping-address.js';
 /**
  *
  * @export
@@ -27,43 +26,19 @@ export interface PostApiCheckoutRequest {
      * @type {string}
      * @memberof PostApiCheckoutRequest
      */
-    checkoutUrl: string;
+    productUrl: string;
     /**
      *
      * @type {string}
      * @memberof PostApiCheckoutRequest
      */
-    checkoutType?: string;
+    estimatedAmount?: string;
     /**
      *
      * @type {string}
      * @memberof PostApiCheckoutRequest
      */
-    paymentMethodId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiCheckoutRequest
-     */
-    amazonAccountId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiCheckoutRequest
-     */
-    shippingAddressId?: string;
-    /**
-     *
-     * @type {PostApiCheckoutRequestShippingAddress}
-     * @memberof PostApiCheckoutRequest
-     */
-    shippingAddress?: PostApiCheckoutRequestShippingAddress;
-    /**
-     *
-     * @type {boolean}
-     * @memberof PostApiCheckoutRequest
-     */
-    liveView?: boolean;
+    email?: string;
     /**
      *
      * @type {boolean}
@@ -72,10 +47,10 @@ export interface PostApiCheckoutRequest {
     dryRun?: boolean;
     /**
      *
-     * @type {boolean}
+     * @type {object}
      * @memberof PostApiCheckoutRequest
      */
-    clearCart?: boolean;
+    productOptions?: object;
 }
 /**
  * Check if a given object implements the PostApiCheckoutRequest interface.

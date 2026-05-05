@@ -11,12 +11,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PostApiCheckoutRequestShippingAddressFromJSON, PostApiCheckoutRequestShippingAddressToJSON, } from './post-api-checkout-request-shipping-address.js';
 /**
  * Check if a given object implements the PostApiCheckoutRequest interface.
  */
 export function instanceOfPostApiCheckoutRequest(value) {
-    if (!('checkoutUrl' in value) || value['checkoutUrl'] === undefined)
+    if (!('productUrl' in value) || value['productUrl'] === undefined)
         return false;
     return true;
 }
@@ -29,15 +28,11 @@ export function PostApiCheckoutRequestFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
-        'checkoutUrl': json['checkoutUrl'],
-        'checkoutType': json['checkoutType'] == null ? undefined : json['checkoutType'],
-        'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
-        'amazonAccountId': json['amazonAccountId'] == null ? undefined : json['amazonAccountId'],
-        'shippingAddressId': json['shippingAddressId'] == null ? undefined : json['shippingAddressId'],
-        'shippingAddress': json['shippingAddress'] == null ? undefined : PostApiCheckoutRequestShippingAddressFromJSON(json['shippingAddress']),
-        'liveView': json['liveView'] == null ? undefined : json['liveView'],
+        'productUrl': json['productUrl'],
+        'estimatedAmount': json['estimatedAmount'] == null ? undefined : json['estimatedAmount'],
+        'email': json['email'] == null ? undefined : json['email'],
         'dryRun': json['dryRun'] == null ? undefined : json['dryRun'],
-        'clearCart': json['clearCart'] == null ? undefined : json['clearCart'],
+        'productOptions': json['productOptions'] == null ? undefined : json['productOptions'],
     };
 }
 export function PostApiCheckoutRequestToJSON(json) {
@@ -49,15 +44,11 @@ export function PostApiCheckoutRequestToJSONTyped(value, ignoreDiscriminator = f
     }
     return {
         'agentId': value['agentId'],
-        'checkoutUrl': value['checkoutUrl'],
-        'checkoutType': value['checkoutType'],
-        'paymentMethodId': value['paymentMethodId'],
-        'amazonAccountId': value['amazonAccountId'],
-        'shippingAddressId': value['shippingAddressId'],
-        'shippingAddress': PostApiCheckoutRequestShippingAddressToJSON(value['shippingAddress']),
-        'liveView': value['liveView'],
+        'productUrl': value['productUrl'],
+        'estimatedAmount': value['estimatedAmount'],
+        'email': value['email'],
         'dryRun': value['dryRun'],
-        'clearCart': value['clearCart'],
+        'productOptions': value['productOptions'],
     };
 }
 //# sourceMappingURL=post-api-checkout-request.js.map

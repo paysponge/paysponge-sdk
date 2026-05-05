@@ -16,63 +16,63 @@ import { mapValues } from '../runtime.js';
 /**
  * 
  * @export
- * @interface PostApiCheckoutRequestShippingAddress
+ * @interface PostApiAmazonCheckoutRequestShippingAddress
  */
-export interface PostApiCheckoutRequestShippingAddress {
+export interface PostApiAmazonCheckoutRequestShippingAddress {
     /**
      * 
      * @type {string}
-     * @memberof PostApiCheckoutRequestShippingAddress
+     * @memberof PostApiAmazonCheckoutRequestShippingAddress
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiCheckoutRequestShippingAddress
+     * @memberof PostApiAmazonCheckoutRequestShippingAddress
      */
     line1: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiCheckoutRequestShippingAddress
+     * @memberof PostApiAmazonCheckoutRequestShippingAddress
      */
     line2?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiCheckoutRequestShippingAddress
+     * @memberof PostApiAmazonCheckoutRequestShippingAddress
      */
     city: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiCheckoutRequestShippingAddress
+     * @memberof PostApiAmazonCheckoutRequestShippingAddress
      */
     state: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiCheckoutRequestShippingAddress
+     * @memberof PostApiAmazonCheckoutRequestShippingAddress
      */
     postalCode: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiCheckoutRequestShippingAddress
+     * @memberof PostApiAmazonCheckoutRequestShippingAddress
      */
     country?: string;
     /**
      * 
      * @type {string}
-     * @memberof PostApiCheckoutRequestShippingAddress
+     * @memberof PostApiAmazonCheckoutRequestShippingAddress
      */
     phone?: string;
 }
 
 /**
- * Check if a given object implements the PostApiCheckoutRequestShippingAddress interface.
+ * Check if a given object implements the PostApiAmazonCheckoutRequestShippingAddress interface.
  */
-export function instanceOfPostApiCheckoutRequestShippingAddress(value: object): value is PostApiCheckoutRequestShippingAddress {
+export function instanceOfPostApiAmazonCheckoutRequestShippingAddress(value: object): value is PostApiAmazonCheckoutRequestShippingAddress {
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('line1' in value) || value['line1'] === undefined) return false;
     if (!('city' in value) || value['city'] === undefined) return false;
@@ -81,11 +81,11 @@ export function instanceOfPostApiCheckoutRequestShippingAddress(value: object): 
     return true;
 }
 
-export function PostApiCheckoutRequestShippingAddressFromJSON(json: any): PostApiCheckoutRequestShippingAddress {
-    return PostApiCheckoutRequestShippingAddressFromJSONTyped(json, false);
+export function PostApiAmazonCheckoutRequestShippingAddressFromJSON(json: any): PostApiAmazonCheckoutRequestShippingAddress {
+    return PostApiAmazonCheckoutRequestShippingAddressFromJSONTyped(json, false);
 }
 
-export function PostApiCheckoutRequestShippingAddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostApiCheckoutRequestShippingAddress {
+export function PostApiAmazonCheckoutRequestShippingAddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostApiAmazonCheckoutRequestShippingAddress {
     if (json == null) {
         return json;
     }
@@ -102,11 +102,11 @@ export function PostApiCheckoutRequestShippingAddressFromJSONTyped(json: any, ig
     };
 }
 
-export function PostApiCheckoutRequestShippingAddressToJSON(json: any): PostApiCheckoutRequestShippingAddress {
-    return PostApiCheckoutRequestShippingAddressToJSONTyped(json, false);
+export function PostApiAmazonCheckoutRequestShippingAddressToJSON(json: any): PostApiAmazonCheckoutRequestShippingAddress {
+    return PostApiAmazonCheckoutRequestShippingAddressToJSONTyped(json, false);
 }
 
-export function PostApiCheckoutRequestShippingAddressToJSONTyped(value?: PostApiCheckoutRequestShippingAddress | null, ignoreDiscriminator: boolean = false): any {
+export function PostApiAmazonCheckoutRequestShippingAddressToJSONTyped(value?: PostApiAmazonCheckoutRequestShippingAddress | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

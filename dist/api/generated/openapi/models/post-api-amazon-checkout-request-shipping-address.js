@@ -12,9 +12,9 @@
  * Do not edit the class manually.
  */
 /**
- * Check if a given object implements the PostApiCheckoutRequestShippingAddress interface.
+ * Check if a given object implements the PostApiAmazonCheckoutRequestShippingAddress interface.
  */
-export function instanceOfPostApiCheckoutRequestShippingAddress(value) {
+export function instanceOfPostApiAmazonCheckoutRequestShippingAddress(value) {
     if (!('name' in value) || value['name'] === undefined)
         return false;
     if (!('line1' in value) || value['line1'] === undefined)
@@ -27,10 +27,10 @@ export function instanceOfPostApiCheckoutRequestShippingAddress(value) {
         return false;
     return true;
 }
-export function PostApiCheckoutRequestShippingAddressFromJSON(json) {
-    return PostApiCheckoutRequestShippingAddressFromJSONTyped(json, false);
+export function PostApiAmazonCheckoutRequestShippingAddressFromJSON(json) {
+    return PostApiAmazonCheckoutRequestShippingAddressFromJSONTyped(json, false);
 }
-export function PostApiCheckoutRequestShippingAddressFromJSONTyped(json, ignoreDiscriminator) {
+export function PostApiAmazonCheckoutRequestShippingAddressFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
@@ -45,10 +45,10 @@ export function PostApiCheckoutRequestShippingAddressFromJSONTyped(json, ignoreD
         'phone': json['phone'] == null ? undefined : json['phone'],
     };
 }
-export function PostApiCheckoutRequestShippingAddressToJSON(json) {
-    return PostApiCheckoutRequestShippingAddressToJSONTyped(json, false);
+export function PostApiAmazonCheckoutRequestShippingAddressToJSON(json) {
+    return PostApiAmazonCheckoutRequestShippingAddressToJSONTyped(json, false);
 }
-export function PostApiCheckoutRequestShippingAddressToJSONTyped(value, ignoreDiscriminator = false) {
+export function PostApiAmazonCheckoutRequestShippingAddressToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
@@ -63,4 +63,4 @@ export function PostApiCheckoutRequestShippingAddressToJSONTyped(value, ignoreDi
         'phone': value['phone'],
     };
 }
-//# sourceMappingURL=post-api-checkout-request-shipping-address.js.map
+//# sourceMappingURL=post-api-amazon-checkout-request-shipping-address.js.map
