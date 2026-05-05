@@ -269,6 +269,8 @@ export class ToolExecutor {
             linkPaymentMethodId: args.linkPaymentMethodId ?? args.link_payment_method_id,
             setAsDefault: args.setAsDefault ?? args.set_as_default,
             clientName: args.clientName ?? args.client_name,
+            email: args.email,
+            phone: args.phone,
             billing: args.billing,
             shipping: args.shipping,
           },

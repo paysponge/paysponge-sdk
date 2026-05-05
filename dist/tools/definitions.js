@@ -938,8 +938,9 @@ export const TOOL_DEFINITIONS = [
     {
         name: "add_link_payment_method",
         description: "Connect Link and save a Link payment method for checkout. " +
-            "Call without shipping to start Link login if needed. " +
-            "After approval, call again with shipping to save the only payment method or pass link_payment_method_id if multiple methods are available.",
+            "Call without contact/address details to start Link login if needed. " +
+            "After approval, call again with shipping, email, and phone to save the only payment method or pass link_payment_method_id if multiple methods are available. " +
+            "Billing is optional metadata.",
         input_schema: {
             type: "object",
             properties: {
@@ -955,13 +956,30 @@ export const TOOL_DEFINITIONS = [
                     type: "string",
                     description: "Optional Link connection label shown during auth.",
                 },
+                email: {
+                    type: "string",
+                    description: "Required when saving the Link payment method. Not required to start Link login.",
+                },
+                phone: {
+                    type: "string",
+                    description: "Required when saving the Link payment method. Not required to start Link login.",
+                },
                 billing: {
                     type: "object",
                     description: "Optional billing address to store with the Link payment method.",
+                    properties: {
+                        name: { type: "string" },
+                        line1: { type: "string" },
+                        line2: { type: "string" },
+                        city: { type: "string" },
+                        state: { type: "string" },
+                        postalCode: { type: "string" },
+                        country: { type: "string" },
+                    },
                 },
                 shipping: {
                     type: "object",
-                    description: "Required when saving the Link payment method. Not required to start Link login.",
+                    description: "Required shipping address when saving the Link payment method. Not required to start Link login.",
                     properties: {
                         name: { type: "string" },
                         line1: { type: "string" },

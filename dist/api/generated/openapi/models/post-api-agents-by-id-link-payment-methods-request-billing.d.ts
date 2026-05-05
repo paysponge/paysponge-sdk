@@ -20,13 +20,13 @@ export interface PostApiAgentsByIdLinkPaymentMethodsRequestBilling {
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
      */
-    name?: string;
+    name: string;
     /**
      *
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
      */
-    line1?: string;
+    line1: string;
     /**
      *
      * @type {string}
@@ -38,31 +38,31 @@ export interface PostApiAgentsByIdLinkPaymentMethodsRequestBilling {
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
      */
-    city?: string;
+    city: string;
     /**
      *
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
      */
-    state?: string;
+    state: string;
     /**
      *
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
      */
-    postalCode?: string;
+    postalCode: string;
     /**
      *
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
      */
-    country?: string;
+    country: string;
     /**
      *
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequestBilling
      */
-    phone?: string;
+    phone: string;
 }
 /**
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsRequestBilling interface.

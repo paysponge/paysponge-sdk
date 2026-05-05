@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 import type { PostApiAgentsByIdLinkPaymentMethodsRequestBilling } from './post-api-agents-by-id-link-payment-methods-request-billing.js';
-import type { PostApiAgentsByIdLinkPaymentMethodsRequestShipping } from './post-api-agents-by-id-link-payment-methods-request-shipping.js';
 /**
  *
  * @export
@@ -46,13 +45,13 @@ export interface PostApiAgentsByIdLinkPaymentMethodsRequest {
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequest
      */
-    email?: string;
+    email: string;
     /**
      *
      * @type {string}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequest
      */
-    phone?: string;
+    phone: string;
     /**
      *
      * @type {PostApiAgentsByIdLinkPaymentMethodsRequestBilling}
@@ -61,10 +60,10 @@ export interface PostApiAgentsByIdLinkPaymentMethodsRequest {
     billing?: PostApiAgentsByIdLinkPaymentMethodsRequestBilling;
     /**
      *
-     * @type {PostApiAgentsByIdLinkPaymentMethodsRequestShipping}
+     * @type {PostApiAgentsByIdLinkPaymentMethodsRequestBilling}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequest
      */
-    shipping: PostApiAgentsByIdLinkPaymentMethodsRequestShipping;
+    shipping: PostApiAgentsByIdLinkPaymentMethodsRequestBilling;
     /**
      *
      * @type {boolean}

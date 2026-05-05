@@ -272,6 +272,8 @@ describe("ToolExecutor", () => {
     const result = await executor.execute("add_link_payment_method", {
       link_payment_method_id: "pm_123",
       set_as_default: true,
+      email: "jane@example.com",
+      phone: "+14155550123",
       shipping: {
         name: "Jane Doe",
         line1: "123 Main St",
@@ -288,6 +290,8 @@ describe("ToolExecutor", () => {
       linkPaymentMethodId: "pm_123",
       setAsDefault: true,
       clientName: undefined,
+      email: "jane@example.com",
+      phone: "+14155550123",
       billing: undefined,
       shipping: {
         name: "Jane Doe",

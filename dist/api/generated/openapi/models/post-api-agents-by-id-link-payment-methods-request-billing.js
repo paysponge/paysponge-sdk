@@ -15,6 +15,20 @@
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsRequestBilling interface.
  */
 export function instanceOfPostApiAgentsByIdLinkPaymentMethodsRequestBilling(value) {
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('line1' in value) || value['line1'] === undefined)
+        return false;
+    if (!('city' in value) || value['city'] === undefined)
+        return false;
+    if (!('state' in value) || value['state'] === undefined)
+        return false;
+    if (!('postalCode' in value) || value['postalCode'] === undefined)
+        return false;
+    if (!('country' in value) || value['country'] === undefined)
+        return false;
+    if (!('phone' in value) || value['phone'] === undefined)
+        return false;
     return true;
 }
 export function PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json) {
@@ -25,14 +39,14 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSONTyped(j
         return json;
     }
     return {
-        'name': json['name'] == null ? undefined : json['name'],
-        'line1': json['line1'] == null ? undefined : json['line1'],
+        'name': json['name'],
+        'line1': json['line1'],
         'line2': json['line2'] == null ? undefined : json['line2'],
-        'city': json['city'] == null ? undefined : json['city'],
-        'state': json['state'] == null ? undefined : json['state'],
-        'postalCode': json['postalCode'] == null ? undefined : json['postalCode'],
-        'country': json['country'] == null ? undefined : json['country'],
-        'phone': json['phone'] == null ? undefined : json['phone'],
+        'city': json['city'],
+        'state': json['state'],
+        'postalCode': json['postalCode'],
+        'country': json['country'],
+        'phone': json['phone'],
     };
 }
 export function PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(json) {

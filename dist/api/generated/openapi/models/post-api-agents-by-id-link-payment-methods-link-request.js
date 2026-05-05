@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 import { PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON, PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON, } from './post-api-agents-by-id-link-payment-methods-request-billing.js';
-import { PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSON, PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSON, } from './post-api-agents-by-id-link-payment-methods-request-shipping.js';
 /**
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsLinkRequest interface.
  */
@@ -30,8 +29,10 @@ export function PostApiAgentsByIdLinkPaymentMethodsLinkRequestFromJSONTyped(json
         'linkPaymentMethodId': json['linkPaymentMethodId'] == null ? undefined : json['linkPaymentMethodId'],
         'setAsDefault': json['setAsDefault'] == null ? undefined : json['setAsDefault'],
         'clientName': json['clientName'] == null ? undefined : json['clientName'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'phone': json['phone'] == null ? undefined : json['phone'],
         'billing': json['billing'] == null ? undefined : PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json['billing']),
-        'shipping': json['shipping'] == null ? undefined : PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSON(json['shipping']),
+        'shipping': json['shipping'] == null ? undefined : PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json['shipping']),
     };
 }
 export function PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON(json) {
@@ -45,8 +46,10 @@ export function PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSONTyped(value,
         'linkPaymentMethodId': value['linkPaymentMethodId'],
         'setAsDefault': value['setAsDefault'],
         'clientName': value['clientName'],
+        'email': value['email'],
+        'phone': value['phone'],
         'billing': PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(value['billing']),
-        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSON(value['shipping']),
+        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(value['shipping']),
     };
 }
 //# sourceMappingURL=post-api-agents-by-id-link-payment-methods-link-request.js.map

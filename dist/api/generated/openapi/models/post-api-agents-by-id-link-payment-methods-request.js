@@ -12,12 +12,15 @@
  * Do not edit the class manually.
  */
 import { PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON, PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON, } from './post-api-agents-by-id-link-payment-methods-request-billing.js';
-import { PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSON, PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSON, } from './post-api-agents-by-id-link-payment-methods-request-shipping.js';
 /**
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsRequest interface.
  */
 export function instanceOfPostApiAgentsByIdLinkPaymentMethodsRequest(value) {
     if (!('linkPaymentMethodId' in value) || value['linkPaymentMethodId'] === undefined)
+        return false;
+    if (!('email' in value) || value['email'] === undefined)
+        return false;
+    if (!('phone' in value) || value['phone'] === undefined)
         return false;
     if (!('shipping' in value) || value['shipping'] === undefined)
         return false;
@@ -35,10 +38,10 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestFromJSONTyped(json, ig
         'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'cardBrand': json['cardBrand'] == null ? undefined : json['cardBrand'],
         'cardLast4': json['cardLast4'] == null ? undefined : json['cardLast4'],
-        'email': json['email'] == null ? undefined : json['email'],
-        'phone': json['phone'] == null ? undefined : json['phone'],
+        'email': json['email'],
+        'phone': json['phone'],
         'billing': json['billing'] == null ? undefined : PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json['billing']),
-        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSON(json['shipping']),
+        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json['shipping']),
         'setAsDefault': json['setAsDefault'] == null ? undefined : json['setAsDefault'],
     };
 }
@@ -57,7 +60,7 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestToJSONTyped(value, ign
         'email': value['email'],
         'phone': value['phone'],
         'billing': PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(value['billing']),
-        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSON(value['shipping']),
+        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(value['shipping']),
         'setAsDefault': value['setAsDefault'],
     };
 }

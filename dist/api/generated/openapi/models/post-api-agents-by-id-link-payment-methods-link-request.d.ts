@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 import type { PostApiAgentsByIdLinkPaymentMethodsRequestBilling } from './post-api-agents-by-id-link-payment-methods-request-billing.js';
-import type { PostApiAgentsByIdLinkPaymentMethodsRequestShipping } from './post-api-agents-by-id-link-payment-methods-request-shipping.js';
 /**
  *
  * @export
@@ -37,16 +36,28 @@ export interface PostApiAgentsByIdLinkPaymentMethodsLinkRequest {
     clientName?: string;
     /**
      *
+     * @type {string}
+     * @memberof PostApiAgentsByIdLinkPaymentMethodsLinkRequest
+     */
+    email?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdLinkPaymentMethodsLinkRequest
+     */
+    phone?: string;
+    /**
+     *
      * @type {PostApiAgentsByIdLinkPaymentMethodsRequestBilling}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsLinkRequest
      */
     billing?: PostApiAgentsByIdLinkPaymentMethodsRequestBilling;
     /**
      *
-     * @type {PostApiAgentsByIdLinkPaymentMethodsRequestShipping}
+     * @type {PostApiAgentsByIdLinkPaymentMethodsRequestBilling}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsLinkRequest
      */
-    shipping?: PostApiAgentsByIdLinkPaymentMethodsRequestShipping;
+    shipping?: PostApiAgentsByIdLinkPaymentMethodsRequestBilling;
 }
 /**
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsLinkRequest interface.
