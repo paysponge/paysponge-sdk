@@ -1149,6 +1149,49 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     },
   },
   {
+    name: "create_link_payment_credential",
+    description:
+      "Generate a one-time Link card credential from a saved Link payment method for a specific merchant and amount. " +
+      "Use this after `add_link_payment_method` has saved a Link method to the agent. " +
+      "If link_payment_method_id is omitted, the default saved Link payment method is used. " +
+      "The call may wait for the user to approve the Link spend request.",
+    input_schema: {
+      type: "object",
+      properties: {
+        link_payment_method_id: {
+          type: "string",
+          description:
+            "Saved Link payment method id. May be either Sponge's saved method id or Link's payment method id. Defaults to the agent's default saved Link method.",
+        },
+        amount: {
+          type: "string",
+          description: "Purchase amount as a decimal string, e.g. '49.99'.",
+        },
+        currency: {
+          type: "string",
+          description: "ISO 4217 currency code. Defaults to USD.",
+        },
+        merchant_name: {
+          type: "string",
+          description: "Merchant name for the Link spend request.",
+        },
+        merchant_url: {
+          type: "string",
+          description: "Merchant URL for the Link spend request.",
+        },
+        context: {
+          type: "string",
+          description: "Optional context shown to the user during Link approval.",
+        },
+        timeout_ms: {
+          type: "number",
+          description: "Optional timeout in milliseconds while waiting for Link approval.",
+        },
+      },
+      required: ["amount", "merchant_name", "merchant_url"],
+    },
+  },
+  {
     name: "get_card",
     description:
       "Fetch the user's card details. Routes to the right card source automatically:\n\n" +

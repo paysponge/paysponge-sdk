@@ -29,6 +29,7 @@ import type {
   PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest,
   PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest,
   PostApiAgentsByIdInstructionsRequest,
+  PostApiAgentsByIdLinkPaymentMethodsCredentialRequest,
   PostApiAgentsByIdLinkPaymentMethodsLinkRequest,
   PostApiAgentsByIdLinkPaymentMethodsRequest,
   PostApiAgentsByIdPaymentMethodsRequest,
@@ -163,6 +164,8 @@ import {
     PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON,
     PostApiAgentsByIdInstructionsRequestFromJSON,
     PostApiAgentsByIdInstructionsRequestToJSON,
+    PostApiAgentsByIdLinkPaymentMethodsCredentialRequestFromJSON,
+    PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON,
     PostApiAgentsByIdLinkPaymentMethodsLinkRequestFromJSON,
     PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON,
     PostApiAgentsByIdLinkPaymentMethodsRequestFromJSON,
@@ -944,6 +947,11 @@ export interface DefaultApiPostApiAgentsByIdInstructionsByInstructionIdVerifyPas
 export interface DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest {
     id: string;
     postApiAgentsByIdLinkPaymentMethodsRequest: PostApiAgentsByIdLinkPaymentMethodsRequest;
+}
+
+export interface DefaultApiPostApiAgentsByIdLinkPaymentMethodsCredentialOperationRequest {
+    id: string;
+    postApiAgentsByIdLinkPaymentMethodsCredentialRequest: PostApiAgentsByIdLinkPaymentMethodsCredentialRequest;
 }
 
 export interface DefaultApiPostApiAgentsByIdLinkPaymentMethodsLinkOperationRequest {
@@ -4977,6 +4985,29 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsByIdLinkPaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdLinkPaymentMethodsCredential without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdLinkPaymentMethodsCredentialRequest} postApiAgentsByIdLinkPaymentMethodsCredentialRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdLinkPaymentMethodsCredentialRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsCredentialOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdLinkPaymentMethodsCredentialRequest} postApiAgentsByIdLinkPaymentMethodsCredentialRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdLinkPaymentMethodsCredentialRaw(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsCredentialOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdLinkPaymentMethodsCredential(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsCredentialOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentsByIdLinkPaymentMethodsLink without sending the request
@@ -14712,6 +14743,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentsByIdLinkPaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentsByIdLinkPaymentMethodsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdLinkPaymentMethodsCredential without sending the request
+     */
+    async postApiAgentsByIdLinkPaymentMethodsCredentialRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsCredentialOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdLinkPaymentMethodsCredential().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdLinkPaymentMethodsCredentialRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdLinkPaymentMethodsCredentialRequest',
+                'Required parameter "postApiAgentsByIdLinkPaymentMethodsCredentialRequest" was null or undefined when calling postApiAgentsByIdLinkPaymentMethodsCredential().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/link-payment-methods/credential`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON(requestParameters['postApiAgentsByIdLinkPaymentMethodsCredentialRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdLinkPaymentMethodsCredentialRaw(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsCredentialOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdLinkPaymentMethodsCredentialRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdLinkPaymentMethodsCredential(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsCredentialOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdLinkPaymentMethodsCredentialRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -305,6 +305,38 @@ describe("ToolExecutor", () => {
     });
   });
 
+  it("routes create_link_payment_credential to agent Link credential endpoint", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ status: "credential_created" }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("create_link_payment_credential", {
+      link_payment_method_id: "link_pm_123",
+      amount: "49.99",
+      currency: "USD",
+      merchant_name: "Netflix",
+      merchant_url: "https://www.netflix.com",
+      context: "Monthly subscription",
+      timeout_ms: 120000,
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith(
+      "/api/agents/agent-1/link-payment-methods/credential",
+      {
+        linkPaymentMethodId: "link_pm_123",
+        amount: "49.99",
+        currency: "USD",
+        merchantName: "Netflix",
+        merchantUrl: "https://www.netflix.com",
+        context: "Monthly subscription",
+        timeoutMs: 120000,
+      },
+    );
+  });
+
   it("routes get_key_value to /api/agent-keys/value", async () => {
     const http = {
       get: vi.fn().mockResolvedValue({ key: { service: "openai", key: "sk" } }),
