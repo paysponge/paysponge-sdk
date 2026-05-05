@@ -214,6 +214,11 @@ export interface DefaultApiGetApiCheckoutBySessionIdRequest {
     sessionId: string;
     agentId?: string;
 }
+export interface DefaultApiGetApiCheckoutHistoryRequest {
+    agentId?: string;
+    limit?: string;
+    offset?: string;
+}
 export interface DefaultApiGetApiCoinbaseOnrampSessionBySessionTokenStatusRequest {
     sessionToken: string;
 }
@@ -2422,6 +2427,28 @@ export interface DefaultApiInterface {
     /**
      */
     getApiCheckoutBySessionId(requestParameters: DefaultApiGetApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiCheckoutHistory without sending the request
+     * @param {string} [agentId]
+     * @param {string} [limit]
+     * @param {string} [offset]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiCheckoutHistoryRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [agentId]
+     * @param {string} [limit]
+     * @param {string} [offset]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiCheckoutHistoryRaw(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiCheckoutHistory(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiCoinbaseOnrampSessionBySessionTokenStatus without sending the request
      * @param {string} sessionToken
@@ -7131,6 +7158,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiCheckoutBySessionId(requestParameters: DefaultApiGetApiCheckoutBySessionIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiCheckoutHistory without sending the request
+     */
+    getApiCheckoutHistoryRequestOpts(requestParameters: DefaultApiGetApiCheckoutHistoryRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiCheckoutHistoryRaw(requestParameters: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiCheckoutHistory(requestParameters?: DefaultApiGetApiCheckoutHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiCoinbaseOnrampSessionBySessionTokenStatus without sending the request
      */

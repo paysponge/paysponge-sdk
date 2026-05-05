@@ -2576,6 +2576,41 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiCheckoutBySessionIdRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiCheckoutHistory without sending the request
+     */
+    async getApiCheckoutHistoryRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/checkout/history`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiCheckoutHistoryRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiCheckoutHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiCheckoutHistory(requestParameters = {}, initOverrides) {
+        await this.getApiCheckoutHistoryRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiCoinbaseOnrampSessionBySessionTokenStatus without sending the request
      */
     async getApiCoinbaseOnrampSessionBySessionTokenStatusRequestOpts(requestParameters) {

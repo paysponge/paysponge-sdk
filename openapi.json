@@ -16661,6 +16661,37 @@
         "operationId": "postApiCheckout"
       }
     },
+    "/api/checkout/history": {
+      "get": {
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiCheckoutHistory"
+      }
+    },
     "/api/checkout/{sessionId}": {
       "get": {
         "parameters": [
