@@ -1,6 +1,8 @@
 import { DeviceCodeResponseSchema, TokenResponseSchema, } from "../types/schemas.js";
 import { saveCredentials, getCredentialsPath } from "./credentials.js";
 import { captureCliAuthEvent, classifyBaseUrl, sanitizeErrorForTelemetry, } from "../telemetry.js";
+import { notifyVersionNotice } from "../api/http.js";
+import { SDK_VERSION } from "../version.js";
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 const DEFAULT_DEVICE_FLOW_SCOPE = "mcp:tools";
 /**
@@ -117,6 +119,7 @@ async function requestDeviceCode(baseUrl, options) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Sponge-Version": SDK_VERSION,
         },
         body: JSON.stringify({
             clientId: "spongewallet-sdk",
@@ -127,6 +130,7 @@ async function requestDeviceCode(baseUrl, options) {
             email: options.email,
         }),
     });
+    notifyVersionNotice(response);
     if (!response.ok) {
         const error = await response.text();
         throw new Error(`Failed to start auth flow: ${error}`);
@@ -148,6 +152,7 @@ async function pollForToken(baseUrl, deviceCode, intervalSeconds, expiresInSecon
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Sponge-Version": SDK_VERSION,
                 },
                 body: JSON.stringify({
                     grantType: "urn:ietf:params:oauth:grant-type:device_code",
@@ -155,6 +160,7 @@ async function pollForToken(baseUrl, deviceCode, intervalSeconds, expiresInSecon
                     clientId: "spongewallet-sdk",
                 }),
             });
+            notifyVersionNotice(response);
             if (response.ok) {
                 const data = await response.json();
                 return TokenResponseSchema.parse(data);

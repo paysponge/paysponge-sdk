@@ -1037,6 +1037,221 @@ export const TOOL_DEFINITIONS = [
         },
     },
     {
+        name: "report_card_usage",
+        description: "Report the outcome of a purchase attempt that used a stored or vaulted card. " +
+            "Use this after checkout to log success/failure and update spending usage.",
+        input_schema: {
+            type: "object",
+            properties: {
+                payment_method_id: { type: "string", description: "Payment method ID used for the purchase." },
+                merchant_name: { type: "string", description: "Merchant name." },
+                merchant_domain: { type: "string", description: "Merchant domain." },
+                amount: { type: "string", description: "Amount charged or attempted." },
+                currency: { type: "string", description: "Currency for the amount, e.g. USD." },
+                status: {
+                    type: "string",
+                    enum: ["success", "failed", "cancelled"],
+                    description: "Outcome of the purchase attempt.",
+                },
+                failure_reason: { type: "string", description: "Failure reason when status is failed." },
+            },
+            required: ["payment_method_id", "status"],
+        },
+        cli_output: fieldsOutput([
+            { key: "status", label: "Status" },
+            { key: "message", label: "Message" },
+            { key: "payment_method_id", label: "Payment method" },
+        ], "Card usage"),
+    },
+    {
+        name: "get_sponge_card_status",
+        description: "Get the user's Sponge Card onboarding, consent, card, and balance status. " +
+            "Use this before onboarding, terms acceptance, card creation, funding, withdrawal, or card-detail retrieval.",
+        input_schema: {
+            type: "object",
+            properties: {
+                refresh: {
+                    type: "boolean",
+                    description: "Force-refresh issuer application status before returning. Defaults to true.",
+                },
+            },
+            required: [],
+        },
+        cli_output: fieldsOutput([
+            { key: "onboarded", label: "Onboarded" },
+            { key: "environment", label: "Environment" },
+            { key: "ready_for_card_creation", label: "Ready for card creation" },
+            { key: ["customer", "application_status"], label: "Application status" },
+            { key: "completion_link_url", label: "Completion link" },
+            { key: "message", label: "Message" },
+        ], "Sponge Card status"),
+    },
+    {
+        name: "onboard_sponge_card",
+        description: "Start Sponge Card onboarding for the authenticated user after Persona KYC and record Sponge consent acknowledgements. " +
+            "The issuer environment is determined by API key mode. Call get_sponge_card_status afterwards to check approval.",
+        input_schema: {
+            type: "object",
+            properties: {
+                occupation: { type: "string", description: "Occupation or SOC code." },
+                e_sign_consent: { type: "boolean", description: "Must be true: user accepts the E-Sign Consent." },
+                account_opening_privacy_notice: {
+                    type: "boolean",
+                    description: "Required for US KYC: user accepts the Account Opening Privacy Notice.",
+                },
+                sponge_card_terms: {
+                    type: "boolean",
+                    description: "Must be true: user accepts Sponge Card terms and issuer privacy policy.",
+                },
+                information_certification: {
+                    type: "boolean",
+                    description: "Must be true: user certifies Persona KYC information is accurate.",
+                },
+                unauthorized_solicitation_acknowledgement: {
+                    type: "boolean",
+                    description: "Must be true: user acknowledges applying is not unauthorized solicitation.",
+                },
+            },
+            required: [
+                "occupation",
+                "e_sign_consent",
+                "sponge_card_terms",
+                "information_certification",
+                "unauthorized_solicitation_acknowledgement",
+            ],
+        },
+        cli_output: fieldsOutput([
+            { key: "submitted_application", label: "Submitted application" },
+            { key: "environment", label: "Environment" },
+            { key: "ready_for_card_creation", label: "Ready for card creation" },
+            { key: "completion_link_url", label: "Completion link" },
+            { key: "message", label: "Message" },
+        ], "Sponge Card onboarding"),
+    },
+    {
+        name: "accept_sponge_card_terms",
+        description: "Record Sponge Card consent acknowledgements for an existing application. " +
+            "Use this when get_sponge_card_status says the application is approved but Sponge consent is missing.",
+        input_schema: {
+            type: "object",
+            properties: {
+                e_sign_consent: { type: "boolean", description: "Must be true: user accepts the E-Sign Consent." },
+                account_opening_privacy_notice: {
+                    type: "boolean",
+                    description: "Required for US KYC: user accepts the Account Opening Privacy Notice.",
+                },
+                sponge_card_terms: {
+                    type: "boolean",
+                    description: "Must be true: user accepts Sponge Card terms and issuer privacy policy.",
+                },
+                information_certification: {
+                    type: "boolean",
+                    description: "Must be true: user certifies Persona KYC information is accurate.",
+                },
+                unauthorized_solicitation_acknowledgement: {
+                    type: "boolean",
+                    description: "Must be true: user acknowledges applying is not unauthorized solicitation.",
+                },
+            },
+            required: [
+                "e_sign_consent",
+                "sponge_card_terms",
+                "information_certification",
+                "unauthorized_solicitation_acknowledgement",
+            ],
+        },
+        cli_output: fieldsOutput([
+            { key: "environment", label: "Environment" },
+            { key: "ready_for_card_creation", label: "Ready for card creation" },
+            { key: "message", label: "Message" },
+        ], "Sponge Card terms"),
+    },
+    {
+        name: "create_sponge_card",
+        description: "Create the user's Sponge Card after issuer approval and Sponge consent. " +
+            "If a card already exists for the environment, the API returns the existing card instead of issuing a duplicate.",
+        input_schema: {
+            type: "object",
+            properties: {
+                billing: {
+                    type: "object",
+                    description: "Billing address: line1, optional line2, city, region, postal_code, country_code.",
+                },
+                email: { type: "string", description: "Contact email to store with the card." },
+                phone: { type: "string", description: "Contact phone to store with the card." },
+                shipping: {
+                    type: "object",
+                    description: "Optional shipping address. Same address fields as billing, plus optional first_name and last_name.",
+                },
+            },
+            required: ["billing", "email", "phone"],
+        },
+        cli_output: fieldsOutput([
+            { key: "created", label: "Created" },
+            { key: "environment", label: "Environment" },
+            { key: ["card", "id"], label: "Card ID" },
+            { key: ["card", "status"], label: "Status" },
+            { key: ["card", "last4"], label: "Last 4" },
+            { key: "message", label: "Message" },
+        ], "Sponge Card"),
+    },
+    {
+        name: "get_sponge_card_details",
+        description: "Fetch encrypted PAN/CVC for the user's Sponge Card plus a per-call secret_key for local AES-128-GCM decryption and current spending power. " +
+            "Treat the response and decrypted values as highly sensitive; do not log or persist them.",
+        input_schema: {
+            type: "object",
+            properties: {},
+            required: [],
+        },
+        cli_output: fieldsOutput([
+            { key: "last4", label: "Last 4" },
+            { key: "expiration_month", label: "Expiry month" },
+            { key: "expiration_year", label: "Expiry year" },
+            { key: "status", label: "Status" },
+            { key: "spending_power_cents", label: "Spending power (cents)" },
+            { key: "secret_key", label: "Secret key" },
+        ], "Sponge Card details"),
+    },
+    {
+        name: "fund_sponge_card",
+        description: "Top up the user's Sponge Card collateral by sending USDC from the wallet to the card collateral contract deposit address.",
+        input_schema: {
+            type: "object",
+            properties: {
+                amount: { type: "string", description: "USDC amount in human-readable units, e.g. '100.50'." },
+                chain: { type: "string", description: "Optional collateral chain, e.g. base or solana." },
+            },
+            required: ["amount"],
+        },
+        cli_output: fieldsOutput([
+            { key: "tx_hash", label: "Transaction" },
+            { key: "transaction_id", label: "Transaction ID" },
+            { key: "chain_id", label: "Chain ID" },
+            { key: "to_address", label: "To" },
+            { key: "token_address", label: "Token" },
+            { key: "amount", label: "Amount" },
+        ], "Sponge Card funding"),
+    },
+    {
+        name: "withdraw_sponge_card",
+        description: "Withdraw USDC from Sponge Card collateral back to the user's wallet, reducing card spending power.",
+        input_schema: {
+            type: "object",
+            properties: {
+                amount: { type: "string", description: "USDC amount in human-readable units, max 2 decimal places." },
+                chain: { type: "string", description: "Optional collateral chain, e.g. base or solana." },
+            },
+            required: ["amount"],
+        },
+        cli_output: fieldsOutput([
+            { key: "tx_hash", label: "Transaction" },
+            { key: "chain_id", label: "Chain ID" },
+            { key: "amount", label: "Amount" },
+            { key: "recipient_address", label: "Recipient" },
+        ], "Sponge Card withdrawal"),
+    },
+    {
         name: "get_card",
         description: "Fetch the user's card details. Routes to the right card source automatically:\n\n" +
             "- **Sponge Card (Rain)** — credit card backed by on-chain collateral. Returns encrypted PAN/CVC plus a per-call symmetric key for client-side AES-128-GCM decryption.\n" +
@@ -1095,6 +1310,8 @@ export const TOOL_DEFINITIONS = [
                 merchant_url: { type: "string", description: "Merchant URL" },
                 merchant_country_code: { type: "string", description: "Merchant country code (default: US)" },
                 description: { type: "string", description: "Description of the purchase" },
+                products: { type: "array", description: "Optional products being purchased." },
+                shipping_address: { type: "object", description: "Optional shipping address for the purchase." },
                 enrollment_id: { type: "string", description: "Specific enrollment ID (uses default if omitted)" },
             },
             required: ["amount", "merchant_name", "merchant_url"],

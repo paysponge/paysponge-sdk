@@ -2,6 +2,16 @@ export interface HttpClientOptions {
     baseUrl?: string;
     apiKey: string;
 }
+export interface VersionNotice {
+    status: string;
+    latestSdkVersion?: string;
+    minimumSdkVersion?: string;
+    walletSkillVersion?: string;
+    walletSkillUrl?: string;
+    message?: string;
+}
+export declare function setVersionNoticeHandler(handler: ((notice: VersionNotice) => void) | undefined): void;
+export declare function notifyVersionNotice(response: Response): void;
 export declare class SpongeApiError extends Error {
     readonly statusCode: number;
     readonly errorCode: string;

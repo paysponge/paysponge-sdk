@@ -8,6 +8,40 @@ export interface HttpClientOptions {
   apiKey: string;
 }
 
+export interface VersionNotice {
+  status: string;
+  latestSdkVersion?: string;
+  minimumSdkVersion?: string;
+  walletSkillVersion?: string;
+  walletSkillUrl?: string;
+  message?: string;
+}
+
+let versionNoticeHandler: ((notice: VersionNotice) => void) | undefined;
+let versionNoticeShown = false;
+
+export function setVersionNoticeHandler(handler: ((notice: VersionNotice) => void) | undefined) {
+  versionNoticeHandler = handler;
+  versionNoticeShown = false;
+}
+
+export function notifyVersionNotice(response: Response) {
+  if (!versionNoticeHandler || versionNoticeShown) return;
+
+  const status = response.headers.get("Sponge-Version-Status");
+  if (!status || status === "current") return;
+
+  versionNoticeShown = true;
+  versionNoticeHandler({
+    status,
+    latestSdkVersion: response.headers.get("Sponge-Latest-Version") ?? undefined,
+    minimumSdkVersion: response.headers.get("Sponge-Minimum-Version") ?? undefined,
+    walletSkillVersion: response.headers.get("Sponge-Skill-Version") ?? undefined,
+    walletSkillUrl: response.headers.get("Sponge-Skill-Url") ?? undefined,
+    message: response.headers.get("Sponge-Version-Message") ?? undefined,
+  });
+}
+
 export class SpongeApiError extends Error {
   constructor(
     public readonly statusCode: number,
@@ -90,6 +124,8 @@ export class HttpClient {
   }
 
   private async handleResponse<T>(response: Response): Promise<T> {
+    notifyVersionNotice(response);
+
     if (!response.ok) {
       let errorData: ApiError | null = null;
 

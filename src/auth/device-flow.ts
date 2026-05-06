@@ -11,6 +11,8 @@ import {
   classifyBaseUrl,
   sanitizeErrorForTelemetry,
 } from "../telemetry.js";
+import { notifyVersionNotice } from "../api/http.js";
+import { SDK_VERSION } from "../version.js";
 
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 const DEFAULT_DEVICE_FLOW_SCOPE = "mcp:tools";
@@ -165,6 +167,7 @@ async function requestDeviceCode(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Sponge-Version": SDK_VERSION,
     },
     body: JSON.stringify({
       clientId: "spongewallet-sdk",
@@ -175,6 +178,8 @@ async function requestDeviceCode(
       email: options.email,
     }),
   });
+
+  notifyVersionNotice(response);
 
   if (!response.ok) {
     const error = await response.text();
@@ -206,6 +211,7 @@ async function pollForToken(
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Sponge-Version": SDK_VERSION,
         },
         body: JSON.stringify({
           grantType: "urn:ietf:params:oauth:grant-type:device_code",
@@ -213,6 +219,8 @@ async function pollForToken(
           clientId: "spongewallet-sdk",
         }),
       });
+
+      notifyVersionNotice(response);
 
       if (response.ok) {
         const data = await response.json();

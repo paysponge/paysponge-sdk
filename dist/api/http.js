@@ -1,6 +1,28 @@
 import { ApiErrorSchema } from "../types/schemas.js";
 import { SDK_VERSION } from "../version.js";
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
+let versionNoticeHandler;
+let versionNoticeShown = false;
+export function setVersionNoticeHandler(handler) {
+    versionNoticeHandler = handler;
+    versionNoticeShown = false;
+}
+export function notifyVersionNotice(response) {
+    if (!versionNoticeHandler || versionNoticeShown)
+        return;
+    const status = response.headers.get("Sponge-Version-Status");
+    if (!status || status === "current")
+        return;
+    versionNoticeShown = true;
+    versionNoticeHandler({
+        status,
+        latestSdkVersion: response.headers.get("Sponge-Latest-Version") ?? undefined,
+        minimumSdkVersion: response.headers.get("Sponge-Minimum-Version") ?? undefined,
+        walletSkillVersion: response.headers.get("Sponge-Skill-Version") ?? undefined,
+        walletSkillUrl: response.headers.get("Sponge-Skill-Url") ?? undefined,
+        message: response.headers.get("Sponge-Version-Message") ?? undefined,
+    });
+}
 export class SpongeApiError extends Error {
     statusCode;
     errorCode;
@@ -67,6 +89,7 @@ export class HttpClient {
         return this.handleResponse(response);
     }
     async handleResponse(response) {
+        notifyVersionNotice(response);
         if (!response.ok) {
             let errorData = null;
             try {

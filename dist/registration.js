@@ -1,4 +1,6 @@
 import { AgentFirstRegistrationResponseSchema, AgentRegistrationResponseSchema, RegisterAgentOptionsSchema, } from "./types/schemas.js";
+import { notifyVersionNotice } from "./api/http.js";
+import { SDK_VERSION } from "./version.js";
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 export async function registerAgent(options) {
     const validated = RegisterAgentOptionsSchema.parse(options);
@@ -7,6 +9,7 @@ export async function registerAgent(options) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Sponge-Version": SDK_VERSION,
         },
         body: JSON.stringify({
             name: validated.name,
@@ -16,6 +19,7 @@ export async function registerAgent(options) {
             email: validated.email,
         }),
     });
+    notifyVersionNotice(response);
     if (!response.ok) {
         const error = await response.text().catch(() => "");
         throw new Error(`Registration failed (${response.status}): ${error || "Unknown error"}`);

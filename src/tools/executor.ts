@@ -288,6 +288,77 @@ export class ToolExecutor {
             context: args.context,
           },
         );
+      case "get_card":
+        return this.http.post<unknown>("/api/cards", {
+          card_type: args.card_type,
+          payment_method_id: args.payment_method_id,
+          amount: args.amount,
+          currency: args.currency,
+          merchant_name: args.merchant_name,
+          merchant_url: args.merchant_url,
+        });
+      case "issue_virtual_card":
+        return this.http.post<unknown>("/api/virtual-cards", {
+          amount: args.amount,
+          currency: args.currency,
+          merchant_name: args.merchant_name,
+          merchant_url: args.merchant_url,
+          merchant_country_code: args.merchant_country_code,
+          description: args.description,
+          products: args.products,
+          shipping_address: args.shipping_address,
+          enrollment_id: args.enrollment_id,
+        });
+      case "report_card_usage":
+        return this.http.post<unknown>("/api/card-usage", {
+          payment_method_id: args.payment_method_id,
+          merchant_name: args.merchant_name,
+          merchant_domain: args.merchant_domain,
+          amount: args.amount,
+          currency: args.currency,
+          status: args.status,
+          failure_reason: args.failure_reason,
+        });
+      case "get_sponge_card_status":
+        return this.http.get<unknown>("/api/sponge-card/status", {
+          refresh: args.refresh === undefined ? undefined : String(Boolean(args.refresh)),
+        });
+      case "onboard_sponge_card":
+        return this.http.post<unknown>("/api/sponge-card/onboard", {
+          occupation: args.occupation,
+          e_sign_consent: args.e_sign_consent,
+          account_opening_privacy_notice: args.account_opening_privacy_notice,
+          sponge_card_terms: args.sponge_card_terms,
+          information_certification: args.information_certification,
+          unauthorized_solicitation_acknowledgement: args.unauthorized_solicitation_acknowledgement,
+        });
+      case "accept_sponge_card_terms":
+        return this.http.post<unknown>("/api/sponge-card/terms", {
+          e_sign_consent: args.e_sign_consent,
+          account_opening_privacy_notice: args.account_opening_privacy_notice,
+          sponge_card_terms: args.sponge_card_terms,
+          information_certification: args.information_certification,
+          unauthorized_solicitation_acknowledgement: args.unauthorized_solicitation_acknowledgement,
+        });
+      case "create_sponge_card":
+        return this.http.post<unknown>("/api/sponge-card/create-card", {
+          billing: args.billing,
+          email: args.email,
+          phone: args.phone,
+          shipping: args.shipping,
+        });
+      case "get_sponge_card_details":
+        return this.http.get<unknown>("/api/sponge-card/details", {});
+      case "fund_sponge_card":
+        return this.http.post<unknown>("/api/sponge-card/fund", {
+          amount: args.amount,
+          chain: args.chain,
+        });
+      case "withdraw_sponge_card":
+        return this.http.post<unknown>("/api/sponge-card/withdraw", {
+          amount: args.amount,
+          chain: args.chain,
+        });
       case "get_key_list":
         return this.http.get<unknown>("/api/agent-keys", {});
       case "get_key_value":

@@ -4020,6 +4020,32 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiUsersMeRaw(initOverrides);
     }
     /**
+     * Creates request options for getApiVersion without sending the request
+     */
+    async getApiVersionRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/version`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiVersionRaw(initOverrides) {
+        const requestOptions = await this.getApiVersionRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiVersion(initOverrides) {
+        await this.getApiVersionRaw(initOverrides);
+    }
+    /**
      * Creates request options for getApiWallets without sending the request
      */
     async getApiWalletsRequestOpts(requestParameters) {

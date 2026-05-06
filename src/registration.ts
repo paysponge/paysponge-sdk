@@ -6,6 +6,8 @@ import {
   type AgentRegistrationResponse,
   type RegisterAgentOptions,
 } from "./types/schemas.js";
+import { notifyVersionNotice } from "./api/http.js";
+import { SDK_VERSION } from "./version.js";
 
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 
@@ -19,6 +21,7 @@ export async function registerAgent(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Sponge-Version": SDK_VERSION,
     },
     body: JSON.stringify({
       name: validated.name,
@@ -28,6 +31,8 @@ export async function registerAgent(
       email: validated.email,
     }),
   });
+
+  notifyVersionNotice(response);
 
   if (!response.ok) {
     const error = await response.text().catch(() => "");

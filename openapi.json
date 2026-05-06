@@ -11,6 +11,11 @@
         "operationId": "getHealth"
       }
     },
+    "/api/version": {
+      "get": {
+        "operationId": "getApiVersion"
+      }
+    },
     "/api/agents/register": {
       "post": {
         "requestBody": {

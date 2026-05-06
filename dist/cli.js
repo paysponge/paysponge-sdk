@@ -1,16 +1,31 @@
 import { Command, Help, Option } from "commander";
 import * as p from "@clack/prompts";
 import { SpongeWallet } from "./client.js";
+import { setVersionNoticeHandler } from "./api/http.js";
+import { SDK_VERSION } from "./version.js";
 import { deviceFlowAuth } from "./auth/device-flow.js";
 import { deleteCredentials, hasCredentials, getCredentialsPath, loadCredentials, saveCredentials, } from "./auth/credentials.js";
 import { registerAgentFirst } from "./registration.js";
 import { captureCliCommandEvent, classifyBaseUrl, sanitizeErrorForTelemetry, shutdownCliTelemetry, } from "./telemetry.js";
 import { TOOL_DEFINITIONS, } from "./tools/definitions.js";
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
+const DEFAULT_APP_URL = "https://wallet.paysponge.com";
+const WALLET_SKILL_NAME = "sponge-wallet";
+const WALLET_SKILL_VERSION = "0.2.2";
+const WALLET_SKILL_URL = "https://wallet.paysponge.com/skill.md";
+const CLI_SKILL_NAME = "spongewallet-cli";
+const CLI_SKILL_VERSION = "0.1.1";
 // ---------------------------------------------------------------------------
 // CLI setup
 // ---------------------------------------------------------------------------
 export function buildCliProgram(metadata = {}) {
+    setVersionNoticeHandler((notice) => {
+        const message = notice.message ?? `Sponge SDK status: ${notice.status}`;
+        const skill = notice.walletSkillUrl
+            ? ` Redownload ${notice.walletSkillUrl}${notice.walletSkillVersion ? ` for skill v${notice.walletSkillVersion}` : ""}.`
+            : "";
+        console.error(`[spongewallet] ${message}${skill}`);
+    });
     const cmdName = metadata.commandName ?? "spongewallet";
     const pkgName = metadata.packageName ?? "@paysponge/sdk";
     const version = metadata.version ?? "0.1.0";
@@ -43,6 +58,10 @@ export function buildCliProgram(metadata = {}) {
     shared(program
         .command("whoami")
         .description("Show current authentication status")).action((opts) => handleWhoami(opts, metadata));
+    shared(program.command("version").description("Show CLI, API header, and skill versions"))
+        .option("--json", "print raw JSON")
+        .option("--check", "check the Sponge API and npm for newer versions")
+        .action((opts) => handleVersion(opts, metadata));
     const mcpCmd = program
         .command("mcp")
         .description("MCP configuration commands");
@@ -154,6 +173,7 @@ async function printOnboardingSummary(args) {
     p.note(mcpSnippet, "MCP Config");
     const cmd = meta.commandName ?? "spongewallet";
     p.log.step(`Next: ${cmd} mcp print`);
+    p.log.step(skillRefreshPrompt());
     p.log.step("Set SPONGE_API_KEY on other machines for non-interactive access");
     p.outro("Done!");
 }
@@ -224,6 +244,68 @@ async function handleMcpPrint(opts) {
     }
     p.note(JSON.stringify(config, null, 2), "MCP Config");
     p.note(JSON.stringify({ mcpServers: { sponge: config } }, null, 2), "Claude Code / Cursor snippet");
+    p.log.step(skillRefreshPrompt());
+}
+async function handleVersion(opts, meta) {
+    const current = {
+        command: meta.commandName ?? "spongewallet",
+        packageName: meta.packageName ?? "@paysponge/sdk",
+        packageVersion: meta.version ?? "0.1.0",
+        apiHeaderVersion: SDK_VERSION,
+        walletSkill: {
+            name: WALLET_SKILL_NAME,
+            version: WALLET_SKILL_VERSION,
+            url: WALLET_SKILL_URL,
+        },
+        cliSkill: {
+            name: CLI_SKILL_NAME,
+            version: CLI_SKILL_VERSION,
+        },
+    };
+    const npm = opts.check
+        ? {
+            sdk: await getNpmLatestVersion("@paysponge/sdk"),
+            spongewallet: await getNpmLatestVersion("spongewallet"),
+        }
+        : undefined;
+    const server = opts.check ? await getServerVersionInfo(opts.baseUrl) : undefined;
+    const payload = { ...current, server, npm };
+    if (opts.json) {
+        console.log(JSON.stringify(payload, null, 2));
+        return;
+    }
+    p.log.success(`${current.packageName} v${current.packageVersion}`);
+    p.log.info([
+        `Command:       ${current.command}`,
+        `API header:    Sponge-Version ${current.apiHeaderVersion}`,
+        `Wallet skill:  ${current.walletSkill.name} v${current.walletSkill.version}`,
+        `CLI skill:     ${current.cliSkill.name} v${current.cliSkill.version}`,
+        `Skill URL:     ${current.walletSkill.url}`,
+    ].join("\n"));
+    if (npm) {
+        const lines = Object.entries(npm).map(([name, latest]) => {
+            if (!latest)
+                return `${name}: unable to check`;
+            const local = name === "sdk"
+                ? current.apiHeaderVersion
+                : name === "spongewallet" && meta.packageName === "spongewallet"
+                    ? current.packageVersion
+                    : undefined;
+            const marker = local && compareSemver(latest, local) > 0 ? " update available" : "";
+            return `${name}: ${latest}${marker}`;
+        });
+        p.note(lines.join("\n"), "Published Versions");
+    }
+    if (server) {
+        p.note([
+            `status: ${server.status}`,
+            `latest SDK: ${server.latestSdkVersion}`,
+            `minimum SDK: ${server.minimumSdkVersion}`,
+            `wallet skill: ${server.walletSkillVersion}`,
+            `message: ${server.message}`,
+        ].join("\n"), "API Version Check");
+    }
+    p.log.step(skillRefreshPrompt());
 }
 async function continueClaimFlow(creds, opts) {
     p.intro("Pending agent claim found");
@@ -887,6 +969,14 @@ function registerCuratedCommands(program, shared) {
             metadata: opts.metadata,
         });
     });
+    shared(cardCmd.command("add").description("Open the dashboard flow for adding a user-owned card"))
+        .option("--app-url <url>", "custom wallet app URL", DEFAULT_APP_URL)
+        .option("--agent-id <id>", "agent ID to preselect in the dashboard")
+        .addOption(new Option("--flow <flow>", "card setup flow to open").choices(["choose", "basis-theory", "link"]).default("choose"))
+        .option("--no-browser", "print the URL without opening a browser")
+        .action(async (opts) => {
+        await handleCardAdd(opts);
+    });
     shared(cardCmd.command("virtual").description("Issue a per-transaction virtual card"))
         .requiredOption("--amount <amount>", "transaction amount")
         .option("--currency <code>", "ISO currency code")
@@ -894,6 +984,8 @@ function registerCuratedCommands(program, shared) {
         .requiredOption("--merchant-url <url>", "merchant URL")
         .option("--merchant-country-code <code>", "merchant country code")
         .option("--description <text>", "purchase description")
+        .option("--products <json>", "products array as JSON", parseJsonValue)
+        .option("--shipping-address <json>", "shipping address as JSON", parseJsonObject)
         .option("--enrollment-id <id>", "specific enrollment ID")
         .action(async (opts) => {
         await executeToolCommand(opts, "issue_virtual_card", {
@@ -903,6 +995,8 @@ function registerCuratedCommands(program, shared) {
             merchant_url: opts.merchantUrl,
             merchant_country_code: opts.merchantCountryCode,
             description: opts.description,
+            products: opts.products,
+            shipping_address: opts.shippingAddress,
             enrollment_id: opts.enrollmentId,
         });
     });
@@ -921,6 +1015,159 @@ function registerCuratedCommands(program, shared) {
             currency: opts.currency,
             merchant_name: opts.merchantName,
             merchant_url: opts.merchantUrl,
+        });
+    });
+    shared(cardCmd.command("vaulted").description("Fetch a Basis Theory vaulted card session"))
+        .option("--payment-method-id <id>", "specific Basis Theory payment method ID")
+        .option("--amount <amount>", "transaction amount for spending-limit checks")
+        .option("--currency <code>", "ISO currency code")
+        .option("--merchant-name <name>", "merchant name")
+        .option("--merchant-url <url>", "merchant URL")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "get_card", {
+            card_type: "basis_theory_vaulted",
+            payment_method_id: opts.paymentMethodId,
+            amount: opts.amount,
+            currency: opts.currency,
+            merchant_name: opts.merchantName,
+            merchant_url: opts.merchantUrl,
+        });
+    });
+    shared(cardCmd.command("usage").description("Report the outcome of a card purchase attempt"))
+        .requiredOption("--payment-method-id <id>", "payment method ID used for the purchase")
+        .addOption(new Option("--status <status>", "purchase outcome").choices(["success", "failed", "cancelled"]).makeOptionMandatory())
+        .option("--merchant-name <name>", "merchant name")
+        .option("--merchant-domain <domain>", "merchant domain")
+        .option("--amount <amount>", "amount charged or attempted")
+        .option("--currency <code>", "currency code")
+        .option("--failure-reason <reason>", "failure reason when status is failed")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "report_card_usage", {
+            payment_method_id: opts.paymentMethodId,
+            merchant_name: opts.merchantName,
+            merchant_domain: opts.merchantDomain,
+            amount: opts.amount,
+            currency: opts.currency,
+            status: opts.status,
+            failure_reason: opts.failureReason,
+        });
+    });
+    const linkCmd = cardCmd.command("link").description("Link payment method workflows");
+    shared(linkCmd.command("start").description("Start Link login for payment-method connection"))
+        .option("--client-name <name>", "optional Link connection label")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "add_link_payment_method", {
+            client_name: opts.clientName,
+        });
+    });
+    shared(linkCmd.command("save").description("Save a Link payment method after Link login"))
+        .option("--link-payment-method-id <id>", "Link payment method ID; required if multiple methods are available")
+        .option("--set-as-default", "make this the default Link payment method")
+        .option("--no-set-as-default", "do not make this the default Link payment method")
+        .option("--client-name <name>", "optional Link connection label")
+        .requiredOption("--email <email>", "contact email")
+        .requiredOption("--phone <phone>", "contact phone")
+        .requiredOption("--shipping <json>", "shipping address JSON with name, line1, city, state, postalCode, country", parseJsonObject)
+        .option("--billing <json>", "optional billing address JSON", parseJsonObject)
+        .action(async (opts) => {
+        await executeToolCommand(opts, "add_link_payment_method", {
+            link_payment_method_id: opts.linkPaymentMethodId,
+            set_as_default: opts.setAsDefault,
+            client_name: opts.clientName,
+            email: opts.email,
+            phone: opts.phone,
+            shipping: opts.shipping,
+            billing: opts.billing,
+        });
+    });
+    shared(linkCmd.command("credential").description("Generate one-time card credentials from a saved Link payment method"))
+        .option("--link-payment-method-id <id>", "saved Link payment method ID")
+        .option("--spend-request-id <id>", "existing spend request ID returned by approval_required")
+        .option("--amount <amount>", "purchase amount")
+        .option("--currency <code>", "ISO currency code")
+        .option("--merchant-name <name>", "merchant name")
+        .option("--merchant-url <url>", "merchant URL")
+        .option("--context <text>", "optional context shown during Link approval")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "create_link_payment_credential", {
+            link_payment_method_id: opts.linkPaymentMethodId,
+            spend_request_id: opts.spendRequestId,
+            amount: opts.amount,
+            currency: opts.currency,
+            merchant_name: opts.merchantName,
+            merchant_url: opts.merchantUrl,
+            context: opts.context,
+        });
+    });
+    shared(cardCmd.command("status").description("Show Sponge Card onboarding, card, and balance status"))
+        .option("--refresh", "force-refresh issuer status before returning")
+        .option("--no-refresh", "use cached issuer status when available")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "get_sponge_card_status", {
+            refresh: opts.refresh,
+        });
+    });
+    shared(cardCmd.command("onboard").description("Start Sponge Card onboarding and accept required consent acknowledgements"))
+        .requiredOption("--occupation <occupation>", "occupation or SOC code")
+        .option("--accept-all", "set all required Sponge Card consent acknowledgements to true")
+        .option("--e-sign-consent", "accept E-Sign Consent")
+        .option("--account-opening-privacy-notice", "accept Account Opening Privacy Notice; required for US KYC")
+        .option("--sponge-card-terms", "accept Sponge Card terms and issuer privacy policy")
+        .option("--information-certification", "certify KYC information is accurate")
+        .option("--unauthorized-solicitation-acknowledgement", "acknowledge application is not unauthorized solicitation")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "onboard_sponge_card", {
+            occupation: opts.occupation,
+            ...spongeCardConsentInput(opts),
+        });
+    });
+    shared(cardCmd.command("terms").description("Accept Sponge Card terms for an existing application"))
+        .option("--accept-all", "set all required Sponge Card consent acknowledgements to true")
+        .option("--e-sign-consent", "accept E-Sign Consent")
+        .option("--account-opening-privacy-notice", "accept Account Opening Privacy Notice; required for US KYC")
+        .option("--sponge-card-terms", "accept Sponge Card terms and issuer privacy policy")
+        .option("--information-certification", "certify KYC information is accurate")
+        .option("--unauthorized-solicitation-acknowledgement", "acknowledge application is not unauthorized solicitation")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "accept_sponge_card_terms", spongeCardConsentInput(opts));
+    });
+    shared(cardCmd.command("create").description("Create a Sponge Card after approval and consent"))
+        .requiredOption("--billing-address <json>", "billing address JSON with line1, city, region, postal_code, country_code")
+        .requiredOption("--email <email>", "contact email")
+        .requiredOption("--phone <phone>", "contact phone")
+        .option("--shipping-address <json>", "optional shipping address JSON", parseJsonObject)
+        .action(async (opts) => {
+        await executeToolCommand(opts, "create_sponge_card", {
+            billing: parseJsonObject(String(opts.billingAddress)),
+            email: opts.email,
+            phone: opts.phone,
+            shipping: opts.shippingAddress,
+        });
+    });
+    shared(cardCmd.command("details").description("Fetch encrypted Sponge Card PAN/CVC and spending power"))
+        .action(async (opts) => {
+        await executeToolCommand(opts, "get_sponge_card_details", {});
+    });
+    shared(cardCmd.command("fund").description("Top up Sponge Card collateral with USDC from the wallet"))
+        .usage("[amount] [options]")
+        .argument("[amount]", "USDC amount")
+        .option("--amount <amount>", "USDC amount")
+        .addOption(new Option("--chain <chain>", "collateral chain").choices(CHAIN_VALUES))
+        .action(async (amountArg, opts, command) => {
+        await executeToolCommand(opts, "fund_sponge_card", {
+            amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
+            chain: opts.chain,
+        });
+    });
+    shared(cardCmd.command("withdraw").description("Withdraw Sponge Card collateral back to the wallet"))
+        .usage("[amount] [options]")
+        .argument("[amount]", "USDC amount")
+        .option("--amount <amount>", "USDC amount")
+        .addOption(new Option("--chain <chain>", "collateral chain").choices(CHAIN_VALUES))
+        .action(async (amountArg, opts, command) => {
+        await executeToolCommand(opts, "withdraw_sponge_card", {
+            amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
+            chain: opts.chain,
         });
     });
     const planCmd = program.command("plan").description("Multi-step plan approval flows");
@@ -1371,6 +1618,110 @@ function parseJsonObject(value) {
     }
     return parsed;
 }
+function spongeCardConsentInput(opts) {
+    const acceptAll = Boolean(opts.acceptAll);
+    return {
+        e_sign_consent: acceptAll || Boolean(opts.eSignConsent),
+        account_opening_privacy_notice: acceptAll || Boolean(opts.accountOpeningPrivacyNotice),
+        sponge_card_terms: acceptAll || Boolean(opts.spongeCardTerms),
+        information_certification: acceptAll || Boolean(opts.informationCertification),
+        unauthorized_solicitation_acknowledgement: acceptAll || Boolean(opts.unauthorizedSolicitationAcknowledgement),
+    };
+}
+function skillRefreshPrompt() {
+    return `If this agent has an older Sponge skill installed, redownload ${WALLET_SKILL_URL} so it knows ${WALLET_SKILL_NAME} v${WALLET_SKILL_VERSION}.`;
+}
+function buildCardSetupUrl(args) {
+    const url = new URL("/dashboard", args.appUrl ?? DEFAULT_APP_URL);
+    url.searchParams.set("tab", "cards");
+    url.searchParams.set("addCard", "1");
+    if (args.agentId)
+        url.searchParams.set("agentId", args.agentId);
+    if (args.flow && args.flow !== "choose")
+        url.searchParams.set("cardFlow", args.flow);
+    return url.toString();
+}
+async function handleCardAdd(opts) {
+    const credentials = loadCredentials(opts.credentialsPath);
+    const agentId = typeof opts.agentId === "string" && opts.agentId.length > 0
+        ? opts.agentId
+        : credentials?.agentId;
+    const flow = typeof opts.flow === "string" ? opts.flow : "choose";
+    const url = buildCardSetupUrl({
+        appUrl: typeof opts.appUrl === "string" ? opts.appUrl : DEFAULT_APP_URL,
+        agentId,
+        flow,
+    });
+    p.log.info([
+        "Open this dashboard flow to add a user-owned card:",
+        url,
+        "",
+        flow === "link"
+            ? "This opens the Link card connection flow."
+            : flow === "basis-theory"
+                ? "This opens the manual card flow backed by Basis Theory Elements tokenization."
+                : "Choose manual Basis Theory tokenization or Link in the dashboard.",
+    ].join("\n"));
+    if (opts.browser === false)
+        return;
+    try {
+        const open = await import("open");
+        await open.default(url);
+        p.log.step("Opened browser for card setup.");
+    }
+    catch {
+        p.log.step("Could not open browser automatically. Open the URL manually.");
+    }
+}
+async function getNpmLatestVersion(packageName) {
+    try {
+        const response = await fetch(`https://registry.npmjs.org/${encodeURIComponent(packageName)}/latest`, {
+            headers: { Accept: "application/json" },
+        });
+        if (!response.ok)
+            return null;
+        const data = await response.json();
+        return isRecord(data) && typeof data.version === "string" ? data.version : null;
+    }
+    catch {
+        return null;
+    }
+}
+async function getServerVersionInfo(baseUrl) {
+    try {
+        const url = new URL("/api/version", baseUrl ?? DEFAULT_BASE_URL);
+        const response = await fetch(url.toString(), {
+            headers: {
+                Accept: "application/json",
+                "Sponge-Version": SDK_VERSION,
+            },
+        });
+        if (!response.ok)
+            return null;
+        const data = await response.json();
+        return isRecord(data) ? data : null;
+    }
+    catch {
+        return null;
+    }
+}
+function compareSemver(a, b) {
+    const parse = (value) => value
+        .split(/[.-]/)
+        .slice(0, 3)
+        .map(part => {
+        const parsed = Number.parseInt(part, 10);
+        return Number.isFinite(parsed) ? parsed : 0;
+    });
+    const left = parse(a);
+    const right = parse(b);
+    for (let index = 0; index < 3; index += 1) {
+        const diff = (left[index] ?? 0) - (right[index] ?? 0);
+        if (diff !== 0)
+            return diff > 0 ? 1 : -1;
+    }
+    return 0;
+}
 function registerToolCommands(program, shared) {
     for (const tool of TOOL_DEFINITIONS) {
         const cmdName = tool.name.replace(/_/g, "-");
@@ -1767,7 +2118,7 @@ function renderTable(title, columns, rows) {
 function renderTxOutput(title, data) {
     if (!isRecord(data))
         return false;
-    const hash = getValueByKey(data, ["transactionHash", "txHash", "signature"]);
+    const hash = getValueByKey(data, ["transactionHash", "txHash", "tx_hash", "signature"]);
     const inputAmount = getValueByKey(data, ["inputToken.amount", "input_token.amount"]);
     const inputSymbol = getValueByKey(data, ["inputToken.symbol", "input_token.symbol"]);
     const outputAmount = getValueByKey(data, ["outputToken.amount", "output_token.amount"]);
