@@ -100,4 +100,24 @@ describe("CLI renderer", () => {
 
     consoleLog.mockRestore();
   });
+
+  it("renders Sponge Card spending power using the formatted USD field", () => {
+    const tool = TOOL_DEFINITIONS.find((entry) => entry.name === "get_sponge_card_details");
+    expect(tool).toBeDefined();
+
+    displayToolResult(tool!, {
+      last4: "8483",
+      expiration_month: "12",
+      expiration_year: "2032",
+      status: "active",
+      spending_power_cents: 250,
+      spending_power_usd: "2.50",
+      spending_power_display: "$2.50",
+      secret_key: "00112233445566778899aabbccddeeff",
+    });
+
+    expect(logSuccess).toHaveBeenCalledWith("Sponge Card details");
+    expect(logInfo).toHaveBeenCalledWith(expect.stringContaining("Spending power: $2.50"));
+    expect(logInfo).toHaveBeenCalledWith(expect.stringContaining("Spending power cents: 250"));
+  });
 });

@@ -1071,7 +1071,8 @@ export const TOOL_DEFINITIONS = [
     {
         name: "get_sponge_card_status",
         description: "Get the user's Sponge Card onboarding, consent, card, and balance status. " +
-            "Use this before onboarding, terms acceptance, card creation, funding, withdrawal, or card-detail retrieval.",
+            "Use this before onboarding, terms acceptance, card creation, funding, withdrawal, or card-detail retrieval. " +
+            "Card balance amounts include explicit cent fields and formatted USD display fields, e.g. spending_power_cents=250 means spending_power_display='$2.50'.",
         input_schema: {
             type: "object",
             properties: {
@@ -1087,6 +1088,11 @@ export const TOOL_DEFINITIONS = [
             { key: "environment", label: "Environment" },
             { key: "ready_for_card_creation", label: "Ready for card creation" },
             { key: ["customer", "application_status"], label: "Application status" },
+            { key: ["balances", "spending_power_display"], label: "Spending power" },
+            { key: ["balances", "credit_limit_display"], label: "Credit limit" },
+            { key: ["balances", "pending_charges_display"], label: "Pending charges" },
+            { key: ["balances", "posted_charges_display"], label: "Posted charges" },
+            { key: ["balances", "balance_due_display"], label: "Balance due" },
             { key: "completion_link_url", label: "Completion link" },
             { key: "message", label: "Message" },
         ], "Sponge Card status"),
@@ -1203,6 +1209,7 @@ export const TOOL_DEFINITIONS = [
     {
         name: "get_sponge_card_details",
         description: "Fetch encrypted PAN/CVC for the user's Sponge Card plus a per-call secret_key for local AES-128-GCM decryption and current spending power. " +
+            "Use spending_power_display for user-facing output; spending_power_cents is an integer in cents, so 250 means $2.50. " +
             "Treat the response and decrypted values as highly sensitive; do not log or persist them.",
         input_schema: {
             type: "object",
@@ -1214,7 +1221,8 @@ export const TOOL_DEFINITIONS = [
             { key: "expiration_month", label: "Expiry month" },
             { key: "expiration_year", label: "Expiry year" },
             { key: "status", label: "Status" },
-            { key: "spending_power_cents", label: "Spending power (cents)" },
+            { key: "spending_power_display", label: "Spending power" },
+            { key: "spending_power_cents", label: "Spending power cents" },
             { key: "secret_key", label: "Secret key" },
         ], "Sponge Card details"),
     },
@@ -1261,6 +1269,7 @@ export const TOOL_DEFINITIONS = [
         description: "Fetch the user's card details. Routes to the right card source automatically:\n\n" +
             "- **Sponge Card (Rain)** — credit card backed by on-chain collateral. Returns encrypted PAN/CVC plus a per-call symmetric key for client-side AES-128-GCM decryption.\n" +
             "- **Basis Theory vaulted card** — a card the user vaulted via the dashboard. Returns a short-lived BT session (`session_key` + `retrieve_url`) that you must immediately fetch over HTTP.\n\n" +
+            "For the Sponge Card branch, use `spending_power_display` for user-facing output; `spending_power_cents` is an integer in cents, so 250 means $2.50.\n\n" +
             "If the user has only one source enrolled, returns that card directly. If both sources are enrolled and `card_type` is omitted, returns `{ status: \"selection_required\", available_cards: [...] }` so you can ask the user which to use, then re-call with `card_type` set.\n\n" +
             "For per-transaction virtual cards (issued on demand for a specific merchant + amount), use `issue_virtual_card` instead.",
         input_schema: {
@@ -1290,7 +1299,8 @@ export const TOOL_DEFINITIONS = [
             { key: "card_type", label: "Card type" },
             { key: "card_last4", label: "Card last 4" },
             { key: "last4", label: "Sponge Card last 4" },
-            { key: "spending_power_cents", label: "Spending power (cents)" },
+            { key: "spending_power_display", label: "Spending power" },
+            { key: "spending_power_cents", label: "Spending power cents" },
             { key: "email", label: "Email" },
             { key: "phone", label: "Phone" },
             { key: "retrieve_url", label: "Retrieve URL" },
