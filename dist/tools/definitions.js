@@ -525,8 +525,8 @@ export const TOOL_DEFINITIONS = [
     {
         name: "paid_fetch",
         description: "Make an HTTP request with automatic paid API handling. " +
-            "This is the main one-shot paid fetch tool. It selects the best wallet route, automatically handles x402 or MPP challenges, " +
-            "and falls back when the requested chain is unsupported by the endpoint.",
+            "This is the main one-shot paid fetch tool. It detects x402 or MPP from the endpoint's 402 challenge, " +
+            "handles the matching payment flow, and if both are advertised chooses the route with the highest available stablecoin balance.",
         input_schema: {
             type: "object",
             properties: {
@@ -551,6 +551,11 @@ export const TOOL_DEFINITIONS = [
                     type: "string",
                     enum: ["base", "solana", "tempo", "ethereum"],
                     description: "Preferred wallet chain to spend from. This is a hint, not a hard requirement.",
+                },
+                protocol: {
+                    type: "string",
+                    enum: ["x402", "mpp"],
+                    description: "Explicit protocol override/debug option. Omit to route from the endpoint's 402 response and balance tie-breaker.",
                 },
             },
             required: ["url"],

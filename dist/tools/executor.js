@@ -198,6 +198,7 @@ export class ToolExecutor {
                     headers: args.headers,
                     body: args.body,
                     chain: args.chain,
+                    protocol: args.protocol,
                 });
             case "discover_services":
                 return this.http.get("/api/discover", {

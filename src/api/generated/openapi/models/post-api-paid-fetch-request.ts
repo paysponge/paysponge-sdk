@@ -51,6 +51,12 @@ export interface PostApiPaidFetchRequest {
     chain?: PostApiPaidFetchRequestChainEnum;
     /**
      * 
+     * @type {PostApiPaidFetchRequestProtocolEnum}
+     * @memberof PostApiPaidFetchRequest
+     */
+    protocol?: PostApiPaidFetchRequestProtocolEnum;
+    /**
+     * 
      * @type {string}
      * @memberof PostApiPaidFetchRequest
      */
@@ -81,6 +87,15 @@ export const PostApiPaidFetchRequestChainEnum = {
 } as const;
 export type PostApiPaidFetchRequestChainEnum = typeof PostApiPaidFetchRequestChainEnum[keyof typeof PostApiPaidFetchRequestChainEnum];
 
+/**
+ * @export
+ */
+export const PostApiPaidFetchRequestProtocolEnum = {
+    X402: 'x402',
+    Mpp: 'mpp'
+} as const;
+export type PostApiPaidFetchRequestProtocolEnum = typeof PostApiPaidFetchRequestProtocolEnum[keyof typeof PostApiPaidFetchRequestProtocolEnum];
+
 
 /**
  * Check if a given object implements the PostApiPaidFetchRequest interface.
@@ -105,6 +120,7 @@ export function PostApiPaidFetchRequestFromJSONTyped(json: any, ignoreDiscrimina
         'headers': json['headers'] == null ? undefined : json['headers'],
         'body': json['body'] == null ? undefined : json['body'],
         'chain': json['chain'] == null ? undefined : json['chain'],
+        'protocol': json['protocol'] == null ? undefined : json['protocol'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
@@ -125,6 +141,7 @@ export function PostApiPaidFetchRequestToJSONTyped(value?: PostApiPaidFetchReque
         'headers': value['headers'],
         'body': value['body'],
         'chain': value['chain'],
+        'protocol': value['protocol'],
         'agentId': value['agentId'],
     };
 }

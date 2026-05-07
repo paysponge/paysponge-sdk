@@ -31,6 +31,13 @@ export const PostApiPaidFetchRequestChainEnum = {
     Ethereum: 'ethereum'
 };
 /**
+ * @export
+ */
+export const PostApiPaidFetchRequestProtocolEnum = {
+    X402: 'x402',
+    Mpp: 'mpp'
+};
+/**
  * Check if a given object implements the PostApiPaidFetchRequest interface.
  */
 export function instanceOfPostApiPaidFetchRequest(value) {
@@ -51,6 +58,7 @@ export function PostApiPaidFetchRequestFromJSONTyped(json, ignoreDiscriminator) 
         'headers': json['headers'] == null ? undefined : json['headers'],
         'body': json['body'] == null ? undefined : json['body'],
         'chain': json['chain'] == null ? undefined : json['chain'],
+        'protocol': json['protocol'] == null ? undefined : json['protocol'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
@@ -67,6 +75,7 @@ export function PostApiPaidFetchRequestToJSONTyped(value, ignoreDiscriminator = 
         'headers': value['headers'],
         'body': value['body'],
         'chain': value['chain'],
+        'protocol': value['protocol'],
         'agentId': value['agentId'],
     };
 }

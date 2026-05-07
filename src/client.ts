@@ -416,6 +416,7 @@ export class SpongeWallet {
     headers?: Record<string, string>;
     body?: unknown;
     chain?: "base" | "solana" | "tempo" | "ethereum";
+    protocol?: "x402" | "mpp";
   }) {
     return this.publicTools.paidFetch(options);
   }

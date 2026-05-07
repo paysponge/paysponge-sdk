@@ -341,6 +341,7 @@ export declare class SpongeWallet {
         headers?: Record<string, string>;
         body?: unknown;
         chain?: "base" | "solana" | "tempo" | "ethereum";
+        protocol?: "x402" | "mpp";
     }): Promise<unknown>;
     /**
      * Fetch any URL with automatic x402 payment handling

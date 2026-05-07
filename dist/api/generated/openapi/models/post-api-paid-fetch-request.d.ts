@@ -47,6 +47,12 @@ export interface PostApiPaidFetchRequest {
     chain?: PostApiPaidFetchRequestChainEnum;
     /**
      *
+     * @type {PostApiPaidFetchRequestProtocolEnum}
+     * @memberof PostApiPaidFetchRequest
+     */
+    protocol?: PostApiPaidFetchRequestProtocolEnum;
+    /**
+     *
      * @type {string}
      * @memberof PostApiPaidFetchRequest
      */
@@ -73,6 +79,14 @@ export declare const PostApiPaidFetchRequestChainEnum: {
     readonly Ethereum: "ethereum";
 };
 export type PostApiPaidFetchRequestChainEnum = typeof PostApiPaidFetchRequestChainEnum[keyof typeof PostApiPaidFetchRequestChainEnum];
+/**
+ * @export
+ */
+export declare const PostApiPaidFetchRequestProtocolEnum: {
+    readonly X402: "x402";
+    readonly Mpp: "mpp";
+};
+export type PostApiPaidFetchRequestProtocolEnum = typeof PostApiPaidFetchRequestProtocolEnum[keyof typeof PostApiPaidFetchRequestProtocolEnum];
 /**
  * Check if a given object implements the PostApiPaidFetchRequest interface.
  */

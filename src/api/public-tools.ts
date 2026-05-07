@@ -72,6 +72,7 @@ export interface PaidFetchOptions {
   headers?: Record<string, string>;
   body?: unknown;
   chain?: "base" | "solana" | "tempo" | "ethereum";
+  protocol?: "x402" | "mpp";
 }
 
 export interface MppFetchOptions {

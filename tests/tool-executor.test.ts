@@ -118,6 +118,7 @@ describe("ToolExecutor", () => {
       headers: undefined,
       body: { query: "hello" },
       chain: "tempo",
+      protocol: undefined,
     });
   });
 

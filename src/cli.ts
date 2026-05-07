@@ -1195,6 +1195,7 @@ function registerCuratedCommands(
   shared(payCmd.command("fetch").description("Fetch with automatic paid API handling"))
     .requiredOption("--url <url>", "target URL")
     .addOption(new Option("--chain <chain>", "preferred spend chain").choices(PAY_CHAIN_VALUES))
+    .addOption(new Option("--protocol <protocol>", "explicit protocol override").choices(["x402", "mpp"]))
     .addOption(new Option("--method <method>", "HTTP method").choices(["GET", "POST", "PUT", "DELETE", "PATCH"]).default("GET"))
     .option("--headers <json>", "headers as JSON", parseJsonObject)
     .option("--body <json>", "request body as JSON", parseJsonValue)
@@ -1203,6 +1204,7 @@ function registerCuratedCommands(
       const data = await wallet.paidFetch({
         url: String(opts.url),
         chain: opts.chain as any,
+        protocol: opts.protocol as any,
         method: opts.method as any,
         headers: opts.headers as Record<string, string> | undefined,
         body: opts.body,

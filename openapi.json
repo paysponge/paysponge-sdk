@@ -8729,6 +8729,13 @@
                       "ethereum"
                     ]
                   },
+                  "protocol": {
+                    "type": "string",
+                    "enum": [
+                      "x402",
+                      "mpp"
+                    ]
+                  },
                   "agentId": {
                     "type": "string"
                   }
@@ -8773,6 +8780,13 @@
                       "ethereum"
                     ]
                   },
+                  "protocol": {
+                    "type": "string",
+                    "enum": [
+                      "x402",
+                      "mpp"
+                    ]
+                  },
                   "agentId": {
                     "type": "string"
                   }
@@ -8815,6 +8829,13 @@
                       "solana",
                       "tempo",
                       "ethereum"
+                    ]
+                  },
+                  "protocol": {
+                    "type": "string",
+                    "enum": [
+                      "x402",
+                      "mpp"
                     ]
                   },
                   "agentId": {
