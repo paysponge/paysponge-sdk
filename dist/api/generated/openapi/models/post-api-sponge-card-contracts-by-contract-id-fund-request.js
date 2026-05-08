@@ -38,6 +38,7 @@ export function PostApiSpongeCardContractsByContractIdFundRequestFromJSONTyped(j
     return {
         'environment': json['environment'],
         'amount': json['amount'],
+        'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
 export function PostApiSpongeCardContractsByContractIdFundRequestToJSON(json) {
@@ -50,6 +51,7 @@ export function PostApiSpongeCardContractsByContractIdFundRequestToJSONTyped(val
     return {
         'environment': value['environment'],
         'amount': value['amount'],
+        'agentId': value['agentId'],
     };
 }
 //# sourceMappingURL=post-api-sponge-card-contracts-by-contract-id-fund-request.js.map

@@ -27,6 +27,12 @@ export interface PostApiSpongeCardContractsByContractIdFundRequest {
      * @memberof PostApiSpongeCardContractsByContractIdFundRequest
      */
     amount: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiSpongeCardContractsByContractIdFundRequest
+     */
+    agentId?: string;
 }
 /**
  * @export

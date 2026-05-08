@@ -31,6 +31,12 @@ export interface PostApiSpongeCardContractsByContractIdFundRequest {
      * @memberof PostApiSpongeCardContractsByContractIdFundRequest
      */
     amount: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiSpongeCardContractsByContractIdFundRequest
+     */
+    agentId?: string;
 }
 
 
@@ -65,6 +71,7 @@ export function PostApiSpongeCardContractsByContractIdFundRequestFromJSONTyped(j
         
         'environment': json['environment'],
         'amount': json['amount'],
+        'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
 
@@ -81,6 +88,7 @@ export function PostApiSpongeCardContractsByContractIdFundRequestToJSONTyped(val
         
         'environment': value['environment'],
         'amount': value['amount'],
+        'agentId': value['agentId'],
     };
 }
 

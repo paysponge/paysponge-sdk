@@ -14949,6 +14949,10 @@
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d+)?$",
                     "type": "string"
+                  },
+                  "agentId": {
+                    "minLength": 1,
+                    "type": "string"
                   }
                 }
               }
@@ -14972,6 +14976,10 @@
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d+)?$",
                     "type": "string"
+                  },
+                  "agentId": {
+                    "minLength": 1,
+                    "type": "string"
                   }
                 }
               }
@@ -14994,6 +15002,10 @@
                   "amount": {
                     "minLength": 1,
                     "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "minLength": 1,
                     "type": "string"
                   }
                 }
