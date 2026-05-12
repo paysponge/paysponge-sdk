@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHackathonClaimRequest, PostApiHackathonValidateRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -246,6 +246,9 @@ export interface DefaultApiGetApiFlowsRequest {
 export interface DefaultApiGetApiFlowsByIdRequest {
     id: string;
 }
+export interface DefaultApiGetApiHackathonStatusRequest {
+    eventSlug?: string;
+}
 export interface DefaultApiGetApiMppSessionsRequest {
     status?: string;
     limit?: string;
@@ -377,6 +380,10 @@ export interface DefaultApiGetOauthAuthorizeRequest {
 }
 export interface DefaultApiPostApiAdminBetaUsersByIdPrefundRequest {
     id: string;
+}
+export interface DefaultApiPostApiAdminHackathonByEventSlugEndRequest {
+    eventSlug: string;
+    putApiAgentRequestsPlansByPlanIdRejectRequest: PutApiAgentRequestsPlansByPlanIdRejectRequest;
 }
 export interface DefaultApiPostApiAgentKeysOperationRequest {
     postApiAgentKeysRequest: PostApiAgentKeysRequest;
@@ -621,6 +628,12 @@ export interface DefaultApiPostApiFaucetRequestOperationRequest {
 export interface DefaultApiPostApiFlowsOperationRequest {
     postApiFlowsRequest: PostApiFlowsRequest;
     agentId?: string;
+}
+export interface DefaultApiPostApiHackathonClaimOperationRequest {
+    postApiHackathonClaimRequest: PostApiHackathonClaimRequest;
+}
+export interface DefaultApiPostApiHackathonValidateOperationRequest {
+    postApiHackathonValidateRequest: PostApiHackathonValidateRequest;
 }
 export interface DefaultApiPostApiHyperliquidOperationRequest {
     postApiHyperliquidRequest: PostApiHyperliquidRequest;
@@ -2636,6 +2649,40 @@ export interface DefaultApiInterface {
      */
     getApiFlowsById(requestParameters: DefaultApiGetApiFlowsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiHackathonConfig without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiHackathonConfigRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiHackathonConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiHackathonConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiHackathonStatus without sending the request
+     * @param {string} [eventSlug]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiHackathonStatusRequestOpts(requestParameters: DefaultApiGetApiHackathonStatusRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [eventSlug]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiHackathonStatusRaw(requestParameters: DefaultApiGetApiHackathonStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiHackathonStatus(requestParameters: DefaultApiGetApiHackathonStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiInvitesConfig without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -3463,6 +3510,26 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAdminBetaUsersByIdPrefund(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAdminHackathonByEventSlugEnd without sending the request
+     * @param {string} eventSlug
+     * @param {PutApiAgentRequestsPlansByPlanIdRejectRequest} putApiAgentRequestsPlansByPlanIdRejectRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAdminHackathonByEventSlugEndRequestOpts(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} eventSlug
+     * @param {PutApiAgentRequestsPlansByPlanIdRejectRequest} putApiAgentRequestsPlansByPlanIdRejectRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAdminHackathonByEventSlugEndRaw(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAdminHackathonByEventSlugEnd(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentKeys without sending the request
      * @param {PostApiAgentKeysRequest} postApiAgentKeysRequest
@@ -4823,6 +4890,42 @@ export interface DefaultApiInterface {
     /**
      */
     postApiFlows(requestParameters: DefaultApiPostApiFlowsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiHackathonClaim without sending the request
+     * @param {PostApiHackathonClaimRequest} postApiHackathonClaimRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiHackathonClaimRequestOpts(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiHackathonClaimRequest} postApiHackathonClaimRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiHackathonClaimRaw(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiHackathonClaim(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiHackathonValidate without sending the request
+     * @param {PostApiHackathonValidateRequest} postApiHackathonValidateRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiHackathonValidateRequestOpts(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiHackathonValidateRequest} postApiHackathonValidateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiHackathonValidateRaw(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiHackathonValidate(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiHyperliquid without sending the request
      * @param {PostApiHyperliquidRequest} postApiHyperliquidRequest
@@ -7285,6 +7388,26 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiFlowsById(requestParameters: DefaultApiGetApiFlowsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiHackathonConfig without sending the request
+     */
+    getApiHackathonConfigRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiHackathonConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiHackathonConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiHackathonStatus without sending the request
+     */
+    getApiHackathonStatusRequestOpts(requestParameters: DefaultApiGetApiHackathonStatusRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiHackathonStatusRaw(requestParameters: DefaultApiGetApiHackathonStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiHackathonStatus(requestParameters?: DefaultApiGetApiHackathonStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiInvitesConfig without sending the request
      */
     getApiInvitesConfigRequestOpts(): Promise<runtime.RequestOpts>;
@@ -7714,6 +7837,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiAdminBetaUsersByIdPrefund(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAdminHackathonByEventSlugEnd without sending the request
+     */
+    postApiAdminHackathonByEventSlugEndRequestOpts(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAdminHackathonByEventSlugEndRaw(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAdminHackathonByEventSlugEnd(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentKeys without sending the request
      */
@@ -8434,6 +8567,26 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiFlows(requestParameters: DefaultApiPostApiFlowsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiHackathonClaim without sending the request
+     */
+    postApiHackathonClaimRequestOpts(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiHackathonClaimRaw(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiHackathonClaim(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiHackathonValidate without sending the request
+     */
+    postApiHackathonValidateRequestOpts(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiHackathonValidateRaw(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiHackathonValidate(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiHyperliquid without sending the request
      */

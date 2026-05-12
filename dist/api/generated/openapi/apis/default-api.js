@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHackathonClaimRequestToJSON, PostApiHackathonValidateRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -2914,6 +2914,61 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiFlowsByIdRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiHackathonConfig without sending the request
+     */
+    async getApiHackathonConfigRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/hackathon/config`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiHackathonConfigRaw(initOverrides) {
+        const requestOptions = await this.getApiHackathonConfigRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiHackathonConfig(initOverrides) {
+        await this.getApiHackathonConfigRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiHackathonStatus without sending the request
+     */
+    async getApiHackathonStatusRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['eventSlug'] != null) {
+            queryParameters['eventSlug'] = requestParameters['eventSlug'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/hackathon/status`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiHackathonStatusRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiHackathonStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiHackathonStatus(requestParameters = {}, initOverrides) {
+        await this.getApiHackathonStatusRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiInvitesConfig without sending the request
      */
     async getApiInvitesConfigRequestOpts() {
@@ -4296,6 +4351,41 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiAdminBetaUsersByIdPrefund(requestParameters, initOverrides) {
         await this.postApiAdminBetaUsersByIdPrefundRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiAdminHackathonByEventSlugEnd without sending the request
+     */
+    async postApiAdminHackathonByEventSlugEndRequestOpts(requestParameters) {
+        if (requestParameters['eventSlug'] == null) {
+            throw new runtime.RequiredError('eventSlug', 'Required parameter "eventSlug" was null or undefined when calling postApiAdminHackathonByEventSlugEnd().');
+        }
+        if (requestParameters['putApiAgentRequestsPlansByPlanIdRejectRequest'] == null) {
+            throw new runtime.RequiredError('putApiAgentRequestsPlansByPlanIdRejectRequest', 'Required parameter "putApiAgentRequestsPlansByPlanIdRejectRequest" was null or undefined when calling postApiAdminHackathonByEventSlugEnd().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/admin/hackathon/{eventSlug}/end`;
+        urlPath = urlPath.replace(`{${"eventSlug"}}`, encodeURIComponent(String(requestParameters['eventSlug'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON(requestParameters['putApiAgentRequestsPlansByPlanIdRejectRequest']),
+        };
+    }
+    /**
+     */
+    async postApiAdminHackathonByEventSlugEndRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiAdminHackathonByEventSlugEndRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiAdminHackathonByEventSlugEnd(requestParameters, initOverrides) {
+        await this.postApiAdminHackathonByEventSlugEndRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiAgentKeys without sending the request
@@ -6635,6 +6725,68 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiFlows(requestParameters, initOverrides) {
         await this.postApiFlowsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiHackathonClaim without sending the request
+     */
+    async postApiHackathonClaimRequestOpts(requestParameters) {
+        if (requestParameters['postApiHackathonClaimRequest'] == null) {
+            throw new runtime.RequiredError('postApiHackathonClaimRequest', 'Required parameter "postApiHackathonClaimRequest" was null or undefined when calling postApiHackathonClaim().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/hackathon/claim`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiHackathonClaimRequestToJSON(requestParameters['postApiHackathonClaimRequest']),
+        };
+    }
+    /**
+     */
+    async postApiHackathonClaimRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiHackathonClaimRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiHackathonClaim(requestParameters, initOverrides) {
+        await this.postApiHackathonClaimRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiHackathonValidate without sending the request
+     */
+    async postApiHackathonValidateRequestOpts(requestParameters) {
+        if (requestParameters['postApiHackathonValidateRequest'] == null) {
+            throw new runtime.RequiredError('postApiHackathonValidateRequest', 'Required parameter "postApiHackathonValidateRequest" was null or undefined when calling postApiHackathonValidate().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/hackathon/validate`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiHackathonValidateRequestToJSON(requestParameters['postApiHackathonValidateRequest']),
+        };
+    }
+    /**
+     */
+    async postApiHackathonValidateRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiHackathonValidateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiHackathonValidate(requestParameters, initOverrides) {
+        await this.postApiHackathonValidateRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiHyperliquid without sending the request

@@ -59,6 +59,8 @@ export * from './post-api-credit-cards-request-shipping-address.js';
 export * from './post-api-email-check-availability-request.js';
 export * from './post-api-faucet-request-request.js';
 export * from './post-api-flows-request.js';
+export * from './post-api-hackathon-claim-request.js';
+export * from './post-api-hackathon-validate-request.js';
 export * from './post-api-hyperliquid-request.js';
 export * from './post-api-invites-redeem-request.js';
 export * from './post-api-invites-register-direct-request.js';

@@ -67,6 +67,8 @@ import type {
   PostApiEmailCheckAvailabilityRequest,
   PostApiFaucetRequestRequest,
   PostApiFlowsRequest,
+  PostApiHackathonClaimRequest,
+  PostApiHackathonValidateRequest,
   PostApiHyperliquidRequest,
   PostApiInvitesRedeemRequest,
   PostApiInvitesRegisterDirectRequest,
@@ -240,6 +242,10 @@ import {
     PostApiFaucetRequestRequestToJSON,
     PostApiFlowsRequestFromJSON,
     PostApiFlowsRequestToJSON,
+    PostApiHackathonClaimRequestFromJSON,
+    PostApiHackathonClaimRequestToJSON,
+    PostApiHackathonValidateRequestFromJSON,
+    PostApiHackathonValidateRequestToJSON,
     PostApiHyperliquidRequestFromJSON,
     PostApiHyperliquidRequestToJSON,
     PostApiInvitesRedeemRequestFromJSON,
@@ -673,6 +679,10 @@ export interface DefaultApiGetApiFlowsByIdRequest {
     id: string;
 }
 
+export interface DefaultApiGetApiHackathonStatusRequest {
+    eventSlug?: string;
+}
+
 export interface DefaultApiGetApiMppSessionsRequest {
     status?: string;
     limit?: string;
@@ -834,6 +844,11 @@ export interface DefaultApiGetOauthAuthorizeRequest {
 
 export interface DefaultApiPostApiAdminBetaUsersByIdPrefundRequest {
     id: string;
+}
+
+export interface DefaultApiPostApiAdminHackathonByEventSlugEndRequest {
+    eventSlug: string;
+    putApiAgentRequestsPlansByPlanIdRejectRequest: PutApiAgentRequestsPlansByPlanIdRejectRequest;
 }
 
 export interface DefaultApiPostApiAgentKeysOperationRequest {
@@ -1148,6 +1163,14 @@ export interface DefaultApiPostApiFaucetRequestOperationRequest {
 export interface DefaultApiPostApiFlowsOperationRequest {
     postApiFlowsRequest: PostApiFlowsRequest;
     agentId?: string;
+}
+
+export interface DefaultApiPostApiHackathonClaimOperationRequest {
+    postApiHackathonClaimRequest: PostApiHackathonClaimRequest;
+}
+
+export interface DefaultApiPostApiHackathonValidateOperationRequest {
+    postApiHackathonValidateRequest: PostApiHackathonValidateRequest;
 }
 
 export interface DefaultApiPostApiHyperliquidOperationRequest {
@@ -3530,6 +3553,46 @@ export interface DefaultApiInterface {
     getApiFlowsById(requestParameters: DefaultApiGetApiFlowsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiHackathonConfig without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiHackathonConfigRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiHackathonConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiHackathonConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiHackathonStatus without sending the request
+     * @param {string} [eventSlug] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiHackathonStatusRequestOpts(requestParameters: DefaultApiGetApiHackathonStatusRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [eventSlug] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiHackathonStatusRaw(requestParameters: DefaultApiGetApiHackathonStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiHackathonStatus(requestParameters: DefaultApiGetApiHackathonStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiInvitesConfig without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -4485,6 +4548,29 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAdminBetaUsersByIdPrefund(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAdminHackathonByEventSlugEnd without sending the request
+     * @param {string} eventSlug 
+     * @param {PutApiAgentRequestsPlansByPlanIdRejectRequest} putApiAgentRequestsPlansByPlanIdRejectRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAdminHackathonByEventSlugEndRequestOpts(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} eventSlug 
+     * @param {PutApiAgentRequestsPlansByPlanIdRejectRequest} putApiAgentRequestsPlansByPlanIdRejectRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAdminHackathonByEventSlugEndRaw(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAdminHackathonByEventSlugEnd(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentKeys without sending the request
@@ -6061,6 +6147,48 @@ export interface DefaultApiInterface {
     /**
      */
     postApiFlows(requestParameters: DefaultApiPostApiFlowsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiHackathonClaim without sending the request
+     * @param {PostApiHackathonClaimRequest} postApiHackathonClaimRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiHackathonClaimRequestOpts(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiHackathonClaimRequest} postApiHackathonClaimRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiHackathonClaimRaw(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiHackathonClaim(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiHackathonValidate without sending the request
+     * @param {PostApiHackathonValidateRequest} postApiHackathonValidateRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiHackathonValidateRequestOpts(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiHackathonValidateRequest} postApiHackathonValidateRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiHackathonValidateRaw(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiHackathonValidate(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiHyperliquid without sending the request
@@ -11758,6 +11886,78 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiHackathonConfig without sending the request
+     */
+    async getApiHackathonConfigRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/hackathon/config`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiHackathonConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiHackathonConfigRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiHackathonConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiHackathonConfigRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiHackathonStatus without sending the request
+     */
+    async getApiHackathonStatusRequestOpts(requestParameters: DefaultApiGetApiHackathonStatusRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['eventSlug'] != null) {
+            queryParameters['eventSlug'] = requestParameters['eventSlug'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/hackathon/status`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiHackathonStatusRaw(requestParameters: DefaultApiGetApiHackathonStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiHackathonStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiHackathonStatus(requestParameters: DefaultApiGetApiHackathonStatusRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiHackathonStatusRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiInvitesConfig without sending the request
      */
     async getApiInvitesConfigRequestOpts(): Promise<runtime.RequestOpts> {
@@ -13651,6 +13851,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAdminBetaUsersByIdPrefund(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAdminBetaUsersByIdPrefundRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAdminHackathonByEventSlugEnd without sending the request
+     */
+    async postApiAdminHackathonByEventSlugEndRequestOpts(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['eventSlug'] == null) {
+            throw new runtime.RequiredError(
+                'eventSlug',
+                'Required parameter "eventSlug" was null or undefined when calling postApiAdminHackathonByEventSlugEnd().'
+            );
+        }
+
+        if (requestParameters['putApiAgentRequestsPlansByPlanIdRejectRequest'] == null) {
+            throw new runtime.RequiredError(
+                'putApiAgentRequestsPlansByPlanIdRejectRequest',
+                'Required parameter "putApiAgentRequestsPlansByPlanIdRejectRequest" was null or undefined when calling postApiAdminHackathonByEventSlugEnd().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/admin/hackathon/{eventSlug}/end`;
+        urlPath = urlPath.replace(`{${"eventSlug"}}`, encodeURIComponent(String(requestParameters['eventSlug'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON(requestParameters['putApiAgentRequestsPlansByPlanIdRejectRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAdminHackathonByEventSlugEndRaw(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAdminHackathonByEventSlugEndRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAdminHackathonByEventSlugEnd(requestParameters: DefaultApiPostApiAdminHackathonByEventSlugEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAdminHackathonByEventSlugEndRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -17031,6 +17283,94 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiFlows(requestParameters: DefaultApiPostApiFlowsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiFlowsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiHackathonClaim without sending the request
+     */
+    async postApiHackathonClaimRequestOpts(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiHackathonClaimRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiHackathonClaimRequest',
+                'Required parameter "postApiHackathonClaimRequest" was null or undefined when calling postApiHackathonClaim().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/hackathon/claim`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiHackathonClaimRequestToJSON(requestParameters['postApiHackathonClaimRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiHackathonClaimRaw(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiHackathonClaimRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiHackathonClaim(requestParameters: DefaultApiPostApiHackathonClaimOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiHackathonClaimRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiHackathonValidate without sending the request
+     */
+    async postApiHackathonValidateRequestOpts(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiHackathonValidateRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiHackathonValidateRequest',
+                'Required parameter "postApiHackathonValidateRequest" was null or undefined when calling postApiHackathonValidate().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/hackathon/validate`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiHackathonValidateRequestToJSON(requestParameters['postApiHackathonValidateRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiHackathonValidateRaw(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiHackathonValidateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiHackathonValidate(requestParameters: DefaultApiPostApiHackathonValidateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiHackathonValidateRaw(requestParameters, initOverrides);
     }
 
     /**

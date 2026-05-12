@@ -11955,6 +11955,238 @@
         "operationId": "postApiAdminBeta-usersByIdPrefund"
       }
     },
+    "/api/admin/hackathon/{eventSlug}/end": {
+      "post": {
+        "parameters": [
+          {
+            "name": "eventSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "maxLength": 64,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAdminHackathonByEventSlugEnd"
+      }
+    },
+    "/api/hackathon/config": {
+      "get": {
+        "operationId": "getApiHackathonConfig"
+      }
+    },
+    "/api/hackathon/validate": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "eventSlug",
+                  "signupCode"
+                ],
+                "properties": {
+                  "eventSlug": {
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "signupCode": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "eventSlug",
+                  "signupCode"
+                ],
+                "properties": {
+                  "eventSlug": {
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "signupCode": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "eventSlug",
+                  "signupCode"
+                ],
+                "properties": {
+                  "eventSlug": {
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "signupCode": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiHackathonValidate"
+      }
+    },
+    "/api/hackathon/status": {
+      "get": {
+        "parameters": [
+          {
+            "name": "eventSlug",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "minLength": 1,
+              "maxLength": 64,
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiHackathonStatus"
+      }
+    },
+    "/api/hackathon/claim": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "eventSlug",
+                  "signupCode",
+                  "solanaWalletAddress"
+                ],
+                "properties": {
+                  "eventSlug": {
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "signupCode": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "solanaWalletAddress": {
+                    "minLength": 32,
+                    "maxLength": 44,
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "eventSlug",
+                  "signupCode",
+                  "solanaWalletAddress"
+                ],
+                "properties": {
+                  "eventSlug": {
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "signupCode": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "solanaWalletAddress": {
+                    "minLength": 32,
+                    "maxLength": 44,
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "eventSlug",
+                  "signupCode",
+                  "solanaWalletAddress"
+                ],
+                "properties": {
+                  "eventSlug": {
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "signupCode": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "solanaWalletAddress": {
+                    "minLength": 32,
+                    "maxLength": 44,
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiHackathonClaim"
+      }
+    },
     "/oauth/register": {
       "post": {
         "requestBody": {
