@@ -38,6 +38,7 @@ describe("CLI command tree", () => {
       "login",
       "logout",
       "whoami",
+      "version",
       "mcp",
       "balance",
       "send",
@@ -51,6 +52,7 @@ describe("CLI command tree", () => {
       "pay",
       "keys",
       "card",
+      "bank",
       "plan",
       "trade",
       "auth",
@@ -85,6 +87,25 @@ describe("CLI command tree", () => {
       "x402",
       "mpp",
     ]));
+  });
+
+  it("exposes bank account and transfer commands under bank", () => {
+    const program = buildCliProgram();
+    const bank = program.commands.find((entry) => entry.name() === "bank");
+    const virtualAccount = bank?.commands.find((entry) => entry.name() === "virtual-account");
+    const externalAccounts = bank?.commands.find((entry) => entry.name() === "external-accounts");
+
+    expect(bank).toBeDefined();
+    expect(commandNames(bank!)).toEqual(expect.arrayContaining([
+      "onboard",
+      "status",
+      "virtual-account",
+      "external-accounts",
+      "send",
+      "transfers",
+    ]));
+    expect(commandNames(virtualAccount!)).toEqual(expect.arrayContaining(["create", "get"]));
+    expect(commandNames(externalAccounts!)).toEqual(expect.arrayContaining(["list", "add"]));
   });
 
   it("exposes Polymarket commands under market", () => {

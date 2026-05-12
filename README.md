@@ -165,6 +165,8 @@ for await (const msg of query({
 
 - Multi-chain wallet management (EVM + Solana)
 - Token transfers and swaps (Jupiter on Solana)
+- Sponge Card, vaulted-card, and per-transaction virtual-card workflows
+- Bridge-backed bank onboarding, virtual accounts, external accounts, and USD transfers
 - MCP server for Claude Agent SDK
 - Anthropic SDK tool definitions
 - Spending limits and allowlists
@@ -190,6 +192,9 @@ npx spongewallet balance
 npx spongewallet send base 0xabc... USDC 10
 npx spongewallet swap tempo pathUSD USDC.e 1
 npx spongewallet tx status base 0x123...
+npx spongewallet card status
+npx spongewallet bank status
+npx spongewallet bank send <wallet-id> <external-account-id> 100.00
 npx spongewallet pay discover "web search"
 npx spongewallet pay service <service-id>
 npx spongewallet market polymarket search "Sixers Celtics"

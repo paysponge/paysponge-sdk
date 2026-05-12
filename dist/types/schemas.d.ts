@@ -923,18 +923,21 @@ export declare const BridgeCreateKycLinkOptionsSchema: z.ZodObject<{
     walletId: z.ZodOptional<z.ZodString>;
     redirectUri: z.ZodOptional<z.ZodString>;
     customerType: z.ZodOptional<z.ZodEnum<["individual", "business"]>>;
+    agentId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
+    agentId?: string | undefined;
     customerType?: "individual" | "business" | undefined;
     walletId?: string | undefined;
     redirectUri?: string | undefined;
 }, {
+    agentId?: string | undefined;
     customerType?: "individual" | "business" | undefined;
     walletId?: string | undefined;
     redirectUri?: string | undefined;
 }>;
 export type BridgeCreateKycLinkOptions = z.infer<typeof BridgeCreateKycLinkOptionsSchema>;
 export declare const BridgeCreateExternalAccountOptionsSchema: z.ZodObject<{
-    customerId: z.ZodString;
+    customerId: z.ZodOptional<z.ZodString>;
     bankName: z.ZodString;
     accountOwnerName: z.ZodString;
     routingNumber: z.ZodString;
@@ -946,9 +949,9 @@ export declare const BridgeCreateExternalAccountOptionsSchema: z.ZodObject<{
     state: z.ZodString;
     postalCode: z.ZodString;
     country: z.ZodOptional<z.ZodString>;
+    agentId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     bankName: string;
-    customerId: string;
     accountOwnerName: string;
     routingNumber: string;
     accountNumber: string;
@@ -957,11 +960,12 @@ export declare const BridgeCreateExternalAccountOptionsSchema: z.ZodObject<{
     city: string;
     state: string;
     postalCode: string;
+    agentId?: string | undefined;
+    customerId?: string | undefined;
     streetLine2?: string | undefined;
     country?: string | undefined;
 }, {
     bankName: string;
-    customerId: string;
     accountOwnerName: string;
     routingNumber: string;
     accountNumber: string;
@@ -970,6 +974,8 @@ export declare const BridgeCreateExternalAccountOptionsSchema: z.ZodObject<{
     city: string;
     state: string;
     postalCode: string;
+    agentId?: string | undefined;
+    customerId?: string | undefined;
     streetLine2?: string | undefined;
     country?: string | undefined;
 }>;
@@ -978,14 +984,20 @@ export declare const BridgeCreateTransferOptionsSchema: z.ZodObject<{
     walletId: z.ZodString;
     externalAccountId: z.ZodString;
     amount: z.ZodString;
+    destinationPaymentRail: z.ZodOptional<z.ZodEnum<["ach", "wire"]>>;
+    agentId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     amount: string;
     walletId: string;
     externalAccountId: string;
+    agentId?: string | undefined;
+    destinationPaymentRail?: "ach" | "wire" | undefined;
 }, {
     amount: string;
     walletId: string;
     externalAccountId: string;
+    agentId?: string | undefined;
+    destinationPaymentRail?: "ach" | "wire" | undefined;
 }>;
 export type BridgeCreateTransferOptions = z.infer<typeof BridgeCreateTransferOptionsSchema>;
 export declare const WalletSchema: z.ZodObject<{

@@ -1008,6 +1008,241 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     ),
   },
   {
+    name: "bank_onboard",
+    description:
+      "Start or resume Bridge banking KYC onboarding. Returns a hosted KYC URL unless the customer is already active.",
+    input_schema: {
+      type: "object",
+      properties: {
+        wallet_id: {
+          type: "string",
+          description: "Optional wallet ID to associate with the onboarding request.",
+        },
+        redirect_uri: {
+          type: "string",
+          description: "URL to redirect to after KYC completion.",
+        },
+        customer_type: {
+          type: "string",
+          enum: ["individual", "business"],
+          description: "KYC type. Defaults to individual.",
+        },
+      },
+      required: [],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: "kyc_url", label: "KYC URL" },
+        { key: ["customer", "kycStatus"], label: "KYC status" },
+        { key: ["customer", "tosStatus"], label: "TOS status" },
+        { key: "message", label: "Message" },
+      ],
+      "Bank onboarding",
+    ),
+  },
+  {
+    name: "bank_status",
+    description:
+      "Check Bridge banking onboarding, KYC, terms, and capability status.",
+    input_schema: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: "onboarded", label: "Onboarded" },
+        { key: ["customer", "status"], label: "Status" },
+        { key: ["customer", "kycStatus"], label: "KYC status" },
+        { key: ["customer", "tosStatus"], label: "TOS status" },
+        { key: ["customer", "hostedLinkUrl"], label: "Hosted link" },
+        { key: "message", label: "Message" },
+      ],
+      "Bank status",
+    ),
+  },
+  {
+    name: "bank_create_virtual_account",
+    description:
+      "Create or retrieve a virtual bank account for a wallet to receive USD deposits as USDC.",
+    input_schema: {
+      type: "object",
+      properties: {
+        wallet_id: {
+          type: "string",
+          description: "Wallet ID to create a virtual account for.",
+        },
+      },
+      required: ["wallet_id"],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: ["virtual_account", "id"], label: "ID" },
+        { key: ["virtual_account", "status"], label: "Status" },
+        { key: ["virtual_account", "walletId"], label: "Wallet" },
+        { key: ["virtual_account", "destinationPaymentRail"], label: "Rail" },
+        { key: ["virtual_account", "destinationAddress"], label: "Destination" },
+        { key: ["virtual_account", "depositInstructions"], label: "Deposit instructions" },
+        { key: "message", label: "Message" },
+      ],
+      "Virtual bank account",
+    ),
+  },
+  {
+    name: "bank_get_virtual_account",
+    description:
+      "Get virtual bank account deposit instructions for one wallet, or list all virtual bank accounts.",
+    input_schema: {
+      type: "object",
+      properties: {
+        wallet_id: {
+          type: "string",
+          description: "Wallet ID to get. Omit to list all virtual accounts.",
+        },
+      },
+      required: [],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: "found", label: "Found" },
+        { key: "count", label: "Count" },
+        { key: "accounts", label: "Accounts" },
+        { key: ["virtual_account", "id"], label: "ID" },
+        { key: ["virtual_account", "status"], label: "Status" },
+        { key: ["virtual_account", "depositInstructions"], label: "Deposit instructions" },
+        { key: "message", label: "Message" },
+      ],
+      "Virtual bank account",
+    ),
+  },
+  {
+    name: "bank_list_external_accounts",
+    description: "List linked external US bank accounts for ACH or wire payouts.",
+    input_schema: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+    cli_output: tableOutput(
+      [
+        { key: "id", label: "ID" },
+        { key: "bankName", label: "Bank" },
+        { key: "last4", label: "Last 4" },
+        { key: "accountType", label: "Type" },
+        { key: "active", label: "Active" },
+      ],
+      "External bank accounts",
+      "accounts",
+      "No linked bank accounts found.",
+    ),
+  },
+  {
+    name: "bank_add_external_account",
+    description:
+      "Link an external US bank account for receiving USD ACH or wire payouts.",
+    input_schema: {
+      type: "object",
+      properties: {
+        bank_name: { type: "string", description: "Bank name." },
+        account_owner_name: { type: "string", description: "Full name of the account holder." },
+        routing_number: { type: "string", description: "9-digit ABA routing number." },
+        account_number: { type: "string", description: "Bank account number." },
+        checking_or_savings: {
+          type: "string",
+          enum: ["checking", "savings"],
+          description: "Bank account type.",
+        },
+        street_line_1: { type: "string", description: "Account holder street address line 1." },
+        street_line_2: { type: "string", description: "Street address line 2." },
+        city: { type: "string", description: "City." },
+        state: { type: "string", description: "US state, e.g. CA." },
+        postal_code: { type: "string", description: "ZIP code." },
+      },
+      required: [
+        "bank_name",
+        "account_owner_name",
+        "routing_number",
+        "account_number",
+        "checking_or_savings",
+        "street_line_1",
+        "city",
+        "state",
+        "postal_code",
+      ],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: ["account", "id"], label: "ID" },
+        { key: ["account", "bankName"], label: "Bank" },
+        { key: ["account", "last4"], label: "Last 4" },
+        { key: ["account", "accountType"], label: "Type" },
+        { key: "message", label: "Message" },
+      ],
+      "External bank account",
+    ),
+  },
+  {
+    name: "bank_send",
+    description:
+      "Send USD from a crypto wallet to a linked external bank account by funding a Bridge payout with USDC.",
+    input_schema: {
+      type: "object",
+      properties: {
+        wallet_id: { type: "string", description: "Wallet ID to send USDC from." },
+        external_account_id: {
+          type: "string",
+          description: "External bank account ID from bank_list_external_accounts.",
+        },
+        amount: { type: "string", description: "USD amount, e.g. '100.00'." },
+        payment_rail: {
+          type: "string",
+          enum: ["ach", "wire"],
+          description: "Payout rail. Defaults to ach.",
+        },
+      },
+      required: ["wallet_id", "external_account_id", "amount"],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: ["transfer", "id"], label: "ID" },
+        { key: ["transfer", "status"], label: "Status" },
+        { key: ["transfer", "amount"], label: "Amount" },
+        { key: ["transfer", "destinationPaymentRail"], label: "Rail" },
+        { key: ["transfer", "fundingTxHash"], label: "Funding tx" },
+        { key: ["transfer", "fundingExplorerUrl"], label: "Explorer" },
+        { key: "message", label: "Message" },
+      ],
+      "Bank transfer",
+    ),
+  },
+  {
+    name: "bank_list_transfers",
+    description: "List bank transfer history, optionally filtered by transfer ID.",
+    input_schema: {
+      type: "object",
+      properties: {
+        transfer_id: {
+          type: "string",
+          description: "Optional transfer ID to filter by.",
+        },
+      },
+      required: [],
+    },
+    cli_output: tableOutput(
+      [
+        { key: "id", label: "ID" },
+        { key: "status", label: "Status" },
+        { key: "amount", label: "Amount" },
+        { key: "destinationPaymentRail", label: "Rail" },
+        { key: "fundingTxHash", label: "Funding tx" },
+        { key: "createdAt", label: "Created" },
+      ],
+      "Bank transfers",
+      "transfers",
+      "No bank transfers found.",
+    ),
+  },
+  {
     name: "store_credit_card",
     description:
       "Store credit card details in encrypted secret storage for this agent. " +

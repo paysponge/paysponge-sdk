@@ -1546,6 +1546,124 @@ function registerCuratedCommands(
       });
     });
 
+  const bankCmd = program.command("bank").description("Bank accounts and USD transfers");
+
+  shared(bankCmd.command("onboard").description("Start or resume banking KYC onboarding"))
+    .option("--wallet-id <id>", "wallet ID to associate with onboarding")
+    .option("--redirect-uri <url>", "redirect URL after KYC completion")
+    .addOption(new Option("--customer-type <type>", "KYC customer type").choices(["individual", "business"]))
+    .action(async (opts: Record<string, unknown>) => {
+      await executeToolCommand(opts, "bank_onboard", {
+        wallet_id: opts.walletId,
+        redirect_uri: opts.redirectUri,
+        customer_type: opts.customerType,
+      });
+    });
+
+  shared(bankCmd.command("status").description("Show banking KYC and capability status"))
+    .action(async (opts: Record<string, unknown>) => {
+      await executeToolCommand(opts, "bank_status", {});
+    });
+
+  const bankVirtualCmd = bankCmd.command("virtual-account").description("Virtual bank accounts for USD deposits");
+
+  shared(bankVirtualCmd.command("create").description("Create or retrieve a virtual bank account for a wallet"))
+    .usage("[walletId] [options]")
+    .argument("[walletId]", "wallet ID")
+    .option("--wallet-id <id>", "wallet ID")
+    .action(async (
+      walletIdArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
+      await executeToolCommand(opts, "bank_create_virtual_account", {
+        wallet_id: requiredInput(command, opts, walletIdArg, "walletId", "--wallet-id"),
+      });
+    });
+
+  shared(bankVirtualCmd.command("get").description("Get virtual bank account deposit instructions"))
+    .usage("[walletId] [options]")
+    .argument("[walletId]", "wallet ID; omit to list all")
+    .option("--wallet-id <id>", "wallet ID")
+    .action(async (
+      walletIdArg: string | undefined,
+      opts: Record<string, unknown>,
+    ) => {
+      await executeToolCommand(opts, "bank_get_virtual_account", {
+        wallet_id: walletIdArg ?? opts.walletId,
+      });
+    });
+
+  const bankExternalCmd = bankCmd.command("external-accounts").description("Linked external bank accounts");
+
+  shared(bankExternalCmd.command("list").description("List linked external bank accounts"))
+    .action(async (opts: Record<string, unknown>) => {
+      await executeToolCommand(opts, "bank_list_external_accounts", {});
+    });
+
+  shared(bankExternalCmd.command("add").description("Link an external US bank account"))
+    .requiredOption("--bank-name <name>", "bank name")
+    .requiredOption("--account-owner-name <name>", "account holder full name")
+    .requiredOption("--routing-number <number>", "9-digit ABA routing number")
+    .requiredOption("--account-number <number>", "bank account number")
+    .addOption(new Option("--checking-or-savings <type>", "account type").choices(["checking", "savings"]).makeOptionMandatory())
+    .requiredOption("--street-line-1 <line>", "account holder street address line 1")
+    .option("--street-line-2 <line>", "account holder street address line 2")
+    .requiredOption("--city <city>", "account holder city")
+    .requiredOption("--state <state>", "account holder US state")
+    .requiredOption("--postal-code <code>", "account holder ZIP code")
+    .action(async (opts: Record<string, unknown>) => {
+      await executeToolCommand(opts, "bank_add_external_account", {
+        bank_name: opts.bankName,
+        account_owner_name: opts.accountOwnerName,
+        routing_number: opts.routingNumber,
+        account_number: opts.accountNumber,
+        checking_or_savings: opts.checkingOrSavings,
+        street_line_1: opts.streetLine1,
+        street_line_2: opts.streetLine2,
+        city: opts.city,
+        state: opts.state,
+        postal_code: opts.postalCode,
+      });
+    });
+
+  shared(bankCmd.command("send").description("Send USD to a linked bank account"))
+    .usage("[walletId] [externalAccountId] [amount] [options]")
+    .argument("[walletId]", "wallet ID to send USDC from")
+    .argument("[externalAccountId]", "external bank account ID")
+    .argument("[amount]", "USD amount")
+    .option("--wallet-id <id>", "wallet ID to send USDC from")
+    .option("--external-account-id <id>", "external bank account ID")
+    .option("--amount <amount>", "USD amount")
+    .addOption(new Option("--payment-rail <rail>", "payout rail").choices(["ach", "wire"]))
+    .action(async (
+      walletIdArg: string | undefined,
+      externalAccountIdArg: string | undefined,
+      amountArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
+      await executeToolCommand(opts, "bank_send", {
+        wallet_id: requiredInput(command, opts, walletIdArg, "walletId", "--wallet-id"),
+        external_account_id: requiredInput(command, opts, externalAccountIdArg, "externalAccountId", "--external-account-id"),
+        amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
+        payment_rail: opts.paymentRail,
+      });
+    });
+
+  shared(bankCmd.command("transfers").description("List bank transfer history"))
+    .usage("[transferId] [options]")
+    .argument("[transferId]", "transfer ID")
+    .option("--transfer-id <id>", "transfer ID")
+    .action(async (
+      transferIdArg: string | undefined,
+      opts: Record<string, unknown>,
+    ) => {
+      await executeToolCommand(opts, "bank_list_transfers", {
+        transfer_id: transferIdArg ?? opts.transferId,
+      });
+    });
+
   const planCmd = program.command("plan").description("Multi-step plan approval flows");
 
   shared(planCmd.command("submit").description("Submit a multi-step plan"))

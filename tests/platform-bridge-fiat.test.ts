@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from "vitest";
-import { SpongeApiError } from "../src/api/http.js";
 import { SpongePlatform } from "../src/platform.js";
 
 describe("SpongePlatform Bridge fiat", () => {
@@ -8,25 +7,21 @@ describe("SpongePlatform Bridge fiat", () => {
       apiKey: "sponge_master_123",
     });
 
-    (platform as any).http.get = vi.fn().mockResolvedValue({
-      kycStatus: null,
-      tosStatus: null,
-    });
+    (platform as any).http.get = vi.fn().mockResolvedValue({ onboarded: false });
 
     const customer = await platform.getBridgeCustomer();
 
     expect(customer).toBeNull();
-    expect((platform as any).http.get).toHaveBeenCalledWith(
-      "/api/bridge-fiat/customer",
-      { forceRefresh: undefined }
-    );
+    expect((platform as any).http.get).toHaveBeenCalledWith("/api/bank/status", {
+      agentId: undefined,
+    });
   });
 
   it("creates KYC links and links external accounts", async () => {
     const post = vi
       .fn()
       .mockResolvedValueOnce({
-        url: "https://bridge.example/kyc",
+        kyc_url: "https://bridge.example/kyc",
         customer: {
           id: "customer_local",
           bridgeCustomerId: "bridge_customer_123",
@@ -47,18 +42,20 @@ describe("SpongePlatform Bridge fiat", () => {
         },
       })
       .mockResolvedValueOnce({
-        id: "external_local",
-        bridgeExternalAccountId: "bank_123",
-        bridgeCustomerId: "bridge_customer_123",
-        currency: "usd",
-        last4: "6789",
-        active: true,
-        livemode: false,
-        bankName: "Chase",
-        accountType: "checking",
-        accountOwnerType: null,
-        createdAt: "2026-03-25T00:00:00.000Z",
-        updatedAt: "2026-03-25T00:00:00.000Z",
+        account: {
+          id: "external_local",
+          bridgeExternalAccountId: "bank_123",
+          bridgeCustomerId: "bridge_customer_123",
+          currency: "usd",
+          last4: "6789",
+          active: true,
+          livemode: false,
+          bankName: "Chase",
+          accountType: "checking",
+          accountOwnerType: null,
+          createdAt: "2026-03-25T00:00:00.000Z",
+          updatedAt: "2026-03-25T00:00:00.000Z",
+        },
       });
 
     const platform = await SpongePlatform.connect({
@@ -88,31 +85,81 @@ describe("SpongePlatform Bridge fiat", () => {
 
     expect(link.url).toBe("https://bridge.example/kyc");
     expect(account.bridgeExternalAccountId).toBe("bank_123");
-    expect(post).toHaveBeenNthCalledWith(1, "/api/bridge-fiat/customer/kyc-link", {
-      walletId: "wallet_123",
-      redirectUri: "https://app.example/callback",
-      customerType: "individual",
+    expect(post).toHaveBeenNthCalledWith(1, "/api/bank/onboard", {
+      wallet_id: "wallet_123",
+      redirect_uri: "https://app.example/callback",
+      customer_type: "individual",
+      agentId: undefined,
     });
-    expect(post).toHaveBeenNthCalledWith(2, "/api/bridge-fiat/external-accounts", {
-      customerId: "bridge_customer_123",
-      bankName: "Chase",
-      accountOwnerName: "Jane Smith",
-      routingNumber: "021000021",
-      accountNumber: "123456789",
-      checkingOrSavings: "checking",
-      streetLine1: "123 Main St",
+    expect(post).toHaveBeenNthCalledWith(2, "/api/bank/external-accounts", {
+      bank_name: "Chase",
+      account_owner_name: "Jane Smith",
+      routing_number: "021000021",
+      account_number: "123456789",
+      checking_or_savings: "checking",
+      street_line_1: "123 Main St",
+      street_line_2: undefined,
       city: "San Francisco",
       state: "CA",
-      postalCode: "94105",
+      postal_code: "94105",
+      agentId: undefined,
     });
   });
 
   it("creates virtual accounts and transfers, and treats missing virtual accounts as null", async () => {
     const get = vi
       .fn()
-      .mockRejectedValueOnce(new SpongeApiError(404, "not_found", "not found"))
-      .mockResolvedValueOnce([
-        {
+      .mockResolvedValueOnce({ found: false, message: "No virtual account" })
+      .mockResolvedValueOnce({
+        count: 1,
+        transfers: [
+          {
+            id: "transfer_local",
+            bridgeTransferId: "transfer_123",
+            bridgeCustomerId: "bridge_customer_123",
+            bridgeExternalAccountId: "bank_123",
+            walletId: "wallet_123",
+            status: "funding_submitted",
+            amount: "100.00",
+            sourceCurrency: "usdc",
+            sourcePaymentRail: "base",
+            destinationCurrency: "usd",
+            destinationPaymentRail: "ach",
+            fundingTxHash: null,
+            fundingExplorerUrl: null,
+            failureReason: null,
+            receiptUrl: null,
+            depositInstructions: null,
+            isStaticTemplate: false,
+            livemode: false,
+            createdAt: "2026-03-25T00:00:00.000Z",
+            updatedAt: "2026-03-25T00:00:00.000Z",
+          },
+        ],
+      });
+    const post = vi
+      .fn()
+      .mockResolvedValueOnce({
+        virtual_account: {
+          id: "virtual_local",
+          bridgeVirtualAccountId: "va_123",
+          bridgeCustomerId: "bridge_customer_123",
+          walletId: "wallet_123",
+          status: "active",
+          sourceCurrency: "usd",
+          destinationCurrency: "usdc",
+          destinationPaymentRail: "base",
+          destinationAddress: "0xabc",
+          depositInstructions: { accountNumber: "123456789" },
+          activities: [],
+          accountReadyNotifiedAt: null,
+          livemode: false,
+          createdAt: "2026-03-25T00:00:00.000Z",
+          updatedAt: "2026-03-25T00:00:00.000Z",
+        },
+      })
+      .mockResolvedValueOnce({
+        transfer: {
           id: "transfer_local",
           bridgeTransferId: "transfer_123",
           bridgeCustomerId: "bridge_customer_123",
@@ -134,47 +181,6 @@ describe("SpongePlatform Bridge fiat", () => {
           createdAt: "2026-03-25T00:00:00.000Z",
           updatedAt: "2026-03-25T00:00:00.000Z",
         },
-      ]);
-    const post = vi
-      .fn()
-      .mockResolvedValueOnce({
-        id: "virtual_local",
-        bridgeVirtualAccountId: "va_123",
-        bridgeCustomerId: "bridge_customer_123",
-        walletId: "wallet_123",
-        status: "active",
-        sourceCurrency: "usd",
-        destinationCurrency: "usdc",
-        destinationPaymentRail: "base",
-        destinationAddress: "0xabc",
-        depositInstructions: { accountNumber: "123456789" },
-        activities: [],
-        accountReadyNotifiedAt: null,
-        livemode: false,
-        createdAt: "2026-03-25T00:00:00.000Z",
-        updatedAt: "2026-03-25T00:00:00.000Z",
-      })
-      .mockResolvedValueOnce({
-        id: "transfer_local",
-        bridgeTransferId: "transfer_123",
-        bridgeCustomerId: "bridge_customer_123",
-        bridgeExternalAccountId: "bank_123",
-        walletId: "wallet_123",
-        status: "funding_submitted",
-        amount: "100.00",
-        sourceCurrency: "usdc",
-        sourcePaymentRail: "base",
-        destinationCurrency: "usd",
-        destinationPaymentRail: "ach",
-        fundingTxHash: null,
-        fundingExplorerUrl: null,
-        failureReason: null,
-        receiptUrl: null,
-        depositInstructions: null,
-        isStaticTemplate: false,
-        livemode: false,
-        createdAt: "2026-03-25T00:00:00.000Z",
-        updatedAt: "2026-03-25T00:00:00.000Z",
       });
 
     const platform = await SpongePlatform.connect({
@@ -199,15 +205,19 @@ describe("SpongePlatform Bridge fiat", () => {
     expect(transfers).toHaveLength(1);
     expect(post).toHaveBeenNthCalledWith(
       1,
-      "/api/bridge-fiat/wallets/wallet_123/virtual-account"
+      "/api/bank/virtual-account",
+      { wallet_id: "wallet_123", agentId: undefined }
     );
-    expect(post).toHaveBeenNthCalledWith(2, "/api/bridge-fiat/transfers", {
-      walletId: "wallet_123",
-      externalAccountId: "external_local",
+    expect(post).toHaveBeenNthCalledWith(2, "/api/bank/send", {
+      wallet_id: "wallet_123",
+      external_account_id: "external_local",
       amount: "100.00",
+      payment_rail: undefined,
+      agentId: undefined,
     });
-    expect(get).toHaveBeenNthCalledWith(2, "/api/bridge-fiat/transfers", {
-      transferId: undefined,
+    expect(get).toHaveBeenNthCalledWith(2, "/api/bank/transfers", {
+      transfer_id: undefined,
+      agentId: undefined,
     });
   });
 });

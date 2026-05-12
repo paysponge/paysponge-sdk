@@ -330,13 +330,14 @@ export const BridgeCreateKycLinkOptionsSchema = z.object({
   walletId: z.string().optional(),
   redirectUri: z.string().optional(),
   customerType: BridgeCustomerTypeSchema.optional(),
+  agentId: z.string().optional(),
 });
 export type BridgeCreateKycLinkOptions = z.infer<
   typeof BridgeCreateKycLinkOptionsSchema
 >;
 
 export const BridgeCreateExternalAccountOptionsSchema = z.object({
-  customerId: z.string(),
+  customerId: z.string().optional(),
   bankName: z.string(),
   accountOwnerName: z.string(),
   routingNumber: z.string(),
@@ -348,6 +349,7 @@ export const BridgeCreateExternalAccountOptionsSchema = z.object({
   state: z.string(),
   postalCode: z.string(),
   country: z.string().optional(),
+  agentId: z.string().optional(),
 });
 export type BridgeCreateExternalAccountOptions = z.infer<
   typeof BridgeCreateExternalAccountOptionsSchema
@@ -357,6 +359,8 @@ export const BridgeCreateTransferOptionsSchema = z.object({
   walletId: z.string(),
   externalAccountId: z.string(),
   amount: z.string(),
+  destinationPaymentRail: z.enum(["ach", "wire"]).optional(),
+  agentId: z.string().optional(),
 });
 export type BridgeCreateTransferOptions = z.infer<
   typeof BridgeCreateTransferOptionsSchema

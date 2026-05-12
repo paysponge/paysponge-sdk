@@ -263,6 +263,48 @@ export class ToolExecutor {
           label: args.label,
           metadata: args.metadata,
         });
+      case "bank_onboard":
+        return this.http.post<unknown>("/api/bank/onboard", {
+          wallet_id: args.wallet_id,
+          redirect_uri: args.redirect_uri,
+          customer_type: args.customer_type,
+        });
+      case "bank_status":
+        return this.http.get<unknown>("/api/bank/status", {});
+      case "bank_create_virtual_account":
+        return this.http.post<unknown>("/api/bank/virtual-account", {
+          wallet_id: args.wallet_id,
+        });
+      case "bank_get_virtual_account":
+        return this.http.get<unknown>("/api/bank/virtual-account", {
+          wallet_id: args.wallet_id as string | undefined,
+        });
+      case "bank_list_external_accounts":
+        return this.http.get<unknown>("/api/bank/external-accounts", {});
+      case "bank_add_external_account":
+        return this.http.post<unknown>("/api/bank/external-accounts", {
+          bank_name: args.bank_name,
+          account_owner_name: args.account_owner_name,
+          routing_number: args.routing_number,
+          account_number: args.account_number,
+          checking_or_savings: args.checking_or_savings,
+          street_line_1: args.street_line_1,
+          street_line_2: args.street_line_2,
+          city: args.city,
+          state: args.state,
+          postal_code: args.postal_code,
+        });
+      case "bank_send":
+        return this.http.post<unknown>("/api/bank/send", {
+          wallet_id: args.wallet_id,
+          external_account_id: args.external_account_id,
+          amount: args.amount,
+          payment_rail: args.payment_rail,
+        });
+      case "bank_list_transfers":
+        return this.http.get<unknown>("/api/bank/transfers", {
+          transfer_id: args.transfer_id as string | undefined,
+        });
       case "add_link_payment_method":
         return this.http.post<unknown>(
           `/api/agents/${encodeURIComponent(this.agentId)}/link-payment-methods/link`,

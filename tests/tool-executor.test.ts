@@ -263,6 +263,83 @@ describe("ToolExecutor", () => {
     });
   });
 
+  it("routes bank tools to /api/bank endpoints", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue({ ok: true }),
+      post: vi.fn().mockResolvedValue({ ok: true }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    await executor.execute("bank_onboard", {
+      wallet_id: "wallet_123",
+      redirect_uri: "https://app.example/callback",
+      customer_type: "individual",
+    });
+    await executor.execute("bank_status", {});
+    await executor.execute("bank_create_virtual_account", {
+      wallet_id: "wallet_123",
+    });
+    await executor.execute("bank_get_virtual_account", {
+      wallet_id: "wallet_123",
+    });
+    await executor.execute("bank_list_external_accounts", {});
+    await executor.execute("bank_add_external_account", {
+      bank_name: "Chase",
+      account_owner_name: "Jane Doe",
+      routing_number: "021000021",
+      account_number: "123456789",
+      checking_or_savings: "checking",
+      street_line_1: "123 Main St",
+      city: "San Francisco",
+      state: "CA",
+      postal_code: "94105",
+    });
+    await executor.execute("bank_send", {
+      wallet_id: "wallet_123",
+      external_account_id: "external_123",
+      amount: "100.00",
+      payment_rail: "ach",
+    });
+    await executor.execute("bank_list_transfers", {
+      transfer_id: "transfer_123",
+    });
+
+    expect(http.post).toHaveBeenNthCalledWith(1, "/api/bank/onboard", {
+      wallet_id: "wallet_123",
+      redirect_uri: "https://app.example/callback",
+      customer_type: "individual",
+    });
+    expect(http.get).toHaveBeenNthCalledWith(1, "/api/bank/status", {});
+    expect(http.post).toHaveBeenNthCalledWith(2, "/api/bank/virtual-account", {
+      wallet_id: "wallet_123",
+    });
+    expect(http.get).toHaveBeenNthCalledWith(2, "/api/bank/virtual-account", {
+      wallet_id: "wallet_123",
+    });
+    expect(http.get).toHaveBeenNthCalledWith(3, "/api/bank/external-accounts", {});
+    expect(http.post).toHaveBeenNthCalledWith(3, "/api/bank/external-accounts", {
+      bank_name: "Chase",
+      account_owner_name: "Jane Doe",
+      routing_number: "021000021",
+      account_number: "123456789",
+      checking_or_savings: "checking",
+      street_line_1: "123 Main St",
+      street_line_2: undefined,
+      city: "San Francisco",
+      state: "CA",
+      postal_code: "94105",
+    });
+    expect(http.post).toHaveBeenNthCalledWith(4, "/api/bank/send", {
+      wallet_id: "wallet_123",
+      external_account_id: "external_123",
+      amount: "100.00",
+      payment_rail: "ach",
+    });
+    expect(http.get).toHaveBeenNthCalledWith(4, "/api/bank/transfers", {
+      transfer_id: "transfer_123",
+    });
+  });
+
   it("routes add_link_payment_method to agent Link endpoint", async () => {
     const http = {
       get: vi.fn(),

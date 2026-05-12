@@ -20,13 +20,13 @@ export declare class SpongePlatform {
     listMasterKeys(): Promise<MasterApiKey[]>;
     createMasterKey(name?: string): Promise<CreatedMasterApiKey>;
     revokeMasterKey(id: string): Promise<void>;
-    getBridgeCustomer(forceRefresh?: boolean): Promise<BridgeCustomer | null>;
+    getBridgeCustomer(_forceRefresh?: boolean, agentId?: string): Promise<BridgeCustomer | null>;
     createBridgeKycLink(options?: BridgeCreateKycLinkOptions): Promise<BridgeKycLinkResponse>;
-    listBridgeExternalAccounts(): Promise<BridgeExternalAccount[]>;
+    listBridgeExternalAccounts(agentId?: string): Promise<BridgeExternalAccount[]>;
     createBridgeExternalAccount(options: BridgeCreateExternalAccountOptions): Promise<BridgeExternalAccount>;
-    getBridgeVirtualAccount(walletId: string): Promise<BridgeVirtualAccount | null>;
-    createBridgeVirtualAccount(walletId: string): Promise<BridgeVirtualAccount>;
-    listBridgeTransfers(transferId?: string): Promise<BridgeTransfer[]>;
+    getBridgeVirtualAccount(walletId: string, agentId?: string): Promise<BridgeVirtualAccount | null>;
+    createBridgeVirtualAccount(walletId: string, agentId?: string): Promise<BridgeVirtualAccount>;
+    listBridgeTransfers(transferId?: string, agentId?: string): Promise<BridgeTransfer[]>;
     createBridgeTransfer(options: BridgeCreateTransferOptions): Promise<BridgeTransfer>;
     connectAgent(options: {
         apiKey: string;
