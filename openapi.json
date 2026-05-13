@@ -12110,7 +12110,7 @@
                 "required": [
                   "eventSlug",
                   "signupCode",
-                  "solanaWalletAddress"
+                  "agentId"
                 ],
                 "properties": {
                   "eventSlug": {
@@ -12122,9 +12122,8 @@
                     "minLength": 1,
                     "type": "string"
                   },
-                  "solanaWalletAddress": {
-                    "minLength": 32,
-                    "maxLength": 44,
+                  "agentId": {
+                    "minLength": 1,
                     "type": "string"
                   }
                 }
@@ -12136,7 +12135,7 @@
                 "required": [
                   "eventSlug",
                   "signupCode",
-                  "solanaWalletAddress"
+                  "agentId"
                 ],
                 "properties": {
                   "eventSlug": {
@@ -12148,9 +12147,8 @@
                     "minLength": 1,
                     "type": "string"
                   },
-                  "solanaWalletAddress": {
-                    "minLength": 32,
-                    "maxLength": 44,
+                  "agentId": {
+                    "minLength": 1,
                     "type": "string"
                   }
                 }
@@ -12162,7 +12160,7 @@
                 "required": [
                   "eventSlug",
                   "signupCode",
-                  "solanaWalletAddress"
+                  "agentId"
                 ],
                 "properties": {
                   "eventSlug": {
@@ -12174,9 +12172,8 @@
                     "minLength": 1,
                     "type": "string"
                   },
-                  "solanaWalletAddress": {
-                    "minLength": 32,
-                    "maxLength": 44,
+                  "agentId": {
+                    "minLength": 1,
                     "type": "string"
                   }
                 }

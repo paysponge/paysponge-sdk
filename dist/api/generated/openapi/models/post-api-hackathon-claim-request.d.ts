@@ -32,7 +32,7 @@ export interface PostApiHackathonClaimRequest {
      * @type {string}
      * @memberof PostApiHackathonClaimRequest
      */
-    solanaWalletAddress: string;
+    agentId: string;
 }
 /**
  * Check if a given object implements the PostApiHackathonClaimRequest interface.

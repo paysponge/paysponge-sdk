@@ -19,7 +19,7 @@ export function instanceOfPostApiHackathonClaimRequest(value) {
         return false;
     if (!('signupCode' in value) || value['signupCode'] === undefined)
         return false;
-    if (!('solanaWalletAddress' in value) || value['solanaWalletAddress'] === undefined)
+    if (!('agentId' in value) || value['agentId'] === undefined)
         return false;
     return true;
 }
@@ -33,7 +33,7 @@ export function PostApiHackathonClaimRequestFromJSONTyped(json, ignoreDiscrimina
     return {
         'eventSlug': json['eventSlug'],
         'signupCode': json['signupCode'],
-        'solanaWalletAddress': json['solanaWalletAddress'],
+        'agentId': json['agentId'],
     };
 }
 export function PostApiHackathonClaimRequestToJSON(json) {
@@ -46,7 +46,7 @@ export function PostApiHackathonClaimRequestToJSONTyped(value, ignoreDiscriminat
     return {
         'eventSlug': value['eventSlug'],
         'signupCode': value['signupCode'],
-        'solanaWalletAddress': value['solanaWalletAddress'],
+        'agentId': value['agentId'],
     };
 }
 //# sourceMappingURL=post-api-hackathon-claim-request.js.map

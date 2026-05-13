@@ -36,7 +36,7 @@ export interface PostApiHackathonClaimRequest {
      * @type {string}
      * @memberof PostApiHackathonClaimRequest
      */
-    solanaWalletAddress: string;
+    agentId: string;
 }
 
 /**
@@ -45,7 +45,7 @@ export interface PostApiHackathonClaimRequest {
 export function instanceOfPostApiHackathonClaimRequest(value: object): value is PostApiHackathonClaimRequest {
     if (!('eventSlug' in value) || value['eventSlug'] === undefined) return false;
     if (!('signupCode' in value) || value['signupCode'] === undefined) return false;
-    if (!('solanaWalletAddress' in value) || value['solanaWalletAddress'] === undefined) return false;
+    if (!('agentId' in value) || value['agentId'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +61,7 @@ export function PostApiHackathonClaimRequestFromJSONTyped(json: any, ignoreDiscr
         
         'eventSlug': json['eventSlug'],
         'signupCode': json['signupCode'],
-        'solanaWalletAddress': json['solanaWalletAddress'],
+        'agentId': json['agentId'],
     };
 }
 
@@ -78,7 +78,7 @@ export function PostApiHackathonClaimRequestToJSONTyped(value?: PostApiHackathon
         
         'eventSlug': value['eventSlug'],
         'signupCode': value['signupCode'],
-        'solanaWalletAddress': value['solanaWalletAddress'],
+        'agentId': value['agentId'],
     };
 }
 
