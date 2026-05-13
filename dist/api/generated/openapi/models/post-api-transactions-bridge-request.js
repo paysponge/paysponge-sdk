@@ -15,39 +15,39 @@
  * @export
  */
 export const PostApiTransactionsBridgeRequestSourceChainEnum = {
-    Ethereum: 'ethereum',
-    Base: 'base',
-    Polygon: 'polygon',
-    ArbitrumOne: 'arbitrum-one',
-    Monad: 'monad',
-    Tempo: 'tempo',
-    Hyperliquid: 'hyperliquid',
-    Sepolia: 'sepolia',
-    BaseSepolia: 'base-sepolia',
-    PolygonAmoy: 'polygon-amoy',
-    ArbitrumSepolia: 'arbitrum-sepolia',
-    MonadTestnet: 'monad-testnet',
     Solana: 'solana',
-    SolanaDevnet: 'solana-devnet'
+    Base: 'base',
+    Tempo: 'tempo',
+    Ethereum: 'ethereum',
+    ArbitrumOne: 'arbitrum-one',
+    Polygon: 'polygon',
+    Monad: 'monad',
+    Hyperliquid: 'hyperliquid',
+    SolanaDevnet: 'solana-devnet',
+    BaseSepolia: 'base-sepolia',
+    Sepolia: 'sepolia',
+    ArbitrumSepolia: 'arbitrum-sepolia',
+    PolygonAmoy: 'polygon-amoy',
+    MonadTestnet: 'monad-testnet'
 };
 /**
  * @export
  */
 export const PostApiTransactionsBridgeRequestDestinationChainEnum = {
-    Ethereum: 'ethereum',
-    Base: 'base',
-    Polygon: 'polygon',
-    ArbitrumOne: 'arbitrum-one',
-    Monad: 'monad',
-    Tempo: 'tempo',
-    Hyperliquid: 'hyperliquid',
-    Sepolia: 'sepolia',
-    BaseSepolia: 'base-sepolia',
-    PolygonAmoy: 'polygon-amoy',
-    ArbitrumSepolia: 'arbitrum-sepolia',
-    MonadTestnet: 'monad-testnet',
     Solana: 'solana',
+    Base: 'base',
+    Tempo: 'tempo',
+    Ethereum: 'ethereum',
+    ArbitrumOne: 'arbitrum-one',
+    Polygon: 'polygon',
+    Monad: 'monad',
+    Hyperliquid: 'hyperliquid',
     SolanaDevnet: 'solana-devnet',
+    BaseSepolia: 'base-sepolia',
+    Sepolia: 'sepolia',
+    ArbitrumSepolia: 'arbitrum-sepolia',
+    PolygonAmoy: 'polygon-amoy',
+    MonadTestnet: 'monad-testnet',
     Polymarket: 'polymarket'
 };
 /**

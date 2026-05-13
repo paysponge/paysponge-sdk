@@ -56,8 +56,8 @@ export interface PostApiMppFetchRequest {
  * @export
  */
 export declare const PostApiMppFetchRequestChainEnum: {
-    readonly TempoTestnet: "tempo-testnet";
     readonly Tempo: "tempo";
+    readonly TempoTestnet: "tempo-testnet";
 };
 export type PostApiMppFetchRequestChainEnum = typeof PostApiMppFetchRequestChainEnum[keyof typeof PostApiMppFetchRequestChainEnum];
 /**

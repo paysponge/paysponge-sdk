@@ -44,8 +44,8 @@ export interface PostApiMppSessionStartRequest {
  * @export
  */
 export declare const PostApiMppSessionStartRequestChainEnum: {
-    readonly TempoTestnet: "tempo-testnet";
     readonly Tempo: "tempo";
+    readonly TempoTestnet: "tempo-testnet";
 };
 export type PostApiMppSessionStartRequestChainEnum = typeof PostApiMppSessionStartRequestChainEnum[keyof typeof PostApiMppSessionStartRequestChainEnum];
 /**

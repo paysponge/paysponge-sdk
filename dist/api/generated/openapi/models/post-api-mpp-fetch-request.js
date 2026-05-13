@@ -15,8 +15,8 @@
  * @export
  */
 export const PostApiMppFetchRequestChainEnum = {
-    TempoTestnet: 'tempo-testnet',
-    Tempo: 'tempo'
+    Tempo: 'tempo',
+    TempoTestnet: 'tempo-testnet'
 };
 /**
  * @export

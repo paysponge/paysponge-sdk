@@ -62,40 +62,40 @@ export interface PostApiTransactionsBridgeRequest {
  * @export
  */
 export declare const PostApiTransactionsBridgeRequestSourceChainEnum: {
-    readonly Ethereum: "ethereum";
-    readonly Base: "base";
-    readonly Polygon: "polygon";
-    readonly ArbitrumOne: "arbitrum-one";
-    readonly Monad: "monad";
-    readonly Tempo: "tempo";
-    readonly Hyperliquid: "hyperliquid";
-    readonly Sepolia: "sepolia";
-    readonly BaseSepolia: "base-sepolia";
-    readonly PolygonAmoy: "polygon-amoy";
-    readonly ArbitrumSepolia: "arbitrum-sepolia";
-    readonly MonadTestnet: "monad-testnet";
     readonly Solana: "solana";
+    readonly Base: "base";
+    readonly Tempo: "tempo";
+    readonly Ethereum: "ethereum";
+    readonly ArbitrumOne: "arbitrum-one";
+    readonly Polygon: "polygon";
+    readonly Monad: "monad";
+    readonly Hyperliquid: "hyperliquid";
     readonly SolanaDevnet: "solana-devnet";
+    readonly BaseSepolia: "base-sepolia";
+    readonly Sepolia: "sepolia";
+    readonly ArbitrumSepolia: "arbitrum-sepolia";
+    readonly PolygonAmoy: "polygon-amoy";
+    readonly MonadTestnet: "monad-testnet";
 };
 export type PostApiTransactionsBridgeRequestSourceChainEnum = typeof PostApiTransactionsBridgeRequestSourceChainEnum[keyof typeof PostApiTransactionsBridgeRequestSourceChainEnum];
 /**
  * @export
  */
 export declare const PostApiTransactionsBridgeRequestDestinationChainEnum: {
-    readonly Ethereum: "ethereum";
-    readonly Base: "base";
-    readonly Polygon: "polygon";
-    readonly ArbitrumOne: "arbitrum-one";
-    readonly Monad: "monad";
-    readonly Tempo: "tempo";
-    readonly Hyperliquid: "hyperliquid";
-    readonly Sepolia: "sepolia";
-    readonly BaseSepolia: "base-sepolia";
-    readonly PolygonAmoy: "polygon-amoy";
-    readonly ArbitrumSepolia: "arbitrum-sepolia";
-    readonly MonadTestnet: "monad-testnet";
     readonly Solana: "solana";
+    readonly Base: "base";
+    readonly Tempo: "tempo";
+    readonly Ethereum: "ethereum";
+    readonly ArbitrumOne: "arbitrum-one";
+    readonly Polygon: "polygon";
+    readonly Monad: "monad";
+    readonly Hyperliquid: "hyperliquid";
     readonly SolanaDevnet: "solana-devnet";
+    readonly BaseSepolia: "base-sepolia";
+    readonly Sepolia: "sepolia";
+    readonly ArbitrumSepolia: "arbitrum-sepolia";
+    readonly PolygonAmoy: "polygon-amoy";
+    readonly MonadTestnet: "monad-testnet";
     readonly Polymarket: "polymarket";
 };
 export type PostApiTransactionsBridgeRequestDestinationChainEnum = typeof PostApiTransactionsBridgeRequestDestinationChainEnum[keyof typeof PostApiTransactionsBridgeRequestDestinationChainEnum];

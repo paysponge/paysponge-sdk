@@ -77,8 +77,8 @@ export type PostApiOnrampCryptoRequestProviderEnum = typeof PostApiOnrampCryptoR
  * @export
  */
 export declare const PostApiOnrampCryptoRequestChainEnum: {
-    readonly Base: "base";
     readonly Solana: "solana";
+    readonly Base: "base";
     readonly Polygon: "polygon";
 };
 export type PostApiOnrampCryptoRequestChainEnum = typeof PostApiOnrampCryptoRequestChainEnum[keyof typeof PostApiOnrampCryptoRequestChainEnum];

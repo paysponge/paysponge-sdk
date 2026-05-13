@@ -15,6 +15,7 @@ const WALLET_SKILL_VERSION = "0.2.2";
 const WALLET_SKILL_URL = "https://wallet.paysponge.com/skill.md";
 const CLI_SKILL_NAME = "spongewallet-cli";
 const CLI_SKILL_VERSION = "0.1.1";
+const CLI_SKILL_URL = "https://docs.paysponge.com/cli-skill.md";
 // ---------------------------------------------------------------------------
 // CLI setup
 // ---------------------------------------------------------------------------
@@ -260,6 +261,7 @@ async function handleVersion(opts, meta) {
         cliSkill: {
             name: CLI_SKILL_NAME,
             version: CLI_SKILL_VERSION,
+            url: CLI_SKILL_URL,
         },
     };
     const npm = opts.check
@@ -280,7 +282,8 @@ async function handleVersion(opts, meta) {
         `API header:    Sponge-Version ${current.apiHeaderVersion}`,
         `Wallet skill:  ${current.walletSkill.name} v${current.walletSkill.version}`,
         `CLI skill:     ${current.cliSkill.name} v${current.cliSkill.version}`,
-        `Skill URL:     ${current.walletSkill.url}`,
+        `Wallet URL:    ${current.walletSkill.url}`,
+        `CLI URL:       ${current.cliSkill.url}`,
     ].join("\n"));
     if (npm) {
         const lines = Object.entries(npm).map(([name, latest]) => {

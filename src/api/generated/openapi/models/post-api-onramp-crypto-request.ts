@@ -84,8 +84,8 @@ export type PostApiOnrampCryptoRequestProviderEnum = typeof PostApiOnrampCryptoR
  * @export
  */
 export const PostApiOnrampCryptoRequestChainEnum = {
-    Base: 'base',
     Solana: 'solana',
+    Base: 'base',
     Polygon: 'polygon'
 } as const;
 export type PostApiOnrampCryptoRequestChainEnum = typeof PostApiOnrampCryptoRequestChainEnum[keyof typeof PostApiOnrampCryptoRequestChainEnum];

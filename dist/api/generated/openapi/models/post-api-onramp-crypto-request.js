@@ -23,8 +23,8 @@ export const PostApiOnrampCryptoRequestProviderEnum = {
  * @export
  */
 export const PostApiOnrampCryptoRequestChainEnum = {
-    Base: 'base',
     Solana: 'solana',
+    Base: 'base',
     Polygon: 'polygon'
 };
 /**

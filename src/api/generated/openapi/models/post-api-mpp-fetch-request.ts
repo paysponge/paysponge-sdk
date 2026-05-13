@@ -62,8 +62,8 @@ export interface PostApiMppFetchRequest {
  * @export
  */
 export const PostApiMppFetchRequestChainEnum = {
-    TempoTestnet: 'tempo-testnet',
-    Tempo: 'tempo'
+    Tempo: 'tempo',
+    TempoTestnet: 'tempo-testnet'
 } as const;
 export type PostApiMppFetchRequestChainEnum = typeof PostApiMppFetchRequestChainEnum[keyof typeof PostApiMppFetchRequestChainEnum];
 

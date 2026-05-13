@@ -15,8 +15,8 @@
  * @export
  */
 export const PostApiMppSessionStartRequestChainEnum = {
-    TempoTestnet: 'tempo-testnet',
-    Tempo: 'tempo'
+    Tempo: 'tempo',
+    TempoTestnet: 'tempo-testnet'
 };
 /**
  * Check if a given object implements the PostApiMppSessionStartRequest interface.
