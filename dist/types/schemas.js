@@ -175,7 +175,7 @@ export const BridgeCustomerSchema = z.object({
 });
 export const BridgeKycLinkResponseSchema = z.object({
     url: z.string(),
-    customer: BridgeCustomerSchema,
+    customer: BridgeCustomerSchema.nullable(),
 });
 export const BridgeExternalAccountSchema = z.object({
     id: z.string(),
@@ -246,6 +246,7 @@ export const BridgeCreateKycLinkOptionsSchema = z.object({
     walletId: z.string().optional(),
     redirectUri: z.string().optional(),
     customerType: BridgeCustomerTypeSchema.optional(),
+    signedAgreementId: z.string().optional(),
     agentId: z.string().optional(),
 });
 export const BridgeCreateExternalAccountOptionsSchema = z.object({

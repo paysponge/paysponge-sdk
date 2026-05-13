@@ -15,16 +15,6 @@
  * Check if a given object implements the PostApiSpongeCardOnboardRequest interface.
  */
 export function instanceOfPostApiSpongeCardOnboardRequest(value) {
-    if (!('occupation' in value) || value['occupation'] === undefined)
-        return false;
-    if (!('e_sign_consent' in value) || value['e_sign_consent'] === undefined)
-        return false;
-    if (!('sponge_card_terms' in value) || value['sponge_card_terms'] === undefined)
-        return false;
-    if (!('information_certification' in value) || value['information_certification'] === undefined)
-        return false;
-    if (!('unauthorized_solicitation_acknowledgement' in value) || value['unauthorized_solicitation_acknowledgement'] === undefined)
-        return false;
     return true;
 }
 export function PostApiSpongeCardOnboardRequestFromJSON(json) {
@@ -36,12 +26,13 @@ export function PostApiSpongeCardOnboardRequestFromJSONTyped(json, ignoreDiscrim
     }
     return {
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
-        'occupation': json['occupation'],
-        'e_sign_consent': json['e_sign_consent'],
+        'occupation': json['occupation'] == null ? undefined : json['occupation'],
+        'redirect_uri': json['redirect_uri'] == null ? undefined : json['redirect_uri'],
+        'e_sign_consent': json['e_sign_consent'] == null ? undefined : json['e_sign_consent'],
         'account_opening_privacy_notice': json['account_opening_privacy_notice'] == null ? undefined : json['account_opening_privacy_notice'],
-        'sponge_card_terms': json['sponge_card_terms'],
-        'information_certification': json['information_certification'],
-        'unauthorized_solicitation_acknowledgement': json['unauthorized_solicitation_acknowledgement'],
+        'sponge_card_terms': json['sponge_card_terms'] == null ? undefined : json['sponge_card_terms'],
+        'information_certification': json['information_certification'] == null ? undefined : json['information_certification'],
+        'unauthorized_solicitation_acknowledgement': json['unauthorized_solicitation_acknowledgement'] == null ? undefined : json['unauthorized_solicitation_acknowledgement'],
     };
 }
 export function PostApiSpongeCardOnboardRequestToJSON(json) {
@@ -54,6 +45,7 @@ export function PostApiSpongeCardOnboardRequestToJSONTyped(value, ignoreDiscrimi
     return {
         'agentId': value['agentId'],
         'occupation': value['occupation'],
+        'redirect_uri': value['redirect_uri'],
         'e_sign_consent': value['e_sign_consent'],
         'account_opening_privacy_notice': value['account_opening_privacy_notice'],
         'sponge_card_terms': value['sponge_card_terms'],

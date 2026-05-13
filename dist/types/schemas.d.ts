@@ -505,7 +505,7 @@ export declare const BridgeCustomerSchema: z.ZodObject<{
 export type BridgeCustomer = z.infer<typeof BridgeCustomerSchema>;
 export declare const BridgeKycLinkResponseSchema: z.ZodObject<{
     url: z.ZodString;
-    customer: z.ZodObject<{
+    customer: z.ZodNullable<z.ZodObject<{
         id: z.ZodString;
         bridgeCustomerId: z.ZodString;
         kycLinkId: z.ZodNullable<z.ZodString>;
@@ -616,7 +616,7 @@ export declare const BridgeKycLinkResponseSchema: z.ZodObject<{
         hostedLinkUrl: string | null;
         tosLinkUrl: string | null;
         customerType: string | null;
-    }>;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     url: string;
     customer: {
@@ -646,7 +646,7 @@ export declare const BridgeKycLinkResponseSchema: z.ZodObject<{
         hostedLinkUrl: string | null;
         tosLinkUrl: string | null;
         customerType: string | null;
-    };
+    } | null;
 }, {
     url: string;
     customer: {
@@ -676,7 +676,7 @@ export declare const BridgeKycLinkResponseSchema: z.ZodObject<{
         hostedLinkUrl: string | null;
         tosLinkUrl: string | null;
         customerType: string | null;
-    };
+    } | null;
 }>;
 export type BridgeKycLinkResponse = z.infer<typeof BridgeKycLinkResponseSchema>;
 export declare const BridgeExternalAccountSchema: z.ZodObject<{
@@ -923,17 +923,20 @@ export declare const BridgeCreateKycLinkOptionsSchema: z.ZodObject<{
     walletId: z.ZodOptional<z.ZodString>;
     redirectUri: z.ZodOptional<z.ZodString>;
     customerType: z.ZodOptional<z.ZodEnum<["individual", "business"]>>;
+    signedAgreementId: z.ZodOptional<z.ZodString>;
     agentId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     agentId?: string | undefined;
     customerType?: "individual" | "business" | undefined;
     walletId?: string | undefined;
     redirectUri?: string | undefined;
+    signedAgreementId?: string | undefined;
 }, {
     agentId?: string | undefined;
     customerType?: "individual" | "business" | undefined;
     walletId?: string | undefined;
     redirectUri?: string | undefined;
+    signedAgreementId?: string | undefined;
 }>;
 export type BridgeCreateKycLinkOptions = z.infer<typeof BridgeCreateKycLinkOptionsSchema>;
 export declare const BridgeCreateExternalAccountOptionsSchema: z.ZodObject<{

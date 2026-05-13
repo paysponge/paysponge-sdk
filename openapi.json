@@ -15374,13 +15374,6 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "occupation",
-                  "e_sign_consent",
-                  "sponge_card_terms",
-                  "information_certification",
-                  "unauthorized_solicitation_acknowledgement"
-                ],
                 "properties": {
                   "agentId": {
                     "type": "string"
@@ -15388,6 +15381,9 @@
                   "occupation": {
                     "minLength": 1,
                     "maxLength": 50,
+                    "type": "string"
+                  },
+                  "redirect_uri": {
                     "type": "string"
                   },
                   "e_sign_consent": {
@@ -15411,13 +15407,6 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "occupation",
-                  "e_sign_consent",
-                  "sponge_card_terms",
-                  "information_certification",
-                  "unauthorized_solicitation_acknowledgement"
-                ],
                 "properties": {
                   "agentId": {
                     "type": "string"
@@ -15425,6 +15414,9 @@
                   "occupation": {
                     "minLength": 1,
                     "maxLength": 50,
+                    "type": "string"
+                  },
+                  "redirect_uri": {
                     "type": "string"
                   },
                   "e_sign_consent": {
@@ -15448,13 +15440,6 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "occupation",
-                  "e_sign_consent",
-                  "sponge_card_terms",
-                  "information_certification",
-                  "unauthorized_solicitation_acknowledgement"
-                ],
                 "properties": {
                   "agentId": {
                     "type": "string"
@@ -15462,6 +15447,9 @@
                   "occupation": {
                     "minLength": 1,
                     "maxLength": 50,
+                    "type": "string"
+                  },
+                  "redirect_uri": {
                     "type": "string"
                   },
                   "e_sign_consent": {
@@ -16122,6 +16110,9 @@
                       "business"
                     ]
                   },
+                  "signed_agreement_id": {
+                    "type": "string"
+                  },
                   "agentId": {
                     "type": "string"
                   }
@@ -16145,6 +16136,9 @@
                       "business"
                     ]
                   },
+                  "signed_agreement_id": {
+                    "type": "string"
+                  },
                   "agentId": {
                     "type": "string"
                   }
@@ -16167,6 +16161,9 @@
                       "individual",
                       "business"
                     ]
+                  },
+                  "signed_agreement_id": {
+                    "type": "string"
                   },
                   "agentId": {
                     "type": "string"

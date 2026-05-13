@@ -18,7 +18,7 @@ const BankStatusResponseSchema = z.object({
 });
 const BankOnboardResponseSchema = z.object({
     kyc_url: z.string().nullable(),
-    customer: BridgeCustomerSchema,
+    customer: BridgeCustomerSchema.nullable().optional(),
 });
 const BankExternalAccountsResponseSchema = z.object({
     accounts: z.array(BridgeExternalAccountSchema),
@@ -155,12 +155,13 @@ export class SpongePlatform {
             wallet_id: validated.walletId,
             redirect_uri: validated.redirectUri,
             customer_type: validated.customerType,
+            signed_agreement_id: validated.signedAgreementId,
             agentId: validated.agentId,
         });
         const parsed = BankOnboardResponseSchema.parse(response);
         return BridgeKycLinkResponseSchema.parse({
             url: parsed.kyc_url ?? "",
-            customer: parsed.customer,
+            customer: parsed.customer ?? null,
         });
     }
     async listBridgeExternalAccounts(agentId) {

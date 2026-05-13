@@ -38,6 +38,12 @@ export interface PostApiBankOnboardRequest {
      * @type {string}
      * @memberof PostApiBankOnboardRequest
      */
+    signed_agreement_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiBankOnboardRequest
+     */
     agentId?: string;
 }
 /**

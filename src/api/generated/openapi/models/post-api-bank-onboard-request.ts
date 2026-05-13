@@ -42,6 +42,12 @@ export interface PostApiBankOnboardRequest {
      * @type {string}
      * @memberof PostApiBankOnboardRequest
      */
+    signed_agreement_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiBankOnboardRequest
+     */
     agentId?: string;
 }
 
@@ -76,6 +82,7 @@ export function PostApiBankOnboardRequestFromJSONTyped(json: any, ignoreDiscrimi
         'wallet_id': json['wallet_id'] == null ? undefined : json['wallet_id'],
         'redirect_uri': json['redirect_uri'] == null ? undefined : json['redirect_uri'],
         'customer_type': json['customer_type'] == null ? undefined : json['customer_type'],
+        'signed_agreement_id': json['signed_agreement_id'] == null ? undefined : json['signed_agreement_id'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
@@ -94,6 +101,7 @@ export function PostApiBankOnboardRequestToJSONTyped(value?: PostApiBankOnboardR
         'wallet_id': value['wallet_id'],
         'redirect_uri': value['redirect_uri'],
         'customer_type': value['customer_type'],
+        'signed_agreement_id': value['signed_agreement_id'],
         'agentId': value['agentId'],
     };
 }

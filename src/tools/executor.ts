@@ -268,6 +268,7 @@ export class ToolExecutor {
           wallet_id: args.wallet_id,
           redirect_uri: args.redirect_uri,
           customer_type: args.customer_type,
+          signed_agreement_id: args.signed_agreement_id,
         });
       case "bank_status":
         return this.http.get<unknown>("/api/bank/status", {});
@@ -369,6 +370,7 @@ export class ToolExecutor {
       case "onboard_sponge_card":
         return this.http.post<unknown>("/api/sponge-card/onboard", {
           occupation: args.occupation,
+          redirect_uri: args.redirect_uri,
           e_sign_consent: args.e_sign_consent,
           account_opening_privacy_notice: args.account_opening_privacy_notice,
           sponge_card_terms: args.sponge_card_terms,

@@ -1112,8 +1112,9 @@ function registerCuratedCommands(program, shared) {
             refresh: opts.refresh,
         });
     });
-    shared(cardCmd.command("onboard").description("Start Sponge Card onboarding and accept required consent acknowledgements"))
-        .requiredOption("--occupation <occupation>", "occupation or SOC code")
+    shared(cardCmd.command("onboard").description("Start Sponge Card onboarding or internal Persona KYC"))
+        .option("--occupation <occupation>", "occupation or SOC code")
+        .option("--redirect-uri <url>", "Persona redirect URL after KYC completion")
         .option("--accept-all", "set all required Sponge Card consent acknowledgements to true")
         .option("--e-sign-consent", "accept E-Sign Consent")
         .option("--account-opening-privacy-notice", "accept Account Opening Privacy Notice; required for US KYC")
@@ -1123,6 +1124,7 @@ function registerCuratedCommands(program, shared) {
         .action(async (opts) => {
         await executeToolCommand(opts, "onboard_sponge_card", {
             occupation: opts.occupation,
+            redirect_uri: opts.redirectUri,
             ...spongeCardConsentInput(opts),
         });
     });
@@ -1180,11 +1182,13 @@ function registerCuratedCommands(program, shared) {
         .option("--wallet-id <id>", "wallet ID to associate with onboarding")
         .option("--redirect-uri <url>", "redirect URL after KYC completion")
         .addOption(new Option("--customer-type <type>", "KYC customer type").choices(["individual", "business"]))
+        .option("--signed-agreement-id <id>", "Bridge signed agreement ID from the terms redirect")
         .action(async (opts) => {
         await executeToolCommand(opts, "bank_onboard", {
             wallet_id: opts.walletId,
             redirect_uri: opts.redirectUri,
             customer_type: opts.customerType,
+            signed_agreement_id: opts.signedAgreementId,
         });
     });
     shared(bankCmd.command("status").description("Show banking KYC and capability status"))

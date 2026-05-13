@@ -89,6 +89,7 @@ describe("SpongePlatform Bridge fiat", () => {
       wallet_id: "wallet_123",
       redirect_uri: "https://app.example/callback",
       customer_type: "individual",
+      signed_agreement_id: undefined,
       agentId: undefined,
     });
     expect(post).toHaveBeenNthCalledWith(2, "/api/bank/external-accounts", {

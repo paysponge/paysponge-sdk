@@ -26,13 +26,19 @@ export interface PostApiSpongeCardOnboardRequest {
      * @type {string}
      * @memberof PostApiSpongeCardOnboardRequest
      */
-    occupation: string;
+    occupation?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiSpongeCardOnboardRequest
+     */
+    redirect_uri?: string;
     /**
      *
      * @type {boolean}
      * @memberof PostApiSpongeCardOnboardRequest
      */
-    e_sign_consent: boolean;
+    e_sign_consent?: boolean;
     /**
      *
      * @type {boolean}
@@ -44,19 +50,19 @@ export interface PostApiSpongeCardOnboardRequest {
      * @type {boolean}
      * @memberof PostApiSpongeCardOnboardRequest
      */
-    sponge_card_terms: boolean;
+    sponge_card_terms?: boolean;
     /**
      *
      * @type {boolean}
      * @memberof PostApiSpongeCardOnboardRequest
      */
-    information_certification: boolean;
+    information_certification?: boolean;
     /**
      *
      * @type {boolean}
      * @memberof PostApiSpongeCardOnboardRequest
      */
-    unauthorized_solicitation_acknowledgement: boolean;
+    unauthorized_solicitation_acknowledgement?: boolean;
 }
 /**
  * Check if a given object implements the PostApiSpongeCardOnboardRequest interface.

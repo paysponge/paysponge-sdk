@@ -245,7 +245,7 @@ export type BridgeCustomer = z.infer<typeof BridgeCustomerSchema>;
 
 export const BridgeKycLinkResponseSchema = z.object({
   url: z.string(),
-  customer: BridgeCustomerSchema,
+  customer: BridgeCustomerSchema.nullable(),
 });
 export type BridgeKycLinkResponse = z.infer<typeof BridgeKycLinkResponseSchema>;
 
@@ -330,6 +330,7 @@ export const BridgeCreateKycLinkOptionsSchema = z.object({
   walletId: z.string().optional(),
   redirectUri: z.string().optional(),
   customerType: BridgeCustomerTypeSchema.optional(),
+  signedAgreementId: z.string().optional(),
   agentId: z.string().optional(),
 });
 export type BridgeCreateKycLinkOptions = z.infer<

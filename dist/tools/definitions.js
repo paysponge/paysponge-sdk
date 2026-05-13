@@ -861,7 +861,7 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "bank_onboard",
-        description: "Start or resume Bridge banking KYC onboarding. Returns a hosted KYC URL unless the customer is already active.",
+        description: "Start or resume banking onboarding. Returns a Persona KYC URL until internal KYC is approved, then a Bridge terms URL unless the customer is already active.",
         input_schema: {
             type: "object",
             properties: {
@@ -876,13 +876,17 @@ export const TOOL_DEFINITIONS = [
                 customer_type: {
                     type: "string",
                     enum: ["individual", "business"],
-                    description: "KYC type. Defaults to individual.",
+                    description: "Customer type. Persona-backed bank onboarding currently supports individual customers only.",
+                },
+                signed_agreement_id: {
+                    type: "string",
+                    description: "Bridge signed agreement ID from the terms redirect, used to finish Persona-backed customer creation.",
                 },
             },
             required: [],
         },
         cli_output: fieldsOutput([
-            { key: "kyc_url", label: "KYC URL" },
+            { key: "kyc_url", label: "Verification URL" },
             { key: ["customer", "kycStatus"], label: "KYC status" },
             { key: ["customer", "tosStatus"], label: "TOS status" },
             { key: "message", label: "Message" },
@@ -1300,11 +1304,15 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "onboard_sponge_card",
-        description: "Start Sponge Card onboarding for the authenticated user after Persona KYC and record Sponge consent acknowledgements. " +
+        description: "Start Sponge Card onboarding for the authenticated user, returning a Persona KYC URL first when internal KYC is missing, and record Sponge consent acknowledgements. " +
             "The issuer environment is determined by API key mode. Call get_sponge_card_status afterwards to check approval.",
         input_schema: {
             type: "object",
             properties: {
+                redirect_uri: {
+                    type: "string",
+                    description: "URL Persona redirects to after KYC completion.",
+                },
                 occupation: { type: "string", description: "Occupation or SOC code." },
                 e_sign_consent: { type: "boolean", description: "Must be true: user accepts the E-Sign Consent." },
                 account_opening_privacy_notice: {
@@ -1324,19 +1332,13 @@ export const TOOL_DEFINITIONS = [
                     description: "Must be true: user acknowledges applying is not unauthorized solicitation.",
                 },
             },
-            required: [
-                "occupation",
-                "e_sign_consent",
-                "sponge_card_terms",
-                "information_certification",
-                "unauthorized_solicitation_acknowledgement",
-            ],
+            required: [],
         },
         cli_output: fieldsOutput([
             { key: "submitted_application", label: "Submitted application" },
             { key: "environment", label: "Environment" },
             { key: "ready_for_card_creation", label: "Ready for card creation" },
-            { key: "completion_link_url", label: "Completion link" },
+            { key: "kyc_url", label: "KYC URL" },
             { key: "message", label: "Message" },
         ], "Sponge Card onboarding"),
     },

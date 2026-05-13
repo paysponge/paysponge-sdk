@@ -308,6 +308,7 @@ describe("ToolExecutor", () => {
       wallet_id: "wallet_123",
       redirect_uri: "https://app.example/callback",
       customer_type: "individual",
+      signed_agreement_id: undefined,
     });
     expect(http.get).toHaveBeenNthCalledWith(1, "/api/bank/status", {});
     expect(http.post).toHaveBeenNthCalledWith(2, "/api/bank/virtual-account", {
@@ -337,6 +338,28 @@ describe("ToolExecutor", () => {
     });
     expect(http.get).toHaveBeenNthCalledWith(4, "/api/bank/transfers", {
       transfer_id: "transfer_123",
+    });
+  });
+
+  it("routes Sponge Card onboarding to the Persona-first endpoint", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ ok: true }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    await executor.execute("onboard_sponge_card", {
+      redirect_uri: "https://app.example/sponge-card/onboard",
+    });
+
+    expect(http.post).toHaveBeenCalledWith("/api/sponge-card/onboard", {
+      occupation: undefined,
+      redirect_uri: "https://app.example/sponge-card/onboard",
+      e_sign_consent: undefined,
+      account_opening_privacy_notice: undefined,
+      sponge_card_terms: undefined,
+      information_certification: undefined,
+      unauthorized_solicitation_acknowledgement: undefined,
     });
   });
 
