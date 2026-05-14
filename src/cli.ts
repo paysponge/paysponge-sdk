@@ -1472,9 +1472,9 @@ function registerCuratedCommands(
       });
     });
 
-  shared(cardCmd.command("onboard").description("Start Sponge Card onboarding or internal Persona KYC"))
+  shared(cardCmd.command("onboard").description("Start Sponge Card onboarding or internal KYC verification"))
     .option("--occupation <occupation>", "occupation or SOC code")
-    .option("--redirect-uri <url>", "Persona redirect URL after KYC completion")
+    .option("--redirect-uri <url>", "redirect URL after KYC completion")
     .option("--accept-all", "set all required Sponge Card consent acknowledgements to true")
     .option("--e-sign-consent", "accept E-Sign Consent")
     .option("--account-opening-privacy-notice", "accept Account Opening Privacy Notice; required for US KYC")

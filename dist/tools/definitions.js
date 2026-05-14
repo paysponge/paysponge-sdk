@@ -861,7 +861,7 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "bank_onboard",
-        description: "Start or resume banking onboarding. Returns a Persona KYC URL until internal KYC is approved, then a Bridge terms URL unless the customer is already active.",
+        description: "Start or resume banking onboarding. Returns a KYC verification link until internal KYC is approved, then a Bridge terms URL unless the customer is already active.",
         input_schema: {
             type: "object",
             properties: {
@@ -876,11 +876,11 @@ export const TOOL_DEFINITIONS = [
                 customer_type: {
                     type: "string",
                     enum: ["individual", "business"],
-                    description: "Customer type. Persona-backed bank onboarding currently supports individual customers only.",
+                    description: "Customer type. KYC-backed bank onboarding currently supports individual customers only.",
                 },
                 signed_agreement_id: {
                     type: "string",
-                    description: "Bridge signed agreement ID from the terms redirect, used to finish Persona-backed customer creation.",
+                    description: "Bridge signed agreement ID from the terms redirect, used to finish KYC-backed customer creation.",
                 },
             },
             required: [],
@@ -1304,14 +1304,14 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "onboard_sponge_card",
-        description: "Start Sponge Card onboarding for the authenticated user, returning a Persona KYC URL first when internal KYC is missing, and record Sponge consent acknowledgements. " +
+        description: "Start Sponge Card onboarding for the authenticated user, returning a KYC verification link first when internal KYC is missing, and record Sponge consent acknowledgements. " +
             "The issuer environment is determined by API key mode. Call get_sponge_card_status afterwards to check approval.",
         input_schema: {
             type: "object",
             properties: {
                 redirect_uri: {
                     type: "string",
-                    description: "URL Persona redirects to after KYC completion.",
+                    description: "URL to redirect to after KYC completion.",
                 },
                 occupation: { type: "string", description: "Occupation or SOC code." },
                 e_sign_consent: { type: "boolean", description: "Must be true: user accepts the E-Sign Consent." },
@@ -1325,7 +1325,7 @@ export const TOOL_DEFINITIONS = [
                 },
                 information_certification: {
                     type: "boolean",
-                    description: "Must be true: user certifies Persona KYC information is accurate.",
+                    description: "Must be true: user certifies KYC information is accurate.",
                 },
                 unauthorized_solicitation_acknowledgement: {
                     type: "boolean",
@@ -1360,7 +1360,7 @@ export const TOOL_DEFINITIONS = [
                 },
                 information_certification: {
                     type: "boolean",
-                    description: "Must be true: user certifies Persona KYC information is accurate.",
+                    description: "Must be true: user certifies KYC information is accurate.",
                 },
                 unauthorized_solicitation_acknowledgement: {
                     type: "boolean",
