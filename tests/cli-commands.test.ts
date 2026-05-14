@@ -133,6 +133,38 @@ describe("CLI command tree", () => {
     ]));
   });
 
+  it("exposes Hyperliquid chart commands under market", () => {
+    const program = buildCliProgram();
+    const market = program.commands.find((entry) => entry.name() === "market");
+    const hyperliquid = market?.commands.find((entry) => entry.name() === "hyperliquid");
+    const chart = hyperliquid?.commands.find((entry) => entry.name() === "chart");
+    const raw = hyperliquid?.commands.find((entry) => entry.name() === "raw");
+
+    expect(hyperliquid).toBeDefined();
+    expect(commandNames(hyperliquid!)).toEqual(expect.arrayContaining([
+      "status",
+      "markets",
+      "positions",
+      "orders",
+      "chart",
+      "order",
+      "raw",
+    ]));
+    expect(chart).toBeDefined();
+    expect(argumentRequirements(chart as any)).toEqual([
+      { name: "symbol", required: false },
+    ]);
+    expect(optionFlags(chart!)).toEqual(expect.arrayContaining([
+      "--symbol <symbol>",
+      "--interval <interval>",
+      "--chart-style <style>",
+    ]));
+    expect(optionFlags(raw!)).toEqual(expect.arrayContaining([
+      "--interval <interval>",
+      "--chart-style <style>",
+    ]));
+  });
+
   it("keeps wallet workflows as direct top-level commands", () => {
     const program = buildCliProgram();
     const topLevel = commandNames(program);

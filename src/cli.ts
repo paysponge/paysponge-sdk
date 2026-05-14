@@ -2071,6 +2071,26 @@ function registerCuratedCommands(
       });
     });
 
+  shared(hyperliquidCmd.command("chart").description("Show a Unicode Hyperliquid price chart"))
+    .argument("[symbol]", "market symbol")
+    .option("--symbol <symbol>", "market symbol")
+    .option("--interval <interval>", "candle interval", "15m")
+    .option("--chart-style <style>", "chart style", "sparkline")
+    .addHelpText("after", "\nExamples:\n  spongewallet market hyperliquid chart BTC/USDC:USDC\n  spongewallet market hyperliquid chart ETH --interval 1h\n")
+    .action(async (
+      symbolArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
+      await executeHyperliquidAction(opts, {
+        action: "chart",
+        symbol: requiredInput(command, opts, symbolArg, "symbol", "--symbol"),
+        interval: opts.interval,
+        chart_style: opts.chartStyle,
+        trace_tool_call: false,
+      });
+    });
+
   shared(hyperliquidCmd.command("fills").description("List recent Hyperliquid fills"))
     .usage("[limit] [offset] [options]")
     .argument("[limit]", "result limit")
@@ -2163,6 +2183,8 @@ function registerCuratedCommands(
     .option("--price <price>", "limit price")
     .option("--leverage <n>", "leverage", parseFloat)
     .option("--order-id <id>", "order ID")
+    .option("--interval <interval>", "candle interval")
+    .option("--chart-style <style>", "chart style")
     .option("--limit <n>", "result limit", parseInt)
     .option("--offset <n>", "result offset", parseInt)
     .option("--json <json>", "additional args as JSON", parseJsonObject)
@@ -2177,6 +2199,8 @@ function registerCuratedCommands(
         price: opts.price as string | undefined,
         leverage: opts.leverage as number | undefined,
         order_id: opts.orderId as string | undefined,
+        interval: opts.interval as string | undefined,
+        chart_style: opts.chartStyle as string | undefined,
         limit: opts.limit as number | undefined,
         offset: opts.offset as number | undefined,
       });
