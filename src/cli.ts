@@ -2635,19 +2635,25 @@ const toolFormatters: Record<string, ToolFormatter> = {
     if (getValueByKey(data, "address") && isRecord(getValueByKey(data, "balances"))) {
       const perps = getValueByKey(data, "balances.perps") as Record<string, unknown> | undefined;
       const spot = getValueByKey(data, "balances.spot") as Record<string, unknown> | undefined;
+      const accountMode = getValueByKey(data, "balances.accountMode");
+      const unifiedBalances = accountMode === "unifiedAccount" || accountMode === "portfolioMargin";
       const openOrders = getValueByKey(data, "openOrders");
-      const spotRows = Object.entries(spot ?? {}).map(([symbol, value]) => ({
-        symbol,
-        amount: getValueByKey(value, "amount"),
-        usdValue: getValueByKey(value, "usdValue"),
-      }));
+      const spotRows = Object.entries(spot ?? {})
+        .filter(([symbol]) => !(unifiedBalances && symbol.toUpperCase() === "USDC"))
+        .map(([symbol, value]) => ({
+          symbol,
+          amount: getValueByKey(value, "amount"),
+          usdValue: getValueByKey(value, "usdValue"),
+        }));
+      const collateralLabel = unifiedBalances ? "Unified USDC" : "Perps total";
 
       p.log.success(title);
       p.log.info([
         `Wallet: ${formatInlineValue(getValueByKey(data, "address"))}`,
-        `Perps total: ${formatInlineValue(getValueByKey(perps, "total.USDC"))} USDC`,
-        `Perps free: ${formatInlineValue(getValueByKey(perps, "free.USDC"))} USDC`,
-        `Perps used: ${formatInlineValue(getValueByKey(perps, "used.USDC"))} USDC`,
+        `Account mode: ${formatInlineValue(accountMode ?? "standard")}`,
+        `${collateralLabel}: ${formatInlineValue(getValueByKey(perps, "total.USDC"))} USDC`,
+        `Free USDC: ${formatInlineValue(getValueByKey(perps, "free.USDC"))} USDC`,
+        `Used USDC: ${formatInlineValue(getValueByKey(perps, "used.USDC"))} USDC`,
         `Spot assets: ${spotRows.length}`,
         `Open orders: ${formatInlineValue(getValueByKey(data, "openOrderCount"))}`,
       ].join("\n"));
