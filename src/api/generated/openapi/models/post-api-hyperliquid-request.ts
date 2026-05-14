@@ -147,6 +147,12 @@ export interface PostApiHyperliquidRequest {
     to_perp?: boolean;
     /**
      * 
+     * @type {PostApiHyperliquidRequestAbstractionEnum}
+     * @memberof PostApiHyperliquidRequest
+     */
+    abstraction?: PostApiHyperliquidRequestAbstractionEnum;
+    /**
+     * 
      * @type {PostApiHyperliquidRequestIntervalEnum}
      * @memberof PostApiHyperliquidRequest
      */
@@ -196,6 +202,7 @@ export const PostApiHyperliquidRequestActionEnum = {
     Alerts: 'alerts',
     Withdraw: 'withdraw',
     Transfer: 'transfer',
+    SetAbstraction: 'set_abstraction',
     Chart: 'chart'
 } as const;
 export type PostApiHyperliquidRequestActionEnum = typeof PostApiHyperliquidRequestActionEnum[keyof typeof PostApiHyperliquidRequestActionEnum];
@@ -245,6 +252,16 @@ export const PostApiHyperliquidRequestMarketTypeEnum = {
     Swap: 'swap'
 } as const;
 export type PostApiHyperliquidRequestMarketTypeEnum = typeof PostApiHyperliquidRequestMarketTypeEnum[keyof typeof PostApiHyperliquidRequestMarketTypeEnum];
+
+/**
+ * @export
+ */
+export const PostApiHyperliquidRequestAbstractionEnum = {
+    Disabled: 'disabled',
+    UnifiedAccount: 'unifiedAccount',
+    PortfolioMargin: 'portfolioMargin'
+} as const;
+export type PostApiHyperliquidRequestAbstractionEnum = typeof PostApiHyperliquidRequestAbstractionEnum[keyof typeof PostApiHyperliquidRequestAbstractionEnum];
 
 /**
  * @export
@@ -311,6 +328,7 @@ export function PostApiHyperliquidRequestFromJSONTyped(json: any, ignoreDiscrimi
         'lookback_ms': json['lookback_ms'] == null ? undefined : json['lookback_ms'],
         'destination': json['destination'] == null ? undefined : json['destination'],
         'to_perp': json['to_perp'] == null ? undefined : json['to_perp'],
+        'abstraction': json['abstraction'] == null ? undefined : json['abstraction'],
         'interval': json['interval'] == null ? undefined : json['interval'],
         'chart_style': json['chart_style'] == null ? undefined : json['chart_style'],
         'trace_tool_call': json['trace_tool_call'] == null ? undefined : json['trace_tool_call'],
@@ -350,6 +368,7 @@ export function PostApiHyperliquidRequestToJSONTyped(value?: PostApiHyperliquidR
         'lookback_ms': value['lookback_ms'],
         'destination': value['destination'],
         'to_perp': value['to_perp'],
+        'abstraction': value['abstraction'],
         'interval': value['interval'],
         'chart_style': value['chart_style'],
         'trace_tool_call': value['trace_tool_call'],

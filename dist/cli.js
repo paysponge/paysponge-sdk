@@ -1676,6 +1676,7 @@ function registerCuratedCommands(program, shared) {
         .option("--amount <amount>", "order amount")
         .option("--price <price>", "limit price")
         .option("--leverage <n>", "leverage", parseFloat)
+        .option("--abstraction <mode>", "account abstraction mode")
         .option("--order-id <id>", "order ID")
         .option("--interval <interval>", "candle interval")
         .option("--chart-style <style>", "chart style")
@@ -1692,6 +1693,7 @@ function registerCuratedCommands(program, shared) {
             amount: opts.amount,
             price: opts.price,
             leverage: opts.leverage,
+            abstraction: opts.abstraction,
             order_id: opts.orderId,
             interval: opts.interval,
             chart_style: opts.chartStyle,

@@ -143,6 +143,12 @@ export interface PostApiHyperliquidRequest {
     to_perp?: boolean;
     /**
      *
+     * @type {PostApiHyperliquidRequestAbstractionEnum}
+     * @memberof PostApiHyperliquidRequest
+     */
+    abstraction?: PostApiHyperliquidRequestAbstractionEnum;
+    /**
+     *
      * @type {PostApiHyperliquidRequestIntervalEnum}
      * @memberof PostApiHyperliquidRequest
      */
@@ -190,6 +196,7 @@ export declare const PostApiHyperliquidRequestActionEnum: {
     readonly Alerts: "alerts";
     readonly Withdraw: "withdraw";
     readonly Transfer: "transfer";
+    readonly SetAbstraction: "set_abstraction";
     readonly Chart: "chart";
 };
 export type PostApiHyperliquidRequestActionEnum = typeof PostApiHyperliquidRequestActionEnum[keyof typeof PostApiHyperliquidRequestActionEnum];
@@ -234,6 +241,15 @@ export declare const PostApiHyperliquidRequestMarketTypeEnum: {
     readonly Swap: "swap";
 };
 export type PostApiHyperliquidRequestMarketTypeEnum = typeof PostApiHyperliquidRequestMarketTypeEnum[keyof typeof PostApiHyperliquidRequestMarketTypeEnum];
+/**
+ * @export
+ */
+export declare const PostApiHyperliquidRequestAbstractionEnum: {
+    readonly Disabled: "disabled";
+    readonly UnifiedAccount: "unifiedAccount";
+    readonly PortfolioMargin: "portfolioMargin";
+};
+export type PostApiHyperliquidRequestAbstractionEnum = typeof PostApiHyperliquidRequestAbstractionEnum[keyof typeof PostApiHyperliquidRequestAbstractionEnum];
 /**
  * @export
  */

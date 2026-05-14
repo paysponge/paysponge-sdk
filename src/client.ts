@@ -542,7 +542,7 @@ export class SpongeWallet {
    * ```
    */
   async hyperliquid(args: {
-    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "book_updates" | "funding" | "pnl" | "liquidation_caps" | "liquidations" | "trade_status" | "alerts" | "withdraw" | "transfer" | "chart";
+    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "book_updates" | "funding" | "pnl" | "liquidation_caps" | "liquidations" | "trade_status" | "alerts" | "withdraw" | "transfer" | "set_abstraction" | "chart";
     symbol?: string;
     side?: "buy" | "sell";
     type?: "limit" | "market";
@@ -566,6 +566,7 @@ export class SpongeWallet {
     trace_tool_call?: boolean;
     destination?: string;
     to_perp?: boolean;
+    abstraction?: "disabled" | "unifiedAccount" | "portfolioMargin";
   }): Promise<unknown> {
     return this.http.post<unknown>("/api/hyperliquid", args);
   }

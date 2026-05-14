@@ -823,7 +823,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       "Trade perps and spot on Hyperliquid DEX. Uses your agent's EVM wallet for signing (no API keys needed).\n\n" +
       "ACTIONS:\n" +
       "  Read: status, positions, orders, fills, markets, ticker, orderbook, book_updates, funding, pnl, liquidation_caps, liquidations, trade_status, alerts, chart\n" +
-      "  Write (requires hyperliquid:trade scope): order, cancel, cancel_all, set_leverage, withdraw, transfer\n\n" +
+      "  Write (requires hyperliquid:trade scope): order, cancel, cancel_all, set_leverage, withdraw, transfer, set_abstraction\n\n" +
       "UX:\n" +
       "- Responses include tool_call metadata with tool name + arguments by default\n" +
       "- chart supports live-line/candle rendering via chart_style\n\n" +
@@ -860,6 +860,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
             "alerts",
             "withdraw",
             "transfer",
+            "set_abstraction",
             "chart",
           ],
           description: "Action to perform",
@@ -969,6 +970,12 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
           type: "boolean",
           description:
             "Transfer direction: true = spot→perps, false = perps→spot",
+        },
+        abstraction: {
+          type: "string",
+          enum: ["disabled", "unifiedAccount", "portfolioMargin"],
+          description:
+            "Account abstraction mode for set_abstraction (default: unifiedAccount)",
         },
       },
       required: ["action"],
