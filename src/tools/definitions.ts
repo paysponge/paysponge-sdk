@@ -113,8 +113,13 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
           enum: [
             "ethereum",
             "base",
+            "arbitrum-one",
+            "monad",
+            "polygon",
             "sepolia",
             "base-sepolia",
+            "arbitrum-sepolia",
+            "polygon-amoy",
             "tempo-testnet",
             "tempo",
             "solana",
@@ -149,13 +154,13 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   {
     name: "evm_transfer",
     description:
-      "Transfer native tokens or USDC on Ethereum, Base, Polygon, or their testnets. Supports native (ETH/POL) and USDC transfers.",
+      "Transfer native tokens or USDC on Ethereum, Base, Arbitrum, Polygon, Monad, or their testnets. Supports native (ETH/MON/POL) and USDC transfers.",
     input_schema: {
       type: "object",
       properties: {
         chain: {
           type: "string",
-          enum: ["ethereum", "base", "polygon", "sepolia", "base-sepolia", "polygon-amoy"],
+          enum: ["ethereum", "base", "arbitrum-one", "monad", "polygon", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet"],
           description: "The chain to transfer on",
         },
         to: {
@@ -169,8 +174,8 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
         },
         currency: {
           type: "string",
-          enum: ["ETH", "POL", "USDC"],
-          description: "The currency to transfer (ETH for Ethereum/Base, POL for Polygon, or USDC)",
+          enum: ["ETH", "MON", "POL", "USDC"],
+          description: "The currency to transfer (ETH for Ethereum/Base/Arbitrum, MON for Monad, POL for Polygon, or USDC)",
         },
       },
       required: ["chain", "to", "amount", "currency"],
@@ -422,18 +427,18 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   {
     name: "bridge",
     description:
-      "Bridge tokens between different blockchains using deBridge. Supports Ethereum, Base, and Solana.",
+      "Bridge tokens between different blockchains using deBridge. Supports Ethereum, Base, Arbitrum, Polygon, Monad, Tempo, Solana, and Hyperliquid where routes are available.",
     input_schema: {
       type: "object",
       properties: {
         sourceChain: {
           type: "string",
-          enum: ["ethereum", "base", "sepolia", "base-sepolia", "solana", "solana-devnet"],
+          enum: ["ethereum", "base", "arbitrum-one", "polygon", "monad", "tempo", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet", "solana", "solana-devnet"],
           description: "The source chain to bridge FROM",
         },
         destinationChain: {
           type: "string",
-          enum: ["ethereum", "base", "sepolia", "base-sepolia", "solana", "solana-devnet"],
+          enum: ["ethereum", "base", "arbitrum-one", "polygon", "monad", "tempo", "hyperliquid", "polymarket", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet", "solana", "solana-devnet"],
           description: "The destination chain to bridge TO",
         },
         token: {

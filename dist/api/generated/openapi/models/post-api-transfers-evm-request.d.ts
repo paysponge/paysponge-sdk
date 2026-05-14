@@ -51,6 +51,7 @@ export interface PostApiTransfersEvmRequest {
  */
 export declare const PostApiTransfersEvmRequestCurrencyEnum: {
     readonly Eth: "ETH";
+    readonly Mon: "MON";
     readonly Pol: "POL";
     readonly Usdc: "USDC";
 };

@@ -1,17 +1,17 @@
 import { z } from "zod";
-export declare const ChainSchema: z.ZodEnum<["ethereum", "base", "monad", "polygon", "sepolia", "base-sepolia", "polygon-amoy", "tempo-testnet", "tempo", "solana", "solana-devnet"]>;
+export declare const ChainSchema: z.ZodEnum<["ethereum", "base", "monad", "polygon", "arbitrum-one", "sepolia", "base-sepolia", "arbitrum-sepolia", "monad-testnet", "polygon-amoy", "tempo-testnet", "tempo", "solana", "solana-devnet"]>;
 export type Chain = z.infer<typeof ChainSchema>;
 export declare const ChainTypeSchema: z.ZodEnum<["evm", "solana"]>;
 export type ChainType = z.infer<typeof ChainTypeSchema>;
 export declare const CurrencySchema: z.ZodString;
 export type Currency = z.infer<typeof CurrencySchema>;
-export declare const EvmChainSchema: z.ZodEnum<["ethereum", "base", "monad", "polygon", "sepolia", "base-sepolia", "polygon-amoy"]>;
+export declare const EvmChainSchema: z.ZodEnum<["ethereum", "base", "monad", "polygon", "arbitrum-one", "sepolia", "base-sepolia", "arbitrum-sepolia", "monad-testnet", "polygon-amoy"]>;
 export type EvmChain = z.infer<typeof EvmChainSchema>;
 export declare const SolanaChainSchema: z.ZodEnum<["solana", "solana-devnet"]>;
 export type SolanaChain = z.infer<typeof SolanaChainSchema>;
-export declare const MainnetChainSchema: z.ZodEnum<["ethereum", "base", "monad", "polygon", "tempo", "solana"]>;
+export declare const MainnetChainSchema: z.ZodEnum<["ethereum", "base", "monad", "polygon", "arbitrum-one", "tempo", "solana"]>;
 export type MainnetChain = z.infer<typeof MainnetChainSchema>;
-export declare const TestnetChainSchema: z.ZodEnum<["sepolia", "base-sepolia", "polygon-amoy", "tempo-testnet", "solana-devnet"]>;
+export declare const TestnetChainSchema: z.ZodEnum<["sepolia", "base-sepolia", "arbitrum-sepolia", "monad-testnet", "polygon-amoy", "tempo-testnet", "solana-devnet"]>;
 export type TestnetChain = z.infer<typeof TestnetChainSchema>;
 export declare const EthereumAddressSchema: z.ZodString;
 export declare const SolanaAddressSchema: z.ZodString;
@@ -1069,35 +1069,35 @@ export declare const TokenBalanceSchema: z.ZodObject<{
 export type TokenBalance = z.infer<typeof TokenBalanceSchema>;
 export declare const BalanceSchema: z.ZodRecord<z.ZodString, z.ZodString>;
 export type Balance = z.infer<typeof BalanceSchema>;
-export declare const AllBalancesSchema: z.ZodRecord<z.ZodEnum<["ethereum", "base", "monad", "polygon", "sepolia", "base-sepolia", "polygon-amoy", "tempo-testnet", "tempo", "solana", "solana-devnet"]>, z.ZodRecord<z.ZodString, z.ZodString>>;
+export declare const AllBalancesSchema: z.ZodRecord<z.ZodEnum<["ethereum", "base", "monad", "polygon", "arbitrum-one", "sepolia", "base-sepolia", "arbitrum-sepolia", "monad-testnet", "polygon-amoy", "tempo-testnet", "tempo", "solana", "solana-devnet"]>, z.ZodRecord<z.ZodString, z.ZodString>>;
 export type AllBalances = z.infer<typeof AllBalancesSchema>;
 export declare const TransferOptionsSchema: z.ZodEffects<z.ZodObject<{
-    chain: z.ZodEnum<["ethereum", "base", "monad", "polygon", "sepolia", "base-sepolia", "polygon-amoy", "tempo-testnet", "tempo", "solana", "solana-devnet"]>;
+    chain: z.ZodEnum<["ethereum", "base", "monad", "polygon", "arbitrum-one", "sepolia", "base-sepolia", "arbitrum-sepolia", "monad-testnet", "polygon-amoy", "tempo-testnet", "tempo", "solana", "solana-devnet"]>;
     to: z.ZodEffects<z.ZodString, string, string>;
     amount: z.ZodString;
     currency: z.ZodOptional<z.ZodString>;
     token: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     amount: string;
-    chain: "ethereum" | "base" | "monad" | "polygon" | "sepolia" | "base-sepolia" | "polygon-amoy" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
+    chain: "ethereum" | "base" | "monad" | "polygon" | "arbitrum-one" | "sepolia" | "base-sepolia" | "arbitrum-sepolia" | "monad-testnet" | "polygon-amoy" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
     currency?: string | undefined;
     token?: string | undefined;
 }, {
     amount: string;
-    chain: "ethereum" | "base" | "monad" | "polygon" | "sepolia" | "base-sepolia" | "polygon-amoy" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
+    chain: "ethereum" | "base" | "monad" | "polygon" | "arbitrum-one" | "sepolia" | "base-sepolia" | "arbitrum-sepolia" | "monad-testnet" | "polygon-amoy" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
     currency?: string | undefined;
     token?: string | undefined;
 }>, {
     amount: string;
-    chain: "ethereum" | "base" | "monad" | "polygon" | "sepolia" | "base-sepolia" | "polygon-amoy" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
+    chain: "ethereum" | "base" | "monad" | "polygon" | "arbitrum-one" | "sepolia" | "base-sepolia" | "arbitrum-sepolia" | "monad-testnet" | "polygon-amoy" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
     currency?: string | undefined;
     token?: string | undefined;
 }, {
     amount: string;
-    chain: "ethereum" | "base" | "monad" | "polygon" | "sepolia" | "base-sepolia" | "polygon-amoy" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
+    chain: "ethereum" | "base" | "monad" | "polygon" | "arbitrum-one" | "sepolia" | "base-sepolia" | "arbitrum-sepolia" | "monad-testnet" | "polygon-amoy" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
     currency?: string | undefined;
     token?: string | undefined;
@@ -1257,19 +1257,19 @@ export declare const DetailedBalancesSchema: z.ZodRecord<z.ZodString, z.ZodObjec
 }>>;
 export type DetailedBalances = z.infer<typeof DetailedBalancesSchema>;
 export declare const EvmTransferOptionsSchema: z.ZodObject<{
-    chain: z.ZodEnum<["ethereum", "base", "monad", "polygon", "sepolia", "base-sepolia", "polygon-amoy"]>;
+    chain: z.ZodEnum<["ethereum", "base", "monad", "polygon", "arbitrum-one", "sepolia", "base-sepolia", "arbitrum-sepolia", "monad-testnet", "polygon-amoy"]>;
     to: z.ZodString;
     amount: z.ZodString;
-    currency: z.ZodEnum<["ETH", "POL", "USDC"]>;
+    currency: z.ZodEnum<["ETH", "MON", "POL", "USDC"]>;
 }, "strip", z.ZodTypeAny, {
-    currency: "ETH" | "POL" | "USDC";
+    currency: "ETH" | "MON" | "POL" | "USDC";
     amount: string;
-    chain: "ethereum" | "base" | "monad" | "polygon" | "sepolia" | "base-sepolia" | "polygon-amoy";
+    chain: "ethereum" | "base" | "monad" | "polygon" | "arbitrum-one" | "sepolia" | "base-sepolia" | "arbitrum-sepolia" | "monad-testnet" | "polygon-amoy";
     to: string;
 }, {
-    currency: "ETH" | "POL" | "USDC";
+    currency: "ETH" | "MON" | "POL" | "USDC";
     amount: string;
-    chain: "ethereum" | "base" | "monad" | "polygon" | "sepolia" | "base-sepolia" | "polygon-amoy";
+    chain: "ethereum" | "base" | "monad" | "polygon" | "arbitrum-one" | "sepolia" | "base-sepolia" | "arbitrum-sepolia" | "monad-testnet" | "polygon-amoy";
     to: string;
 }>;
 export type EvmTransferOptions = z.infer<typeof EvmTransferOptionsSchema>;

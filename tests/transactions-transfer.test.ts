@@ -29,6 +29,61 @@ describe("TransactionsApi.transfer", () => {
     });
   });
 
+  it("uses /api/transfers/evm for Arbitrum One", async () => {
+    const http = {
+      post: vi.fn().mockResolvedValue({
+        transactionHash: "0xarb",
+        status: "pending",
+        explorerUrl: "https://arbiscan.io/tx/0xarb",
+      }),
+      get: vi.fn(),
+    };
+    const api = new TransactionsApi(http as any, "agent-1");
+
+    const result = await api.transfer({
+      chain: "arbitrum-one",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      amount: "1",
+      currency: "USDC",
+    });
+
+    expect(result.txHash).toBe("0xarb");
+    expect(result.chainId).toBe(42161);
+    expect(http.post).toHaveBeenCalledWith("/api/transfers/evm", {
+      chain: "arbitrum-one",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      amount: "1",
+      currency: "USDC",
+    });
+  });
+
+  it("allows Monad native transfers", async () => {
+    const http = {
+      post: vi.fn().mockResolvedValue({
+        transactionHash: "0xmon",
+        status: "pending",
+      }),
+      get: vi.fn(),
+    };
+    const api = new TransactionsApi(http as any, "agent-1");
+
+    const result = await api.transfer({
+      chain: "monad",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      amount: "1",
+      currency: "mon",
+    });
+
+    expect(result.txHash).toBe("0xmon");
+    expect(result.chainId).toBe(143);
+    expect(http.post).toHaveBeenCalledWith("/api/transfers/evm", {
+      chain: "monad",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      amount: "1",
+      currency: "MON",
+    });
+  });
+
   it("uses /api/transfers/solana for Solana chains", async () => {
     const http = {
       post: vi.fn().mockResolvedValue({

@@ -48,6 +48,7 @@ export function buildCliProgram(metadata = {}) {
         .description("Create an agent, show wallet addresses, and print MCP config"))
         .option("--claim-required", "include claim text (default)")
         .option("--no-claim-required", "disable claim text")
+        .option("--switch", "replace cached credentials with a newly created agent")
         .action((opts) => handleInit(opts, metadata));
     withAuth(program
         .command("login")
@@ -120,6 +121,14 @@ async function handleLogin(opts) {
     });
 }
 async function handleInit(opts, meta) {
+    const existingCredentials = loadCredentials(opts.credentialsPath);
+    if (existingCredentials && !opts.switch) {
+        const currentAgent = existingCredentials.agentName
+            ? `${existingCredentials.agentName} (${existingCredentials.agentId})`
+            : existingCredentials.agentId;
+        throw new Error(`Refusing to overwrite existing Sponge credentials for ${currentAgent}. ` +
+            "Run `spongewallet whoami` to inspect the current agent, or use `spongewallet init --switch` to create and switch to a new one.");
+    }
     const registration = await registerAgentFirst({
         name: opts.name ?? defaultAgentName(opts.email),
         email: opts.email,
@@ -550,16 +559,19 @@ function applyHelpTheme(command, metadata) {
 const CHAIN_VALUES = [
     "ethereum",
     "base",
+    "arbitrum-one",
     "polygon",
     "sepolia",
     "base-sepolia",
+    "arbitrum-sepolia",
+    "monad-testnet",
     "polygon-amoy",
     "tempo-testnet",
     "tempo",
     "solana",
     "solana-devnet",
 ];
-const EVM_CHAIN_VALUES = ["ethereum", "base", "polygon", "sepolia", "base-sepolia", "polygon-amoy"];
+const EVM_CHAIN_VALUES = ["ethereum", "base", "arbitrum-one", "polygon", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy"];
 const SOLANA_CHAIN_VALUES = ["solana", "solana-devnet"];
 const TEMPO_CHAIN_VALUES = ["tempo", "tempo-testnet"];
 const ONRAMP_CHAIN_VALUES = ["base", "solana", "polygon"];

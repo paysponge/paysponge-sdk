@@ -10,17 +10,20 @@ export function setVersionNoticeHandler(handler) {
 export function notifyVersionNotice(response) {
     if (!versionNoticeHandler || versionNoticeShown)
         return;
-    const status = response.headers.get("Sponge-Version-Status");
+    const headers = response.headers;
+    if (!headers)
+        return;
+    const status = headers.get("Sponge-Version-Status");
     if (!status || status === "current")
         return;
     versionNoticeShown = true;
     versionNoticeHandler({
         status,
-        latestSdkVersion: response.headers.get("Sponge-Latest-Version") ?? undefined,
-        minimumSdkVersion: response.headers.get("Sponge-Minimum-Version") ?? undefined,
-        walletSkillVersion: response.headers.get("Sponge-Skill-Version") ?? undefined,
-        walletSkillUrl: response.headers.get("Sponge-Skill-Url") ?? undefined,
-        message: response.headers.get("Sponge-Version-Message") ?? undefined,
+        latestSdkVersion: headers.get("Sponge-Latest-Version") ?? undefined,
+        minimumSdkVersion: headers.get("Sponge-Minimum-Version") ?? undefined,
+        walletSkillVersion: headers.get("Sponge-Skill-Version") ?? undefined,
+        walletSkillUrl: headers.get("Sponge-Skill-Url") ?? undefined,
+        message: headers.get("Sponge-Version-Message") ?? undefined,
     });
 }
 export class SpongeApiError extends Error {

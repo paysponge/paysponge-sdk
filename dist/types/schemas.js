@@ -7,8 +7,11 @@ export const ChainSchema = z.enum([
     "base",
     "monad",
     "polygon",
+    "arbitrum-one",
     "sepolia",
     "base-sepolia",
+    "arbitrum-sepolia",
+    "monad-testnet",
     "polygon-amoy",
     "tempo-testnet",
     "tempo",
@@ -22,17 +25,22 @@ export const EvmChainSchema = z.enum([
     "base",
     "monad",
     "polygon",
+    "arbitrum-one",
     "sepolia",
     "base-sepolia",
+    "arbitrum-sepolia",
+    "monad-testnet",
     "polygon-amoy",
 ]);
 export const SolanaChainSchema = z.enum(["solana", "solana-devnet"]);
 // Mainnet chains only
-export const MainnetChainSchema = z.enum(["ethereum", "base", "monad", "polygon", "tempo", "solana"]);
+export const MainnetChainSchema = z.enum(["ethereum", "base", "monad", "polygon", "arbitrum-one", "tempo", "solana"]);
 // Testnet chains only
 export const TestnetChainSchema = z.enum([
     "sepolia",
     "base-sepolia",
+    "arbitrum-sepolia",
+    "monad-testnet",
     "polygon-amoy",
     "tempo-testnet",
     "solana-devnet",
@@ -358,7 +366,7 @@ export const EvmTransferOptionsSchema = z.object({
     chain: EvmChainSchema,
     to: EthereumAddressSchema,
     amount: z.string(),
-    currency: z.enum(["ETH", "POL", "USDC"]),
+    currency: z.enum(["ETH", "MON", "POL", "USDC"]),
 });
 export const SolanaTransferOptionsSchema = z.object({
     chain: SolanaChainSchema,
@@ -589,8 +597,11 @@ export const CHAIN_IDS = {
     base: 8453,
     monad: 143,
     polygon: 137,
+    "arbitrum-one": 42161,
     sepolia: 11155111,
     "base-sepolia": 84532,
+    "arbitrum-sepolia": 421614,
+    "monad-testnet": 10143,
     "polygon-amoy": 80002,
     "tempo-testnet": 42431,
     tempo: 4217,

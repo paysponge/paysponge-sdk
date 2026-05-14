@@ -6838,6 +6838,7 @@
                     "type": "string",
                     "enum": [
                       "ETH",
+                      "MON",
                       "POL",
                       "USDC"
                     ]
@@ -6871,6 +6872,7 @@
                     "type": "string",
                     "enum": [
                       "ETH",
+                      "MON",
                       "POL",
                       "USDC"
                     ]
@@ -6904,6 +6906,7 @@
                     "type": "string",
                     "enum": [
                       "ETH",
+                      "MON",
                       "POL",
                       "USDC"
                     ]

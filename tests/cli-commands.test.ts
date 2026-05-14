@@ -1,3 +1,6 @@
+import * as fs from "node:fs";
+import * as os from "node:os";
+import * as path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { buildCliProgram } from "../src/cli.js";
 
@@ -189,6 +192,37 @@ describe("CLI command tree", () => {
       "--continue-claim",
       "--switch",
     ]));
+  });
+
+  it("makes switching agents explicit on init", () => {
+    const program = buildCliProgram();
+    const init = program.commands.find((entry) => entry.name() === "init");
+
+    expect(init).toBeDefined();
+    expect(optionFlags(init!)).toEqual(expect.arrayContaining([
+      "--switch",
+    ]));
+  });
+
+  it("refuses to overwrite cached credentials during init without --switch", async () => {
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sponge-cli-"));
+    const credentialsPath = path.join(tempDir, "credentials.json");
+    fs.writeFileSync(credentialsPath, JSON.stringify({
+      apiKey: "sponge_live_existing",
+      agentId: "11111111-1111-4111-8111-111111111111",
+      agentName: "Existing Agent",
+      createdAt: new Date().toISOString(),
+    }));
+
+    const program = buildCliProgram();
+
+    try {
+      await expect(
+        program.parseAsync(["init", "--credentials-path", credentialsPath], { from: "user" })
+      ).rejects.toThrow("Refusing to overwrite existing Sponge credentials");
+    } finally {
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    }
   });
 
   it("allows option-only forms for commands that advertise flag fallbacks", () => {
