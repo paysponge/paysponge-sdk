@@ -4,14 +4,15 @@ import { type ConnectOptions, type Chain, type Balance, type TransferOptions, ty
  *
  * @example
  * ```typescript
- * import { SpongeWallet } from '@spongewallet/sdk';
+ * import { SpongeWallet } from '@paysponge/sdk';
  *
  * // Connect (handles auth automatically)
  * const wallet = await SpongeWallet.connect();
  *
  * // Get wallet addresses
- * console.log(wallet.address('base'));    // 0x...
- * console.log(wallet.address('solana'));  // 5x...
+ * const addresses = await wallet.getAddresses();
+ * console.log(addresses.base);    // 0x...
+ * console.log(addresses.solana);  // 5x...
  *
  * // Check balances
  * const balances = await wallet.getBalances();

@@ -18088,61 +18088,14 @@
         ],
         "operationId": "postApiAgentsByIdShipping-addressesByAddressIdSet-default"
       }
-    },
-    "/mcp/*": {
-      "get": {
-        "operationId": "allMcp*"
-      },
-      "post": {
-        "operationId": "allMcp*"
-      },
-      "put": {
-        "operationId": "allMcp*"
-      },
-      "delete": {
-        "operationId": "allMcp*"
-      },
-      "patch": {
-        "operationId": "allMcp*"
-      },
-      "head": {
-        "operationId": "allMcp*"
-      },
-      "options": {
-        "operationId": "allMcp*"
-      },
-      "trace": {
-        "operationId": "allMcp*"
-      }
-    },
-    "/mcp": {
-      "get": {
-        "operationId": "allMcp"
-      },
-      "post": {
-        "operationId": "allMcp"
-      },
-      "put": {
-        "operationId": "allMcp"
-      },
-      "delete": {
-        "operationId": "allMcp"
-      },
-      "patch": {
-        "operationId": "allMcp"
-      },
-      "head": {
-        "operationId": "allMcp"
-      },
-      "options": {
-        "operationId": "allMcp"
-      },
-      "trace": {
-        "operationId": "allMcp"
-      }
     }
   },
   "components": {
     "schemas": {}
-  }
+  },
+  "servers": [
+    {
+      "url": "https://api.wallet.paysponge.com"
+    }
+  ]
 }

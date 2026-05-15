@@ -11,7 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export const BASE_PATH = "http://localhost".replace(/\/+$/, "");
+export const BASE_PATH = "https://api.wallet.paysponge.com".replace(/\/+$/, "");
 export class Configuration {
     configuration;
     constructor(configuration = {}) {

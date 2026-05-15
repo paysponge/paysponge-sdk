@@ -12,7 +12,7 @@ const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
  * @example
  * ```typescript
  * import { query } from '@anthropic-ai/claude-agent-sdk';
- * import { createMcpConfig } from '@spongewallet/sdk';
+ * import { createMcpConfig } from '@paysponge/sdk';
  *
  * for await (const msg of query({
  *   prompt: 'Check my balance',
