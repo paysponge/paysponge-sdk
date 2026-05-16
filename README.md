@@ -166,7 +166,7 @@ for await (const msg of query({
 - Multi-chain wallet management (EVM + Solana)
 - Token transfers and swaps (Jupiter on Solana)
 - Sponge Card, vaulted-card, and per-transaction virtual-card workflows
-- Bridge-backed bank onboarding, virtual accounts, external accounts, and USD transfers
+- Bank onboarding, virtual accounts, external accounts, and USD transfers
 - MCP server for Claude Agent SDK
 - Anthropic SDK tool definitions
 - Spending limits and allowlists

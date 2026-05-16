@@ -139,7 +139,7 @@ export class SpongePlatform {
     async revokeMasterKey(id) {
         await this.http.delete("/api/master-keys/" + encodeURIComponent(id));
     }
-    async getBridgeCustomer(_forceRefresh = false, agentId) {
+    async getBankCustomer(_forceRefresh = false, agentId) {
         const response = await this.http.get("/api/bank/status", {
             agentId,
         });
@@ -149,7 +149,10 @@ export class SpongePlatform {
         }
         return parsed.customer;
     }
-    async createBridgeKycLink(options = {}) {
+    async getBridgeCustomer(forceRefresh = false, agentId) {
+        return this.getBankCustomer(forceRefresh, agentId);
+    }
+    async createBankKycLink(options = {}) {
         const validated = BridgeCreateKycLinkOptionsSchema.parse(options);
         const response = await this.http.post("/api/bank/onboard", {
             wallet_id: validated.walletId,
@@ -164,13 +167,19 @@ export class SpongePlatform {
             customer: parsed.customer ?? null,
         });
     }
-    async listBridgeExternalAccounts(agentId) {
+    async createBridgeKycLink(options = {}) {
+        return this.createBankKycLink(options);
+    }
+    async listBankExternalAccounts(agentId) {
         const response = await this.http.get("/api/bank/external-accounts", {
             agentId,
         });
         return BankExternalAccountsResponseSchema.parse(response).accounts;
     }
-    async createBridgeExternalAccount(options) {
+    async listBridgeExternalAccounts(agentId) {
+        return this.listBankExternalAccounts(agentId);
+    }
+    async createBankExternalAccount(options) {
         const validated = BridgeCreateExternalAccountOptionsSchema.parse(options);
         const response = await this.http.post("/api/bank/external-accounts", {
             bank_name: validated.bankName,
@@ -187,14 +196,20 @@ export class SpongePlatform {
         });
         return BankExternalAccountResponseSchema.parse(response).account;
     }
-    async getBridgeVirtualAccount(walletId, agentId) {
+    async createBridgeExternalAccount(options) {
+        return this.createBankExternalAccount(options);
+    }
+    async getBankVirtualAccount(walletId, agentId) {
         const response = await this.http.get("/api/bank/virtual-account", {
             wallet_id: walletId,
             agentId,
         });
         return BankVirtualAccountResponseSchema.parse(response).virtual_account ?? null;
     }
-    async createBridgeVirtualAccount(walletId, agentId) {
+    async getBridgeVirtualAccount(walletId, agentId) {
+        return this.getBankVirtualAccount(walletId, agentId);
+    }
+    async createBankVirtualAccount(walletId, agentId) {
         const response = await this.http.post("/api/bank/virtual-account", {
             wallet_id: walletId,
             agentId,
@@ -205,14 +220,20 @@ export class SpongePlatform {
         }
         return account;
     }
-    async listBridgeTransfers(transferId, agentId) {
+    async createBridgeVirtualAccount(walletId, agentId) {
+        return this.createBankVirtualAccount(walletId, agentId);
+    }
+    async listBankTransfers(transferId, agentId) {
         const response = await this.http.get("/api/bank/transfers", {
             transfer_id: transferId,
             agentId,
         });
         return BankTransfersResponseSchema.parse(response).transfers;
     }
-    async createBridgeTransfer(options) {
+    async listBridgeTransfers(transferId, agentId) {
+        return this.listBankTransfers(transferId, agentId);
+    }
+    async createBankTransfer(options) {
         const validated = BridgeCreateTransferOptionsSchema.parse(options);
         const response = await this.http.post("/api/bank/send", {
             wallet_id: validated.walletId,
@@ -222,6 +243,9 @@ export class SpongePlatform {
             agentId: validated.agentId,
         });
         return BankTransferResponseSchema.parse(response).transfer;
+    }
+    async createBridgeTransfer(options) {
+        return this.createBankTransfer(options);
     }
     async connectAgent(options) {
         return SpongeWallet.connect({

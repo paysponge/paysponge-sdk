@@ -1,15 +1,15 @@
 import { describe, expect, it, vi } from "vitest";
 import { SpongePlatform } from "../src/platform.js";
 
-describe("SpongePlatform Bridge fiat", () => {
-  it("returns null when no Bridge customer exists yet", async () => {
+describe("SpongePlatform banking", () => {
+  it("returns null when no bank customer exists yet", async () => {
     const platform = await SpongePlatform.connect({
       apiKey: "sponge_master_123",
     });
 
     (platform as any).http.get = vi.fn().mockResolvedValue({ onboarded: false });
 
-    const customer = await platform.getBridgeCustomer();
+    const customer = await platform.getBankCustomer();
 
     expect(customer).toBeNull();
     expect((platform as any).http.get).toHaveBeenCalledWith("/api/bank/status", {
@@ -21,7 +21,7 @@ describe("SpongePlatform Bridge fiat", () => {
     const post = vi
       .fn()
       .mockResolvedValueOnce({
-        kyc_url: "https://bridge.example/kyc",
+        kyc_url: "https://bank.example/kyc",
         customer: {
           id: "customer_local",
           bridgeCustomerId: "bridge_customer_123",
@@ -35,7 +35,7 @@ describe("SpongePlatform Bridge fiat", () => {
           requestedWalletId: null,
           requestedAt: null,
           livemode: false,
-          hostedLinkUrl: "https://bridge.example/hosted",
+          hostedLinkUrl: "https://bank.example/hosted",
           tosLinkUrl: null,
           customerType: "individual",
           updatedAt: "2026-03-25T00:00:00.000Z",
@@ -64,13 +64,13 @@ describe("SpongePlatform Bridge fiat", () => {
 
     (platform as any).http.post = post;
 
-    const link = await platform.createBridgeKycLink({
+    const link = await platform.createBankKycLink({
       walletId: "wallet_123",
       redirectUri: "https://app.example/callback",
       customerType: "individual",
     });
 
-    const account = await platform.createBridgeExternalAccount({
+    const account = await platform.createBankExternalAccount({
       customerId: "bridge_customer_123",
       bankName: "Chase",
       accountOwnerName: "Jane Smith",
@@ -83,7 +83,7 @@ describe("SpongePlatform Bridge fiat", () => {
       postalCode: "94105",
     });
 
-    expect(link.url).toBe("https://bridge.example/kyc");
+    expect(link.url).toBe("https://bank.example/kyc");
     expect(account.bridgeExternalAccountId).toBe("bank_123");
     expect(post).toHaveBeenNthCalledWith(1, "/api/bank/onboard", {
       wallet_id: "wallet_123",
@@ -191,14 +191,14 @@ describe("SpongePlatform Bridge fiat", () => {
     (platform as any).http.get = get;
     (platform as any).http.post = post;
 
-    const missingAccount = await platform.getBridgeVirtualAccount("wallet_123");
-    const virtualAccount = await platform.createBridgeVirtualAccount("wallet_123");
-    const transfer = await platform.createBridgeTransfer({
+    const missingAccount = await platform.getBankVirtualAccount("wallet_123");
+    const virtualAccount = await platform.createBankVirtualAccount("wallet_123");
+    const transfer = await platform.createBankTransfer({
       walletId: "wallet_123",
       externalAccountId: "external_local",
       amount: "100.00",
     });
-    const transfers = await platform.listBridgeTransfers();
+    const transfers = await platform.listBankTransfers();
 
     expect(missingAccount).toBeNull();
     expect(virtualAccount.bridgeVirtualAccountId).toBe("va_123");

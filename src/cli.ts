@@ -1572,7 +1572,7 @@ function registerCuratedCommands(
     .option("--wallet-id <id>", "wallet ID to associate with onboarding")
     .option("--redirect-uri <url>", "redirect URL after KYC completion")
     .addOption(new Option("--customer-type <type>", "KYC customer type").choices(["individual", "business"]))
-    .option("--signed-agreement-id <id>", "Bridge signed agreement ID from the terms redirect")
+    .option("--signed-agreement-id <id>", "Bank signed agreement ID from the terms redirect")
     .action(async (opts: Record<string, unknown>) => {
       await executeToolCommand(opts, "bank_onboard", {
         wallet_id: opts.walletId,

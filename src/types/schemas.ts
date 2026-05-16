@@ -220,6 +220,7 @@ export const BridgeCustomerEndorsementRequirementSchema = z.object({
 export type BridgeCustomerEndorsementRequirement = z.infer<
   typeof BridgeCustomerEndorsementRequirementSchema
 >;
+export type BankCustomerEndorsementRequirement = BridgeCustomerEndorsementRequirement;
 
 export const BridgeCustomerEndorsementSchema = z.object({
   name: z.string(),
@@ -230,6 +231,7 @@ export const BridgeCustomerEndorsementSchema = z.object({
 export type BridgeCustomerEndorsement = z.infer<
   typeof BridgeCustomerEndorsementSchema
 >;
+export type BankCustomerEndorsement = BridgeCustomerEndorsement;
 
 export const BridgeCustomerSchema = z.object({
   id: z.string(),
@@ -250,12 +252,14 @@ export const BridgeCustomerSchema = z.object({
   updatedAt: z.coerce.date(),
 });
 export type BridgeCustomer = z.infer<typeof BridgeCustomerSchema>;
+export type BankCustomer = BridgeCustomer;
 
 export const BridgeKycLinkResponseSchema = z.object({
   url: z.string(),
   customer: BridgeCustomerSchema.nullable(),
 });
 export type BridgeKycLinkResponse = z.infer<typeof BridgeKycLinkResponseSchema>;
+export type BankKycLinkResponse = BridgeKycLinkResponse;
 
 export const BridgeExternalAccountSchema = z.object({
   id: z.string(),
@@ -272,6 +276,7 @@ export const BridgeExternalAccountSchema = z.object({
   updatedAt: z.coerce.date(),
 });
 export type BridgeExternalAccount = z.infer<typeof BridgeExternalAccountSchema>;
+export type BankExternalAccount = BridgeExternalAccount;
 
 export const BridgeVirtualAccountActivitySchema = z.object({
   id: z.string(),
@@ -287,6 +292,7 @@ export const BridgeVirtualAccountActivitySchema = z.object({
 export type BridgeVirtualAccountActivity = z.infer<
   typeof BridgeVirtualAccountActivitySchema
 >;
+export type BankVirtualAccountActivity = BridgeVirtualAccountActivity;
 
 export const BridgeVirtualAccountSchema = z.object({
   id: z.string(),
@@ -306,6 +312,7 @@ export const BridgeVirtualAccountSchema = z.object({
   updatedAt: z.coerce.date(),
 });
 export type BridgeVirtualAccount = z.infer<typeof BridgeVirtualAccountSchema>;
+export type BankVirtualAccount = BridgeVirtualAccount;
 
 export const BridgeTransferSchema = z.object({
   id: z.string(),
@@ -330,9 +337,11 @@ export const BridgeTransferSchema = z.object({
   updatedAt: z.coerce.date(),
 });
 export type BridgeTransfer = z.infer<typeof BridgeTransferSchema>;
+export type BankTransfer = BridgeTransfer;
 
 export const BridgeCustomerTypeSchema = z.enum(["individual", "business"]);
 export type BridgeCustomerType = z.infer<typeof BridgeCustomerTypeSchema>;
+export type BankCustomerType = BridgeCustomerType;
 
 export const BridgeCreateKycLinkOptionsSchema = z.object({
   walletId: z.string().optional(),
@@ -344,6 +353,7 @@ export const BridgeCreateKycLinkOptionsSchema = z.object({
 export type BridgeCreateKycLinkOptions = z.infer<
   typeof BridgeCreateKycLinkOptionsSchema
 >;
+export type BankCreateKycLinkOptions = BridgeCreateKycLinkOptions;
 
 export const BridgeCreateExternalAccountOptionsSchema = z.object({
   customerId: z.string().optional(),
@@ -363,6 +373,7 @@ export const BridgeCreateExternalAccountOptionsSchema = z.object({
 export type BridgeCreateExternalAccountOptions = z.infer<
   typeof BridgeCreateExternalAccountOptionsSchema
 >;
+export type BankCreateExternalAccountOptions = BridgeCreateExternalAccountOptions;
 
 export const BridgeCreateTransferOptionsSchema = z.object({
   walletId: z.string(),
@@ -374,6 +385,7 @@ export const BridgeCreateTransferOptionsSchema = z.object({
 export type BridgeCreateTransferOptions = z.infer<
   typeof BridgeCreateTransferOptionsSchema
 >;
+export type BankCreateTransferOptions = BridgeCreateTransferOptions;
 
 // ============================================================================
 // Wallet Types

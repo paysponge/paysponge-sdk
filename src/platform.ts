@@ -19,6 +19,14 @@ import {
   PlatformCreateAgentOptionsSchema,
   PlatformFleetSpendingLimitOptionsSchema,
   type Agent,
+  type BankCreateExternalAccountOptions,
+  type BankCreateKycLinkOptions,
+  type BankCreateTransferOptions,
+  type BankCustomer,
+  type BankExternalAccount,
+  type BankKycLinkResponse,
+  type BankTransfer,
+  type BankVirtualAccount,
   type BridgeCreateExternalAccountOptions,
   type BridgeCreateKycLinkOptions,
   type BridgeCreateTransferOptions,
@@ -213,7 +221,7 @@ export class SpongePlatform {
     await this.http.delete("/api/master-keys/" + encodeURIComponent(id));
   }
 
-  async getBridgeCustomer(_forceRefresh = false, agentId?: string): Promise<BridgeCustomer | null> {
+  async getBankCustomer(_forceRefresh = false, agentId?: string): Promise<BankCustomer | null> {
     const response = await this.http.get("/api/bank/status", {
       agentId,
     });
@@ -226,9 +234,13 @@ export class SpongePlatform {
     return parsed.customer;
   }
 
-  async createBridgeKycLink(
-    options: BridgeCreateKycLinkOptions = {}
-  ): Promise<BridgeKycLinkResponse> {
+  async getBridgeCustomer(forceRefresh = false, agentId?: string): Promise<BridgeCustomer | null> {
+    return this.getBankCustomer(forceRefresh, agentId);
+  }
+
+  async createBankKycLink(
+    options: BankCreateKycLinkOptions = {}
+  ): Promise<BankKycLinkResponse> {
     const validated = BridgeCreateKycLinkOptionsSchema.parse(options);
     const response = await this.http.post("/api/bank/onboard", {
       wallet_id: validated.walletId,
@@ -244,16 +256,26 @@ export class SpongePlatform {
     });
   }
 
-  async listBridgeExternalAccounts(agentId?: string): Promise<BridgeExternalAccount[]> {
+  async createBridgeKycLink(
+    options: BridgeCreateKycLinkOptions = {}
+  ): Promise<BridgeKycLinkResponse> {
+    return this.createBankKycLink(options);
+  }
+
+  async listBankExternalAccounts(agentId?: string): Promise<BankExternalAccount[]> {
     const response = await this.http.get("/api/bank/external-accounts", {
       agentId,
     });
     return BankExternalAccountsResponseSchema.parse(response).accounts;
   }
 
-  async createBridgeExternalAccount(
-    options: BridgeCreateExternalAccountOptions
-  ): Promise<BridgeExternalAccount> {
+  async listBridgeExternalAccounts(agentId?: string): Promise<BridgeExternalAccount[]> {
+    return this.listBankExternalAccounts(agentId);
+  }
+
+  async createBankExternalAccount(
+    options: BankCreateExternalAccountOptions
+  ): Promise<BankExternalAccount> {
     const validated = BridgeCreateExternalAccountOptionsSchema.parse(options);
     const response = await this.http.post("/api/bank/external-accounts", {
       bank_name: validated.bankName,
@@ -271,7 +293,13 @@ export class SpongePlatform {
     return BankExternalAccountResponseSchema.parse(response).account;
   }
 
-  async getBridgeVirtualAccount(walletId: string, agentId?: string): Promise<BridgeVirtualAccount | null> {
+  async createBridgeExternalAccount(
+    options: BridgeCreateExternalAccountOptions
+  ): Promise<BridgeExternalAccount> {
+    return this.createBankExternalAccount(options);
+  }
+
+  async getBankVirtualAccount(walletId: string, agentId?: string): Promise<BankVirtualAccount | null> {
     const response = await this.http.get("/api/bank/virtual-account", {
       wallet_id: walletId,
       agentId,
@@ -279,7 +307,11 @@ export class SpongePlatform {
     return BankVirtualAccountResponseSchema.parse(response).virtual_account ?? null;
   }
 
-  async createBridgeVirtualAccount(walletId: string, agentId?: string): Promise<BridgeVirtualAccount> {
+  async getBridgeVirtualAccount(walletId: string, agentId?: string): Promise<BridgeVirtualAccount | null> {
+    return this.getBankVirtualAccount(walletId, agentId);
+  }
+
+  async createBankVirtualAccount(walletId: string, agentId?: string): Promise<BankVirtualAccount> {
     const response = await this.http.post("/api/bank/virtual-account", {
       wallet_id: walletId,
       agentId,
@@ -291,7 +323,11 @@ export class SpongePlatform {
     return account;
   }
 
-  async listBridgeTransfers(transferId?: string, agentId?: string): Promise<BridgeTransfer[]> {
+  async createBridgeVirtualAccount(walletId: string, agentId?: string): Promise<BridgeVirtualAccount> {
+    return this.createBankVirtualAccount(walletId, agentId);
+  }
+
+  async listBankTransfers(transferId?: string, agentId?: string): Promise<BankTransfer[]> {
     const response = await this.http.get("/api/bank/transfers", {
       transfer_id: transferId,
       agentId,
@@ -299,9 +335,13 @@ export class SpongePlatform {
     return BankTransfersResponseSchema.parse(response).transfers;
   }
 
-  async createBridgeTransfer(
-    options: BridgeCreateTransferOptions
-  ): Promise<BridgeTransfer> {
+  async listBridgeTransfers(transferId?: string, agentId?: string): Promise<BridgeTransfer[]> {
+    return this.listBankTransfers(transferId, agentId);
+  }
+
+  async createBankTransfer(
+    options: BankCreateTransferOptions
+  ): Promise<BankTransfer> {
     const validated = BridgeCreateTransferOptionsSchema.parse(options);
     const response = await this.http.post("/api/bank/send", {
       wallet_id: validated.walletId,
@@ -311,6 +351,12 @@ export class SpongePlatform {
       agentId: validated.agentId,
     });
     return BankTransferResponseSchema.parse(response).transfer;
+  }
+
+  async createBridgeTransfer(
+    options: BridgeCreateTransferOptions
+  ): Promise<BridgeTransfer> {
+    return this.createBankTransfer(options);
   }
 
   async connectAgent(options: { apiKey: string; agentId?: string }): Promise<SpongeWallet> {

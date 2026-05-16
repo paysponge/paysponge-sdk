@@ -1022,7 +1022,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   {
     name: "bank_onboard",
     description:
-      "Start or resume banking onboarding. Returns a KYC verification link until internal KYC is approved, then a Bridge terms URL unless the customer is already active.",
+      "Start or resume banking onboarding. Returns a KYC verification link until internal KYC is approved, then a bank terms URL unless the customer is already active.",
     input_schema: {
       type: "object",
       properties: {
@@ -1041,7 +1041,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
         },
         signed_agreement_id: {
           type: "string",
-          description: "Bridge signed agreement ID from the terms redirect, used to finish KYC-backed customer creation.",
+          description: "Bank signed agreement ID from the terms redirect, used to finish KYC-backed customer creation.",
         },
       },
       required: [],
@@ -1059,7 +1059,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   {
     name: "bank_status",
     description:
-      "Check Bridge banking onboarding, KYC, terms, and capability status.",
+      "Check banking onboarding, KYC, terms, and capability status.",
     input_schema: {
       type: "object",
       properties: {},
@@ -1200,7 +1200,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   {
     name: "bank_send",
     description:
-      "Send USD from a crypto wallet to a linked external bank account by funding a Bridge payout with USDC.",
+      "Send USD from a crypto wallet to a linked external bank account by funding a bank payout with USDC.",
     input_schema: {
       type: "object",
       properties: {

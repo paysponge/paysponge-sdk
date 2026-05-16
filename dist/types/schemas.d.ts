@@ -348,6 +348,7 @@ export declare const BridgeCustomerEndorsementRequirementSchema: z.ZodObject<{
     missing?: unknown;
 }>;
 export type BridgeCustomerEndorsementRequirement = z.infer<typeof BridgeCustomerEndorsementRequirementSchema>;
+export type BankCustomerEndorsementRequirement = BridgeCustomerEndorsementRequirement;
 export declare const BridgeCustomerEndorsementSchema: z.ZodObject<{
     name: z.ZodString;
     status: z.ZodString;
@@ -390,6 +391,7 @@ export declare const BridgeCustomerEndorsementSchema: z.ZodObject<{
     additionalRequirements: string[];
 }>;
 export type BridgeCustomerEndorsement = z.infer<typeof BridgeCustomerEndorsementSchema>;
+export type BankCustomerEndorsement = BridgeCustomerEndorsement;
 export declare const BridgeCustomerSchema: z.ZodObject<{
     id: z.ZodString;
     bridgeCustomerId: z.ZodString;
@@ -503,6 +505,7 @@ export declare const BridgeCustomerSchema: z.ZodObject<{
     customerType: string | null;
 }>;
 export type BridgeCustomer = z.infer<typeof BridgeCustomerSchema>;
+export type BankCustomer = BridgeCustomer;
 export declare const BridgeKycLinkResponseSchema: z.ZodObject<{
     url: z.ZodString;
     customer: z.ZodNullable<z.ZodObject<{
@@ -679,6 +682,7 @@ export declare const BridgeKycLinkResponseSchema: z.ZodObject<{
     } | null;
 }>;
 export type BridgeKycLinkResponse = z.infer<typeof BridgeKycLinkResponseSchema>;
+export type BankKycLinkResponse = BridgeKycLinkResponse;
 export declare const BridgeExternalAccountSchema: z.ZodObject<{
     id: z.ZodString;
     bridgeExternalAccountId: z.ZodString;
@@ -720,6 +724,7 @@ export declare const BridgeExternalAccountSchema: z.ZodObject<{
     accountOwnerType: string | null;
 }>;
 export type BridgeExternalAccount = z.infer<typeof BridgeExternalAccountSchema>;
+export type BankExternalAccount = BridgeExternalAccount;
 export declare const BridgeVirtualAccountActivitySchema: z.ZodObject<{
     id: z.ZodString;
     bridgeEventId: z.ZodString;
@@ -752,6 +757,7 @@ export declare const BridgeVirtualAccountActivitySchema: z.ZodObject<{
     eventCreatedAt: Date | null;
 }>;
 export type BridgeVirtualAccountActivity = z.infer<typeof BridgeVirtualAccountActivitySchema>;
+export type BankVirtualAccountActivity = BridgeVirtualAccountActivity;
 export declare const BridgeVirtualAccountSchema: z.ZodObject<{
     id: z.ZodString;
     bridgeVirtualAccountId: z.ZodString;
@@ -852,6 +858,7 @@ export declare const BridgeVirtualAccountSchema: z.ZodObject<{
     accountReadyNotifiedAt: Date | null;
 }>;
 export type BridgeVirtualAccount = z.infer<typeof BridgeVirtualAccountSchema>;
+export type BankVirtualAccount = BridgeVirtualAccount;
 export declare const BridgeTransferSchema: z.ZodObject<{
     id: z.ZodString;
     bridgeTransferId: z.ZodString;
@@ -917,8 +924,10 @@ export declare const BridgeTransferSchema: z.ZodObject<{
     isStaticTemplate: boolean;
 }>;
 export type BridgeTransfer = z.infer<typeof BridgeTransferSchema>;
+export type BankTransfer = BridgeTransfer;
 export declare const BridgeCustomerTypeSchema: z.ZodEnum<["individual", "business"]>;
 export type BridgeCustomerType = z.infer<typeof BridgeCustomerTypeSchema>;
+export type BankCustomerType = BridgeCustomerType;
 export declare const BridgeCreateKycLinkOptionsSchema: z.ZodObject<{
     walletId: z.ZodOptional<z.ZodString>;
     redirectUri: z.ZodOptional<z.ZodString>;
@@ -939,6 +948,7 @@ export declare const BridgeCreateKycLinkOptionsSchema: z.ZodObject<{
     signedAgreementId?: string | undefined;
 }>;
 export type BridgeCreateKycLinkOptions = z.infer<typeof BridgeCreateKycLinkOptionsSchema>;
+export type BankCreateKycLinkOptions = BridgeCreateKycLinkOptions;
 export declare const BridgeCreateExternalAccountOptionsSchema: z.ZodObject<{
     customerId: z.ZodOptional<z.ZodString>;
     bankName: z.ZodString;
@@ -983,6 +993,7 @@ export declare const BridgeCreateExternalAccountOptionsSchema: z.ZodObject<{
     country?: string | undefined;
 }>;
 export type BridgeCreateExternalAccountOptions = z.infer<typeof BridgeCreateExternalAccountOptionsSchema>;
+export type BankCreateExternalAccountOptions = BridgeCreateExternalAccountOptions;
 export declare const BridgeCreateTransferOptionsSchema: z.ZodObject<{
     walletId: z.ZodString;
     externalAccountId: z.ZodString;
@@ -1003,6 +1014,7 @@ export declare const BridgeCreateTransferOptionsSchema: z.ZodObject<{
     destinationPaymentRail?: "ach" | "wire" | undefined;
 }>;
 export type BridgeCreateTransferOptions = z.infer<typeof BridgeCreateTransferOptionsSchema>;
+export type BankCreateTransferOptions = BridgeCreateTransferOptions;
 export declare const WalletSchema: z.ZodObject<{
     id: z.ZodString;
     agentId: z.ZodString;
