@@ -70,6 +70,152 @@ export interface PolymarketOptions {
     amount?: string;
     condition_id?: string;
 }
+export interface StoreCreditCardOptions {
+    card_number: string;
+    expiry_month?: string;
+    expiry_year?: string;
+    expiration?: string;
+    cvc: string;
+    cardholder_name: string;
+    email: string;
+    billing_address: {
+        line1: string;
+        line2?: string;
+        city: string;
+        state: string;
+        postal_code: string;
+        country: string;
+    };
+    shipping_address: {
+        line1: string;
+        line2?: string;
+        city: string;
+        state: string;
+        postal_code: string;
+        country: string;
+        phone: string;
+    };
+    label?: string;
+    metadata?: Record<string, unknown>;
+}
+export interface GetCardOptions {
+    card_type?: "rain" | "basis_theory_vaulted";
+    payment_method_id?: string;
+    amount?: string;
+    currency?: string;
+    merchant_name?: string;
+    merchant_url?: string;
+}
+export interface IssueVirtualCardOptions {
+    amount: string;
+    currency?: string;
+    merchant_name: string;
+    merchant_url: string;
+    merchant_country_code?: string;
+    description?: string;
+    products?: Array<{
+        name: string;
+        price: number;
+        quantity: number;
+    }>;
+    shipping_address?: {
+        line1: string;
+        city: string;
+        state: string;
+        postal_code: string;
+        country_code: string;
+    };
+    enrollment_id?: string;
+}
+export interface ReportCardUsageOptions {
+    payment_method_id: string;
+    merchant_name?: string;
+    merchant_domain?: string;
+    amount?: string;
+    currency?: string;
+    status: "success" | "failed" | "cancelled";
+    failure_reason?: string;
+}
+export interface LinkPaymentAddress {
+    name: string;
+    line1: string;
+    line2?: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country: string;
+}
+export interface AddLinkPaymentMethodOptions {
+    link_payment_method_id?: string;
+    linkPaymentMethodId?: string;
+    set_as_default?: boolean;
+    setAsDefault?: boolean;
+    client_name?: string;
+    clientName?: string;
+    email?: string;
+    phone?: string;
+    billing?: LinkPaymentAddress;
+    shipping?: LinkPaymentAddress;
+}
+export interface CreateLinkPaymentCredentialOptions {
+    link_payment_method_id?: string;
+    linkPaymentMethodId?: string;
+    spend_request_id?: string;
+    spendRequestId?: string;
+    amount?: string;
+    currency?: string;
+    merchant_name?: string;
+    merchantName?: string;
+    merchant_url?: string;
+    merchantUrl?: string;
+    context?: string;
+}
+export interface SpongeCardStatusOptions {
+    refresh?: boolean;
+    agentId?: string;
+}
+export interface SpongeCardOnboardOptions {
+    occupation?: string;
+    redirect_uri?: string;
+    e_sign_consent?: boolean;
+    account_opening_privacy_notice?: boolean;
+    sponge_card_terms?: boolean;
+    information_certification?: boolean;
+    unauthorized_solicitation_acknowledgement?: boolean;
+    agentId?: string;
+}
+export interface SpongeCardTermsOptions {
+    e_sign_consent: boolean;
+    account_opening_privacy_notice?: boolean;
+    sponge_card_terms: boolean;
+    information_certification: boolean;
+    unauthorized_solicitation_acknowledgement: boolean;
+    agentId?: string;
+}
+export interface SpongeCardAddress {
+    line1: string;
+    line2?: string;
+    city: string;
+    region: string;
+    postal_code: string;
+    country_code: string;
+}
+export interface SpongeCardShippingAddress extends SpongeCardAddress {
+    first_name?: string;
+    last_name?: string;
+}
+export interface CreateSpongeCardOptions {
+    billing: SpongeCardAddress;
+    email: string;
+    phone: string;
+    shipping?: SpongeCardShippingAddress;
+    agentId?: string;
+}
+export interface SpongeCardAmountOptions {
+    amount: string;
+    chain?: string;
+    agentId?: string;
+}
 export declare class PublicToolsApi {
     private readonly http;
     constructor(http: HttpClient);
@@ -89,5 +235,23 @@ export declare class PublicToolsApi {
     discoverServices(options?: DiscoverServicesOptions): Promise<unknown>;
     getService(serviceId: string): Promise<unknown>;
     polymarket(options: PolymarketOptions): Promise<unknown>;
+    storeCreditCard(options: StoreCreditCardOptions): Promise<unknown>;
+    getStoredCreditCard(options?: {
+        agentId?: string;
+    }): Promise<unknown>;
+    addLinkPaymentMethod(agentId: string, options?: AddLinkPaymentMethodOptions): Promise<unknown>;
+    createLinkPaymentCredential(agentId: string, options?: CreateLinkPaymentCredentialOptions): Promise<unknown>;
+    getCard(options?: GetCardOptions): Promise<unknown>;
+    issueVirtualCard(options: IssueVirtualCardOptions): Promise<unknown>;
+    reportCardUsage(options: ReportCardUsageOptions): Promise<unknown>;
+    getSpongeCardStatus(options?: SpongeCardStatusOptions): Promise<unknown>;
+    onboardSpongeCard(options?: SpongeCardOnboardOptions): Promise<unknown>;
+    acceptSpongeCardTerms(options: SpongeCardTermsOptions): Promise<unknown>;
+    createSpongeCard(options: CreateSpongeCardOptions): Promise<unknown>;
+    getSpongeCardDetails(options?: {
+        agentId?: string;
+    }): Promise<unknown>;
+    fundSpongeCard(options: SpongeCardAmountOptions): Promise<unknown>;
+    withdrawSpongeCard(options: SpongeCardAmountOptions): Promise<unknown>;
 }
 //# sourceMappingURL=public-tools.d.ts.map

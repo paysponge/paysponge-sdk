@@ -23,7 +23,20 @@ import { HttpClient } from "./api/http.js";
 import { AgentsApi } from "./api/agents.js";
 import { WalletsApi } from "./api/wallets.js";
 import { TransactionsApi } from "./api/transactions.js";
-import { PublicToolsApi } from "./api/public-tools.js";
+import {
+  PublicToolsApi,
+  type AddLinkPaymentMethodOptions,
+  type CreateLinkPaymentCredentialOptions,
+  type CreateSpongeCardOptions,
+  type GetCardOptions,
+  type IssueVirtualCardOptions,
+  type ReportCardUsageOptions,
+  type SpongeCardAmountOptions,
+  type SpongeCardOnboardOptions,
+  type SpongeCardStatusOptions,
+  type SpongeCardTermsOptions,
+  type StoreCreditCardOptions,
+} from "./api/public-tools.js";
 
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 
@@ -518,6 +531,118 @@ export class SpongeWallet {
     condition_id?: string;
   }) {
     return this.publicTools.polymarket(options);
+  }
+
+  /**
+   * Store a user's card details in encrypted card storage for checkout.
+   */
+  async storeCreditCard(options: StoreCreditCardOptions): Promise<unknown> {
+    return this.publicTools.storeCreditCard(options);
+  }
+
+  /**
+   * Retrieve the saved personal card payload from encrypted card storage.
+   */
+  async getStoredCreditCard(): Promise<unknown> {
+    return this.publicTools.getStoredCreditCard();
+  }
+
+  /**
+   * Connect Link and save a Link payment method for checkout.
+   */
+  async addLinkPaymentMethod(options: AddLinkPaymentMethodOptions = {}): Promise<unknown> {
+    return this.publicTools.addLinkPaymentMethod(this.agentId, options);
+  }
+
+  /**
+   * Generate a one-time card credential from a saved Link payment method.
+   */
+  async createLinkPaymentCredential(
+    options: CreateLinkPaymentCredentialOptions = {},
+  ): Promise<unknown> {
+    return this.publicTools.createLinkPaymentCredential(this.agentId, options);
+  }
+
+  /**
+   * Fetch a usable checkout card from Sponge Card or a vaulted card source.
+   */
+  async getCard(options: GetCardOptions = {}): Promise<unknown> {
+    return this.publicTools.getCard(options);
+  }
+
+  /**
+   * Issue a per-transaction virtual card for a merchant and amount.
+   */
+  async issueVirtualCard(options: IssueVirtualCardOptions): Promise<unknown> {
+    return this.publicTools.issueVirtualCard(options);
+  }
+
+  /**
+   * Report the outcome of a purchase attempt that used a stored or vaulted card.
+   */
+  async reportCardUsage(options: ReportCardUsageOptions): Promise<unknown> {
+    return this.publicTools.reportCardUsage(options);
+  }
+
+  /**
+   * Get Sponge Card onboarding, consent, card, and balance status.
+   */
+  async getSpongeCardStatus(
+    options: Omit<SpongeCardStatusOptions, "agentId"> = {},
+  ): Promise<unknown> {
+    return this.publicTools.getSpongeCardStatus(options);
+  }
+
+  /**
+   * Start or continue Sponge Card onboarding.
+   */
+  async onboardSpongeCard(
+    options: Omit<SpongeCardOnboardOptions, "agentId"> = {},
+  ): Promise<unknown> {
+    return this.publicTools.onboardSpongeCard(options);
+  }
+
+  /**
+   * Accept Sponge Card consent acknowledgements for an existing application.
+   */
+  async acceptSpongeCardTerms(
+    options: Omit<SpongeCardTermsOptions, "agentId">,
+  ): Promise<unknown> {
+    return this.publicTools.acceptSpongeCardTerms(options);
+  }
+
+  /**
+   * Create the virtual Sponge Card after onboarding is approved.
+   */
+  async createSpongeCard(
+    options: Omit<CreateSpongeCardOptions, "agentId">,
+  ): Promise<unknown> {
+    return this.publicTools.createSpongeCard(options);
+  }
+
+  /**
+   * Fetch encrypted Sponge Card PAN/CVC data and a one-time secret key.
+   */
+  async getSpongeCardDetails(): Promise<unknown> {
+    return this.publicTools.getSpongeCardDetails();
+  }
+
+  /**
+   * Top up Sponge Card collateral with USDC from the wallet.
+   */
+  async fundSpongeCard(
+    options: Omit<SpongeCardAmountOptions, "agentId">,
+  ): Promise<unknown> {
+    return this.publicTools.fundSpongeCard(options);
+  }
+
+  /**
+   * Withdraw Sponge Card collateral back to the wallet.
+   */
+  async withdrawSpongeCard(
+    options: Omit<SpongeCardAmountOptions, "agentId">,
+  ): Promise<unknown> {
+    return this.publicTools.withdrawSpongeCard(options);
   }
 
   /**

@@ -5,7 +5,7 @@ import { HttpClient } from "./api/http.js";
 import { AgentsApi } from "./api/agents.js";
 import { WalletsApi } from "./api/wallets.js";
 import { TransactionsApi } from "./api/transactions.js";
-import { PublicToolsApi } from "./api/public-tools.js";
+import { PublicToolsApi, } from "./api/public-tools.js";
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 /**
  * SpongeWallet - The main SDK client for managing agent wallets
@@ -347,6 +347,90 @@ export class SpongeWallet {
      */
     async polymarket(options) {
         return this.publicTools.polymarket(options);
+    }
+    /**
+     * Store a user's card details in encrypted card storage for checkout.
+     */
+    async storeCreditCard(options) {
+        return this.publicTools.storeCreditCard(options);
+    }
+    /**
+     * Retrieve the saved personal card payload from encrypted card storage.
+     */
+    async getStoredCreditCard() {
+        return this.publicTools.getStoredCreditCard();
+    }
+    /**
+     * Connect Link and save a Link payment method for checkout.
+     */
+    async addLinkPaymentMethod(options = {}) {
+        return this.publicTools.addLinkPaymentMethod(this.agentId, options);
+    }
+    /**
+     * Generate a one-time card credential from a saved Link payment method.
+     */
+    async createLinkPaymentCredential(options = {}) {
+        return this.publicTools.createLinkPaymentCredential(this.agentId, options);
+    }
+    /**
+     * Fetch a usable checkout card from Sponge Card or a vaulted card source.
+     */
+    async getCard(options = {}) {
+        return this.publicTools.getCard(options);
+    }
+    /**
+     * Issue a per-transaction virtual card for a merchant and amount.
+     */
+    async issueVirtualCard(options) {
+        return this.publicTools.issueVirtualCard(options);
+    }
+    /**
+     * Report the outcome of a purchase attempt that used a stored or vaulted card.
+     */
+    async reportCardUsage(options) {
+        return this.publicTools.reportCardUsage(options);
+    }
+    /**
+     * Get Sponge Card onboarding, consent, card, and balance status.
+     */
+    async getSpongeCardStatus(options = {}) {
+        return this.publicTools.getSpongeCardStatus(options);
+    }
+    /**
+     * Start or continue Sponge Card onboarding.
+     */
+    async onboardSpongeCard(options = {}) {
+        return this.publicTools.onboardSpongeCard(options);
+    }
+    /**
+     * Accept Sponge Card consent acknowledgements for an existing application.
+     */
+    async acceptSpongeCardTerms(options) {
+        return this.publicTools.acceptSpongeCardTerms(options);
+    }
+    /**
+     * Create the virtual Sponge Card after onboarding is approved.
+     */
+    async createSpongeCard(options) {
+        return this.publicTools.createSpongeCard(options);
+    }
+    /**
+     * Fetch encrypted Sponge Card PAN/CVC data and a one-time secret key.
+     */
+    async getSpongeCardDetails() {
+        return this.publicTools.getSpongeCardDetails();
+    }
+    /**
+     * Top up Sponge Card collateral with USDC from the wallet.
+     */
+    async fundSpongeCard(options) {
+        return this.publicTools.fundSpongeCard(options);
+    }
+    /**
+     * Withdraw Sponge Card collateral back to the wallet.
+     */
+    async withdrawSpongeCard(options) {
+        return this.publicTools.withdrawSpongeCard(options);
     }
     /**
      * Trade perps and spot on Hyperliquid DEX

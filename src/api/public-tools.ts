@@ -127,6 +127,166 @@ export interface PolymarketOptions {
   condition_id?: string;
 }
 
+export interface StoreCreditCardOptions {
+  card_number: string;
+  expiry_month?: string;
+  expiry_year?: string;
+  expiration?: string;
+  cvc: string;
+  cardholder_name: string;
+  email: string;
+  billing_address: {
+    line1: string;
+    line2?: string;
+    city: string;
+    state: string;
+    postal_code: string;
+    country: string;
+  };
+  shipping_address: {
+    line1: string;
+    line2?: string;
+    city: string;
+    state: string;
+    postal_code: string;
+    country: string;
+    phone: string;
+  };
+  label?: string;
+  metadata?: Record<string, unknown>;
+}
+
+export interface GetCardOptions {
+  card_type?: "rain" | "basis_theory_vaulted";
+  payment_method_id?: string;
+  amount?: string;
+  currency?: string;
+  merchant_name?: string;
+  merchant_url?: string;
+}
+
+export interface IssueVirtualCardOptions {
+  amount: string;
+  currency?: string;
+  merchant_name: string;
+  merchant_url: string;
+  merchant_country_code?: string;
+  description?: string;
+  products?: Array<{
+    name: string;
+    price: number;
+    quantity: number;
+  }>;
+  shipping_address?: {
+    line1: string;
+    city: string;
+    state: string;
+    postal_code: string;
+    country_code: string;
+  };
+  enrollment_id?: string;
+}
+
+export interface ReportCardUsageOptions {
+  payment_method_id: string;
+  merchant_name?: string;
+  merchant_domain?: string;
+  amount?: string;
+  currency?: string;
+  status: "success" | "failed" | "cancelled";
+  failure_reason?: string;
+}
+
+export interface LinkPaymentAddress {
+  name: string;
+  line1: string;
+  line2?: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+}
+
+export interface AddLinkPaymentMethodOptions {
+  link_payment_method_id?: string;
+  linkPaymentMethodId?: string;
+  set_as_default?: boolean;
+  setAsDefault?: boolean;
+  client_name?: string;
+  clientName?: string;
+  email?: string;
+  phone?: string;
+  billing?: LinkPaymentAddress;
+  shipping?: LinkPaymentAddress;
+}
+
+export interface CreateLinkPaymentCredentialOptions {
+  link_payment_method_id?: string;
+  linkPaymentMethodId?: string;
+  spend_request_id?: string;
+  spendRequestId?: string;
+  amount?: string;
+  currency?: string;
+  merchant_name?: string;
+  merchantName?: string;
+  merchant_url?: string;
+  merchantUrl?: string;
+  context?: string;
+}
+
+export interface SpongeCardStatusOptions {
+  refresh?: boolean;
+  agentId?: string;
+}
+
+export interface SpongeCardOnboardOptions {
+  occupation?: string;
+  redirect_uri?: string;
+  e_sign_consent?: boolean;
+  account_opening_privacy_notice?: boolean;
+  sponge_card_terms?: boolean;
+  information_certification?: boolean;
+  unauthorized_solicitation_acknowledgement?: boolean;
+  agentId?: string;
+}
+
+export interface SpongeCardTermsOptions {
+  e_sign_consent: boolean;
+  account_opening_privacy_notice?: boolean;
+  sponge_card_terms: boolean;
+  information_certification: boolean;
+  unauthorized_solicitation_acknowledgement: boolean;
+  agentId?: string;
+}
+
+export interface SpongeCardAddress {
+  line1: string;
+  line2?: string;
+  city: string;
+  region: string;
+  postal_code: string;
+  country_code: string;
+}
+
+export interface SpongeCardShippingAddress extends SpongeCardAddress {
+  first_name?: string;
+  last_name?: string;
+}
+
+export interface CreateSpongeCardOptions {
+  billing: SpongeCardAddress;
+  email: string;
+  phone: string;
+  shipping?: SpongeCardShippingAddress;
+  agentId?: string;
+}
+
+export interface SpongeCardAmountOptions {
+  amount: string;
+  chain?: string;
+  agentId?: string;
+}
+
 export class PublicToolsApi {
   constructor(private readonly http: HttpClient) {}
 
@@ -287,5 +447,96 @@ export class PublicToolsApi {
 
   async polymarket(options: PolymarketOptions): Promise<unknown> {
     return this.http.post<unknown>("/api/polymarket", options);
+  }
+
+  async storeCreditCard(options: StoreCreditCardOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/credit-cards", options);
+  }
+
+  async getStoredCreditCard(options: { agentId?: string } = {}): Promise<unknown> {
+    return this.http.get<unknown>("/api/credit-cards", {
+      agentId: options.agentId,
+    });
+  }
+
+  async addLinkPaymentMethod(
+    agentId: string,
+    options: AddLinkPaymentMethodOptions = {},
+  ): Promise<unknown> {
+    return this.http.post<unknown>(
+      `/api/agents/${encodeURIComponent(agentId)}/link-payment-methods/link`,
+      {
+        linkPaymentMethodId: options.linkPaymentMethodId ?? options.link_payment_method_id,
+        setAsDefault: options.setAsDefault ?? options.set_as_default,
+        clientName: options.clientName ?? options.client_name,
+        email: options.email,
+        phone: options.phone,
+        billing: options.billing,
+        shipping: options.shipping,
+      },
+    );
+  }
+
+  async createLinkPaymentCredential(
+    agentId: string,
+    options: CreateLinkPaymentCredentialOptions = {},
+  ): Promise<unknown> {
+    return this.http.post<unknown>(
+      `/api/agents/${encodeURIComponent(agentId)}/link-payment-methods/credential`,
+      {
+        linkPaymentMethodId: options.linkPaymentMethodId ?? options.link_payment_method_id,
+        spendRequestId: options.spendRequestId ?? options.spend_request_id,
+        amount: options.amount,
+        currency: options.currency,
+        merchantName: options.merchantName ?? options.merchant_name,
+        merchantUrl: options.merchantUrl ?? options.merchant_url,
+        context: options.context,
+      },
+    );
+  }
+
+  async getCard(options: GetCardOptions = {}): Promise<unknown> {
+    return this.http.post<unknown>("/api/cards", options);
+  }
+
+  async issueVirtualCard(options: IssueVirtualCardOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/virtual-cards", options);
+  }
+
+  async reportCardUsage(options: ReportCardUsageOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/card-usage", options);
+  }
+
+  async getSpongeCardStatus(options: SpongeCardStatusOptions = {}): Promise<unknown> {
+    return this.http.get<unknown>("/api/sponge-card/status", {
+      agentId: options.agentId,
+      refresh: options.refresh === undefined ? undefined : String(Boolean(options.refresh)),
+    });
+  }
+
+  async onboardSpongeCard(options: SpongeCardOnboardOptions = {}): Promise<unknown> {
+    return this.http.post<unknown>("/api/sponge-card/onboard", options);
+  }
+
+  async acceptSpongeCardTerms(options: SpongeCardTermsOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/sponge-card/terms", options);
+  }
+
+  async createSpongeCard(options: CreateSpongeCardOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/sponge-card/create-card", options);
+  }
+
+  async getSpongeCardDetails(options: { agentId?: string } = {}): Promise<unknown> {
+    return this.http.get<unknown>("/api/sponge-card/details", {
+      agentId: options.agentId,
+    });
+  }
+
+  async fundSpongeCard(options: SpongeCardAmountOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/sponge-card/fund", options);
+  }
+
+  async withdrawSpongeCard(options: SpongeCardAmountOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/sponge-card/withdraw", options);
   }
 }

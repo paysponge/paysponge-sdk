@@ -1,4 +1,5 @@
 import { type ConnectOptions, type Chain, type Balance, type TransferOptions, type SwapOptions, type TempoSwapOptions, type TransactionResult, type TransactionStatus, type Agent, type CreateAgentOptions, type McpConfig } from "./types/schemas.js";
+import { type AddLinkPaymentMethodOptions, type CreateLinkPaymentCredentialOptions, type CreateSpongeCardOptions, type GetCardOptions, type IssueVirtualCardOptions, type ReportCardUsageOptions, type SpongeCardAmountOptions, type SpongeCardOnboardOptions, type SpongeCardStatusOptions, type SpongeCardTermsOptions, type StoreCreditCardOptions } from "./api/public-tools.js";
 /**
  * SpongeWallet - The main SDK client for managing agent wallets
  *
@@ -398,6 +399,62 @@ export declare class SpongeWallet {
         amount?: string;
         condition_id?: string;
     }): Promise<unknown>;
+    /**
+     * Store a user's card details in encrypted card storage for checkout.
+     */
+    storeCreditCard(options: StoreCreditCardOptions): Promise<unknown>;
+    /**
+     * Retrieve the saved personal card payload from encrypted card storage.
+     */
+    getStoredCreditCard(): Promise<unknown>;
+    /**
+     * Connect Link and save a Link payment method for checkout.
+     */
+    addLinkPaymentMethod(options?: AddLinkPaymentMethodOptions): Promise<unknown>;
+    /**
+     * Generate a one-time card credential from a saved Link payment method.
+     */
+    createLinkPaymentCredential(options?: CreateLinkPaymentCredentialOptions): Promise<unknown>;
+    /**
+     * Fetch a usable checkout card from Sponge Card or a vaulted card source.
+     */
+    getCard(options?: GetCardOptions): Promise<unknown>;
+    /**
+     * Issue a per-transaction virtual card for a merchant and amount.
+     */
+    issueVirtualCard(options: IssueVirtualCardOptions): Promise<unknown>;
+    /**
+     * Report the outcome of a purchase attempt that used a stored or vaulted card.
+     */
+    reportCardUsage(options: ReportCardUsageOptions): Promise<unknown>;
+    /**
+     * Get Sponge Card onboarding, consent, card, and balance status.
+     */
+    getSpongeCardStatus(options?: Omit<SpongeCardStatusOptions, "agentId">): Promise<unknown>;
+    /**
+     * Start or continue Sponge Card onboarding.
+     */
+    onboardSpongeCard(options?: Omit<SpongeCardOnboardOptions, "agentId">): Promise<unknown>;
+    /**
+     * Accept Sponge Card consent acknowledgements for an existing application.
+     */
+    acceptSpongeCardTerms(options: Omit<SpongeCardTermsOptions, "agentId">): Promise<unknown>;
+    /**
+     * Create the virtual Sponge Card after onboarding is approved.
+     */
+    createSpongeCard(options: Omit<CreateSpongeCardOptions, "agentId">): Promise<unknown>;
+    /**
+     * Fetch encrypted Sponge Card PAN/CVC data and a one-time secret key.
+     */
+    getSpongeCardDetails(): Promise<unknown>;
+    /**
+     * Top up Sponge Card collateral with USDC from the wallet.
+     */
+    fundSpongeCard(options: Omit<SpongeCardAmountOptions, "agentId">): Promise<unknown>;
+    /**
+     * Withdraw Sponge Card collateral back to the wallet.
+     */
+    withdrawSpongeCard(options: Omit<SpongeCardAmountOptions, "agentId">): Promise<unknown>;
     /**
      * Trade perps and spot on Hyperliquid DEX
      *

@@ -122,5 +122,70 @@ export class PublicToolsApi {
     async polymarket(options) {
         return this.http.post("/api/polymarket", options);
     }
+    async storeCreditCard(options) {
+        return this.http.post("/api/credit-cards", options);
+    }
+    async getStoredCreditCard(options = {}) {
+        return this.http.get("/api/credit-cards", {
+            agentId: options.agentId,
+        });
+    }
+    async addLinkPaymentMethod(agentId, options = {}) {
+        return this.http.post(`/api/agents/${encodeURIComponent(agentId)}/link-payment-methods/link`, {
+            linkPaymentMethodId: options.linkPaymentMethodId ?? options.link_payment_method_id,
+            setAsDefault: options.setAsDefault ?? options.set_as_default,
+            clientName: options.clientName ?? options.client_name,
+            email: options.email,
+            phone: options.phone,
+            billing: options.billing,
+            shipping: options.shipping,
+        });
+    }
+    async createLinkPaymentCredential(agentId, options = {}) {
+        return this.http.post(`/api/agents/${encodeURIComponent(agentId)}/link-payment-methods/credential`, {
+            linkPaymentMethodId: options.linkPaymentMethodId ?? options.link_payment_method_id,
+            spendRequestId: options.spendRequestId ?? options.spend_request_id,
+            amount: options.amount,
+            currency: options.currency,
+            merchantName: options.merchantName ?? options.merchant_name,
+            merchantUrl: options.merchantUrl ?? options.merchant_url,
+            context: options.context,
+        });
+    }
+    async getCard(options = {}) {
+        return this.http.post("/api/cards", options);
+    }
+    async issueVirtualCard(options) {
+        return this.http.post("/api/virtual-cards", options);
+    }
+    async reportCardUsage(options) {
+        return this.http.post("/api/card-usage", options);
+    }
+    async getSpongeCardStatus(options = {}) {
+        return this.http.get("/api/sponge-card/status", {
+            agentId: options.agentId,
+            refresh: options.refresh === undefined ? undefined : String(Boolean(options.refresh)),
+        });
+    }
+    async onboardSpongeCard(options = {}) {
+        return this.http.post("/api/sponge-card/onboard", options);
+    }
+    async acceptSpongeCardTerms(options) {
+        return this.http.post("/api/sponge-card/terms", options);
+    }
+    async createSpongeCard(options) {
+        return this.http.post("/api/sponge-card/create-card", options);
+    }
+    async getSpongeCardDetails(options = {}) {
+        return this.http.get("/api/sponge-card/details", {
+            agentId: options.agentId,
+        });
+    }
+    async fundSpongeCard(options) {
+        return this.http.post("/api/sponge-card/fund", options);
+    }
+    async withdrawSpongeCard(options) {
+        return this.http.post("/api/sponge-card/withdraw", options);
+    }
 }
 //# sourceMappingURL=public-tools.js.map
