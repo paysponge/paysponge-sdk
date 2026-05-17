@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { WalletSchema, ChainSchema, CHAIN_IDS, } from "../types/schemas.js";
+import { WalletSchema, ChainSchema, CHAIN_IDS, TestnetChainSchema, } from "../types/schemas.js";
 import { createGeneratedApiClient } from "./generated/openapi-adapter.js";
 // Balance response from API
 const BalanceResponseSchema = z.object({
@@ -77,7 +77,7 @@ export class WalletsApi {
     /**
      * Get balances for all wallets of an agent
      */
-    async getAllBalances(agentId) {
+    async getAllBalances(agentId, options) {
         const wallets = await this.list(agentId, { includeBalances: true });
         const balances = {};
         for (const wallet of wallets) {
@@ -88,6 +88,8 @@ export class WalletsApi {
             const chainName = chainEntry[0];
             const chainResult = ChainSchema.safeParse(chainName);
             if (!chainResult.success)
+                continue;
+            if (!options?.includeTestnets && isTestnetChain(chainResult.data))
                 continue;
             const balance = {};
             if (wallet.symbol && wallet.balance) {
@@ -109,7 +111,7 @@ export class WalletsApi {
     /**
      * Get all wallet addresses for an agent
      */
-    async getAllAddresses(agentId) {
+    async getAllAddresses(agentId, options) {
         const wallets = await this.list(agentId);
         const addresses = {};
         for (const wallet of wallets) {
@@ -120,9 +122,14 @@ export class WalletsApi {
             const chainResult = ChainSchema.safeParse(chainName);
             if (!chainResult.success)
                 continue;
+            if (!options?.includeTestnets && isTestnetChain(chainResult.data))
+                continue;
             addresses[chainResult.data] = wallet.address;
         }
         return addresses;
     }
+}
+function isTestnetChain(chain) {
+    return TestnetChainSchema.safeParse(chain).success;
 }
 //# sourceMappingURL=wallets.js.map

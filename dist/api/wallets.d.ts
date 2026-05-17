@@ -20,7 +20,9 @@ export declare class WalletsApi {
     /**
      * Get balances for all wallets of an agent
      */
-    getAllBalances(agentId: string): Promise<Record<Chain, Balance>>;
+    getAllBalances(agentId: string, options?: {
+        includeTestnets?: boolean;
+    }): Promise<Record<Chain, Balance>>;
     /**
      * Get wallet address for a specific chain
      */
@@ -28,6 +30,8 @@ export declare class WalletsApi {
     /**
      * Get all wallet addresses for an agent
      */
-    getAllAddresses(agentId: string): Promise<Record<Chain, string>>;
+    getAllAddresses(agentId: string, options?: {
+        includeTestnets?: boolean;
+    }): Promise<Record<Chain, string>>;
 }
 //# sourceMappingURL=wallets.d.ts.map

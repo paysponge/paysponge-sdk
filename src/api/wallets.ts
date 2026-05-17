@@ -3,6 +3,7 @@ import {
   WalletSchema,
   ChainSchema,
   CHAIN_IDS,
+  TestnetChainSchema,
   type Wallet,
   type Chain,
   type Balance,
@@ -104,7 +105,10 @@ export class WalletsApi {
   /**
    * Get balances for all wallets of an agent
    */
-  async getAllBalances(agentId: string): Promise<Record<Chain, Balance>> {
+  async getAllBalances(
+    agentId: string,
+    options?: { includeTestnets?: boolean }
+  ): Promise<Record<Chain, Balance>> {
     const wallets = await this.list(agentId, { includeBalances: true });
 
     const balances: Partial<Record<Chain, Balance>> = {};
@@ -119,6 +123,7 @@ export class WalletsApi {
       const chainName = chainEntry[0] as Chain;
       const chainResult = ChainSchema.safeParse(chainName);
       if (!chainResult.success) continue;
+      if (!options?.includeTestnets && isTestnetChain(chainResult.data)) continue;
 
       const balance: Balance = {};
 
@@ -146,7 +151,10 @@ export class WalletsApi {
   /**
    * Get all wallet addresses for an agent
    */
-  async getAllAddresses(agentId: string): Promise<Record<Chain, string>> {
+  async getAllAddresses(
+    agentId: string,
+    options?: { includeTestnets?: boolean }
+  ): Promise<Record<Chain, string>> {
     const wallets = await this.list(agentId);
 
     const addresses: Partial<Record<Chain, string>> = {};
@@ -160,10 +168,15 @@ export class WalletsApi {
       const chainName = chainEntry[0] as Chain;
       const chainResult = ChainSchema.safeParse(chainName);
       if (!chainResult.success) continue;
+      if (!options?.includeTestnets && isTestnetChain(chainResult.data)) continue;
 
       addresses[chainResult.data] = wallet.address;
     }
 
     return addresses as Record<Chain, string>;
   }
+}
+
+function isTestnetChain(chain: Chain): boolean {
+  return TestnetChainSchema.safeParse(chain).success;
 }

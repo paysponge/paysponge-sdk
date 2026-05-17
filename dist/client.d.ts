@@ -35,6 +35,7 @@ export declare class SpongeWallet {
     private readonly publicTools;
     private readonly agentId;
     private readonly baseUrl;
+    private readonly includeTestnetsInAggregateViews;
     private addressCache;
     private constructor();
     /**

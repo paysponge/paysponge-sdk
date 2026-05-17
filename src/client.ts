@@ -75,6 +75,7 @@ export class SpongeWallet {
   private readonly publicTools: PublicToolsApi;
   private readonly agentId: string;
   private readonly baseUrl: string;
+  private readonly includeTestnetsInAggregateViews: boolean;
 
   // Cached wallet addresses
   private addressCache: Record<Chain, string> | null = null;
@@ -86,6 +87,7 @@ export class SpongeWallet {
   }) {
     this.baseUrl = options.baseUrl ?? DEFAULT_BASE_URL;
     this.agentId = options.agentId;
+    this.includeTestnetsInAggregateViews = options.apiKey.startsWith("sponge_test_");
 
     this.http = new HttpClient({
       baseUrl: this.baseUrl,
@@ -230,7 +232,9 @@ export class SpongeWallet {
       return this.addressCache;
     }
 
-    this.addressCache = await this.wallets.getAllAddresses(this.agentId);
+    this.addressCache = await this.wallets.getAllAddresses(this.agentId, {
+      includeTestnets: this.includeTestnetsInAggregateViews,
+    });
     return this.addressCache;
   }
 
@@ -252,7 +256,9 @@ export class SpongeWallet {
    * Get balances for all chains
    */
   async getBalances(): Promise<Record<Chain, Balance>> {
-    return this.wallets.getAllBalances(this.agentId);
+    return this.wallets.getAllBalances(this.agentId, {
+      includeTestnets: this.includeTestnetsInAggregateViews,
+    });
   }
 
   /**

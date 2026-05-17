@@ -13,6 +13,18 @@ const walletFixture = {
   balance: "10.0",
 };
 
+const testnetWalletFixture = {
+  id: "660e8400-e29b-41d4-a716-446655440001",
+  agentId: "770e8400-e29b-41d4-a716-446655440000",
+  chainId: 102,
+  chainName: "solana-devnet",
+  address: "So11111111111111111111111111111111111111112",
+  isActive: true,
+  createdAt: new Date().toISOString(),
+  symbol: "USDC",
+  balance: "1.0",
+};
+
 describe("WalletsApi compatibility", () => {
   it("lists wallets from /api/wallets", async () => {
     const http = {
@@ -66,5 +78,50 @@ describe("WalletsApi compatibility", () => {
       `/api/wallets/${walletFixture.id}/balance`,
       { chainId: "8453" }
     );
+  });
+
+  it("filters testnet addresses from aggregate views by default", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue([walletFixture, testnetWalletFixture]),
+      post: vi.fn(),
+      put: vi.fn(),
+      delete: vi.fn(),
+    };
+    const api = new WalletsApi(http as any);
+
+    await expect(api.getAllAddresses(walletFixture.agentId)).resolves.toEqual({
+      base: walletFixture.address,
+    });
+  });
+
+  it("can include testnet addresses in aggregate views", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue([walletFixture, testnetWalletFixture]),
+      post: vi.fn(),
+      put: vi.fn(),
+      delete: vi.fn(),
+    };
+    const api = new WalletsApi(http as any);
+
+    await expect(
+      api.getAllAddresses(walletFixture.agentId, { includeTestnets: true })
+    ).resolves.toEqual({
+      base: walletFixture.address,
+      "solana-devnet": testnetWalletFixture.address,
+    });
+  });
+
+  it("filters testnet balances from aggregate views by default", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue([walletFixture, testnetWalletFixture]),
+      post: vi.fn(),
+      put: vi.fn(),
+      delete: vi.fn(),
+    };
+    const api = new WalletsApi(http as any);
+
+    await expect(api.getAllBalances(walletFixture.agentId)).resolves.toEqual({
+      base: { USDC: "10.0" },
+    });
   });
 });
