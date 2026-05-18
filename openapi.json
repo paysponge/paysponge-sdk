@@ -2620,7 +2620,8 @@
                       "sepolia",
                       "arbitrum-sepolia",
                       "polygon-amoy",
-                      "monad-testnet"
+                      "monad-testnet",
+                      "hyperevm-testnet"
                     ]
                   },
                   "destinationChain": {
@@ -2641,6 +2642,7 @@
                       "arbitrum-sepolia",
                       "polygon-amoy",
                       "monad-testnet",
+                      "hyperevm-testnet",
                       "polymarket"
                     ]
                   },
@@ -2689,7 +2691,8 @@
                       "sepolia",
                       "arbitrum-sepolia",
                       "polygon-amoy",
-                      "monad-testnet"
+                      "monad-testnet",
+                      "hyperevm-testnet"
                     ]
                   },
                   "destinationChain": {
@@ -2710,6 +2713,7 @@
                       "arbitrum-sepolia",
                       "polygon-amoy",
                       "monad-testnet",
+                      "hyperevm-testnet",
                       "polymarket"
                     ]
                   },
@@ -2758,7 +2762,8 @@
                       "sepolia",
                       "arbitrum-sepolia",
                       "polygon-amoy",
-                      "monad-testnet"
+                      "monad-testnet",
+                      "hyperevm-testnet"
                     ]
                   },
                   "destinationChain": {
@@ -2779,6 +2784,7 @@
                       "arbitrum-sepolia",
                       "polygon-amoy",
                       "monad-testnet",
+                      "hyperevm-testnet",
                       "polymarket"
                     ]
                   },
@@ -10297,6 +10303,7 @@
                     "enum": [
                       "status",
                       "order",
+                      "reduce_position",
                       "cancel",
                       "cancel_all",
                       "set_leverage",
@@ -10343,6 +10350,15 @@
                     "type": "string"
                   },
                   "reduce_only": {
+                    "type": "boolean"
+                  },
+                  "reduce_percent": {
+                    "type": "number"
+                  },
+                  "percent": {
+                    "type": "number"
+                  },
+                  "max": {
                     "type": "boolean"
                   },
                   "trigger_price": {
@@ -10450,6 +10466,7 @@
                     "enum": [
                       "status",
                       "order",
+                      "reduce_position",
                       "cancel",
                       "cancel_all",
                       "set_leverage",
@@ -10496,6 +10513,15 @@
                     "type": "string"
                   },
                   "reduce_only": {
+                    "type": "boolean"
+                  },
+                  "reduce_percent": {
+                    "type": "number"
+                  },
+                  "percent": {
+                    "type": "number"
+                  },
+                  "max": {
                     "type": "boolean"
                   },
                   "trigger_price": {
@@ -10603,6 +10629,7 @@
                     "enum": [
                       "status",
                       "order",
+                      "reduce_position",
                       "cancel",
                       "cancel_all",
                       "set_leverage",
@@ -10649,6 +10676,15 @@
                     "type": "string"
                   },
                   "reduce_only": {
+                    "type": "boolean"
+                  },
+                  "reduce_percent": {
+                    "type": "number"
+                  },
+                  "percent": {
+                    "type": "number"
+                  },
+                  "max": {
                     "type": "boolean"
                   },
                   "trigger_price": {
@@ -10908,6 +10944,10 @@
                                 {
                                   "const": "monad-testnet",
                                   "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm-testnet",
+                                  "type": "string"
                                 }
                               ]
                             },
@@ -10971,6 +11011,10 @@
                                 },
                                 {
                                   "const": "monad-testnet",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm-testnet",
                                   "type": "string"
                                 }
                               ]
@@ -11152,6 +11196,10 @@
                                 {
                                   "const": "monad-testnet",
                                   "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm-testnet",
+                                  "type": "string"
                                 }
                               ]
                             },
@@ -11215,6 +11263,10 @@
                                 },
                                 {
                                   "const": "monad-testnet",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm-testnet",
                                   "type": "string"
                                 }
                               ]
@@ -11396,6 +11448,10 @@
                                 {
                                   "const": "monad-testnet",
                                   "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm-testnet",
+                                  "type": "string"
                                 }
                               ]
                             },
@@ -11459,6 +11515,10 @@
                                 },
                                 {
                                   "const": "monad-testnet",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm-testnet",
                                   "type": "string"
                                 }
                               ]

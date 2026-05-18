@@ -77,6 +77,7 @@ export declare const PostApiTransactionsBridgeRequestSourceChainEnum: {
     readonly ArbitrumSepolia: "arbitrum-sepolia";
     readonly PolygonAmoy: "polygon-amoy";
     readonly MonadTestnet: "monad-testnet";
+    readonly HyperevmTestnet: "hyperevm-testnet";
 };
 export type PostApiTransactionsBridgeRequestSourceChainEnum = typeof PostApiTransactionsBridgeRequestSourceChainEnum[keyof typeof PostApiTransactionsBridgeRequestSourceChainEnum];
 /**
@@ -98,6 +99,7 @@ export declare const PostApiTransactionsBridgeRequestDestinationChainEnum: {
     readonly ArbitrumSepolia: "arbitrum-sepolia";
     readonly PolygonAmoy: "polygon-amoy";
     readonly MonadTestnet: "monad-testnet";
+    readonly HyperevmTestnet: "hyperevm-testnet";
     readonly Polymarket: "polymarket";
 };
 export type PostApiTransactionsBridgeRequestDestinationChainEnum = typeof PostApiTransactionsBridgeRequestDestinationChainEnum[keyof typeof PostApiTransactionsBridgeRequestDestinationChainEnum];

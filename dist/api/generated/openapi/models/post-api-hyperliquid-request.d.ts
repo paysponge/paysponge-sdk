@@ -59,6 +59,24 @@ export interface PostApiHyperliquidRequest {
     reduce_only?: boolean;
     /**
      *
+     * @type {number}
+     * @memberof PostApiHyperliquidRequest
+     */
+    reduce_percent?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof PostApiHyperliquidRequest
+     */
+    percent?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof PostApiHyperliquidRequest
+     */
+    max?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof PostApiHyperliquidRequest
      */
@@ -178,6 +196,7 @@ export interface PostApiHyperliquidRequest {
 export declare const PostApiHyperliquidRequestActionEnum: {
     readonly Status: "status";
     readonly Order: "order";
+    readonly ReducePosition: "reduce_position";
     readonly Cancel: "cancel";
     readonly CancelAll: "cancel_all";
     readonly SetLeverage: "set_leverage";

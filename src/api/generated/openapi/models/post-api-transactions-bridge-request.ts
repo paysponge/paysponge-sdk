@@ -82,7 +82,8 @@ export const PostApiTransactionsBridgeRequestSourceChainEnum = {
     Sepolia: 'sepolia',
     ArbitrumSepolia: 'arbitrum-sepolia',
     PolygonAmoy: 'polygon-amoy',
-    MonadTestnet: 'monad-testnet'
+    MonadTestnet: 'monad-testnet',
+    HyperevmTestnet: 'hyperevm-testnet'
 } as const;
 export type PostApiTransactionsBridgeRequestSourceChainEnum = typeof PostApiTransactionsBridgeRequestSourceChainEnum[keyof typeof PostApiTransactionsBridgeRequestSourceChainEnum];
 
@@ -105,6 +106,7 @@ export const PostApiTransactionsBridgeRequestDestinationChainEnum = {
     ArbitrumSepolia: 'arbitrum-sepolia',
     PolygonAmoy: 'polygon-amoy',
     MonadTestnet: 'monad-testnet',
+    HyperevmTestnet: 'hyperevm-testnet',
     Polymarket: 'polymarket'
 } as const;
 export type PostApiTransactionsBridgeRequestDestinationChainEnum = typeof PostApiTransactionsBridgeRequestDestinationChainEnum[keyof typeof PostApiTransactionsBridgeRequestDestinationChainEnum];

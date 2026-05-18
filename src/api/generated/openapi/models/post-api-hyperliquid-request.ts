@@ -63,6 +63,24 @@ export interface PostApiHyperliquidRequest {
     reduce_only?: boolean;
     /**
      * 
+     * @type {number}
+     * @memberof PostApiHyperliquidRequest
+     */
+    reduce_percent?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PostApiHyperliquidRequest
+     */
+    percent?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PostApiHyperliquidRequest
+     */
+    max?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof PostApiHyperliquidRequest
      */
@@ -184,6 +202,7 @@ export interface PostApiHyperliquidRequest {
 export const PostApiHyperliquidRequestActionEnum = {
     Status: 'status',
     Order: 'order',
+    ReducePosition: 'reduce_position',
     Cancel: 'cancel',
     CancelAll: 'cancel_all',
     SetLeverage: 'set_leverage',
@@ -314,6 +333,9 @@ export function PostApiHyperliquidRequestFromJSONTyped(json: any, ignoreDiscrimi
         'amount': json['amount'] == null ? undefined : json['amount'],
         'price': json['price'] == null ? undefined : json['price'],
         'reduce_only': json['reduce_only'] == null ? undefined : json['reduce_only'],
+        'reduce_percent': json['reduce_percent'] == null ? undefined : json['reduce_percent'],
+        'percent': json['percent'] == null ? undefined : json['percent'],
+        'max': json['max'] == null ? undefined : json['max'],
         'trigger_price': json['trigger_price'] == null ? undefined : json['trigger_price'],
         'tp_sl': json['tp_sl'] == null ? undefined : json['tp_sl'],
         'tif': json['tif'] == null ? undefined : json['tif'],
@@ -354,6 +376,9 @@ export function PostApiHyperliquidRequestToJSONTyped(value?: PostApiHyperliquidR
         'amount': value['amount'],
         'price': value['price'],
         'reduce_only': value['reduce_only'],
+        'reduce_percent': value['reduce_percent'],
+        'percent': value['percent'],
+        'max': value['max'],
         'trigger_price': value['trigger_price'],
         'tp_sl': value['tp_sl'],
         'tif': value['tif'],
