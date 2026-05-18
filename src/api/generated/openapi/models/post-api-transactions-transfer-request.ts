@@ -57,6 +57,12 @@ export interface PostApiTransactionsTransferRequest {
     tokenDecimals?: number;
     /**
      * 
+     * @type {string}
+     * @memberof PostApiTransactionsTransferRequest
+     */
+    data?: string;
+    /**
+     * 
      * @type {PostApiTransactionsTransferRequestPriorityEnum}
      * @memberof PostApiTransactionsTransferRequest
      */
@@ -101,6 +107,7 @@ export function PostApiTransactionsTransferRequestFromJSONTyped(json: any, ignor
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
         'tokenAddress': json['tokenAddress'] == null ? undefined : json['tokenAddress'],
         'tokenDecimals': json['tokenDecimals'] == null ? undefined : json['tokenDecimals'],
+        'data': json['data'] == null ? undefined : json['data'],
         'priority': json['priority'] == null ? undefined : json['priority'],
     };
 }
@@ -122,6 +129,7 @@ export function PostApiTransactionsTransferRequestToJSONTyped(value?: PostApiTra
         'agentId': value['agentId'],
         'tokenAddress': value['tokenAddress'],
         'tokenDecimals': value['tokenDecimals'],
+        'data': value['data'],
         'priority': value['priority'],
     };
 }

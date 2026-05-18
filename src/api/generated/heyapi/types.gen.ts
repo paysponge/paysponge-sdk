@@ -168,7 +168,7 @@ export type PostApiTransfersEvmData = {
         chain: string;
         to: string;
         amount: string;
-        currency: 'ETH' | 'MON' | 'POL' | 'USDC';
+        currency: 'ETH' | 'MON' | 'POL' | 'HYPE' | 'USDC';
         agentId?: string;
     };
     path?: never;

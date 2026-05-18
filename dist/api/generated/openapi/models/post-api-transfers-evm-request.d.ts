@@ -53,6 +53,7 @@ export declare const PostApiTransfersEvmRequestCurrencyEnum: {
     readonly Eth: "ETH";
     readonly Mon: "MON";
     readonly Pol: "POL";
+    readonly Hype: "HYPE";
     readonly Usdc: "USDC";
 };
 export type PostApiTransfersEvmRequestCurrencyEnum = typeof PostApiTransfersEvmRequestCurrencyEnum[keyof typeof PostApiTransfersEvmRequestCurrencyEnum];

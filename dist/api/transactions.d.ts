@@ -1,4 +1,4 @@
-import { type TransactionResult, type TransactionStatus, type TransferOptions, type SwapOptions, type TempoSwapOptions, type Chain } from "../types/schemas.js";
+import { type TransactionResult, type TransactionStatus, type TransferOptions, type SendTransactionOptions, type SwapOptions, type TempoSwapOptions, type Chain } from "../types/schemas.js";
 import type { HttpClient } from "./http.js";
 export declare class TransactionsApi {
     private readonly http;
@@ -10,6 +10,10 @@ export declare class TransactionsApi {
      * Uses the /api/transactions/transfer endpoint
      */
     transfer(options: TransferOptions): Promise<TransactionResult>;
+    /**
+     * Send a native EVM transaction, including arbitrary calldata for contract calls.
+     */
+    sendTransaction(options: SendTransactionOptions): Promise<TransactionResult>;
     /**
      * Swap tokens (Solana via Jupiter)
      * Uses the /api/transactions/swap endpoint

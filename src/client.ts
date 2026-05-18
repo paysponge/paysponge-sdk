@@ -4,6 +4,7 @@ import {
   type Chain,
   type Balance,
   type TransferOptions,
+  type SendTransactionOptions,
   type SwapOptions,
   type TempoSwapOptions,
   type TransactionResult,
@@ -292,6 +293,23 @@ export class SpongeWallet {
   }
 
   /**
+   * Send a native EVM transaction, including contract call calldata.
+   *
+   * @example
+   * ```typescript
+   * const tx = await wallet.sendTransaction({
+   *   chain: 'hyperevm',
+   *   to: '0xContract...',
+   *   value: '0',
+   *   data: '0x...',
+   * });
+   * ```
+   */
+  async sendTransaction(options: SendTransactionOptions): Promise<TransactionResult> {
+    return this.transactions.sendTransaction(options);
+  }
+
+  /**
    * Transfer on EVM chains (allowlist + spending limits enforced)
    */
   async evmTransfer(options: {
@@ -301,14 +319,16 @@ export class SpongeWallet {
       | "arbitrum-one"
       | "monad"
       | "polygon"
+      | "hyperevm"
       | "sepolia"
       | "base-sepolia"
       | "arbitrum-sepolia"
       | "monad-testnet"
-      | "polygon-amoy";
+      | "polygon-amoy"
+      | "hyperevm-testnet";
     to: string;
     amount: string;
-    currency: "ETH" | "MON" | "POL" | "USDC";
+    currency: "ETH" | "MON" | "POL" | "HYPE" | "USDC";
   }) {
     return this.publicTools.evmTransfer(options);
   }

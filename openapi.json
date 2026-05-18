@@ -1986,6 +1986,9 @@
                   "tokenDecimals": {
                     "type": "number"
                   },
+                  "data": {
+                    "type": "string"
+                  },
                   "priority": {
                     "type": "string",
                     "enum": [
@@ -2024,6 +2027,9 @@
                   "tokenDecimals": {
                     "type": "number"
                   },
+                  "data": {
+                    "type": "string"
+                  },
                   "priority": {
                     "type": "string",
                     "enum": [
@@ -2061,6 +2067,9 @@
                   },
                   "tokenDecimals": {
                     "type": "number"
+                  },
+                  "data": {
+                    "type": "string"
                   },
                   "priority": {
                     "type": "string",
@@ -2604,6 +2613,7 @@
                       "arbitrum-one",
                       "polygon",
                       "monad",
+                      "hyperevm",
                       "hyperliquid",
                       "solana-devnet",
                       "base-sepolia",
@@ -2623,6 +2633,7 @@
                       "arbitrum-one",
                       "polygon",
                       "monad",
+                      "hyperevm",
                       "hyperliquid",
                       "solana-devnet",
                       "base-sepolia",
@@ -2671,6 +2682,7 @@
                       "arbitrum-one",
                       "polygon",
                       "monad",
+                      "hyperevm",
                       "hyperliquid",
                       "solana-devnet",
                       "base-sepolia",
@@ -2690,6 +2702,7 @@
                       "arbitrum-one",
                       "polygon",
                       "monad",
+                      "hyperevm",
                       "hyperliquid",
                       "solana-devnet",
                       "base-sepolia",
@@ -2738,6 +2751,7 @@
                       "arbitrum-one",
                       "polygon",
                       "monad",
+                      "hyperevm",
                       "hyperliquid",
                       "solana-devnet",
                       "base-sepolia",
@@ -2757,6 +2771,7 @@
                       "arbitrum-one",
                       "polygon",
                       "monad",
+                      "hyperevm",
                       "hyperliquid",
                       "solana-devnet",
                       "base-sepolia",
@@ -6840,6 +6855,7 @@
                       "ETH",
                       "MON",
                       "POL",
+                      "HYPE",
                       "USDC"
                     ]
                   },
@@ -6874,6 +6890,7 @@
                       "ETH",
                       "MON",
                       "POL",
+                      "HYPE",
                       "USDC"
                     ]
                   },
@@ -6908,6 +6925,7 @@
                       "ETH",
                       "MON",
                       "POL",
+                      "HYPE",
                       "USDC"
                     ]
                   },
@@ -10860,6 +10878,10 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "hyperevm",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "hyperliquid",
                                   "type": "string"
                                 },
@@ -10917,6 +10939,10 @@
                                 },
                                 {
                                   "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm",
                                   "type": "string"
                                 },
                                 {
@@ -11096,6 +11122,10 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "hyperevm",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "hyperliquid",
                                   "type": "string"
                                 },
@@ -11153,6 +11183,10 @@
                                 },
                                 {
                                   "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm",
                                   "type": "string"
                                 },
                                 {
@@ -11332,6 +11366,10 @@
                                   "type": "string"
                                 },
                                 {
+                                  "const": "hyperevm",
+                                  "type": "string"
+                                },
+                                {
                                   "const": "hyperliquid",
                                   "type": "string"
                                 },
@@ -11389,6 +11427,10 @@
                                 },
                                 {
                                   "const": "monad",
+                                  "type": "string"
+                                },
+                                {
+                                  "const": "hyperevm",
                                   "type": "string"
                                 },
                                 {

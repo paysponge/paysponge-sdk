@@ -53,6 +53,12 @@ export interface PostApiTransactionsTransferRequest {
     tokenDecimals?: number;
     /**
      *
+     * @type {string}
+     * @memberof PostApiTransactionsTransferRequest
+     */
+    data?: string;
+    /**
+     *
      * @type {PostApiTransactionsTransferRequestPriorityEnum}
      * @memberof PostApiTransactionsTransferRequest
      */

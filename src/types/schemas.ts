@@ -9,12 +9,14 @@ export const ChainSchema = z.enum([
   "base",
   "monad",
   "polygon",
+  "hyperevm",
   "arbitrum-one",
   "sepolia",
   "base-sepolia",
   "arbitrum-sepolia",
   "monad-testnet",
   "polygon-amoy",
+  "hyperevm-testnet",
   "tempo-testnet",
   "tempo",
   "solana",
@@ -33,12 +35,14 @@ export const EvmChainSchema = z.enum([
   "base",
   "monad",
   "polygon",
+  "hyperevm",
   "arbitrum-one",
   "sepolia",
   "base-sepolia",
   "arbitrum-sepolia",
   "monad-testnet",
   "polygon-amoy",
+  "hyperevm-testnet",
 ]);
 export type EvmChain = z.infer<typeof EvmChainSchema>;
 
@@ -46,7 +50,7 @@ export const SolanaChainSchema = z.enum(["solana", "solana-devnet"]);
 export type SolanaChain = z.infer<typeof SolanaChainSchema>;
 
 // Mainnet chains only
-export const MainnetChainSchema = z.enum(["ethereum", "base", "monad", "polygon", "arbitrum-one", "tempo", "solana"]);
+export const MainnetChainSchema = z.enum(["ethereum", "base", "monad", "polygon", "hyperevm", "arbitrum-one", "tempo", "solana"]);
 export type MainnetChain = z.infer<typeof MainnetChainSchema>;
 
 // Testnet chains only
@@ -56,6 +60,7 @@ export const TestnetChainSchema = z.enum([
   "arbitrum-sepolia",
   "monad-testnet",
   "polygon-amoy",
+  "hyperevm-testnet",
   "tempo-testnet",
   "solana-devnet",
 ]);
@@ -447,6 +452,15 @@ export const TransactionResultSchema = z.object({
 });
 export type TransactionResult = z.infer<typeof TransactionResultSchema>;
 
+export const SendTransactionOptionsSchema = z.object({
+  chain: EvmChainSchema,
+  to: EthereumAddressSchema,
+  value: z.string().default("0"),
+  data: z.string().optional(),
+  priority: z.enum(["low", "medium", "high"]).optional(),
+});
+export type SendTransactionOptions = z.input<typeof SendTransactionOptionsSchema>;
+
 export const TransactionStatusSchema = z.object({
   txHash: z.string(),
   status: z.enum(["pending", "confirmed", "failed", "unknown"]),
@@ -502,7 +516,7 @@ export const EvmTransferOptionsSchema = z.object({
   chain: EvmChainSchema,
   to: EthereumAddressSchema,
   amount: z.string(),
-  currency: z.enum(["ETH", "MON", "POL", "USDC"]),
+  currency: z.enum(["ETH", "MON", "POL", "HYPE", "USDC"]),
 });
 export type EvmTransferOptions = z.infer<typeof EvmTransferOptionsSchema>;
 
@@ -790,12 +804,14 @@ export const CHAIN_IDS: Record<Chain, number> = {
   base: 8453,
   monad: 143,
   polygon: 137,
+  hyperevm: 999,
   "arbitrum-one": 42161,
   sepolia: 11155111,
   "base-sepolia": 84532,
   "arbitrum-sepolia": 421614,
   "monad-testnet": 10143,
   "polygon-amoy": 80002,
+  "hyperevm-testnet": 998,
   "tempo-testnet": 42431,
   tempo: 4217,
   solana: 101,

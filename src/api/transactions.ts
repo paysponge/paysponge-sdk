@@ -3,6 +3,7 @@ import {
   TransactionResultSchema,
   TransactionStatusSchema,
   TransferOptionsSchema,
+  SendTransactionOptionsSchema,
   SwapOptionsSchema,
   TempoSwapOptionsSchema,
   SubmitTransactionSchema,
@@ -10,6 +11,7 @@ import {
   type TransactionResult,
   type TransactionStatus,
   type TransferOptions,
+  type SendTransactionOptions,
   type SwapOptions,
   type TempoSwapOptions,
   type Chain,
@@ -56,6 +58,13 @@ const TransactionHistoryResponseSchema = z.object({
   page: z.number(),
   perPage: z.number(),
   totalPages: z.number(),
+});
+
+const TransactionResponseSchema = z.object({
+  txHash: z.string().nullable().optional(),
+  transactionHash: z.string().optional(),
+  txStatus: z.string().optional(),
+  status: z.string().optional(),
 });
 
 export class TransactionsApi {
@@ -139,7 +148,13 @@ export class TransactionsApi {
 
     // EVM transfers
     const normalizedCurrency = this.normalizeCurrencySymbol(validated.currency ?? "");
-    if (normalizedCurrency !== "ETH" && normalizedCurrency !== "MON" && normalizedCurrency !== "POL" && normalizedCurrency !== "USDC") {
+    if (
+      normalizedCurrency !== "ETH" &&
+      normalizedCurrency !== "MON" &&
+      normalizedCurrency !== "POL" &&
+      normalizedCurrency !== "HYPE" &&
+      normalizedCurrency !== "USDC"
+    ) {
       throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
     }
 
@@ -160,6 +175,49 @@ export class TransactionsApi {
       txHash: parsed.transactionHash,
       status,
       explorerUrl: parsed.explorerUrl,
+      chainId,
+    });
+  }
+
+  /**
+   * Send a native EVM transaction, including arbitrary calldata for contract calls.
+   */
+  async sendTransaction(options: SendTransactionOptions): Promise<TransactionResult> {
+    const client = createGeneratedApiClient(this.http);
+    const validated = SendTransactionOptionsSchema.parse(options);
+    const chainId = CHAIN_IDS[validated.chain];
+    if (chainId === undefined) {
+      throw new Error(`Unknown chain: ${validated.chain}`);
+    }
+
+    const response = await client.request(
+      client.api.postApiTransactionsTransferRequestOpts({
+        postApiTransactionsTransferRequest: {
+          chainId,
+          to: validated.to,
+          amount: validated.value,
+          data: validated.data,
+          priority: validated.priority,
+        },
+      }),
+    );
+
+    const parsed = TransactionResponseSchema.parse(response);
+    const txHash = parsed.txHash ?? parsed.transactionHash;
+    if (!txHash) {
+      throw new Error("Transaction submitted without a transaction hash");
+    }
+
+    const rawStatus = parsed.txStatus ?? parsed.status ?? "pending";
+    const status = rawStatus === "failed"
+      ? "failed"
+      : rawStatus === "confirmed"
+        ? "confirmed"
+        : "pending";
+
+    return TransactionResultSchema.parse({
+      txHash,
+      status,
       chainId,
     });
   }

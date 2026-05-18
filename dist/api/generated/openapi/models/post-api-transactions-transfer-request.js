@@ -45,6 +45,7 @@ export function PostApiTransactionsTransferRequestFromJSONTyped(json, ignoreDisc
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
         'tokenAddress': json['tokenAddress'] == null ? undefined : json['tokenAddress'],
         'tokenDecimals': json['tokenDecimals'] == null ? undefined : json['tokenDecimals'],
+        'data': json['data'] == null ? undefined : json['data'],
         'priority': json['priority'] == null ? undefined : json['priority'],
     };
 }
@@ -62,6 +63,7 @@ export function PostApiTransactionsTransferRequestToJSONTyped(value, ignoreDiscr
         'agentId': value['agentId'],
         'tokenAddress': value['tokenAddress'],
         'tokenDecimals': value['tokenDecimals'],
+        'data': value['data'],
         'priority': value['priority'],
     };
 }

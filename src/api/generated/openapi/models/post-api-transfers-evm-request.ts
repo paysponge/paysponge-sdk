@@ -59,6 +59,7 @@ export const PostApiTransfersEvmRequestCurrencyEnum = {
     Eth: 'ETH',
     Mon: 'MON',
     Pol: 'POL',
+    Hype: 'HYPE',
     Usdc: 'USDC'
 } as const;
 export type PostApiTransfersEvmRequestCurrencyEnum = typeof PostApiTransfersEvmRequestCurrencyEnum[keyof typeof PostApiTransfersEvmRequestCurrencyEnum];

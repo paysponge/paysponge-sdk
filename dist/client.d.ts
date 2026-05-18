@@ -1,4 +1,4 @@
-import { type ConnectOptions, type Chain, type Balance, type TransferOptions, type SwapOptions, type TempoSwapOptions, type TransactionResult, type TransactionStatus, type Agent, type CreateAgentOptions, type McpConfig } from "./types/schemas.js";
+import { type ConnectOptions, type Chain, type Balance, type TransferOptions, type SendTransactionOptions, type SwapOptions, type TempoSwapOptions, type TransactionResult, type TransactionStatus, type Agent, type CreateAgentOptions, type McpConfig } from "./types/schemas.js";
 import { type AddLinkPaymentMethodOptions, type CreateLinkPaymentCredentialOptions, type CreateSpongeCardOptions, type GetCardOptions, type IssueVirtualCardOptions, type ReportCardUsageOptions, type SpongeCardAmountOptions, type SpongeCardOnboardOptions, type SpongeCardStatusOptions, type SpongeCardTermsOptions, type StoreCreditCardOptions } from "./api/public-tools.js";
 /**
  * SpongeWallet - The main SDK client for managing agent wallets
@@ -117,13 +117,27 @@ export declare class SpongeWallet {
      */
     transfer(options: TransferOptions): Promise<TransactionResult>;
     /**
+     * Send a native EVM transaction, including contract call calldata.
+     *
+     * @example
+     * ```typescript
+     * const tx = await wallet.sendTransaction({
+     *   chain: 'hyperevm',
+     *   to: '0xContract...',
+     *   value: '0',
+     *   data: '0x...',
+     * });
+     * ```
+     */
+    sendTransaction(options: SendTransactionOptions): Promise<TransactionResult>;
+    /**
      * Transfer on EVM chains (allowlist + spending limits enforced)
      */
     evmTransfer(options: {
-        chain: "ethereum" | "base" | "arbitrum-one" | "monad" | "polygon" | "sepolia" | "base-sepolia" | "arbitrum-sepolia" | "monad-testnet" | "polygon-amoy";
+        chain: "ethereum" | "base" | "arbitrum-one" | "monad" | "polygon" | "hyperevm" | "sepolia" | "base-sepolia" | "arbitrum-sepolia" | "monad-testnet" | "polygon-amoy" | "hyperevm-testnet";
         to: string;
         amount: string;
-        currency: "ETH" | "MON" | "POL" | "USDC";
+        currency: "ETH" | "MON" | "POL" | "HYPE" | "USDC";
     }): Promise<{
         status: string;
         transactionHash: string;
@@ -277,8 +291,8 @@ export declare class SpongeWallet {
         provider: string;
         task: string;
         error?: string | undefined;
-        summary?: string | undefined;
         data?: unknown;
+        summary?: string | undefined;
         image_data?: string | undefined;
         image_mime_type?: string | undefined;
         payment?: {

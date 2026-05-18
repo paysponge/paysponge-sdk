@@ -840,7 +840,7 @@ function registerCuratedCommands(
     .option("--to <address>", "recipient address")
     .option("--amount <amount>", "amount to send")
     .option("--asset <asset>", "currency symbol or token symbol/address")
-    .addHelpText("after", "\nExamples:\n  spongewallet send base 0xabc... USDC 10\n  spongewallet send tempo 0xabc... usdce 1\n")
+    .addHelpText("after", "\nExamples:\n  spongewallet send base 0xabc... USDC 10\n  spongewallet send hyperevm 0xabc... HYPE 0.1\n  spongewallet send tempo 0xabc... usdce 1\n")
     .action(async (
       chainArg: string | undefined,
       toArg: string | undefined,
@@ -1148,7 +1148,7 @@ function registerCuratedCommands(
     .option("--amount <amount>", "amount to bridge")
     .option("--destination-token <token>", "token to receive on destination")
     .option("--recipient-address <address>", "recipient address on destination")
-    .addHelpText("after", "\nExamples:\n  spongewallet bridge base solana USDC 25\n  spongewallet bridge base hyperliquid USDC 50\n  spongewallet bridge --source-chain base --destination-chain polymarket --token USDC --amount 50\n")
+    .addHelpText("after", "\nExamples:\n  spongewallet bridge base solana USDC 25\n  spongewallet bridge base hyperevm USDC 50\n  spongewallet bridge base hyperliquid USDC 50\n  spongewallet bridge --source-chain base --destination-chain polymarket --token USDC --amount 50\n")
     .action(async (
       sourceChainArg: string | undefined,
       destinationChainArg: string | undefined,

@@ -49,10 +49,12 @@ export const TOOL_DEFINITIONS = [
                         "arbitrum-one",
                         "monad",
                         "polygon",
+                        "hyperevm",
                         "sepolia",
                         "base-sepolia",
                         "arbitrum-sepolia",
                         "polygon-amoy",
+                        "hyperevm-testnet",
                         "tempo-testnet",
                         "tempo",
                         "solana",
@@ -81,13 +83,13 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "evm_transfer",
-        description: "Transfer native tokens or USDC on Ethereum, Base, Arbitrum, Polygon, Monad, or their testnets. Supports native (ETH/MON/POL) and USDC transfers.",
+        description: "Transfer native tokens or USDC on Ethereum, Base, Arbitrum, Polygon, Monad, HyperEVM, or their testnets. Supports native (ETH/MON/POL/HYPE) and USDC transfers.",
         input_schema: {
             type: "object",
             properties: {
                 chain: {
                     type: "string",
-                    enum: ["ethereum", "base", "arbitrum-one", "monad", "polygon", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet"],
+                    enum: ["ethereum", "base", "arbitrum-one", "monad", "polygon", "hyperevm", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet", "hyperevm-testnet"],
                     description: "The chain to transfer on",
                 },
                 to: {
@@ -100,8 +102,8 @@ export const TOOL_DEFINITIONS = [
                 },
                 currency: {
                     type: "string",
-                    enum: ["ETH", "MON", "POL", "USDC"],
-                    description: "The currency to transfer (ETH for Ethereum/Base/Arbitrum, MON for Monad, POL for Polygon, or USDC)",
+                    enum: ["ETH", "MON", "POL", "HYPE", "USDC"],
+                    description: "The currency to transfer (ETH for Ethereum/Base/Arbitrum, MON for Monad, POL for Polygon, HYPE for HyperEVM, or USDC)",
                 },
             },
             required: ["chain", "to", "amount", "currency"],
@@ -326,18 +328,18 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "bridge",
-        description: "Bridge tokens between different blockchains using deBridge. Supports Ethereum, Base, Arbitrum, Polygon, Monad, Tempo, Solana, and Hyperliquid where routes are available.",
+        description: "Bridge tokens between different blockchains using Relay. Supports Ethereum, Base, Arbitrum, Polygon, Monad, Tempo, Solana, HyperEVM, and Hyperliquid where routes are available.",
         input_schema: {
             type: "object",
             properties: {
                 sourceChain: {
                     type: "string",
-                    enum: ["ethereum", "base", "arbitrum-one", "polygon", "monad", "tempo", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet", "solana", "solana-devnet"],
+                    enum: ["ethereum", "base", "arbitrum-one", "polygon", "monad", "hyperevm", "tempo", "hyperliquid", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet", "solana", "solana-devnet"],
                     description: "The source chain to bridge FROM",
                 },
                 destinationChain: {
                     type: "string",
-                    enum: ["ethereum", "base", "arbitrum-one", "polygon", "monad", "tempo", "hyperliquid", "polymarket", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet", "solana", "solana-devnet"],
+                    enum: ["ethereum", "base", "arbitrum-one", "polygon", "monad", "hyperevm", "tempo", "hyperliquid", "polymarket", "sepolia", "base-sepolia", "arbitrum-sepolia", "polygon-amoy", "monad-testnet", "solana", "solana-devnet"],
                     description: "The destination chain to bridge TO",
                 },
                 token: {

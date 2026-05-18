@@ -225,6 +225,22 @@ export class SpongeWallet {
         return this.transactions.transfer(options);
     }
     /**
+     * Send a native EVM transaction, including contract call calldata.
+     *
+     * @example
+     * ```typescript
+     * const tx = await wallet.sendTransaction({
+     *   chain: 'hyperevm',
+     *   to: '0xContract...',
+     *   value: '0',
+     *   data: '0x...',
+     * });
+     * ```
+     */
+    async sendTransaction(options) {
+        return this.transactions.sendTransaction(options);
+    }
+    /**
      * Transfer on EVM chains (allowlist + spending limits enforced)
      */
     async evmTransfer(options) {
