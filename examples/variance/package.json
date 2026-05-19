@@ -1,0 +1,19 @@
+{
+  "name": "sponge-variance-hyperevm-example",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deposit": "bun run index.ts deposit",
+    "bet": "bun run index.ts bet",
+    "check": "bun run index.ts check",
+    "start": "bun run index.ts"
+  },
+  "dependencies": {
+    "@paysponge/sdk": "latest"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.2",
+    "typescript": "^5.9.3"
+  }
+}
