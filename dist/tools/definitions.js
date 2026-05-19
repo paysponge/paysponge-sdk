@@ -686,6 +686,7 @@ export const TOOL_DEFINITIONS = [
     {
         name: "hyperliquid",
         description: "Trade perps and spot on Hyperliquid DEX. Uses your agent's EVM wallet for signing (no API keys needed).\n\n" +
+            "Hyperliquid includes default markets plus HIP-3/builder perp markets. Some HIP-3 markets represent private/pre-IPO companies, teams, or other synthetic assets, for example \"vntl:ANTHROPIC\". Do not assume a requested asset is unavailable because it is not a public stock or default Hyperliquid perp. For any natural-language asset/company/project request where the exact symbol is not already known, first call action=\"markets\" with query set to the user text or likely ticker/name, then use the returned symbol exactly.\n\n" +
             "ACTIONS:\n" +
             "  Read: status, positions, orders, fills, markets, ticker, orderbook, book_updates, funding, pnl, liquidation_caps, liquidations, trade_status, alerts, chart\n" +
             "  Write (requires hyperliquid:trade scope): order, cancel, cancel_all, set_leverage, withdraw, transfer, set_abstraction\n\n" +
@@ -693,11 +694,12 @@ export const TOOL_DEFINITIONS = [
             "- Responses include tool_call metadata with tool name + arguments by default\n" +
             "- chart supports live-line/candle rendering via chart_style\n\n" +
             "ORDER PARAMETERS (for action=\"order\"):\n" +
-            "- symbol: CCXT symbol (e.g., \"BTC/USDC:USDC\" for perps, \"PURR/USDC\" for spot)\n" +
+            "- symbol: CCXT symbol (e.g., \"BTC/USDC:USDC\" for default perps, \"PURR/USDC\" for spot, \"vntl:ANTHROPIC\" for HIP-3/builder perps)\n" +
             "- side: \"buy\" or \"sell\"\n" +
             "- type: \"limit\" or \"market\"\n" +
             "- amount: Order size in base currency (e.g., \"0.001\" for BTC)\n" +
             "- price: Limit price (required for limit orders)\n\n" +
+            "LEVERAGE: markets returns maxLeverage. If the user asks for leverage above that max, explain the max and ask whether to use the lower leverage instead of calling the asset unavailable.\n\n" +
             "DEPOSIT: Use the bridge tool to deposit USDC to Hyperliquid (e.g., bridge from base to hyperliquid).",
         input_schema: {
             type: "object",
@@ -732,7 +734,7 @@ export const TOOL_DEFINITIONS = [
                 },
                 symbol: {
                     type: "string",
-                    description: "CCXT symbol (e.g., 'BTC/USDC:USDC' for perps, 'PURR/USDC' for spot)",
+                    description: "CCXT symbol (e.g., 'BTC/USDC:USDC' for default perps, 'PURR/USDC' for spot, 'vntl:ANTHROPIC' for HIP-3/builder perps)",
                 },
                 side: {
                     type: "string",
@@ -792,7 +794,7 @@ export const TOOL_DEFINITIONS = [
                 },
                 query: {
                     type: "string",
-                    description: "Filter markets by symbol/base/quote substring",
+                    description: "Filter markets by symbol/base/quote/dex substring. Use this to discover natural-language assets and HIP-3/builder perps before answering that a market is unavailable.",
                 },
                 market_type: {
                     type: "string",
