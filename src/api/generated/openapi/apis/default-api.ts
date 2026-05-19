@@ -35,6 +35,7 @@ import type {
   PostApiAgentsByIdPaymentMethodsRequest,
   PostApiAgentsByIdPolymarketFundRequest,
   PostApiAgentsByIdPolymarketRedeemRequest,
+  PostApiAgentsByIdPolymarketWithdrawRequest,
   PostApiAgentsByIdRegenerateKeyRequest,
   PostApiAgentsByIdShippingAddressesRequest,
   PostApiAgentsByIdVirtualCardRequest,
@@ -176,6 +177,8 @@ import {
     PostApiAgentsByIdPolymarketFundRequestToJSON,
     PostApiAgentsByIdPolymarketRedeemRequestFromJSON,
     PostApiAgentsByIdPolymarketRedeemRequestToJSON,
+    PostApiAgentsByIdPolymarketWithdrawRequestFromJSON,
+    PostApiAgentsByIdPolymarketWithdrawRequestToJSON,
     PostApiAgentsByIdRegenerateKeyRequestFromJSON,
     PostApiAgentsByIdRegenerateKeyRequestToJSON,
     PostApiAgentsByIdShippingAddressesRequestFromJSON,
@@ -995,6 +998,11 @@ export interface DefaultApiPostApiAgentsByIdPolymarketPrepareCollateralRequest {
 export interface DefaultApiPostApiAgentsByIdPolymarketRedeemOperationRequest {
     id: string;
     postApiAgentsByIdPolymarketRedeemRequest: PostApiAgentsByIdPolymarketRedeemRequest;
+}
+
+export interface DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest {
+    id: string;
+    postApiAgentsByIdPolymarketWithdrawRequest: PostApiAgentsByIdPolymarketWithdrawRequest;
 }
 
 export interface DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest {
@@ -4932,6 +4940,29 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsByIdPolymarketRedeem(requestParameters: DefaultApiPostApiAgentsByIdPolymarketRedeemOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdPolymarketWithdraw without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdPolymarketWithdrawRequest} postApiAgentsByIdPolymarketWithdrawRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdPolymarketWithdrawRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdPolymarketWithdrawRequest} postApiAgentsByIdPolymarketWithdrawRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdPolymarketWithdrawRaw(requestParameters: DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdPolymarketWithdraw(requestParameters: DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentsByIdRegenerateKey without sending the request
@@ -14461,6 +14492,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentsByIdPolymarketRedeem(requestParameters: DefaultApiPostApiAgentsByIdPolymarketRedeemOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentsByIdPolymarketRedeemRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdPolymarketWithdraw without sending the request
+     */
+    async postApiAgentsByIdPolymarketWithdrawRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdPolymarketWithdraw().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdPolymarketWithdrawRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdPolymarketWithdrawRequest',
+                'Required parameter "postApiAgentsByIdPolymarketWithdrawRequest" was null or undefined when calling postApiAgentsByIdPolymarketWithdraw().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/polymarket/withdraw`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdPolymarketWithdrawRequestToJSON(requestParameters['postApiAgentsByIdPolymarketWithdrawRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdPolymarketWithdrawRaw(requestParameters: DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdPolymarketWithdrawRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdPolymarketWithdraw(requestParameters: DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdPolymarketWithdrawRaw(requestParameters, initOverrides);
     }
 
     /**

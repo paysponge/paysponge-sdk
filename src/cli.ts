@@ -1967,9 +1967,9 @@ function registerCuratedCommands(
       });
     });
 
-  shared(polymarketCmd.command("withdraw").description("Withdraw USDC.e to Polygon wallet"))
-    .argument("[amount]", "USDC.e amount")
-    .option("--amount <amount>", "USDC.e amount")
+  shared(polymarketCmd.command("withdraw").description("Withdraw pUSD as USDC.e to Polygon wallet"))
+    .argument("[amount]", "pUSD amount")
+    .option("--amount <amount>", "pUSD amount")
     .action(async (
       amountArg: string | undefined,
       opts: Record<string, unknown>,

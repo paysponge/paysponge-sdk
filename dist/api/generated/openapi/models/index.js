@@ -26,6 +26,7 @@ export * from './post-api-agents-by-id-payment-methods-request-billing-address.j
 export * from './post-api-agents-by-id-payment-methods-request-shipping-address.js';
 export * from './post-api-agents-by-id-polymarket-fund-request.js';
 export * from './post-api-agents-by-id-polymarket-redeem-request.js';
+export * from './post-api-agents-by-id-polymarket-withdraw-request.js';
 export * from './post-api-agents-by-id-regenerate-key-request.js';
 export * from './post-api-agents-by-id-shipping-addresses-request.js';
 export * from './post-api-agents-by-id-virtual-card-request.js';

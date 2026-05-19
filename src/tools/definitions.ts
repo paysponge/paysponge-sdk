@@ -2142,7 +2142,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
         },
         amount: {
           type: "string",
-          description: "USDC.e amount for deposit_from_wallet, withdraw, or withdraw_native",
+          description: "Amount for deposit_from_wallet, withdraw, or withdraw_native. withdraw uses pUSD; deposit_from_wallet uses USDC.e; withdraw_native uses Polygon-native USDC.",
         },
         condition_id: {
           type: "string",

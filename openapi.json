@@ -554,6 +554,101 @@
         "operationId": "postApiAgentsByIdPolymarketPrepare-collateral"
       }
     },
+    "/api/agents/{id}/polymarket/withdraw": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "toAddress",
+                  "amount"
+                ],
+                "properties": {
+                  "toAddress": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string",
+                    "enum": [
+                      "pusd",
+                      "usdce",
+                      "native_usdc"
+                    ]
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "toAddress",
+                  "amount"
+                ],
+                "properties": {
+                  "toAddress": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string",
+                    "enum": [
+                      "pusd",
+                      "usdce",
+                      "native_usdc"
+                    ]
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "toAddress",
+                  "amount"
+                ],
+                "properties": {
+                  "toAddress": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string",
+                    "enum": [
+                      "pusd",
+                      "usdce",
+                      "native_usdc"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdPolymarketWithdraw"
+      }
+    },
     "/api/agents/{id}/polymarket/redeem": {
       "post": {
         "parameters": [

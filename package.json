@@ -1,6 +1,6 @@
 {
   "name": "@paysponge/sdk",
-  "version": "0.1.97",
+  "version": "0.1.98",
   "type": "module",
   "description": "SDK for spinning up wallets for AI agents with Claude Agent SDK integration",
   "main": "./dist/index.js",
