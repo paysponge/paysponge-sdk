@@ -29,6 +29,8 @@ export * from './post-api-agents-by-id-polymarket-redeem-request.js';
 export * from './post-api-agents-by-id-polymarket-withdraw-request.js';
 export * from './post-api-agents-by-id-regenerate-key-request.js';
 export * from './post-api-agents-by-id-shipping-addresses-request.js';
+export * from './post-api-agents-by-id-stripe-payment-methods-request.js';
+export * from './post-api-agents-by-id-stripe-payment-methods-setup-intent-request.js';
 export * from './post-api-agents-by-id-virtual-card-request.js';
 export * from './post-api-agents-register-request.js';
 export * from './post-api-agents-request.js';

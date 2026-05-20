@@ -5666,6 +5666,601 @@
         "operationId": "deleteApiAgentsByIdLink-payment-methodsByMethodId"
       }
     },
+    "/api/agents/{id}/stripe-payment-methods": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdStripe-payment-methods"
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "setupIntentId",
+                  "email",
+                  "phone",
+                  "shipping"
+                ],
+                "properties": {
+                  "setupIntentId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "email": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "billing": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode",
+                      "country"
+                    ],
+                    "properties": {
+                      "name": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line1": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "state": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "country": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "setAsDefault": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "setupIntentId",
+                  "email",
+                  "phone",
+                  "shipping"
+                ],
+                "properties": {
+                  "setupIntentId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "email": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "billing": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode",
+                      "country"
+                    ],
+                    "properties": {
+                      "name": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line1": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "state": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "country": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "setAsDefault": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "setupIntentId",
+                  "email",
+                  "phone",
+                  "shipping"
+                ],
+                "properties": {
+                  "setupIntentId": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "email": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "billing": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode",
+                      "country"
+                    ],
+                    "properties": {
+                      "name": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line1": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "state": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "country": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "setAsDefault": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdStripe-payment-methods"
+      }
+    },
+    "/api/agents/{id}/stripe-payment-methods/setup-intent": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "billing": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode",
+                      "country"
+                    ],
+                    "properties": {
+                      "name": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line1": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "state": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "country": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "billing": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode",
+                      "country"
+                    ],
+                    "properties": {
+                      "name": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line1": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "state": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "country": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "billing": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "line1",
+                      "city",
+                      "state",
+                      "postalCode",
+                      "country"
+                    ],
+                    "properties": {
+                      "name": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line1": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "state": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "country": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdStripe-payment-methodsSetup-intent"
+      }
+    },
+    "/api/agents/{id}/stripe-payment-methods/{methodId}": {
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "methodId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "deleteApiAgentsByIdStripe-payment-methodsByMethodId"
+      }
+    },
     "/api/link-cli/auth/status": {
       "get": {
         "operationId": "getApiLink-cliAuthStatus"

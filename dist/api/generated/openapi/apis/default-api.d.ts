@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdPolymarketWithdrawRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdPolymarketWithdrawRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdStripePaymentMethodsRequest, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -37,6 +37,10 @@ export interface DefaultApiDeleteApiAgentsByIdPaymentMethodsByPaymentMethodIdReq
 export interface DefaultApiDeleteApiAgentsByIdShippingAddressesByAddressIdRequest {
     id: string;
     addressId: string;
+}
+export interface DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest {
+    id: string;
+    methodId: string;
 }
 export interface DefaultApiDeleteApiAllowlistByIdRequest {
     id: string;
@@ -149,6 +153,9 @@ export interface DefaultApiGetApiAgentsByIdPolymarketPositionsRequest {
     id: string;
 }
 export interface DefaultApiGetApiAgentsByIdShippingAddressesRequest {
+    id: string;
+}
+export interface DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest {
     id: string;
 }
 export interface DefaultApiGetApiAllowlistByAgentIdRequest {
@@ -524,6 +531,14 @@ export interface DefaultApiPostApiAgentsByIdShippingAddressesOperationRequest {
 export interface DefaultApiPostApiAgentsByIdShippingAddressesByAddressIdSetDefaultRequest {
     id: string;
     addressId: string;
+}
+export interface DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest {
+    id: string;
+    postApiAgentsByIdStripePaymentMethodsRequest: PostApiAgentsByIdStripePaymentMethodsRequest;
+}
+export interface DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest {
+    id: string;
+    postApiAgentsByIdStripePaymentMethodsSetupIntentRequest: PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest;
 }
 export interface DefaultApiPostApiAgentsByIdVirtualCardOperationRequest {
     id: string;
@@ -1022,6 +1037,26 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiAgentsByIdShippingAddressesByAddressId(requestParameters: DefaultApiDeleteApiAgentsByIdShippingAddressesByAddressIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for deleteApiAgentsByIdStripePaymentMethodsByMethodId without sending the request
+     * @param {string} id
+     * @param {string} methodId
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodIdRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {string} methodId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodIdRaw(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodId(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for deleteApiAllowlistById without sending the request
      * @param {string} id
@@ -1716,6 +1751,24 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdShippingAddresses(requestParameters: DefaultApiGetApiAgentsByIdShippingAddressesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAgentsByIdStripePaymentMethods without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdStripePaymentMethodsRaw(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdStripePaymentMethods(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsMe without sending the request
      * @throws {RequiredError}
@@ -3965,6 +4018,46 @@ export interface DefaultApiInterface {
      */
     postApiAgentsByIdShippingAddressesByAddressIdSetDefault(requestParameters: DefaultApiPostApiAgentsByIdShippingAddressesByAddressIdSetDefaultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiAgentsByIdStripePaymentMethods without sending the request
+     * @param {string} id
+     * @param {PostApiAgentsByIdStripePaymentMethodsRequest} postApiAgentsByIdStripePaymentMethodsRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {PostApiAgentsByIdStripePaymentMethodsRequest} postApiAgentsByIdStripePaymentMethodsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdStripePaymentMethodsRaw(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdStripePaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAgentsByIdStripePaymentMethodsSetupIntent without sending the request
+     * @param {string} id
+     * @param {PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest} postApiAgentsByIdStripePaymentMethodsSetupIntentRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntentRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest} postApiAgentsByIdStripePaymentMethodsSetupIntentRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntentRaw(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntent(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiAgentsByIdVirtualCard without sending the request
      * @param {string} id
      * @param {PostApiAgentsByIdVirtualCardRequest} postApiAgentsByIdVirtualCardRequest
@@ -6184,6 +6277,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     deleteApiAgentsByIdShippingAddressesByAddressId(requestParameters: DefaultApiDeleteApiAgentsByIdShippingAddressesByAddressIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for deleteApiAgentsByIdStripePaymentMethodsByMethodId without sending the request
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodIdRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodIdRaw(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodId(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for deleteApiAllowlistById without sending the request
      */
     deleteApiAllowlistByIdRequestOpts(requestParameters: DefaultApiDeleteApiAllowlistByIdRequest): Promise<runtime.RequestOpts>;
@@ -6553,6 +6656,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiAgentsByIdShippingAddresses(requestParameters: DefaultApiGetApiAgentsByIdShippingAddressesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAgentsByIdStripePaymentMethods without sending the request
+     */
+    getApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiAgentsByIdStripePaymentMethodsRaw(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdStripePaymentMethods(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsMe without sending the request
      */
@@ -7723,6 +7836,26 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiAgentsByIdShippingAddressesByAddressIdSetDefault(requestParameters: DefaultApiPostApiAgentsByIdShippingAddressesByAddressIdSetDefaultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAgentsByIdStripePaymentMethods without sending the request
+     */
+    postApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAgentsByIdStripePaymentMethodsRaw(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdStripePaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAgentsByIdStripePaymentMethodsSetupIntent without sending the request
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntentRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntentRaw(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntent(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentsByIdVirtualCard without sending the request
      */

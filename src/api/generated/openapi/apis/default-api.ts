@@ -38,6 +38,8 @@ import type {
   PostApiAgentsByIdPolymarketWithdrawRequest,
   PostApiAgentsByIdRegenerateKeyRequest,
   PostApiAgentsByIdShippingAddressesRequest,
+  PostApiAgentsByIdStripePaymentMethodsRequest,
+  PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest,
   PostApiAgentsByIdVirtualCardRequest,
   PostApiAgentsRegisterRequest,
   PostApiAgentsRequest,
@@ -183,6 +185,10 @@ import {
     PostApiAgentsByIdRegenerateKeyRequestToJSON,
     PostApiAgentsByIdShippingAddressesRequestFromJSON,
     PostApiAgentsByIdShippingAddressesRequestToJSON,
+    PostApiAgentsByIdStripePaymentMethodsRequestFromJSON,
+    PostApiAgentsByIdStripePaymentMethodsRequestToJSON,
+    PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestFromJSON,
+    PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestToJSON,
     PostApiAgentsByIdVirtualCardRequestFromJSON,
     PostApiAgentsByIdVirtualCardRequestToJSON,
     PostApiAgentsRegisterRequestFromJSON,
@@ -413,6 +419,11 @@ export interface DefaultApiDeleteApiAgentsByIdShippingAddressesByAddressIdReques
     addressId: string;
 }
 
+export interface DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest {
+    id: string;
+    methodId: string;
+}
+
 export interface DefaultApiDeleteApiAllowlistByIdRequest {
     id: string;
 }
@@ -554,6 +565,10 @@ export interface DefaultApiGetApiAgentsByIdPolymarketPositionsRequest {
 }
 
 export interface DefaultApiGetApiAgentsByIdShippingAddressesRequest {
+    id: string;
+}
+
+export interface DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest {
     id: string;
 }
 
@@ -1022,6 +1037,16 @@ export interface DefaultApiPostApiAgentsByIdShippingAddressesOperationRequest {
 export interface DefaultApiPostApiAgentsByIdShippingAddressesByAddressIdSetDefaultRequest {
     id: string;
     addressId: string;
+}
+
+export interface DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest {
+    id: string;
+    postApiAgentsByIdStripePaymentMethodsRequest: PostApiAgentsByIdStripePaymentMethodsRequest;
+}
+
+export interface DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest {
+    id: string;
+    postApiAgentsByIdStripePaymentMethodsSetupIntentRequest: PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest;
 }
 
 export interface DefaultApiPostApiAgentsByIdVirtualCardOperationRequest {
@@ -1653,6 +1678,29 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiAgentsByIdShippingAddressesByAddressId(requestParameters: DefaultApiDeleteApiAgentsByIdShippingAddressesByAddressIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for deleteApiAgentsByIdStripePaymentMethodsByMethodId without sending the request
+     * @param {string} id 
+     * @param {string} methodId 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodIdRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} methodId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodIdRaw(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    deleteApiAgentsByIdStripePaymentMethodsByMethodId(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for deleteApiAllowlistById without sending the request
@@ -2458,6 +2506,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdShippingAddresses(requestParameters: DefaultApiGetApiAgentsByIdShippingAddressesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiAgentsByIdStripePaymentMethods without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdStripePaymentMethodsRaw(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiAgentsByIdStripePaymentMethods(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiAgentsMe without sending the request
@@ -5057,6 +5126,52 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsByIdShippingAddressesByAddressIdSetDefault(requestParameters: DefaultApiPostApiAgentsByIdShippingAddressesByAddressIdSetDefaultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdStripePaymentMethods without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdStripePaymentMethodsRequest} postApiAgentsByIdStripePaymentMethodsRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdStripePaymentMethodsRequest} postApiAgentsByIdStripePaymentMethodsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdStripePaymentMethodsRaw(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdStripePaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdStripePaymentMethodsSetupIntent without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest} postApiAgentsByIdStripePaymentMethodsSetupIntentRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntentRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest} postApiAgentsByIdStripePaymentMethodsSetupIntentRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntentRaw(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdStripePaymentMethodsSetupIntent(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentsByIdVirtualCard without sending the request
@@ -7905,6 +8020,56 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for deleteApiAgentsByIdStripePaymentMethodsByMethodId without sending the request
+     */
+    async deleteApiAgentsByIdStripePaymentMethodsByMethodIdRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteApiAgentsByIdStripePaymentMethodsByMethodId().'
+            );
+        }
+
+        if (requestParameters['methodId'] == null) {
+            throw new runtime.RequiredError(
+                'methodId',
+                'Required parameter "methodId" was null or undefined when calling deleteApiAgentsByIdStripePaymentMethodsByMethodId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/stripe-payment-methods/{methodId}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        urlPath = urlPath.replace(`{${"methodId"}}`, encodeURIComponent(String(requestParameters['methodId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteApiAgentsByIdStripePaymentMethodsByMethodIdRaw(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteApiAgentsByIdStripePaymentMethodsByMethodIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteApiAgentsByIdStripePaymentMethodsByMethodId(requestParameters: DefaultApiDeleteApiAgentsByIdStripePaymentMethodsByMethodIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteApiAgentsByIdStripePaymentMethodsByMethodIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deleteApiAllowlistById without sending the request
      */
     async deleteApiAllowlistByIdRequestOpts(requestParameters: DefaultApiDeleteApiAllowlistByIdRequest): Promise<runtime.RequestOpts> {
@@ -9507,6 +9672,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiAgentsByIdShippingAddresses(requestParameters: DefaultApiGetApiAgentsByIdShippingAddressesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiAgentsByIdShippingAddressesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiAgentsByIdStripePaymentMethods without sending the request
+     */
+    async getApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiAgentsByIdStripePaymentMethods().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/stripe-payment-methods`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAgentsByIdStripePaymentMethodsRaw(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiAgentsByIdStripePaymentMethods(requestParameters: DefaultApiGetApiAgentsByIdStripePaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiAgentsByIdStripePaymentMethodsRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -14765,6 +14972,110 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentsByIdShippingAddressesByAddressIdSetDefault(requestParameters: DefaultApiPostApiAgentsByIdShippingAddressesByAddressIdSetDefaultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentsByIdShippingAddressesByAddressIdSetDefaultRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdStripePaymentMethods without sending the request
+     */
+    async postApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdStripePaymentMethods().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdStripePaymentMethodsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdStripePaymentMethodsRequest',
+                'Required parameter "postApiAgentsByIdStripePaymentMethodsRequest" was null or undefined when calling postApiAgentsByIdStripePaymentMethods().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/stripe-payment-methods`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdStripePaymentMethodsRequestToJSON(requestParameters['postApiAgentsByIdStripePaymentMethodsRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdStripePaymentMethodsRaw(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdStripePaymentMethodsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdStripePaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdStripePaymentMethodsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdStripePaymentMethodsSetupIntent without sending the request
+     */
+    async postApiAgentsByIdStripePaymentMethodsSetupIntentRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdStripePaymentMethodsSetupIntent().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdStripePaymentMethodsSetupIntentRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdStripePaymentMethodsSetupIntentRequest',
+                'Required parameter "postApiAgentsByIdStripePaymentMethodsSetupIntentRequest" was null or undefined when calling postApiAgentsByIdStripePaymentMethodsSetupIntent().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/stripe-payment-methods/setup-intent`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestToJSON(requestParameters['postApiAgentsByIdStripePaymentMethodsSetupIntentRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdStripePaymentMethodsSetupIntentRaw(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdStripePaymentMethodsSetupIntentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdStripePaymentMethodsSetupIntent(requestParameters: DefaultApiPostApiAgentsByIdStripePaymentMethodsSetupIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdStripePaymentMethodsSetupIntentRaw(requestParameters, initOverrides);
     }
 
     /**
