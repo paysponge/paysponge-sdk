@@ -571,7 +571,7 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "discover_services",
-        description: "Discover paid API services by query, category, or type. Use this before paid_fetch, x402_fetch, or mpp_fetch when you do not already know the exact endpoint, HTTP method, parameters, and pricing.",
+        description: "Discover paid API services by query, category, or type. These services can only be called through x402 or MPP payment flows and require a funded wallet with supported stablecoins; discovery itself is read-only and does not require payment. Use this before paid_fetch, x402_fetch, or mpp_fetch when you do not already know the exact endpoint, HTTP method, parameters, and pricing.",
         input_schema: {
             type: "object",
             properties: {

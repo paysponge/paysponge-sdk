@@ -377,7 +377,8 @@ export class SpongeWallet {
         return this.publicTools.listMppSessions(options);
     }
     /**
-     * Discover paid API services.
+     * Discover x402/MPP paid API services.
+     * Discovery is read-only; calling discovered endpoints requires supported stablecoins.
      */
     async discoverServices(options = {}) {
         return this.publicTools.discoverServices(options);

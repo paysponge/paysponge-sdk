@@ -845,7 +845,7 @@ function registerCuratedCommands(program, shared) {
         });
     });
     const payCmd = program.command("pay").description("Paid API and payment helpers");
-    shared(payCmd.command("discover").description("Discover paid API services"))
+    shared(payCmd.command("discover").description("Discover x402/MPP paid API services"))
         .usage("[query] [options]")
         .argument("[query]", "service search query")
         .option("--query <query>", "service search query")

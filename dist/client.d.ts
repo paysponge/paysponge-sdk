@@ -415,7 +415,8 @@ export declare class SpongeWallet {
         limit?: number;
     }): Promise<unknown>;
     /**
-     * Discover paid API services.
+     * Discover x402/MPP paid API services.
+     * Discovery is read-only; calling discovered endpoints requires supported stablecoins.
      */
     discoverServices(options?: {
         type?: string;
