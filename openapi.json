@@ -759,6 +759,21 @@
         "operationId": "getApiAgentsByIdHyperliquidOrders"
       }
     },
+    "/api/agents/{id}/hyperliquid/markets": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdHyperliquidMarkets"
+      }
+    },
     "/api/agents/{id}/hyperliquid/cancel-order": {
       "post": {
         "parameters": [

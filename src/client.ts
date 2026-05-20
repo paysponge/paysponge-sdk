@@ -499,6 +499,51 @@ export class SpongeWallet {
   }
 
   /**
+   * Start an MPP payment session on Tempo.
+   */
+  async startMppSession(options: {
+    chain?: "tempo" | "tempo-testnet";
+    max_deposit?: string;
+    deposit?: string;
+  } = {}) {
+    return this.publicTools.startMppSession(options);
+  }
+
+  /**
+   * Make a request through an existing MPP payment session.
+   */
+  async requestMppSession(options: {
+    session_id: string;
+    url: string;
+    method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    headers?: Record<string, string>;
+    body?: unknown;
+    stream?: boolean;
+  }) {
+    return this.publicTools.requestMppSession(options);
+  }
+
+  /**
+   * Close an MPP payment session.
+   */
+  async closeMppSession(options: {
+    session_id: string;
+    reason?: string;
+  }) {
+    return this.publicTools.closeMppSession(options);
+  }
+
+  /**
+   * List MPP payment sessions.
+   */
+  async listMppSessions(options: {
+    status?: "created" | "active" | "closing" | "closed" | "error";
+    limit?: number;
+  } = {}) {
+    return this.publicTools.listMppSessions(options);
+  }
+
+  /**
    * Discover paid API services.
    */
   async discoverServices(options: {

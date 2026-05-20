@@ -122,6 +122,62 @@ describe("ToolExecutor", () => {
     });
   });
 
+  it("routes mpp_session actions to session endpoints", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue({ sessions: [] }),
+      post: vi.fn().mockResolvedValue({ ok: true }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    await expect(executor.execute("mpp_session", {
+      action: "start",
+      chain: "tempo",
+      max_deposit: "1",
+    })).resolves.toMatchObject({ status: "success" });
+    expect(http.post).toHaveBeenLastCalledWith("/api/mpp/session/start", {
+      chain: "tempo",
+      max_deposit: "1",
+      deposit: undefined,
+    });
+
+    await expect(executor.execute("mpp_session", {
+      action: "request",
+      session_id: "session-1",
+      url: "https://paid.example.com/stream",
+      method: "POST",
+      body: { prompt: "hello" },
+      stream: true,
+    })).resolves.toMatchObject({ status: "success" });
+    expect(http.post).toHaveBeenLastCalledWith("/api/mpp/session/request", {
+      session_id: "session-1",
+      url: "https://paid.example.com/stream",
+      method: "POST",
+      headers: undefined,
+      body: { prompt: "hello" },
+      stream: true,
+    });
+
+    await expect(executor.execute("mpp_session", {
+      action: "close",
+      session_id: "session-1",
+      reason: "done",
+    })).resolves.toMatchObject({ status: "success" });
+    expect(http.post).toHaveBeenLastCalledWith("/api/mpp/session/close", {
+      session_id: "session-1",
+      reason: "done",
+    });
+
+    await expect(executor.execute("mpp_session", {
+      action: "list",
+      status: "active",
+      limit: 5,
+    })).resolves.toMatchObject({ status: "success" });
+    expect(http.get).toHaveBeenLastCalledWith("/api/mpp/sessions", {
+      status: "active",
+      limit: "5",
+    });
+  });
+
   it("routes discover_services to /api/discover", async () => {
     const http = {
       get: vi.fn().mockResolvedValue({ services: [] }),

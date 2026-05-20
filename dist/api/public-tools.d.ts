@@ -47,6 +47,27 @@ export interface MppFetchOptions {
     body?: unknown;
     chain?: "tempo" | "tempo-testnet";
 }
+export interface MppSessionStartOptions {
+    chain?: "tempo" | "tempo-testnet";
+    max_deposit?: string;
+    deposit?: string;
+}
+export interface MppSessionRequestOptions {
+    session_id: string;
+    url: string;
+    method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    headers?: Record<string, string>;
+    body?: unknown;
+    stream?: boolean;
+}
+export interface MppSessionCloseOptions {
+    session_id: string;
+    reason?: string;
+}
+export interface MppSessionListOptions {
+    status?: "created" | "active" | "closing" | "closed" | "error";
+    limit?: number;
+}
 export interface DiscoverServicesOptions {
     type?: string;
     limit?: number;
@@ -232,6 +253,10 @@ export declare class PublicToolsApi {
     paidFetch(options: PaidFetchOptions): Promise<unknown>;
     x402Fetch(options: X402FetchOptions): Promise<unknown>;
     mppFetch(options: MppFetchOptions): Promise<unknown>;
+    startMppSession(options?: MppSessionStartOptions): Promise<unknown>;
+    requestMppSession(options: MppSessionRequestOptions): Promise<unknown>;
+    closeMppSession(options: MppSessionCloseOptions): Promise<unknown>;
+    listMppSessions(options?: MppSessionListOptions): Promise<unknown>;
     discoverServices(options?: DiscoverServicesOptions): Promise<unknown>;
     getService(serviceId: string): Promise<unknown>;
     polymarket(options: PolymarketOptions): Promise<unknown>;

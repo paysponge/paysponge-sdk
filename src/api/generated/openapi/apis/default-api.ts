@@ -515,6 +515,10 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest {
     endTime?: string;
 }
 
+export interface DefaultApiGetApiAgentsByIdHyperliquidMarketsRequest {
+    id: string;
+}
+
 export interface DefaultApiGetApiAgentsByIdHyperliquidOrdersRequest {
     id: string;
 }
@@ -2240,6 +2244,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquidCandles(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidMarkets without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidMarketsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidMarketsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidMarketsRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidMarketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiAgentsByIdHyperliquidMarkets(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidMarketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiAgentsByIdHyperliquidOrders without sending the request
@@ -9054,6 +9079,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiAgentsByIdHyperliquidCandles(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiAgentsByIdHyperliquidCandlesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidMarkets without sending the request
+     */
+    async getApiAgentsByIdHyperliquidMarketsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidMarketsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidMarkets().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/markets`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidMarketsRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidMarketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidMarketsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidMarkets(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidMarketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiAgentsByIdHyperliquidMarketsRaw(requestParameters, initOverrides);
     }
 
     /**

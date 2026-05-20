@@ -83,6 +83,31 @@ export interface MppFetchOptions {
   chain?: "tempo" | "tempo-testnet";
 }
 
+export interface MppSessionStartOptions {
+  chain?: "tempo" | "tempo-testnet";
+  max_deposit?: string;
+  deposit?: string;
+}
+
+export interface MppSessionRequestOptions {
+  session_id: string;
+  url: string;
+  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+  headers?: Record<string, string>;
+  body?: unknown;
+  stream?: boolean;
+}
+
+export interface MppSessionCloseOptions {
+  session_id: string;
+  reason?: string;
+}
+
+export interface MppSessionListOptions {
+  status?: "created" | "active" | "closing" | "closed" | "error";
+  limit?: number;
+}
+
 export interface DiscoverServicesOptions {
   type?: string;
   limit?: number;
@@ -428,6 +453,30 @@ export class PublicToolsApi {
     return this.http.post<unknown>("/api/mpp/fetch", {
       ...rest,
       method,
+    });
+  }
+
+  async startMppSession(options: MppSessionStartOptions = {}): Promise<unknown> {
+    return this.http.post<unknown>("/api/mpp/session/start", options);
+  }
+
+  async requestMppSession(options: MppSessionRequestOptions): Promise<unknown> {
+    const { method = "GET", ...rest } = options;
+
+    return this.http.post<unknown>("/api/mpp/session/request", {
+      ...rest,
+      method,
+    });
+  }
+
+  async closeMppSession(options: MppSessionCloseOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/mpp/session/close", options);
+  }
+
+  async listMppSessions(options: MppSessionListOptions = {}): Promise<unknown> {
+    return this.http.get<unknown>("/api/mpp/sessions", {
+      status: options.status,
+      limit: options.limit?.toString(),
     });
   }
 

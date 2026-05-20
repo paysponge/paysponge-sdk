@@ -240,6 +240,37 @@ export class ToolExecutor {
           headers: args.headers,
           body: args.body,
         });
+      case "mpp_session": {
+        switch (args.action) {
+          case "start":
+            return this.http.post<unknown>("/api/mpp/session/start", {
+              chain: args.chain,
+              max_deposit: args.max_deposit,
+              deposit: args.deposit,
+            });
+          case "request":
+            return this.http.post<unknown>("/api/mpp/session/request", {
+              session_id: args.session_id,
+              url: args.url,
+              method: args.method,
+              headers: args.headers,
+              body: args.body,
+              stream: args.stream,
+            });
+          case "close":
+            return this.http.post<unknown>("/api/mpp/session/close", {
+              session_id: args.session_id,
+              reason: args.reason,
+            });
+          case "list":
+            return this.http.get<unknown>("/api/mpp/sessions", {
+              status: args.status as string | undefined,
+              limit: args.limit !== undefined ? String(args.limit) : undefined,
+            });
+          default:
+            throw new Error("mpp_session action must be one of: start, request, close, list");
+        }
+      }
       case "polymarket":
         return this.http.post<unknown>("/api/polymarket", args);
       case "store_key":

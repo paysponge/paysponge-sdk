@@ -926,6 +926,57 @@ function registerCuratedCommands(program, shared) {
             body: opts.body,
         });
     });
+    const mppSessionCmd = payCmd.command("mpp-session").description("Manage MPP payment sessions");
+    shared(mppSessionCmd.command("start").description("Start an MPP payment session"))
+        .addOption(new Option("--chain <chain>", "MPP session chain").choices(["tempo-testnet", "tempo"]))
+        .option("--max-deposit <amount>", "maximum session spend in the chain's primary Tempo stable token")
+        .option("--deposit <amount>", "initial on-chain deposit amount")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "mpp_session", {
+            action: "start",
+            chain: opts.chain,
+            max_deposit: opts.maxDeposit,
+            deposit: opts.deposit,
+        });
+    });
+    shared(mppSessionCmd.command("request").description("Make a request through an MPP payment session"))
+        .requiredOption("--session-id <id>", "MPP session ID")
+        .requiredOption("--url <url>", "target URL")
+        .addOption(new Option("--method <method>", "HTTP method").choices(["GET", "POST", "PUT", "DELETE", "PATCH"]).default("GET"))
+        .option("--headers <json>", "headers as JSON", parseJsonObject)
+        .option("--body <json>", "request body as JSON", parseJsonValue)
+        .option("--stream", "request an SSE/streaming response")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "mpp_session", {
+            action: "request",
+            session_id: opts.sessionId,
+            url: opts.url,
+            method: opts.method,
+            headers: opts.headers,
+            body: opts.body,
+            stream: opts.stream,
+        });
+    });
+    shared(mppSessionCmd.command("close").description("Close an MPP payment session"))
+        .requiredOption("--session-id <id>", "MPP session ID")
+        .option("--reason <reason>", "close reason")
+        .action(async (opts) => {
+        await executeToolCommand(opts, "mpp_session", {
+            action: "close",
+            session_id: opts.sessionId,
+            reason: opts.reason,
+        });
+    });
+    shared(mppSessionCmd.command("list").description("List MPP payment sessions"))
+        .addOption(new Option("--status <status>", "session status filter").choices(["created", "active", "closing", "closed", "error"]))
+        .option("--limit <n>", "maximum sessions to return", parseInt)
+        .action(async (opts) => {
+        await executeToolCommand(opts, "mpp_session", {
+            action: "list",
+            status: opts.status,
+            limit: opts.limit,
+        });
+    });
     const keysCmd = program.command("keys").description("Stored service keys");
     shared(keysCmd.command("list").description("List stored keys"))
         .action(async (opts) => {

@@ -1104,6 +1104,36 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiAgentsByIdHyperliquidCandlesRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiAgentsByIdHyperliquidMarkets without sending the request
+     */
+    async getApiAgentsByIdHyperliquidMarketsRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidMarkets().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/agents/{id}/hyperliquid/markets`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiAgentsByIdHyperliquidMarketsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidMarketsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiAgentsByIdHyperliquidMarkets(requestParameters, initOverrides) {
+        await this.getApiAgentsByIdHyperliquidMarketsRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiAgentsByIdHyperliquidOrders without sending the request
      */
     async getApiAgentsByIdHyperliquidOrdersRequestOpts(requestParameters) {

@@ -89,6 +89,32 @@ describe("CLI command tree", () => {
       "fetch",
       "x402",
       "mpp",
+      "mpp-session",
+    ]));
+  });
+
+  it("exposes MPP session commands under pay", () => {
+    const program = buildCliProgram();
+    const pay = program.commands.find((entry) => entry.name() === "pay");
+    const mppSession = pay?.commands.find((entry) => entry.name() === "mpp-session");
+
+    expect(mppSession).toBeDefined();
+    expect(commandNames(mppSession!)).toEqual(expect.arrayContaining([
+      "start",
+      "request",
+      "close",
+      "list",
+    ]));
+    expect(optionFlags(mppSession!.commands.find((entry) => entry.name() === "start")!)).toEqual(expect.arrayContaining([
+      "--chain <chain>",
+      "--max-deposit <amount>",
+      "--deposit <amount>",
+    ]));
+    expect(optionFlags(mppSession!.commands.find((entry) => entry.name() === "request")!)).toEqual(expect.arrayContaining([
+      "--session-id <id>",
+      "--url <url>",
+      "--method <method>",
+      "--stream",
     ]));
   });
 

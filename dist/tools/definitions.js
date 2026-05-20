@@ -684,6 +684,74 @@ export const TOOL_DEFINITIONS = [
         cli_output: httpResponseOutput("MPP fetch"),
     },
     {
+        name: "mpp_session",
+        description: "Manage an MPP payment session on Tempo. Use action=start to create a session, " +
+            "action=request to make one or more paid requests with the same session, action=close to settle it, " +
+            "and action=list to inspect existing sessions. Use this only for confirmed session endpoints, repeated requests, or SSE/streaming flows; use paid_fetch for normal one-shot paid API calls.",
+        input_schema: {
+            type: "object",
+            properties: {
+                action: {
+                    type: "string",
+                    enum: ["start", "request", "close", "list"],
+                    description: "Which MPP session operation to perform",
+                },
+                chain: {
+                    type: "string",
+                    enum: ["tempo-testnet", "tempo"],
+                    description: "Used by action=start. MPP session chain.",
+                },
+                max_deposit: {
+                    type: "string",
+                    description: "Used by action=start. Maximum session spend in the chain's primary Tempo stable token.",
+                },
+                deposit: {
+                    type: "string",
+                    description: "Used by action=start. Initial on-chain deposit amount. Must be <= max_deposit.",
+                },
+                session_id: {
+                    type: "string",
+                    description: "Used by action=request|close. Session ID returned by action=start.",
+                },
+                url: {
+                    type: "string",
+                    description: "Used by action=request. Target URL.",
+                },
+                method: {
+                    type: "string",
+                    enum: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+                    description: "Used by action=request. HTTP method (default: GET).",
+                },
+                headers: {
+                    type: "object",
+                    description: "Used by action=request. Additional HTTP headers.",
+                },
+                body: {
+                    type: "object",
+                    description: "Used by action=request. JSON request body for non-GET calls.",
+                },
+                stream: {
+                    type: "boolean",
+                    description: "Used by action=request. Set true for SSE/streaming endpoints.",
+                },
+                reason: {
+                    type: "string",
+                    description: "Used by action=close. Optional close reason.",
+                },
+                status: {
+                    type: "string",
+                    enum: ["created", "active", "closing", "closed", "error"],
+                    description: "Used by action=list. Optional status filter.",
+                },
+                limit: {
+                    type: "number",
+                    description: "Used by action=list. Maximum number of sessions to return.",
+                },
+            },
+            required: ["action"],
+        },
+    },
+    {
         name: "hyperliquid",
         description: "Trade perps and spot on Hyperliquid DEX. Uses your agent's EVM wallet for signing (no API keys needed).\n\n" +
             "Hyperliquid includes default markets plus HIP-3/builder perp markets. Some HIP-3 markets represent private/pre-IPO companies, teams, or other synthetic assets, for example \"vntl:ANTHROPIC\". Do not assume a requested asset is unavailable because it is not a public stock or default Hyperliquid perp. For any natural-language asset/company/project request where the exact symbol is not already known, first call action=\"markets\" with query set to the user text or likely ticker/name, then use the returned symbol exactly.\n\n" +

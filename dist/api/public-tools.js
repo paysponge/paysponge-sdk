@@ -107,6 +107,25 @@ export class PublicToolsApi {
             method,
         });
     }
+    async startMppSession(options = {}) {
+        return this.http.post("/api/mpp/session/start", options);
+    }
+    async requestMppSession(options) {
+        const { method = "GET", ...rest } = options;
+        return this.http.post("/api/mpp/session/request", {
+            ...rest,
+            method,
+        });
+    }
+    async closeMppSession(options) {
+        return this.http.post("/api/mpp/session/close", options);
+    }
+    async listMppSessions(options = {}) {
+        return this.http.get("/api/mpp/sessions", {
+            status: options.status,
+            limit: options.limit?.toString(),
+        });
+    }
     async discoverServices(options = {}) {
         return this.http.get("/api/discover", {
             type: options.type,

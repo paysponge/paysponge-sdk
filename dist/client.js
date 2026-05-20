@@ -353,6 +353,30 @@ export class SpongeWallet {
         return this.publicTools.mppFetch(options);
     }
     /**
+     * Start an MPP payment session on Tempo.
+     */
+    async startMppSession(options = {}) {
+        return this.publicTools.startMppSession(options);
+    }
+    /**
+     * Make a request through an existing MPP payment session.
+     */
+    async requestMppSession(options) {
+        return this.publicTools.requestMppSession(options);
+    }
+    /**
+     * Close an MPP payment session.
+     */
+    async closeMppSession(options) {
+        return this.publicTools.closeMppSession(options);
+    }
+    /**
+     * List MPP payment sessions.
+     */
+    async listMppSessions(options = {}) {
+        return this.publicTools.listMppSessions(options);
+    }
+    /**
      * Discover paid API services.
      */
     async discoverServices(options = {}) {
