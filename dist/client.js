@@ -420,7 +420,7 @@ export class SpongeWallet {
         return this.publicTools.createLinkPaymentCredential(this.agentId, options);
     }
     /**
-     * Fetch a usable checkout card from Sponge Card or a vaulted card source.
+     * Fetch a usable checkout card from Sponge Card or a stored card source.
      */
     async getCard(options = {}) {
         return this.publicTools.getCard(options);
@@ -432,7 +432,7 @@ export class SpongeWallet {
         return this.publicTools.issueVirtualCard(options);
     }
     /**
-     * Report the outcome of a purchase attempt that used a stored or vaulted card.
+     * Report the outcome of a purchase attempt that used a stored card.
      */
     async reportCardUsage(options) {
         return this.publicTools.reportCardUsage(options);

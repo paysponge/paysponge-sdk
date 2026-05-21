@@ -120,7 +120,7 @@ export interface StoreCreditCardOptions {
     metadata?: Record<string, unknown>;
 }
 export interface GetCardOptions {
-    card_type?: "sponge_card" | "basis_theory_vaulted";
+    card_type?: "sponge_card" | "stored_card";
     payment_method_id?: string;
     amount?: string;
     currency?: string;

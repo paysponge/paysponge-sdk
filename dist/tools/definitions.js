@@ -1331,7 +1331,7 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "report_card_usage",
-        description: "Report the outcome of a purchase attempt that used a stored or vaulted card. " +
+        description: "Report the outcome of a purchase attempt that used a stored card. " +
             "Use this after checkout to log success/failure and update spending usage.",
         input_schema: {
             type: "object",
@@ -1554,7 +1554,7 @@ export const TOOL_DEFINITIONS = [
         name: "get_credit_card",
         description: "Fetch the user's card details. Routes to the right card source automatically:\n\n" +
             "- **Sponge Card** — credit card backed by on-chain collateral. Returns encrypted PAN/CVC plus a per-call symmetric key for client-side AES-128-GCM decryption.\n" +
-            "- **Basis Theory vaulted card** — a card the user vaulted via the dashboard. Returns a short-lived BT session (`session_key` + `retrieve_url`) that you must immediately fetch over HTTP.\n\n" +
+            "- **Stored card** — a card the user saved via the dashboard or card storage API. Returns a short-lived session (`session_key` + `retrieve_url`) that you must immediately fetch over HTTP.\n\n" +
             "For the Sponge Card branch, use `spending_power_display` for user-facing output; `spending_power_cents` is an integer in cents, so 250 means $2.50.\n\n" +
             "If the user has only one source enrolled, returns that card directly. If both sources are enrolled and `card_type` is omitted, returns `{ status: \"selection_required\", available_cards: [...] }` so you can ask the user which to use, then re-call with `card_type` set.\n\n" +
             "For per-transaction virtual cards (issued on demand for a specific merchant + amount), use `issue_virtual_card` instead.",
@@ -1563,20 +1563,20 @@ export const TOOL_DEFINITIONS = [
             properties: {
                 card_type: {
                     type: "string",
-                    enum: ["sponge_card", "basis_theory_vaulted"],
+                    enum: ["sponge_card", "stored_card"],
                     description: "Explicit card source. Omit to auto-detect.",
                 },
                 payment_method_id: {
                     type: "string",
-                    description: "Specific Basis Theory payment method id. BT path only.",
+                    description: "Specific saved payment method id. Stored-card path only.",
                 },
                 amount: {
                     type: "string",
-                    description: "Transaction amount for spending-limit checks. BT path only.",
+                    description: "Transaction amount for spending-limit checks. Stored-card path only.",
                 },
-                currency: { type: "string", description: "ISO 4217 currency code (default: USD). BT path only." },
-                merchant_name: { type: "string", description: "Merchant name. BT path only — recorded in audit log." },
-                merchant_url: { type: "string", description: "Merchant URL. BT path only — recorded in audit log." },
+                currency: { type: "string", description: "ISO 4217 currency code (default: USD). Stored-card path only." },
+                merchant_name: { type: "string", description: "Merchant name. Stored-card path only — recorded in audit log." },
+                merchant_url: { type: "string", description: "Merchant URL. Stored-card path only — recorded in audit log." },
             },
             required: [],
         },
@@ -1601,7 +1601,7 @@ export const TOOL_DEFINITIONS = [
             "buying a subscription, or entering payment info on any website. " +
             "For purchases via web_purchase, virtual card credentials are handled automatically — " +
             "use this tool directly only when you need the raw card details (e.g., to fill in a payment form yourself).\n\n" +
-            "To retrieve an already-vaulted card (not per-transaction), use `get_credit_card` instead.",
+            "To retrieve an already-stored card (not per-transaction), use `get_credit_card` instead.",
         input_schema: {
             type: "object",
             properties: {

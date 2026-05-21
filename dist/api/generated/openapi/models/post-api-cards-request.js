@@ -16,7 +16,7 @@
  */
 export const PostApiCardsRequestCardTypeEnum = {
     SpongeCard: 'sponge_card',
-    BasisTheoryVaulted: 'basis_theory_vaulted'
+    StoredCard: 'stored_card'
 };
 /**
  * Check if a given object implements the PostApiCardsRequest interface.

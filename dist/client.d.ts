@@ -465,7 +465,7 @@ export declare class SpongeWallet {
      */
     createLinkPaymentCredential(options?: CreateLinkPaymentCredentialOptions): Promise<unknown>;
     /**
-     * Fetch a usable checkout card from Sponge Card or a vaulted card source.
+     * Fetch a usable checkout card from Sponge Card or a stored card source.
      */
     getCard(options?: GetCardOptions): Promise<unknown>;
     /**
@@ -473,7 +473,7 @@ export declare class SpongeWallet {
      */
     issueVirtualCard(options: IssueVirtualCardOptions): Promise<unknown>;
     /**
-     * Report the outcome of a purchase attempt that used a stored or vaulted card.
+     * Report the outcome of a purchase attempt that used a stored card.
      */
     reportCardUsage(options: ReportCardUsageOptions): Promise<unknown>;
     /**

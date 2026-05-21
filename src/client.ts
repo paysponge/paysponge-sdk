@@ -636,7 +636,7 @@ export class SpongeWallet {
   }
 
   /**
-   * Fetch a usable checkout card from Sponge Card or a vaulted card source.
+   * Fetch a usable checkout card from Sponge Card or a stored card source.
    */
   async getCard(options: GetCardOptions = {}): Promise<unknown> {
     return this.publicTools.getCard(options);
@@ -650,7 +650,7 @@ export class SpongeWallet {
   }
 
   /**
-   * Report the outcome of a purchase attempt that used a stored or vaulted card.
+   * Report the outcome of a purchase attempt that used a stored card.
    */
   async reportCardUsage(options: ReportCardUsageOptions): Promise<unknown> {
     return this.publicTools.reportCardUsage(options);
