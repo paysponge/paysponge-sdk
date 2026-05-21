@@ -319,6 +319,30 @@ describe("ToolExecutor", () => {
     });
   });
 
+  it("routes get_credit_card to /api/cards", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ status: "ok" }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("get_credit_card", {
+      card_type: "sponge_card",
+      amount: "25",
+      merchant_name: "Example",
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith("/api/cards", {
+      card_type: "sponge_card",
+      payment_method_id: undefined,
+      amount: "25",
+      currency: undefined,
+      merchant_name: "Example",
+      merchant_url: undefined,
+    });
+  });
+
   it("routes bank tools to /api/bank endpoints", async () => {
     const http = {
       get: vi.fn().mockResolvedValue({ ok: true }),

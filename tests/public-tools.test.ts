@@ -209,7 +209,7 @@ describe("PublicToolsApi", () => {
       merchant_name: "Example",
       merchant_url: "https://example.com",
     });
-    await api.getCard({ card_type: "rain", amount: "25" });
+    await api.getCard({ card_type: "sponge_card", amount: "25" });
     await api.issueVirtualCard({
       amount: "25",
       merchant_name: "Example",
@@ -237,7 +237,7 @@ describe("PublicToolsApi", () => {
       }),
     );
     expect(http.post).toHaveBeenCalledWith("/api/cards", {
-      card_type: "rain",
+      card_type: "sponge_card",
       amount: "25",
     });
     expect(http.post).toHaveBeenCalledWith("/api/virtual-cards", {

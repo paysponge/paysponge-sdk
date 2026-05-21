@@ -363,7 +363,7 @@ export class ToolExecutor {
             context: args.context,
           },
         );
-      case "get_card":
+      case "get_credit_card":
         return this.http.post<unknown>("/api/cards", {
           card_type: args.card_type,
           payment_method_id: args.payment_method_id,

@@ -68,7 +68,7 @@ export interface PostApiCardsRequest {
  * @export
  */
 export const PostApiCardsRequestCardTypeEnum = {
-    Rain: 'rain',
+    SpongeCard: 'sponge_card',
     BasisTheoryVaulted: 'basis_theory_vaulted'
 } as const;
 export type PostApiCardsRequestCardTypeEnum = typeof PostApiCardsRequestCardTypeEnum[keyof typeof PostApiCardsRequestCardTypeEnum];

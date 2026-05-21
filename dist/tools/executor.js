@@ -343,7 +343,7 @@ export class ToolExecutor {
                     merchantUrl: args.merchantUrl ?? args.merchant_url,
                     context: args.context,
                 });
-            case "get_card":
+            case "get_credit_card":
                 return this.http.post("/api/cards", {
                     card_type: args.card_type,
                     payment_method_id: args.payment_method_id,

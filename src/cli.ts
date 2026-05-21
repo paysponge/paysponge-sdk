@@ -1429,14 +1429,14 @@ function registerCuratedCommands(
     });
 
   shared(cardCmd.command("get").description("Fetch the user's card (Sponge Card or vaulted card)"))
-    .option("--card-type <type>", "explicit card source: 'rain' or 'basis_theory_vaulted'")
+    .option("--card-type <type>", "explicit card source: Sponge Card or 'basis_theory_vaulted'")
     .option("--payment-method-id <id>", "specific Basis Theory payment method ID")
     .option("--amount <amount>", "transaction amount for spending-limit checks (BT path only)")
     .option("--currency <code>", "ISO currency code (BT path only)")
     .option("--merchant-name <name>", "merchant name (BT path only)")
     .option("--merchant-url <url>", "merchant URL (BT path only)")
     .action(async (opts: Record<string, unknown>) => {
-      await executeToolCommand(opts, "get_card", {
+      await executeToolCommand(opts, "get_credit_card", {
         card_type: opts.cardType,
         payment_method_id: opts.paymentMethodId,
         amount: opts.amount,
@@ -1453,7 +1453,7 @@ function registerCuratedCommands(
     .option("--merchant-name <name>", "merchant name")
     .option("--merchant-url <url>", "merchant URL")
     .action(async (opts: Record<string, unknown>) => {
-      await executeToolCommand(opts, "get_card", {
+      await executeToolCommand(opts, "get_credit_card", {
         card_type: "basis_theory_vaulted",
         payment_method_id: opts.paymentMethodId,
         amount: opts.amount,

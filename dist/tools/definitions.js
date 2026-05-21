@@ -1551,9 +1551,9 @@ export const TOOL_DEFINITIONS = [
         ], "Sponge Card withdrawal"),
     },
     {
-        name: "get_card",
+        name: "get_credit_card",
         description: "Fetch the user's card details. Routes to the right card source automatically:\n\n" +
-            "- **Sponge Card (Rain)** — credit card backed by on-chain collateral. Returns encrypted PAN/CVC plus a per-call symmetric key for client-side AES-128-GCM decryption.\n" +
+            "- **Sponge Card** — credit card backed by on-chain collateral. Returns encrypted PAN/CVC plus a per-call symmetric key for client-side AES-128-GCM decryption.\n" +
             "- **Basis Theory vaulted card** — a card the user vaulted via the dashboard. Returns a short-lived BT session (`session_key` + `retrieve_url`) that you must immediately fetch over HTTP.\n\n" +
             "For the Sponge Card branch, use `spending_power_display` for user-facing output; `spending_power_cents` is an integer in cents, so 250 means $2.50.\n\n" +
             "If the user has only one source enrolled, returns that card directly. If both sources are enrolled and `card_type` is omitted, returns `{ status: \"selection_required\", available_cards: [...] }` so you can ask the user which to use, then re-call with `card_type` set.\n\n" +
@@ -1563,7 +1563,7 @@ export const TOOL_DEFINITIONS = [
             properties: {
                 card_type: {
                     type: "string",
-                    enum: ["rain", "basis_theory_vaulted"],
+                    enum: ["sponge_card", "basis_theory_vaulted"],
                     description: "Explicit card source. Omit to auto-detect.",
                 },
                 payment_method_id: {
@@ -1601,7 +1601,7 @@ export const TOOL_DEFINITIONS = [
             "buying a subscription, or entering payment info on any website. " +
             "For purchases via web_purchase, virtual card credentials are handled automatically — " +
             "use this tool directly only when you need the raw card details (e.g., to fill in a payment form yourself).\n\n" +
-            "To retrieve an already-vaulted card (not per-transaction), use `get_card` instead.",
+            "To retrieve an already-vaulted card (not per-transaction), use `get_credit_card` instead.",
         input_schema: {
             type: "object",
             properties: {

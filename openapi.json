@@ -8625,7 +8625,7 @@
                   "card_type": {
                     "type": "string",
                     "enum": [
-                      "rain",
+                      "sponge_card",
                       "basis_theory_vaulted"
                     ]
                   },
@@ -8657,7 +8657,7 @@
                   "card_type": {
                     "type": "string",
                     "enum": [
-                      "rain",
+                      "sponge_card",
                       "basis_theory_vaulted"
                     ]
                   },
@@ -8689,7 +8689,7 @@
                   "card_type": {
                     "type": "string",
                     "enum": [
-                      "rain",
+                      "sponge_card",
                       "basis_theory_vaulted"
                     ]
                   },

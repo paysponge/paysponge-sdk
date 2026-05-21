@@ -15,7 +15,7 @@
  * @export
  */
 export const PostApiCardsRequestCardTypeEnum = {
-    Rain: 'rain',
+    SpongeCard: 'sponge_card',
     BasisTheoryVaulted: 'basis_theory_vaulted'
 };
 /**
