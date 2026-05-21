@@ -1149,7 +1149,7 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "store_credit_card",
-        description: "Store credit card details in encrypted secret storage for this agent. " +
+        description: "Store credit card details as a normal encrypted payment method for this agent. " +
             "Use this dedicated tool for payment card data instead of store_key.",
         input_schema: {
             type: "object",
@@ -1221,10 +1221,10 @@ export const TOOL_DEFINITIONS = [
             required: ["card_number", "cvc", "cardholder_name", "email", "billing_address", "shipping_address"],
         },
         cli_output: fieldsOutput([
-            { key: "service", label: "Service" },
-            { key: "label", label: "Label" },
+            { key: "payment_method_id", label: "Payment method" },
+            { key: "card_brand", label: "Brand" },
             { key: "card_last4", label: "Card last4" },
-            { key: "key_preview", label: "Preview" },
+            { key: "is_default", label: "Default" },
             { key: "created_at", label: "Created" },
         ], "Card stored"),
     },

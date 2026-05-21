@@ -449,11 +449,11 @@ export declare class SpongeWallet {
         condition_id?: string;
     }): Promise<unknown>;
     /**
-     * Store a user's card details in encrypted card storage for checkout.
+     * Store a user's card details as an encrypted agent payment method for checkout.
      */
     storeCreditCard(options: StoreCreditCardOptions): Promise<unknown>;
     /**
-     * Retrieve the saved personal card payload from encrypted card storage.
+     * List saved credit card payment methods. Raw card numbers and CVCs are not returned.
      */
     getStoredCreditCard(): Promise<unknown>;
     /**

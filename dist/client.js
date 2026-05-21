@@ -396,13 +396,13 @@ export class SpongeWallet {
         return this.publicTools.polymarket(options);
     }
     /**
-     * Store a user's card details in encrypted card storage for checkout.
+     * Store a user's card details as an encrypted agent payment method for checkout.
      */
     async storeCreditCard(options) {
         return this.publicTools.storeCreditCard(options);
     }
     /**
-     * Retrieve the saved personal card payload from encrypted card storage.
+     * List saved credit card payment methods. Raw card numbers and CVCs are not returned.
      */
     async getStoredCreditCard() {
         return this.publicTools.getStoredCreditCard();
