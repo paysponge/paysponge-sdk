@@ -24,8 +24,10 @@ export declare class HttpClient {
     private get headers();
     get<T>(path: string, params?: Record<string, string | undefined>): Promise<T>;
     post<T>(path: string, body?: unknown): Promise<T>;
+    postRaw(path: string, body?: unknown): Promise<Response>;
     put<T>(path: string, body?: unknown): Promise<T>;
     delete<T>(path: string): Promise<T>;
+    private ensureOk;
     private handleResponse;
     /**
      * Get the base URL (for MCP config)

@@ -358,11 +358,14 @@ export class SpongeWallet {
     async startMppSession(options = {}) {
         return this.publicTools.startMppSession(options);
     }
-    /**
-     * Make a request through an existing MPP payment session.
-     */
     async requestMppSession(options) {
         return this.publicTools.requestMppSession(options);
+    }
+    /**
+     * Make a streaming request through an existing MPP payment session.
+     */
+    async streamMppSessionRequest(options) {
+        return this.publicTools.streamMppSessionRequest(options);
     }
     /**
      * Close an MPP payment session.

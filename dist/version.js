@@ -1,2 +1,2 @@
-export const SDK_VERSION = "0.1.106";
+export const SDK_VERSION = "0.1.107";
 //# sourceMappingURL=version.js.map

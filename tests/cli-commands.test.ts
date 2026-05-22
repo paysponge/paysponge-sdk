@@ -320,4 +320,76 @@ describe("CLI command tree", () => {
     expect(rendered).toContain("missing required argument or option: --chain");
     expect(rendered).toContain("Usage: spongewallet send [chain] [to] [asset] [amount] [options]");
   });
+
+  it("pipes MPP session stream responses to stdout", async () => {
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sponge-cli-"));
+    const credentialsPath = path.join(tempDir, "credentials.json");
+    fs.writeFileSync(credentialsPath, JSON.stringify({
+      apiKey: "sponge_live_test",
+      agentId: "11111111-1111-4111-8111-111111111111",
+      agentName: "Streaming Agent",
+      createdAt: new Date().toISOString(),
+    }));
+
+    const originalFetch = globalThis.fetch;
+    const encoder = new TextEncoder();
+    const fetchMock = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
+      const body = JSON.parse(String(init?.body));
+      expect(body).toMatchObject({
+        session_id: "session-1",
+        url: "https://paid.example.com/stream",
+        method: "POST",
+        stream: true,
+        body: { prompt: "hello", stream: true },
+      });
+
+      return new Response(new ReadableStream({
+        start(controller) {
+          controller.enqueue(encoder.encode("data: hello\n\n"));
+          controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+          controller.close();
+        },
+      }), {
+        headers: { "Content-Type": "text/event-stream" },
+      });
+    });
+    globalThis.fetch = fetchMock as typeof fetch;
+
+    const output: string[] = [];
+    const stdout = vi.spyOn(process.stdout, "write").mockImplementation(((chunk: string | Uint8Array) => {
+      output.push(typeof chunk === "string" ? chunk : chunk.toString());
+      return true;
+    }) as any);
+
+    try {
+      const program = buildCliProgram();
+      await program.parseAsync([
+        "pay",
+        "mpp-session",
+        "request",
+        "--credentials-path",
+        credentialsPath,
+        "--base-url",
+        "http://localhost:8000",
+        "--session-id",
+        "session-1",
+        "--url",
+        "https://paid.example.com/stream",
+        "--method",
+        "POST",
+        "--body",
+        "{\"prompt\":\"hello\",\"stream\":true}",
+        "--stream",
+      ], { from: "user" });
+    } finally {
+      stdout.mockRestore();
+      globalThis.fetch = originalFetch;
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    }
+
+    expect(fetchMock).toHaveBeenCalledWith("http://localhost:8000/api/mpp/session/request", expect.objectContaining({
+      method: "POST",
+    }));
+    expect(output.join("")).toBe("data: hello\n\ndata: [DONE]\n\n");
+  });
 });

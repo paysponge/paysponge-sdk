@@ -74,6 +74,16 @@ export class HttpClient {
         });
         return this.handleResponse(response);
     }
+    async postRaw(path, body) {
+        const url = new URL(path, this.baseUrl);
+        const response = await fetch(url.toString(), {
+            method: "POST",
+            headers: this.headers,
+            body: body ? JSON.stringify(body) : undefined,
+        });
+        await this.ensureOk(response);
+        return response;
+    }
     async put(path, body) {
         const url = new URL(path, this.baseUrl);
         const response = await fetch(url.toString(), {
@@ -91,7 +101,7 @@ export class HttpClient {
         });
         return this.handleResponse(response);
     }
-    async handleResponse(response) {
+    async ensureOk(response) {
         notifyVersionNotice(response);
         if (!response.ok) {
             let errorData = null;
@@ -107,6 +117,9 @@ export class HttpClient {
             }
             throw new SpongeApiError(response.status, errorData?.error ?? "unknown_error", errorData?.message ?? `HTTP ${response.status}: ${response.statusText}`);
         }
+    }
+    async handleResponse(response) {
+        await this.ensureOk(response);
         // Handle 204 No Content
         if (response.status === 204) {
             return undefined;

@@ -112,9 +112,21 @@ export class PublicToolsApi {
     }
     async requestMppSession(options) {
         const { method = "GET", ...rest } = options;
-        return this.http.post("/api/mpp/session/request", {
+        const request = {
             ...rest,
             method,
+        };
+        if (options.stream) {
+            return this.http.postRaw("/api/mpp/session/request", request);
+        }
+        return this.http.post("/api/mpp/session/request", request);
+    }
+    async streamMppSessionRequest(options) {
+        const { method = "GET", ...rest } = options;
+        return this.http.postRaw("/api/mpp/session/request", {
+            ...rest,
+            method,
+            stream: true,
         });
     }
     async closeMppSession(options) {

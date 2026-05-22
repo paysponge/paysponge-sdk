@@ -31,6 +31,7 @@ import {
   type CreateSpongeCardOptions,
   type GetCardOptions,
   type IssueVirtualCardOptions,
+  type MppSessionRequestOptions,
   type ReportCardUsageOptions,
   type SpongeCardAmountOptions,
   type SpongeCardOnboardOptions,
@@ -512,15 +513,17 @@ export class SpongeWallet {
   /**
    * Make a request through an existing MPP payment session.
    */
-  async requestMppSession(options: {
-    session_id: string;
-    url: string;
-    method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
-    headers?: Record<string, string>;
-    body?: unknown;
-    stream?: boolean;
-  }) {
+  requestMppSession(options: MppSessionRequestOptions & { stream: true }): Promise<Response>;
+  requestMppSession(options: MppSessionRequestOptions): Promise<unknown>;
+  async requestMppSession(options: MppSessionRequestOptions): Promise<unknown | Response> {
     return this.publicTools.requestMppSession(options);
+  }
+
+  /**
+   * Make a streaming request through an existing MPP payment session.
+   */
+  async streamMppSessionRequest(options: Omit<MppSessionRequestOptions, "stream">): Promise<Response> {
+    return this.publicTools.streamMppSessionRequest(options);
   }
 
   /**

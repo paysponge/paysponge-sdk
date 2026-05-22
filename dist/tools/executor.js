@@ -234,15 +234,31 @@ export class ToolExecutor {
                             max_deposit: args.max_deposit,
                             deposit: args.deposit,
                         });
-                    case "request":
-                        return this.http.post("/api/mpp/session/request", {
+                    case "request": {
+                        const request = {
                             session_id: args.session_id,
                             url: args.url,
                             method: args.method,
                             headers: args.headers,
                             body: args.body,
                             stream: args.stream,
-                        });
+                        };
+                        if (args.stream) {
+                            const response = await this.http.postRaw("/api/mpp/session/request", request);
+                            const headers = {};
+                            response.headers.forEach((value, key) => {
+                                headers[key] = value;
+                            });
+                            return {
+                                ok: response.ok,
+                                status: response.status,
+                                stream: true,
+                                headers,
+                                data: await response.text(),
+                            };
+                        }
+                        return this.http.post("/api/mpp/session/request", request);
+                    }
                     case "close":
                         return this.http.post("/api/mpp/session/close", {
                             session_id: args.session_id,

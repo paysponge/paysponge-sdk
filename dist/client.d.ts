@@ -1,5 +1,5 @@
 import { type ConnectOptions, type Chain, type Balance, type TransferOptions, type SendTransactionOptions, type SwapOptions, type TempoSwapOptions, type TransactionResult, type TransactionStatus, type Agent, type CreateAgentOptions, type McpConfig } from "./types/schemas.js";
-import { type AddLinkPaymentMethodOptions, type CreateLinkPaymentCredentialOptions, type CreateSpongeCardOptions, type GetCardOptions, type IssueVirtualCardOptions, type ReportCardUsageOptions, type SpongeCardAmountOptions, type SpongeCardOnboardOptions, type SpongeCardStatusOptions, type SpongeCardTermsOptions, type StoreCreditCardOptions } from "./api/public-tools.js";
+import { type AddLinkPaymentMethodOptions, type CreateLinkPaymentCredentialOptions, type CreateSpongeCardOptions, type GetCardOptions, type IssueVirtualCardOptions, type MppSessionRequestOptions, type ReportCardUsageOptions, type SpongeCardAmountOptions, type SpongeCardOnboardOptions, type SpongeCardStatusOptions, type SpongeCardTermsOptions, type StoreCreditCardOptions } from "./api/public-tools.js";
 /**
  * SpongeWallet - The main SDK client for managing agent wallets
  *
@@ -392,14 +392,14 @@ export declare class SpongeWallet {
     /**
      * Make a request through an existing MPP payment session.
      */
-    requestMppSession(options: {
-        session_id: string;
-        url: string;
-        method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
-        headers?: Record<string, string>;
-        body?: unknown;
-        stream?: boolean;
-    }): Promise<unknown>;
+    requestMppSession(options: MppSessionRequestOptions & {
+        stream: true;
+    }): Promise<Response>;
+    requestMppSession(options: MppSessionRequestOptions): Promise<unknown>;
+    /**
+     * Make a streaming request through an existing MPP payment session.
+     */
+    streamMppSessionRequest(options: Omit<MppSessionRequestOptions, "stream">): Promise<Response>;
     /**
      * Close an MPP payment session.
      */

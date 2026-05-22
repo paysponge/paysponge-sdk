@@ -254,7 +254,11 @@ export declare class PublicToolsApi {
     x402Fetch(options: X402FetchOptions): Promise<unknown>;
     mppFetch(options: MppFetchOptions): Promise<unknown>;
     startMppSession(options?: MppSessionStartOptions): Promise<unknown>;
+    requestMppSession(options: MppSessionRequestOptions & {
+        stream: true;
+    }): Promise<Response>;
     requestMppSession(options: MppSessionRequestOptions): Promise<unknown>;
+    streamMppSessionRequest(options: Omit<MppSessionRequestOptions, "stream">): Promise<Response>;
     closeMppSession(options: MppSessionCloseOptions): Promise<unknown>;
     listMppSessions(options?: MppSessionListOptions): Promise<unknown>;
     discoverServices(options?: DiscoverServicesOptions): Promise<unknown>;

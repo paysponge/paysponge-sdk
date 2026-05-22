@@ -169,6 +169,35 @@ describe("PublicToolsApi", () => {
     });
   });
 
+  it("returns a raw response for streaming MPP session requests", async () => {
+    const response = new Response("data: hello\n\ndata: [DONE]\n\n", {
+      headers: { "Content-Type": "text/event-stream" },
+    });
+    const http = {
+      get: vi.fn(),
+      post: vi.fn(),
+      postRaw: vi.fn().mockResolvedValue(response),
+    };
+    const api = new PublicToolsApi(http as any);
+
+    const result = await api.streamMppSessionRequest({
+      session_id: "session-1",
+      url: "https://paid.example.com/stream",
+      method: "POST",
+      body: { prompt: "hello", stream: true },
+    });
+
+    expect(result).toBe(response);
+    expect(http.postRaw).toHaveBeenCalledWith("/api/mpp/session/request", {
+      session_id: "session-1",
+      url: "https://paid.example.com/stream",
+      method: "POST",
+      body: { prompt: "hello", stream: true },
+      stream: true,
+    });
+    expect(http.post).not.toHaveBeenCalled();
+  });
+
   it("posts card helper requests to the card REST endpoints", async () => {
     const http = {
       get: vi.fn().mockResolvedValue({ ok: true }),

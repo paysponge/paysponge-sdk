@@ -123,9 +123,13 @@ describe("ToolExecutor", () => {
   });
 
   it("routes mpp_session actions to session endpoints", async () => {
+    const streamResponse = new Response("data: hello\n\ndata: [DONE]\n\n", {
+      headers: { "Content-Type": "text/event-stream" },
+    });
     const http = {
       get: vi.fn().mockResolvedValue({ sessions: [] }),
       post: vi.fn().mockResolvedValue({ ok: true }),
+      postRaw: vi.fn().mockResolvedValue(streamResponse),
     };
     const executor = new ToolExecutor(http as any, "agent-1");
 
@@ -147,8 +151,15 @@ describe("ToolExecutor", () => {
       method: "POST",
       body: { prompt: "hello" },
       stream: true,
-    })).resolves.toMatchObject({ status: "success" });
-    expect(http.post).toHaveBeenLastCalledWith("/api/mpp/session/request", {
+    })).resolves.toMatchObject({
+      status: "success",
+      data: {
+        stream: true,
+        status: 200,
+        data: "data: hello\n\ndata: [DONE]\n\n",
+      },
+    });
+    expect(http.postRaw).toHaveBeenLastCalledWith("/api/mpp/session/request", {
       session_id: "session-1",
       url: "https://paid.example.com/stream",
       method: "POST",

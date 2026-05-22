@@ -460,12 +460,29 @@ export class PublicToolsApi {
     return this.http.post<unknown>("/api/mpp/session/start", options);
   }
 
-  async requestMppSession(options: MppSessionRequestOptions): Promise<unknown> {
+  async requestMppSession(options: MppSessionRequestOptions & { stream: true }): Promise<Response>;
+  async requestMppSession(options: MppSessionRequestOptions): Promise<unknown>;
+  async requestMppSession(options: MppSessionRequestOptions): Promise<unknown | Response> {
     const { method = "GET", ...rest } = options;
-
-    return this.http.post<unknown>("/api/mpp/session/request", {
+    const request = {
       ...rest,
       method,
+    };
+
+    if (options.stream) {
+      return this.http.postRaw("/api/mpp/session/request", request);
+    }
+
+    return this.http.post<unknown>("/api/mpp/session/request", request);
+  }
+
+  async streamMppSessionRequest(options: Omit<MppSessionRequestOptions, "stream">): Promise<Response> {
+    const { method = "GET", ...rest } = options;
+
+    return this.http.postRaw("/api/mpp/session/request", {
+      ...rest,
+      method,
+      stream: true,
     });
   }
 

@@ -947,6 +947,16 @@ function registerCuratedCommands(program, shared) {
         .option("--body <json>", "request body as JSON", parseJsonValue)
         .option("--stream", "request an SSE/streaming response")
         .action(async (opts) => {
+        if (opts.stream) {
+            await executeMppSessionStreamCommand(opts, {
+                session_id: opts.sessionId,
+                url: opts.url,
+                method: opts.method,
+                headers: opts.headers,
+                body: opts.body,
+            });
+            return;
+        }
         await executeToolCommand(opts, "mpp_session", {
             action: "request",
             session_id: opts.sessionId,
@@ -1778,6 +1788,35 @@ async function executeToolCommand(opts, toolName, input) {
         process.exit(1);
     }
     displayToolResult(getToolDefinition(toolName), result.data);
+}
+async function executeMppSessionStreamCommand(opts, input) {
+    const wallet = await connectWallet(opts);
+    const response = await wallet.streamMppSessionRequest({
+        session_id: String(input.session_id),
+        url: String(input.url),
+        method: input.method,
+        headers: input.headers,
+        body: input.body,
+    });
+    await pipeResponseBodyToStdout(response);
+}
+async function pipeResponseBodyToStdout(response) {
+    if (!response.body)
+        return;
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    while (true) {
+        const { value, done } = await reader.read();
+        if (done)
+            break;
+        if (value) {
+            process.stdout.write(decoder.decode(value, { stream: true }));
+        }
+    }
+    const remaining = decoder.decode();
+    if (remaining) {
+        process.stdout.write(remaining);
+    }
 }
 function getToolDefinition(name) {
     const tool = TOOL_DEFINITIONS.find((entry) => entry.name === name);

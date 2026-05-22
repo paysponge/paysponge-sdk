@@ -103,6 +103,19 @@ export class HttpClient {
     return this.handleResponse<T>(response);
   }
 
+  async postRaw(path: string, body?: unknown): Promise<Response> {
+    const url = new URL(path, this.baseUrl);
+
+    const response = await fetch(url.toString(), {
+      method: "POST",
+      headers: this.headers,
+      body: body ? JSON.stringify(body) : undefined,
+    });
+
+    await this.ensureOk(response);
+    return response;
+  }
+
   async put<T>(path: string, body?: unknown): Promise<T> {
     const url = new URL(path, this.baseUrl);
 
@@ -126,7 +139,7 @@ export class HttpClient {
     return this.handleResponse<T>(response);
   }
 
-  private async handleResponse<T>(response: Response): Promise<T> {
+  private async ensureOk(response: Response): Promise<void> {
     notifyVersionNotice(response);
 
     if (!response.ok) {
@@ -148,6 +161,10 @@ export class HttpClient {
         errorData?.message ?? `HTTP ${response.status}: ${response.statusText}`
       );
     }
+  }
+
+  private async handleResponse<T>(response: Response): Promise<T> {
+    await this.ensureOk(response);
 
     // Handle 204 No Content
     if (response.status === 204) {
