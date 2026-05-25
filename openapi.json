@@ -3772,6 +3772,377 @@
     "/api/agent-requests/plans": {
       "get": {
         "operationId": "getApiAgent-requestsPlans"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "title",
+                  "steps"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "isTestMode": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "reasoning": {
+                    "type": "string"
+                  },
+                  "steps": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "type",
+                        "action",
+                        "reason"
+                      ],
+                      "properties": {
+                        "type": {
+                          "const": "hyperliquid",
+                          "type": "string"
+                        },
+                        "action": {
+                          "type": "string",
+                          "enum": [
+                            "order",
+                            "reduce_position",
+                            "cancel",
+                            "cancel_all",
+                            "set_leverage",
+                            "withdraw",
+                            "transfer"
+                          ]
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "symbol": {
+                          "type": "string"
+                        },
+                        "side": {
+                          "type": "string",
+                          "enum": [
+                            "buy",
+                            "sell"
+                          ]
+                        },
+                        "order_type": {
+                          "type": "string",
+                          "enum": [
+                            "limit",
+                            "market"
+                          ]
+                        },
+                        "amount": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "string"
+                        },
+                        "reduce_only": {
+                          "type": "boolean"
+                        },
+                        "percent": {
+                          "type": "number"
+                        },
+                        "reduce_percent": {
+                          "type": "number"
+                        },
+                        "max": {
+                          "type": "boolean"
+                        },
+                        "trigger_price": {
+                          "type": "string"
+                        },
+                        "tp_sl": {
+                          "type": "string",
+                          "enum": [
+                            "tp",
+                            "sl"
+                          ]
+                        },
+                        "tif": {
+                          "type": "string",
+                          "enum": [
+                            "GTC",
+                            "IOC",
+                            "PO"
+                          ]
+                        },
+                        "order_id": {
+                          "type": "string"
+                        },
+                        "leverage": {
+                          "type": "number"
+                        },
+                        "destination": {
+                          "type": "string"
+                        },
+                        "to_perp": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "title",
+                  "steps"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "isTestMode": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "reasoning": {
+                    "type": "string"
+                  },
+                  "steps": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "type",
+                        "action",
+                        "reason"
+                      ],
+                      "properties": {
+                        "type": {
+                          "const": "hyperliquid",
+                          "type": "string"
+                        },
+                        "action": {
+                          "type": "string",
+                          "enum": [
+                            "order",
+                            "reduce_position",
+                            "cancel",
+                            "cancel_all",
+                            "set_leverage",
+                            "withdraw",
+                            "transfer"
+                          ]
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "symbol": {
+                          "type": "string"
+                        },
+                        "side": {
+                          "type": "string",
+                          "enum": [
+                            "buy",
+                            "sell"
+                          ]
+                        },
+                        "order_type": {
+                          "type": "string",
+                          "enum": [
+                            "limit",
+                            "market"
+                          ]
+                        },
+                        "amount": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "string"
+                        },
+                        "reduce_only": {
+                          "type": "boolean"
+                        },
+                        "percent": {
+                          "type": "number"
+                        },
+                        "reduce_percent": {
+                          "type": "number"
+                        },
+                        "max": {
+                          "type": "boolean"
+                        },
+                        "trigger_price": {
+                          "type": "string"
+                        },
+                        "tp_sl": {
+                          "type": "string",
+                          "enum": [
+                            "tp",
+                            "sl"
+                          ]
+                        },
+                        "tif": {
+                          "type": "string",
+                          "enum": [
+                            "GTC",
+                            "IOC",
+                            "PO"
+                          ]
+                        },
+                        "order_id": {
+                          "type": "string"
+                        },
+                        "leverage": {
+                          "type": "number"
+                        },
+                        "destination": {
+                          "type": "string"
+                        },
+                        "to_perp": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "title",
+                  "steps"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "isTestMode": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "reasoning": {
+                    "type": "string"
+                  },
+                  "steps": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "type",
+                        "action",
+                        "reason"
+                      ],
+                      "properties": {
+                        "type": {
+                          "const": "hyperliquid",
+                          "type": "string"
+                        },
+                        "action": {
+                          "type": "string",
+                          "enum": [
+                            "order",
+                            "reduce_position",
+                            "cancel",
+                            "cancel_all",
+                            "set_leverage",
+                            "withdraw",
+                            "transfer"
+                          ]
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "symbol": {
+                          "type": "string"
+                        },
+                        "side": {
+                          "type": "string",
+                          "enum": [
+                            "buy",
+                            "sell"
+                          ]
+                        },
+                        "order_type": {
+                          "type": "string",
+                          "enum": [
+                            "limit",
+                            "market"
+                          ]
+                        },
+                        "amount": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "string"
+                        },
+                        "reduce_only": {
+                          "type": "boolean"
+                        },
+                        "percent": {
+                          "type": "number"
+                        },
+                        "reduce_percent": {
+                          "type": "number"
+                        },
+                        "max": {
+                          "type": "boolean"
+                        },
+                        "trigger_price": {
+                          "type": "string"
+                        },
+                        "tp_sl": {
+                          "type": "string",
+                          "enum": [
+                            "tp",
+                            "sl"
+                          ]
+                        },
+                        "tif": {
+                          "type": "string",
+                          "enum": [
+                            "GTC",
+                            "IOC",
+                            "PO"
+                          ]
+                        },
+                        "order_id": {
+                          "type": "string"
+                        },
+                        "leverage": {
+                          "type": "number"
+                        },
+                        "destination": {
+                          "type": "string"
+                        },
+                        "to_perp": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgent-requestsPlans"
       }
     },
     "/api/agent-requests/plans/{planId}": {

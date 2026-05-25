@@ -1,5 +1,7 @@
 export * from './get-api-bridge-fiat-customer-force-refresh-parameter.js';
 export * from './post-api-agent-keys-request.js';
+export * from './post-api-agent-requests-plans-request.js';
+export * from './post-api-agent-requests-plans-request-steps-inner.js';
 export * from './post-api-agents-by-id-amazon-accounts-copy-request.js';
 export * from './post-api-agents-by-id-amazon-accounts-request.js';
 export * from './post-api-agents-by-id-enrollments-by-enrollment-id-verify-method-request.js';

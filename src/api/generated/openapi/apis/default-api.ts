@@ -17,6 +17,7 @@ import * as runtime from '../runtime.js';
 import type {
   GetApiBridgeFiatCustomerForceRefreshParameter,
   PostApiAgentKeysRequest,
+  PostApiAgentRequestsPlansRequest,
   PostApiAgentsByIdAmazonAccountsCopyRequest,
   PostApiAgentsByIdAmazonAccountsRequest,
   PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest,
@@ -143,6 +144,8 @@ import {
     GetApiBridgeFiatCustomerForceRefreshParameterToJSON,
     PostApiAgentKeysRequestFromJSON,
     PostApiAgentKeysRequestToJSON,
+    PostApiAgentRequestsPlansRequestFromJSON,
+    PostApiAgentRequestsPlansRequestToJSON,
     PostApiAgentsByIdAmazonAccountsCopyRequestFromJSON,
     PostApiAgentsByIdAmazonAccountsCopyRequestToJSON,
     PostApiAgentsByIdAmazonAccountsRequestFromJSON,
@@ -872,6 +875,10 @@ export interface DefaultApiPostApiAgentRequestsByIdTakeoverRequest {
 
 export interface DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest {
     id: string;
+}
+
+export interface DefaultApiPostApiAgentRequestsPlansOperationRequest {
+    postApiAgentRequestsPlansRequest: PostApiAgentRequestsPlansRequest;
 }
 
 export interface DefaultApiPostApiAgentsOperationRequest {
@@ -4367,6 +4374,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentRequestsByIdTakeoverEnd(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentRequestsPlans without sending the request
+     * @param {PostApiAgentRequestsPlansRequest} postApiAgentRequestsPlansRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentRequestsPlansRequestOpts(requestParameters: DefaultApiPostApiAgentRequestsPlansOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiAgentRequestsPlansRequest} postApiAgentRequestsPlansRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentRequestsPlansRaw(requestParameters: DefaultApiPostApiAgentRequestsPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentRequestsPlans(requestParameters: DefaultApiPostApiAgentRequestsPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgents without sending the request
@@ -13278,6 +13306,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentRequestsByIdTakeoverEnd(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentRequestsByIdTakeoverEndRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentRequestsPlans without sending the request
+     */
+    async postApiAgentRequestsPlansRequestOpts(requestParameters: DefaultApiPostApiAgentRequestsPlansOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiAgentRequestsPlansRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentRequestsPlansRequest',
+                'Required parameter "postApiAgentRequestsPlansRequest" was null or undefined when calling postApiAgentRequestsPlans().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agent-requests/plans`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentRequestsPlansRequestToJSON(requestParameters['postApiAgentRequestsPlansRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentRequestsPlansRaw(requestParameters: DefaultApiPostApiAgentRequestsPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentRequestsPlansRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentRequestsPlans(requestParameters: DefaultApiPostApiAgentRequestsPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentRequestsPlansRaw(requestParameters, initOverrides);
     }
 
     /**
