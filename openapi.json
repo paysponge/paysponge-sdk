@@ -714,6 +714,21 @@
         "operationId": "postApiAgentsByIdPolymarketDeposit-address"
       }
     },
+    "/api/agents/{id}/hyperliquid/snapshot": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdHyperliquidSnapshot"
+      }
+    },
     "/api/agents/{id}/hyperliquid": {
       "get": {
         "parameters": [
@@ -19059,6 +19074,58 @@
           }
         ],
         "operationId": "postApiAgentsByIdShipping-addressesByAddressIdSet-default"
+      }
+    },
+    "/trade/mcp/*": {
+      "get": {
+        "operationId": "allTradeMcp*"
+      },
+      "post": {
+        "operationId": "allTradeMcp*"
+      },
+      "put": {
+        "operationId": "allTradeMcp*"
+      },
+      "delete": {
+        "operationId": "allTradeMcp*"
+      },
+      "patch": {
+        "operationId": "allTradeMcp*"
+      },
+      "head": {
+        "operationId": "allTradeMcp*"
+      },
+      "options": {
+        "operationId": "allTradeMcp*"
+      },
+      "trace": {
+        "operationId": "allTradeMcp*"
+      }
+    },
+    "/trade/mcp": {
+      "get": {
+        "operationId": "allTradeMcp"
+      },
+      "post": {
+        "operationId": "allTradeMcp"
+      },
+      "put": {
+        "operationId": "allTradeMcp"
+      },
+      "delete": {
+        "operationId": "allTradeMcp"
+      },
+      "patch": {
+        "operationId": "allTradeMcp"
+      },
+      "head": {
+        "operationId": "allTradeMcp"
+      },
+      "options": {
+        "operationId": "allTradeMcp"
+      },
+      "trace": {
+        "operationId": "allTradeMcp"
       }
     }
   },

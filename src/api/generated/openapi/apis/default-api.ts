@@ -546,6 +546,10 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest {
     limit?: string;
 }
 
+export interface DefaultApiGetApiAgentsByIdHyperliquidSnapshotRequest {
+    id: string;
+}
+
 export interface DefaultApiGetApiAgentsByIdInstructionsPendingRequest {
     id: string;
 }
@@ -1533,6 +1537,310 @@ export interface DefaultApiPutApiSpendingLimitsByIdOperationRequest {
  */
 export interface DefaultApiInterface {
     /**
+     * Creates request options for allTradeMcp without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcpRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_1 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_1RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_2 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_2RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_2(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_3 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_3RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_3Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_3(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_4 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_4RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_4Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_4(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_5 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_5RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_5Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_5(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_6 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_6RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_6Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_6(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_7 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_7RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_7Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_7(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_8 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_8RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_8Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_8(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_9 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_9RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_9Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_9(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_10 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_10RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_10Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_10(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_11 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_11RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_11Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_11(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_12 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_12RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_12Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_12(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_13 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_13RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_13Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_13(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_14 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_14RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_14Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_14(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for allTradeMcp_15 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_15RequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allTradeMcp_15Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    allTradeMcp_15(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for deleteApiAgentKeys without sending the request
      * @param {string} service 
      * @param {string} [agentId] 
@@ -2390,6 +2698,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquidRecentOrders(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidSnapshot without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidSnapshotRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidSnapshotRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidSnapshotRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiAgentsByIdHyperliquidSnapshot(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiAgentsByIdInstructionsPending without sending the request
@@ -7735,6 +8064,550 @@ export interface DefaultApiInterface {
 export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
+     * Creates request options for allTradeMcp without sending the request
+     */
+    async allTradeMcpRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp/*`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcpRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcpRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_1 without sending the request
+     */
+    async allTradeMcp_1RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp/*`;
+
+        return {
+            path: urlPath,
+            method: 'HEAD',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_1RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_1Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_2 without sending the request
+     */
+    async allTradeMcp_2RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp/*`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_2RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_2(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_2Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_3 without sending the request
+     */
+    async allTradeMcp_3RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_3Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_3RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_3(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_3Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_4 without sending the request
+     */
+    async allTradeMcp_4RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp`;
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_4Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_4RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_4(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_4Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_5 without sending the request
+     */
+    async allTradeMcp_5RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp`;
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_5Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_5RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_5(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_5Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_6 without sending the request
+     */
+    async allTradeMcp_6RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp`;
+
+        return {
+            path: urlPath,
+            method: 'OPTIONS',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_6Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_6RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_6(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_6Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_7 without sending the request
+     */
+    async allTradeMcp_7RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp`;
+
+        return {
+            path: urlPath,
+            method: 'TRACE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_7Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_7RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_7(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_7Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_8 without sending the request
+     */
+    async allTradeMcp_8RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp/*`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_8Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_8RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_8(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_8Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_9 without sending the request
+     */
+    async allTradeMcp_9RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp/*`;
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_9Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_9RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_9(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_9Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_10 without sending the request
+     */
+    async allTradeMcp_10RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp/*`;
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_10Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_10RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_10(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_10Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_11 without sending the request
+     */
+    async allTradeMcp_11RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp/*`;
+
+        return {
+            path: urlPath,
+            method: 'OPTIONS',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_11Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_11RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_11(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_11Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_12 without sending the request
+     */
+    async allTradeMcp_12RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp/*`;
+
+        return {
+            path: urlPath,
+            method: 'TRACE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_12Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_12RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_12(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_12Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_13 without sending the request
+     */
+    async allTradeMcp_13RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_13Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_13RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_13(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_13Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_14 without sending the request
+     */
+    async allTradeMcp_14RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp`;
+
+        return {
+            path: urlPath,
+            method: 'HEAD',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_14Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_14RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_14(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_14Raw(initOverrides);
+    }
+
+    /**
+     * Creates request options for allTradeMcp_15 without sending the request
+     */
+    async allTradeMcp_15RequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/trade/mcp`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async allTradeMcp_15Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.allTradeMcp_15RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async allTradeMcp_15(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.allTradeMcp_15Raw(initOverrides);
+    }
+
+    /**
      * Creates request options for deleteApiAgentKeys without sending the request
      */
     async deleteApiAgentKeysRequestOpts(requestParameters: DefaultApiDeleteApiAgentKeysRequest): Promise<runtime.RequestOpts> {
@@ -9472,6 +10345,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiAgentsByIdHyperliquidRecentOrders(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiAgentsByIdHyperliquidRecentOrdersRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidSnapshot without sending the request
+     */
+    async getApiAgentsByIdHyperliquidSnapshotRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidSnapshotRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidSnapshot().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/snapshot`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidSnapshotRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidSnapshotRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidSnapshot(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiAgentsByIdHyperliquidSnapshotRaw(requestParameters, initOverrides);
     }
 
     /**
