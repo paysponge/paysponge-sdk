@@ -541,6 +541,11 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest {
     id: string;
 }
 
+export interface DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest {
+    id: string;
+    limit?: string;
+}
+
 export interface DefaultApiGetApiAgentsByIdInstructionsPendingRequest {
     id: string;
 }
@@ -2362,6 +2367,29 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquidPositions(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidRecentOrders without sending the request
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidRecentOrdersRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidRecentOrdersRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiAgentsByIdHyperliquidRecentOrders(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiAgentsByIdInstructionsPending without sending the request
@@ -9398,6 +9426,52 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiAgentsByIdHyperliquidPositions(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiAgentsByIdHyperliquidPositionsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidRecentOrders without sending the request
+     */
+    async getApiAgentsByIdHyperliquidRecentOrdersRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidRecentOrders().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/recent-orders`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidRecentOrdersRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidRecentOrdersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidRecentOrders(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiAgentsByIdHyperliquidRecentOrdersRaw(requestParameters, initOverrides);
     }
 
     /**

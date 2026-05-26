@@ -132,6 +132,10 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidOrdersRequest {
 export interface DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest {
     id: string;
 }
+export interface DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest {
+    id: string;
+    limit?: string;
+}
 export interface DefaultApiGetApiAgentsByIdInstructionsPendingRequest {
     id: string;
 }
@@ -1624,6 +1628,26 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquidPositions(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidRecentOrders without sending the request
+     * @param {string} id
+     * @param {string} [limit]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidRecentOrdersRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {string} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidRecentOrdersRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidRecentOrders(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsByIdInstructionsPending without sending the request
      * @param {string} id
@@ -6607,6 +6631,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiAgentsByIdHyperliquidPositions(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidRecentOrders without sending the request
+     */
+    getApiAgentsByIdHyperliquidRecentOrdersRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidRecentOrdersRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidRecentOrders(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRecentOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsByIdInstructionsPending without sending the request
      */

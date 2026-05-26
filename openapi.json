@@ -759,6 +759,29 @@
         "operationId": "getApiAgentsByIdHyperliquidOrders"
       }
     },
+    "/api/agents/{id}/hyperliquid/recent-orders": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdHyperliquidRecent-orders"
+      }
+    },
     "/api/agents/{id}/hyperliquid/markets": {
       "get": {
         "parameters": [

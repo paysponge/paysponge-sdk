@@ -1228,6 +1228,39 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiAgentsByIdHyperliquidPositionsRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiAgentsByIdHyperliquidRecentOrders without sending the request
+     */
+    async getApiAgentsByIdHyperliquidRecentOrdersRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidRecentOrders().');
+        }
+        const queryParameters = {};
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/agents/{id}/hyperliquid/recent-orders`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiAgentsByIdHyperliquidRecentOrdersRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidRecentOrdersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiAgentsByIdHyperliquidRecentOrders(requestParameters, initOverrides) {
+        await this.getApiAgentsByIdHyperliquidRecentOrdersRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiAgentsByIdInstructionsPending without sending the request
      */
     async getApiAgentsByIdInstructionsPendingRequestOpts(requestParameters) {
