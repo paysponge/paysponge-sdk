@@ -86,10 +86,12 @@ export class SpongeWallet {
     apiKey: string;
     agentId: string;
     baseUrl?: string;
+    testnet?: boolean;
   }) {
     this.baseUrl = options.baseUrl ?? DEFAULT_BASE_URL;
     this.agentId = options.agentId;
-    this.includeTestnetsInAggregateViews = options.apiKey.startsWith("sponge_test_");
+    this.includeTestnetsInAggregateViews =
+      options.testnet ?? options.apiKey.startsWith("sponge_test_");
 
     this.http = new HttpClient({
       baseUrl: this.baseUrl,
@@ -191,6 +193,7 @@ export class SpongeWallet {
       apiKey,
       agentId,
       baseUrl,
+      testnet: validated.testnet,
     });
   }
 
@@ -201,8 +204,10 @@ export class SpongeWallet {
     if (this.addressCache?.[chain]) {
       return this.addressCache[chain];
     }
-    // Return placeholder - actual address is fetched asynchronously
-    return `<loading ${chain} address...>`;
+    throw new Error(
+      `Wallet address for chain '${chain}' is not yet loaded. ` +
+        `Call 'await wallet.getAddresses()' or 'await wallet.getAddress("${chain}")' first.`,
+    );
   }
 
   /**
