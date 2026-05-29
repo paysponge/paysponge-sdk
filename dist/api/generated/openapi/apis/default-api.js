@@ -18,6 +18,422 @@ import { PostApiAgentKeysRequestToJSON, PostApiAgentRequestsPlansRequestToJSON, 
  */
 export class DefaultApi extends runtime.BaseAPI {
     /**
+     * Creates request options for allChatgptMcp without sending the request
+     */
+    async allChatgptMcpRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp/*`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcpRaw(initOverrides) {
+        const requestOptions = await this.allChatgptMcpRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp(initOverrides) {
+        await this.allChatgptMcpRaw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_1 without sending the request
+     */
+    async allChatgptMcp_1RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp/*`;
+        return {
+            path: urlPath,
+            method: 'HEAD',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_1Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_1RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_1(initOverrides) {
+        await this.allChatgptMcp_1Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_2 without sending the request
+     */
+    async allChatgptMcp_2RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp/*`;
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_2Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_2RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_2(initOverrides) {
+        await this.allChatgptMcp_2Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_3 without sending the request
+     */
+    async allChatgptMcp_3RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_3Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_3RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_3(initOverrides) {
+        await this.allChatgptMcp_3Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_4 without sending the request
+     */
+    async allChatgptMcp_4RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp`;
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_4Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_4RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_4(initOverrides) {
+        await this.allChatgptMcp_4Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_5 without sending the request
+     */
+    async allChatgptMcp_5RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp`;
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_5Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_5RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_5(initOverrides) {
+        await this.allChatgptMcp_5Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_6 without sending the request
+     */
+    async allChatgptMcp_6RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp`;
+        return {
+            path: urlPath,
+            method: 'OPTIONS',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_6Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_6RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_6(initOverrides) {
+        await this.allChatgptMcp_6Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_7 without sending the request
+     */
+    async allChatgptMcp_7RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp`;
+        return {
+            path: urlPath,
+            method: 'TRACE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_7Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_7RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_7(initOverrides) {
+        await this.allChatgptMcp_7Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_8 without sending the request
+     */
+    async allChatgptMcp_8RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp/*`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_8Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_8RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_8(initOverrides) {
+        await this.allChatgptMcp_8Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_9 without sending the request
+     */
+    async allChatgptMcp_9RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp/*`;
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_9Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_9RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_9(initOverrides) {
+        await this.allChatgptMcp_9Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_10 without sending the request
+     */
+    async allChatgptMcp_10RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp/*`;
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_10Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_10RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_10(initOverrides) {
+        await this.allChatgptMcp_10Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_11 without sending the request
+     */
+    async allChatgptMcp_11RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp/*`;
+        return {
+            path: urlPath,
+            method: 'OPTIONS',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_11Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_11RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_11(initOverrides) {
+        await this.allChatgptMcp_11Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_12 without sending the request
+     */
+    async allChatgptMcp_12RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp/*`;
+        return {
+            path: urlPath,
+            method: 'TRACE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_12Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_12RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_12(initOverrides) {
+        await this.allChatgptMcp_12Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_13 without sending the request
+     */
+    async allChatgptMcp_13RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_13Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_13RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_13(initOverrides) {
+        await this.allChatgptMcp_13Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_14 without sending the request
+     */
+    async allChatgptMcp_14RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp`;
+        return {
+            path: urlPath,
+            method: 'HEAD',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_14Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_14RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_14(initOverrides) {
+        await this.allChatgptMcp_14Raw(initOverrides);
+    }
+    /**
+     * Creates request options for allChatgptMcp_15 without sending the request
+     */
+    async allChatgptMcp_15RequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/chatgpt/mcp`;
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async allChatgptMcp_15Raw(initOverrides) {
+        const requestOptions = await this.allChatgptMcp_15RequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async allChatgptMcp_15(initOverrides) {
+        await this.allChatgptMcp_15Raw(initOverrides);
+    }
+    /**
      * Creates request options for allTradeMcp without sending the request
      */
     async allTradeMcpRequestOpts() {
@@ -44,9 +460,9 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.allTradeMcpRaw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_1 without sending the request
+     * Creates request options for allTradeMcp_16 without sending the request
      */
-    async allTradeMcp_1RequestOpts() {
+    async allTradeMcp_16RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp/*`;
@@ -59,20 +475,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_1Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_1RequestOpts();
+    async allTradeMcp_16Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_16RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_1(initOverrides) {
-        await this.allTradeMcp_1Raw(initOverrides);
+    async allTradeMcp_16(initOverrides) {
+        await this.allTradeMcp_16Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_2 without sending the request
+     * Creates request options for allTradeMcp_17 without sending the request
      */
-    async allTradeMcp_2RequestOpts() {
+    async allTradeMcp_17RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp/*`;
@@ -85,20 +501,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_2Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_2RequestOpts();
+    async allTradeMcp_17Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_17RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_2(initOverrides) {
-        await this.allTradeMcp_2Raw(initOverrides);
+    async allTradeMcp_17(initOverrides) {
+        await this.allTradeMcp_17Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_3 without sending the request
+     * Creates request options for allTradeMcp_18 without sending the request
      */
-    async allTradeMcp_3RequestOpts() {
+    async allTradeMcp_18RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp`;
@@ -111,20 +527,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_3Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_3RequestOpts();
+    async allTradeMcp_18Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_18RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_3(initOverrides) {
-        await this.allTradeMcp_3Raw(initOverrides);
+    async allTradeMcp_18(initOverrides) {
+        await this.allTradeMcp_18Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_4 without sending the request
+     * Creates request options for allTradeMcp_19 without sending the request
      */
-    async allTradeMcp_4RequestOpts() {
+    async allTradeMcp_19RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp`;
@@ -137,20 +553,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_4Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_4RequestOpts();
+    async allTradeMcp_19Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_19RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_4(initOverrides) {
-        await this.allTradeMcp_4Raw(initOverrides);
+    async allTradeMcp_19(initOverrides) {
+        await this.allTradeMcp_19Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_5 without sending the request
+     * Creates request options for allTradeMcp_20 without sending the request
      */
-    async allTradeMcp_5RequestOpts() {
+    async allTradeMcp_20RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp`;
@@ -163,20 +579,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_5Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_5RequestOpts();
+    async allTradeMcp_20Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_20RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_5(initOverrides) {
-        await this.allTradeMcp_5Raw(initOverrides);
+    async allTradeMcp_20(initOverrides) {
+        await this.allTradeMcp_20Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_6 without sending the request
+     * Creates request options for allTradeMcp_21 without sending the request
      */
-    async allTradeMcp_6RequestOpts() {
+    async allTradeMcp_21RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp`;
@@ -189,20 +605,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_6Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_6RequestOpts();
+    async allTradeMcp_21Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_21RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_6(initOverrides) {
-        await this.allTradeMcp_6Raw(initOverrides);
+    async allTradeMcp_21(initOverrides) {
+        await this.allTradeMcp_21Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_7 without sending the request
+     * Creates request options for allTradeMcp_22 without sending the request
      */
-    async allTradeMcp_7RequestOpts() {
+    async allTradeMcp_22RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp`;
@@ -215,20 +631,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_7Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_7RequestOpts();
+    async allTradeMcp_22Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_22RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_7(initOverrides) {
-        await this.allTradeMcp_7Raw(initOverrides);
+    async allTradeMcp_22(initOverrides) {
+        await this.allTradeMcp_22Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_8 without sending the request
+     * Creates request options for allTradeMcp_23 without sending the request
      */
-    async allTradeMcp_8RequestOpts() {
+    async allTradeMcp_23RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp/*`;
@@ -241,20 +657,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_8Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_8RequestOpts();
+    async allTradeMcp_23Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_23RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_8(initOverrides) {
-        await this.allTradeMcp_8Raw(initOverrides);
+    async allTradeMcp_23(initOverrides) {
+        await this.allTradeMcp_23Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_9 without sending the request
+     * Creates request options for allTradeMcp_24 without sending the request
      */
-    async allTradeMcp_9RequestOpts() {
+    async allTradeMcp_24RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp/*`;
@@ -267,20 +683,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_9Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_9RequestOpts();
+    async allTradeMcp_24Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_24RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_9(initOverrides) {
-        await this.allTradeMcp_9Raw(initOverrides);
+    async allTradeMcp_24(initOverrides) {
+        await this.allTradeMcp_24Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_10 without sending the request
+     * Creates request options for allTradeMcp_25 without sending the request
      */
-    async allTradeMcp_10RequestOpts() {
+    async allTradeMcp_25RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp/*`;
@@ -293,20 +709,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_10Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_10RequestOpts();
+    async allTradeMcp_25Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_25RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_10(initOverrides) {
-        await this.allTradeMcp_10Raw(initOverrides);
+    async allTradeMcp_25(initOverrides) {
+        await this.allTradeMcp_25Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_11 without sending the request
+     * Creates request options for allTradeMcp_26 without sending the request
      */
-    async allTradeMcp_11RequestOpts() {
+    async allTradeMcp_26RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp/*`;
@@ -319,20 +735,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_11Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_11RequestOpts();
+    async allTradeMcp_26Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_26RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_11(initOverrides) {
-        await this.allTradeMcp_11Raw(initOverrides);
+    async allTradeMcp_26(initOverrides) {
+        await this.allTradeMcp_26Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_12 without sending the request
+     * Creates request options for allTradeMcp_27 without sending the request
      */
-    async allTradeMcp_12RequestOpts() {
+    async allTradeMcp_27RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp/*`;
@@ -345,20 +761,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_12Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_12RequestOpts();
+    async allTradeMcp_27Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_27RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_12(initOverrides) {
-        await this.allTradeMcp_12Raw(initOverrides);
+    async allTradeMcp_27(initOverrides) {
+        await this.allTradeMcp_27Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_13 without sending the request
+     * Creates request options for allTradeMcp_28 without sending the request
      */
-    async allTradeMcp_13RequestOpts() {
+    async allTradeMcp_28RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp`;
@@ -371,20 +787,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_13Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_13RequestOpts();
+    async allTradeMcp_28Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_28RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_13(initOverrides) {
-        await this.allTradeMcp_13Raw(initOverrides);
+    async allTradeMcp_28(initOverrides) {
+        await this.allTradeMcp_28Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_14 without sending the request
+     * Creates request options for allTradeMcp_29 without sending the request
      */
-    async allTradeMcp_14RequestOpts() {
+    async allTradeMcp_29RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp`;
@@ -397,20 +813,20 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_14Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_14RequestOpts();
+    async allTradeMcp_29Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_29RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_14(initOverrides) {
-        await this.allTradeMcp_14Raw(initOverrides);
+    async allTradeMcp_29(initOverrides) {
+        await this.allTradeMcp_29Raw(initOverrides);
     }
     /**
-     * Creates request options for allTradeMcp_15 without sending the request
+     * Creates request options for allTradeMcp_30 without sending the request
      */
-    async allTradeMcp_15RequestOpts() {
+    async allTradeMcp_30RequestOpts() {
         const queryParameters = {};
         const headerParameters = {};
         let urlPath = `/trade/mcp`;
@@ -423,15 +839,15 @@ export class DefaultApi extends runtime.BaseAPI {
     }
     /**
      */
-    async allTradeMcp_15Raw(initOverrides) {
-        const requestOptions = await this.allTradeMcp_15RequestOpts();
+    async allTradeMcp_30Raw(initOverrides) {
+        const requestOptions = await this.allTradeMcp_30RequestOpts();
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async allTradeMcp_15(initOverrides) {
-        await this.allTradeMcp_15Raw(initOverrides);
+    async allTradeMcp_30(initOverrides) {
+        await this.allTradeMcp_30Raw(initOverrides);
     }
     /**
      * Creates request options for deleteApiAgentKeys without sending the request
@@ -1507,6 +1923,39 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiAgentsByIdHyperliquid(requestParameters, initOverrides) {
         await this.getApiAgentsByIdHyperliquidRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidActivity without sending the request
+     */
+    async getApiAgentsByIdHyperliquidActivityRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidActivity().');
+        }
+        const queryParameters = {};
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/agents/{id}/hyperliquid/activity`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiAgentsByIdHyperliquidActivityRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidActivityRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiAgentsByIdHyperliquidActivity(requestParameters, initOverrides) {
+        await this.getApiAgentsByIdHyperliquidActivityRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiAgentsByIdHyperliquidCandles without sending the request

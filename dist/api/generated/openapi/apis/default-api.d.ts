@@ -116,6 +116,10 @@ export interface DefaultApiGetApiAgentsByIdEnrollmentsByEnrollmentIdStatusReques
 export interface DefaultApiGetApiAgentsByIdHyperliquidRequest {
     id: string;
 }
+export interface DefaultApiGetApiAgentsByIdHyperliquidActivityRequest {
+    id: string;
+    limit?: string;
+}
 export interface DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest {
     id: string;
     symbol: string;
@@ -910,6 +914,262 @@ export interface DefaultApiPutApiSpendingLimitsByIdOperationRequest {
  */
 export interface DefaultApiInterface {
     /**
+     * Creates request options for allChatgptMcp without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcpRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_1 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_1RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_2 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_2RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_2(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_3 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_3RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_3Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_3(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_4 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_4RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_4Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_4(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_5 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_5RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_5Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_5(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_6 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_6RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_6Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_6(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_7 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_7RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_7Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_7(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_8 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_8RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_8Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_8(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_9 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_9RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_9Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_9(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_10 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_10RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_10Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_10(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_11 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_11RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_11Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_11(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_12 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_12RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_12Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_12(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_13 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_13RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_13Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_13(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_14 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_14RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_14Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_14(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_15 without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_15RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    allChatgptMcp_15Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_15(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for allTradeMcp without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -926,245 +1186,245 @@ export interface DefaultApiInterface {
      */
     allTradeMcp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_1 without sending the request
+     * Creates request options for allTradeMcp_16 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_1RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_16RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_16Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_16(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_2 without sending the request
+     * Creates request options for allTradeMcp_17 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_2RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_17RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_17Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_2(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_17(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_3 without sending the request
+     * Creates request options for allTradeMcp_18 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_3RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_18RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_3Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_18Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_3(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_18(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_4 without sending the request
+     * Creates request options for allTradeMcp_19 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_4RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_19RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_4Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_19Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_4(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_19(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_5 without sending the request
+     * Creates request options for allTradeMcp_20 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_5RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_20RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_5Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_20Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_5(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_20(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_6 without sending the request
+     * Creates request options for allTradeMcp_21 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_6RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_21RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_6Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_21Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_6(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_21(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_7 without sending the request
+     * Creates request options for allTradeMcp_22 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_7RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_22RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_7Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_22Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_7(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_22(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_8 without sending the request
+     * Creates request options for allTradeMcp_23 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_8RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_23RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_8Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_23Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_8(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_23(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_9 without sending the request
+     * Creates request options for allTradeMcp_24 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_9RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_24RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_9Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_24Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_9(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_24(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_10 without sending the request
+     * Creates request options for allTradeMcp_25 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_10RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_25RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_10Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_25Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_10(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_25(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_11 without sending the request
+     * Creates request options for allTradeMcp_26 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_11RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_26RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_11Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_26Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_11(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_26(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_12 without sending the request
+     * Creates request options for allTradeMcp_27 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_12RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_27RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_12Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_27Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_12(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_27(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_13 without sending the request
+     * Creates request options for allTradeMcp_28 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_13RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_28RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_13Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_28Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_13(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_28(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_14 without sending the request
+     * Creates request options for allTradeMcp_29 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_14RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_29RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_14Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_29Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_14(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_29(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_15 without sending the request
+     * Creates request options for allTradeMcp_30 without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_15RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_30RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    allTradeMcp_15Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_30Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_15(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_30(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for deleteApiAgentKeys without sending the request
      * @param {string} service
@@ -1807,6 +2067,26 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquid(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidActivity without sending the request
+     * @param {string} id
+     * @param {string} [limit]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidActivityRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidActivityRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {string} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidActivityRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidActivity(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsByIdHyperliquidCandles without sending the request
      * @param {string} id
@@ -6529,6 +6809,166 @@ export interface DefaultApiInterface {
  */
 export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     /**
+     * Creates request options for allChatgptMcp without sending the request
+     */
+    allChatgptMcpRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_1 without sending the request
+     */
+    allChatgptMcp_1RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_2 without sending the request
+     */
+    allChatgptMcp_2RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_2(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_3 without sending the request
+     */
+    allChatgptMcp_3RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_3Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_3(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_4 without sending the request
+     */
+    allChatgptMcp_4RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_4Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_4(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_5 without sending the request
+     */
+    allChatgptMcp_5RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_5Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_5(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_6 without sending the request
+     */
+    allChatgptMcp_6RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_6Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_6(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_7 without sending the request
+     */
+    allChatgptMcp_7RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_7Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_7(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_8 without sending the request
+     */
+    allChatgptMcp_8RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_8Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_8(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_9 without sending the request
+     */
+    allChatgptMcp_9RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_9Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_9(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_10 without sending the request
+     */
+    allChatgptMcp_10RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_10Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_10(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_11 without sending the request
+     */
+    allChatgptMcp_11RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_11Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_11(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_12 without sending the request
+     */
+    allChatgptMcp_12RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_12Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_12(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_13 without sending the request
+     */
+    allChatgptMcp_13RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_13Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_13(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_14 without sending the request
+     */
+    allChatgptMcp_14RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_14Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_14(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allChatgptMcp_15 without sending the request
+     */
+    allChatgptMcp_15RequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    allChatgptMcp_15Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allChatgptMcp_15(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for allTradeMcp without sending the request
      */
     allTradeMcpRequestOpts(): Promise<runtime.RequestOpts>;
@@ -6539,155 +6979,155 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     allTradeMcp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_1 without sending the request
+     * Creates request options for allTradeMcp_16 without sending the request
      */
-    allTradeMcp_1RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_16RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_16Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_16(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for allTradeMcp_2 without sending the request
+     * Creates request options for allTradeMcp_17 without sending the request
      */
-    allTradeMcp_2RequestOpts(): Promise<runtime.RequestOpts>;
-    /**
-     */
-    allTradeMcp_2Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_17RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_2(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_3 without sending the request
-     */
-    allTradeMcp_3RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_17Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_3Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_17(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_18 without sending the request
+     */
+    allTradeMcp_18RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_3(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_4 without sending the request
-     */
-    allTradeMcp_4RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_18Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_4Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_18(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_19 without sending the request
+     */
+    allTradeMcp_19RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_4(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_5 without sending the request
-     */
-    allTradeMcp_5RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_19Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_5Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_19(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_20 without sending the request
+     */
+    allTradeMcp_20RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_5(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_6 without sending the request
-     */
-    allTradeMcp_6RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_20Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_6Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_20(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_21 without sending the request
+     */
+    allTradeMcp_21RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_6(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_7 without sending the request
-     */
-    allTradeMcp_7RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_21Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_7Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_21(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_22 without sending the request
+     */
+    allTradeMcp_22RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_7(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_8 without sending the request
-     */
-    allTradeMcp_8RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_22Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_8Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_22(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_23 without sending the request
+     */
+    allTradeMcp_23RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_8(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_9 without sending the request
-     */
-    allTradeMcp_9RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_23Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_9Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_23(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_24 without sending the request
+     */
+    allTradeMcp_24RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_9(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_10 without sending the request
-     */
-    allTradeMcp_10RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_24Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_10Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_24(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_25 without sending the request
+     */
+    allTradeMcp_25RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_10(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_11 without sending the request
-     */
-    allTradeMcp_11RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_25Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_11Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_25(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_26 without sending the request
+     */
+    allTradeMcp_26RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_11(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_12 without sending the request
-     */
-    allTradeMcp_12RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_26Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_12Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_26(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_27 without sending the request
+     */
+    allTradeMcp_27RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_12(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_13 without sending the request
-     */
-    allTradeMcp_13RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_27Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_13Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_27(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_28 without sending the request
+     */
+    allTradeMcp_28RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_13(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_14 without sending the request
-     */
-    allTradeMcp_14RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_28Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_14Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_28(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_29 without sending the request
+     */
+    allTradeMcp_29RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_14(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for allTradeMcp_15 without sending the request
-     */
-    allTradeMcp_15RequestOpts(): Promise<runtime.RequestOpts>;
+    allTradeMcp_29Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    allTradeMcp_15Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    allTradeMcp_29(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for allTradeMcp_30 without sending the request
+     */
+    allTradeMcp_30RequestOpts(): Promise<runtime.RequestOpts>;
     /**
      */
-    allTradeMcp_15(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    allTradeMcp_30Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    allTradeMcp_30(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for deleteApiAgentKeys without sending the request
      */
@@ -7028,6 +7468,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiAgentsByIdHyperliquid(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidActivity without sending the request
+     */
+    getApiAgentsByIdHyperliquidActivityRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidActivityRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidActivityRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidActivity(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsByIdHyperliquidCandles without sending the request
      */

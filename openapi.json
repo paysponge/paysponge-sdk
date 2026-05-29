@@ -774,6 +774,29 @@
         "operationId": "getApiAgentsByIdHyperliquidOrders"
       }
     },
+    "/api/agents/{id}/hyperliquid/activity": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdHyperliquidActivity"
+      }
+    },
     "/api/agents/{id}/hyperliquid/recent-orders": {
       "get": {
         "parameters": [
@@ -19126,6 +19149,58 @@
       },
       "trace": {
         "operationId": "allTradeMcp"
+      }
+    },
+    "/chatgpt/mcp/*": {
+      "get": {
+        "operationId": "allChatgptMcp*"
+      },
+      "post": {
+        "operationId": "allChatgptMcp*"
+      },
+      "put": {
+        "operationId": "allChatgptMcp*"
+      },
+      "delete": {
+        "operationId": "allChatgptMcp*"
+      },
+      "patch": {
+        "operationId": "allChatgptMcp*"
+      },
+      "head": {
+        "operationId": "allChatgptMcp*"
+      },
+      "options": {
+        "operationId": "allChatgptMcp*"
+      },
+      "trace": {
+        "operationId": "allChatgptMcp*"
+      }
+    },
+    "/chatgpt/mcp": {
+      "get": {
+        "operationId": "allChatgptMcp"
+      },
+      "post": {
+        "operationId": "allChatgptMcp"
+      },
+      "put": {
+        "operationId": "allChatgptMcp"
+      },
+      "delete": {
+        "operationId": "allChatgptMcp"
+      },
+      "patch": {
+        "operationId": "allChatgptMcp"
+      },
+      "head": {
+        "operationId": "allChatgptMcp"
+      },
+      "options": {
+        "operationId": "allChatgptMcp"
+      },
+      "trace": {
+        "operationId": "allChatgptMcp"
       }
     }
   },
