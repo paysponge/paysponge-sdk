@@ -96,6 +96,7 @@ export interface MppSessionRequestOptions {
   headers?: Record<string, string>;
   body?: unknown;
   stream?: boolean;
+  streaming?: boolean;
 }
 
 export interface MppSessionCloseOptions {
@@ -461,6 +462,7 @@ export class PublicToolsApi {
   }
 
   async requestMppSession(options: MppSessionRequestOptions & { stream: true }): Promise<Response>;
+  async requestMppSession(options: MppSessionRequestOptions & { streaming: true }): Promise<Response>;
   async requestMppSession(options: MppSessionRequestOptions): Promise<unknown>;
   async requestMppSession(options: MppSessionRequestOptions): Promise<unknown | Response> {
     const { method = "GET", ...rest } = options;
@@ -469,7 +471,7 @@ export class PublicToolsApi {
       method,
     };
 
-    if (options.stream) {
+    if (options.stream || options.streaming) {
       return this.http.postRaw("/api/mpp/session/request", request);
     }
 

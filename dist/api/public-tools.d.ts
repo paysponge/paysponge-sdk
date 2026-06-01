@@ -59,6 +59,7 @@ export interface MppSessionRequestOptions {
     headers?: Record<string, string>;
     body?: unknown;
     stream?: boolean;
+    streaming?: boolean;
 }
 export interface MppSessionCloseOptions {
     session_id: string;
@@ -256,6 +257,9 @@ export declare class PublicToolsApi {
     startMppSession(options?: MppSessionStartOptions): Promise<unknown>;
     requestMppSession(options: MppSessionRequestOptions & {
         stream: true;
+    }): Promise<Response>;
+    requestMppSession(options: MppSessionRequestOptions & {
+        streaming: true;
     }): Promise<Response>;
     requestMppSession(options: MppSessionRequestOptions): Promise<unknown>;
     streamMppSessionRequest(options: Omit<MppSessionRequestOptions, "stream">): Promise<Response>;

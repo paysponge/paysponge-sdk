@@ -514,6 +514,7 @@ export class SpongeWallet {
    * Make a request through an existing MPP payment session.
    */
   requestMppSession(options: MppSessionRequestOptions & { stream: true }): Promise<Response>;
+  requestMppSession(options: MppSessionRequestOptions & { streaming: true }): Promise<Response>;
   requestMppSession(options: MppSessionRequestOptions): Promise<unknown>;
   async requestMppSession(options: MppSessionRequestOptions): Promise<unknown | Response> {
     return this.publicTools.requestMppSession(options);

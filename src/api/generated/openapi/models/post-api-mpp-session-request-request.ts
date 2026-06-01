@@ -57,6 +57,12 @@ export interface PostApiMppSessionRequestRequest {
     stream?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof PostApiMppSessionRequestRequest
+     */
+    streaming?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof PostApiMppSessionRequestRequest
      */
@@ -102,6 +108,7 @@ export function PostApiMppSessionRequestRequestFromJSONTyped(json: any, ignoreDi
         'headers': json['headers'] == null ? undefined : json['headers'],
         'body': json['body'] == null ? undefined : json['body'],
         'stream': json['stream'] == null ? undefined : json['stream'],
+        'streaming': json['streaming'] == null ? undefined : json['streaming'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
@@ -123,6 +130,7 @@ export function PostApiMppSessionRequestRequestToJSONTyped(value?: PostApiMppSes
         'headers': value['headers'],
         'body': value['body'],
         'stream': value['stream'],
+        'streaming': value['streaming'],
         'agentId': value['agentId'],
     };
 }

@@ -116,7 +116,7 @@ export class PublicToolsApi {
             ...rest,
             method,
         };
-        if (options.stream) {
+        if (options.stream || options.streaming) {
             return this.http.postRaw("/api/mpp/session/request", request);
         }
         return this.http.post("/api/mpp/session/request", request);

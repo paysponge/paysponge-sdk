@@ -45,6 +45,7 @@ export function PostApiMppSessionRequestRequestFromJSONTyped(json, ignoreDiscrim
         'headers': json['headers'] == null ? undefined : json['headers'],
         'body': json['body'] == null ? undefined : json['body'],
         'stream': json['stream'] == null ? undefined : json['stream'],
+        'streaming': json['streaming'] == null ? undefined : json['streaming'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
@@ -62,6 +63,7 @@ export function PostApiMppSessionRequestRequestToJSONTyped(value, ignoreDiscrimi
         'headers': value['headers'],
         'body': value['body'],
         'stream': value['stream'],
+        'streaming': value['streaming'],
         'agentId': value['agentId'],
     };
 }

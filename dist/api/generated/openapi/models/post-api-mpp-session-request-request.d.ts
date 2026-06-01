@@ -53,6 +53,12 @@ export interface PostApiMppSessionRequestRequest {
     stream?: boolean;
     /**
      *
+     * @type {boolean}
+     * @memberof PostApiMppSessionRequestRequest
+     */
+    streaming?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof PostApiMppSessionRequestRequest
      */

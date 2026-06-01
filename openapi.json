@@ -10269,6 +10269,9 @@
                   "stream": {
                     "type": "boolean"
                   },
+                  "streaming": {
+                    "type": "boolean"
+                  },
                   "agentId": {
                     "type": "string"
                   }
@@ -10311,6 +10314,9 @@
                   "stream": {
                     "type": "boolean"
                   },
+                  "streaming": {
+                    "type": "boolean"
+                  },
                   "agentId": {
                     "type": "string"
                   }
@@ -10351,6 +10357,9 @@
                   },
                   "body": {},
                   "stream": {
+                    "type": "boolean"
+                  },
+                  "streaming": {
                     "type": "boolean"
                   },
                   "agentId": {
