@@ -659,7 +659,9 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     description:
       "Make an HTTP request with automatic paid API handling. " +
       "This is the main one-shot paid fetch tool. It detects x402 or MPP from the endpoint's 402 challenge, " +
-      "handles the matching payment flow, and if both are advertised chooses the route with the highest available stablecoin balance.",
+      "handles the matching payment flow, and if both are advertised chooses the route with the highest available stablecoin balance. " +
+      "Both x402 schemes are supported: 'exact' (fixed price) and 'upto' (usage-metered — authorizes a maximum, settles actual usage; " +
+      "EVM-only and requires a one-time Permit2 USDC approval via setup_x402_permit2 if the response is an allowance_required error).",
     input_schema: {
       type: "object",
       properties: {
@@ -750,7 +752,9 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       "Make an HTTP request with automatic x402 payment handling. " +
       "Handles the entire x402 payment flow: makes the request, if 402 Payment Required is returned " +
       "it extracts payment requirements, creates and signs a USDC payment, retries with Payment-Signature header, " +
-      "and returns the final response. Supports Base and Solana payments.",
+      "and returns the final response. Supports Base and Solana payments. " +
+      "Both the 'exact' (fixed price) and 'upto' (usage-metered, EVM-only, Permit2-based) schemes are handled automatically; " +
+      "for 'upto', payment_details reports the settled amount plus the authorized max_amount.",
     input_schema: {
       type: "object",
       properties: {

@@ -359,7 +359,7 @@ export declare class SpongeWallet {
         body?: unknown;
         chain?: "base" | "solana" | "tempo" | "ethereum";
         protocol?: "x402" | "mpp";
-    }): Promise<unknown>;
+    }): Promise<import("./api/public-tools.js").X402FetchResult>;
     /**
      * Fetch any URL with automatic x402 payment handling
      */
@@ -370,7 +370,7 @@ export declare class SpongeWallet {
         body?: unknown;
         preferredChain?: "base" | "solana" | "ethereum";
         preferred_chain?: "base" | "solana" | "ethereum";
-    }): Promise<unknown>;
+    }): Promise<import("./api/public-tools.js").X402FetchResult>;
     /**
      * Fetch any URL with automatic MPP payment handling
      */

@@ -75,6 +75,32 @@ export interface PaidFetchOptions {
   protocol?: "x402" | "mpp";
 }
 
+export interface X402FetchPaymentDetails {
+  chain: string;
+  /** Amount charged. For the "upto" scheme this is the settled usage amount. */
+  amount: string;
+  token: string;
+  to: string;
+  /** x402 payment scheme used ("exact" or "upto") */
+  scheme?: string;
+  /** For "upto" payments: the authorized maximum (amount is the settled charge) */
+  max_amount?: string;
+  /** Protocol used by paid_fetch ("x402" or "mpp") */
+  protocol?: string;
+  [key: string]: unknown;
+}
+
+export interface X402FetchResult {
+  status: number;
+  ok: boolean;
+  data: unknown;
+  payment_made: boolean;
+  payment_details?: X402FetchPaymentDetails;
+  headers: Record<string, string>;
+  hint?: string;
+  [key: string]: unknown;
+}
+
 export interface MppFetchOptions {
   url: string;
   method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
@@ -424,16 +450,16 @@ export class PublicToolsApi {
     return X402PaymentResponseSchema.parse(response);
   }
 
-  async paidFetch(options: PaidFetchOptions): Promise<unknown> {
+  async paidFetch(options: PaidFetchOptions): Promise<X402FetchResult> {
     const { method = "GET", ...rest } = options;
 
-    return this.http.post<unknown>("/api/paid/fetch", {
+    return this.http.post<X402FetchResult>("/api/paid/fetch", {
       ...rest,
       method,
     });
   }
 
-  async x402Fetch(options: X402FetchOptions): Promise<unknown> {
+  async x402Fetch(options: X402FetchOptions): Promise<X402FetchResult> {
     const {
       preferredChain,
       preferred_chain,
@@ -441,7 +467,7 @@ export class PublicToolsApi {
       ...rest
     } = options;
 
-    return this.http.post<unknown>("/api/x402/fetch", {
+    return this.http.post<X402FetchResult>("/api/x402/fetch", {
       ...rest,
       method,
       preferred_chain: preferred_chain ?? preferredChain,

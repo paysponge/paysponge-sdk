@@ -29,6 +29,12 @@ export { TOOL_DEFINITIONS, type ToolDefinition } from "./tools/definitions.js";
 // API client (for advanced usage)
 export { HttpClient, SpongeApiError } from "./api/http.js";
 export { PublicToolsApi } from "./api/public-tools.js";
+export type {
+  PaidFetchOptions,
+  X402FetchOptions,
+  X402FetchPaymentDetails,
+  X402FetchResult,
+} from "./api/public-tools.js";
 export {
   createGeneratedApiClient,
   executeOpenApiRequest,

@@ -40,6 +40,30 @@ export interface PaidFetchOptions {
     chain?: "base" | "solana" | "tempo" | "ethereum";
     protocol?: "x402" | "mpp";
 }
+export interface X402FetchPaymentDetails {
+    chain: string;
+    /** Amount charged. For the "upto" scheme this is the settled usage amount. */
+    amount: string;
+    token: string;
+    to: string;
+    /** x402 payment scheme used ("exact" or "upto") */
+    scheme?: string;
+    /** For "upto" payments: the authorized maximum (amount is the settled charge) */
+    max_amount?: string;
+    /** Protocol used by paid_fetch ("x402" or "mpp") */
+    protocol?: string;
+    [key: string]: unknown;
+}
+export interface X402FetchResult {
+    status: number;
+    ok: boolean;
+    data: unknown;
+    payment_made: boolean;
+    payment_details?: X402FetchPaymentDetails;
+    headers: Record<string, string>;
+    hint?: string;
+    [key: string]: unknown;
+}
 export interface MppFetchOptions {
     url: string;
     method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
@@ -251,8 +275,8 @@ export declare class PublicToolsApi {
     claimSignupBonus(): Promise<SignupBonusClaimResponse>;
     sponge(request: SpongeRequest): Promise<SpongeResponse>;
     createX402Payment(options: CreateX402PaymentOptions): Promise<X402PaymentResponse>;
-    paidFetch(options: PaidFetchOptions): Promise<unknown>;
-    x402Fetch(options: X402FetchOptions): Promise<unknown>;
+    paidFetch(options: PaidFetchOptions): Promise<X402FetchResult>;
+    x402Fetch(options: X402FetchOptions): Promise<X402FetchResult>;
     mppFetch(options: MppFetchOptions): Promise<unknown>;
     startMppSession(options?: MppSessionStartOptions): Promise<unknown>;
     requestMppSession(options: MppSessionRequestOptions & {

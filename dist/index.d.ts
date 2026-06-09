@@ -9,6 +9,7 @@ export { createTools, ToolExecutor } from "./tools/executor.js";
 export { TOOL_DEFINITIONS, type ToolDefinition } from "./tools/definitions.js";
 export { HttpClient, SpongeApiError } from "./api/http.js";
 export { PublicToolsApi } from "./api/public-tools.js";
+export type { PaidFetchOptions, X402FetchOptions, X402FetchPaymentDetails, X402FetchResult, } from "./api/public-tools.js";
 export { createGeneratedApiClient, executeOpenApiRequest, getOpenApiRequestBuilder, } from "./api/generated/openapi-adapter.js";
 export * from "./api/generated/openapi/index.js";
 //# sourceMappingURL=index.d.ts.map
