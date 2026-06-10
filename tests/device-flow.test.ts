@@ -3,18 +3,10 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
-const captureCliAuthEvent = vi.fn(async () => {});
-
 vi.mock("clipboardy", () => ({
   default: {
     write: vi.fn(async () => {}),
   },
-}));
-
-vi.mock("../src/telemetry.js", () => ({
-  captureCliAuthEvent,
-  classifyBaseUrl: () => "default",
-  sanitizeErrorForTelemetry: () => ({}),
 }));
 
 import { deviceFlowAuth } from "../src/auth/device-flow.js";
@@ -22,14 +14,16 @@ import { deviceFlowAuth } from "../src/auth/device-flow.js";
 describe("deviceFlowAuth", () => {
   let tempDir: string;
   const originalFetch = globalThis.fetch;
+  const originalNodeEnv = process.env.NODE_ENV;
 
   beforeEach(() => {
     tempDir = mkdtempSync(join(tmpdir(), "spongewallet-device-flow-"));
-    captureCliAuthEvent.mockClear();
+    process.env.NODE_ENV = "test";
   });
 
   afterEach(() => {
     globalThis.fetch = originalFetch;
+    process.env.NODE_ENV = originalNodeEnv;
     rmSync(tempDir, { recursive: true, force: true });
   });
 

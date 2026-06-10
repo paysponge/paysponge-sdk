@@ -1,7 +1,14 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import * as fs from "node:fs";
+import * as os from "node:os";
+import * as path from "node:path";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const captureCliCommandEvent = vi.fn(async () => {});
-const shutdownCliTelemetry = vi.fn(async () => {});
+const capture = vi.fn();
+const shutdown = vi.fn(async () => {});
+const posthogConstructor = vi.fn(() => ({
+  capture,
+  shutdown,
+}));
 
 vi.mock("@clack/prompts", () => ({
   log: {
@@ -17,31 +24,35 @@ vi.mock("@clack/prompts", () => ({
   outro: vi.fn(),
 }));
 
-vi.mock("../src/telemetry.js", () => ({
-  captureCliCommandEvent,
-  captureCliAuthEvent: vi.fn(async () => {}),
-  classifyBaseUrl: (baseUrl?: string) => {
-    if (!baseUrl || baseUrl === "https://api.wallet.paysponge.com") {
-      return "default";
-    }
-    return baseUrl.includes("localhost") ? "localhost" : "custom";
-  },
-  sanitizeErrorForTelemetry: (error: unknown) => {
-    if (!(error instanceof Error)) {
-      return {};
-    }
-    return { error_name: error.name };
-  },
-  shutdownCliTelemetry,
+vi.mock("posthog-node", () => ({
+  PostHog: posthogConstructor,
 }));
 
 import { runCli } from "../src/cli.js";
 
 describe("CLI telemetry hooks", () => {
+  let tempDir: string;
+  const originalNodeEnv = process.env.NODE_ENV;
+  const originalCredentialsPath = process.env.SPONGE_CREDENTIALS_PATH;
+
   beforeEach(() => {
-    captureCliCommandEvent.mockClear();
-    shutdownCliTelemetry.mockClear();
+    capture.mockClear();
+    shutdown.mockClear();
+    posthogConstructor.mockClear();
+    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sponge-cli-telemetry-"));
+    process.env.NODE_ENV = "development";
+    process.env.SPONGE_CREDENTIALS_PATH = path.join(tempDir, "credentials.json");
     delete process.env.SPONGE_API_KEY;
+  });
+
+  afterEach(() => {
+    process.env.NODE_ENV = originalNodeEnv;
+    if (originalCredentialsPath === undefined) {
+      delete process.env.SPONGE_CREDENTIALS_PATH;
+    } else {
+      process.env.SPONGE_CREDENTIALS_PATH = originalCredentialsPath;
+    }
+    fs.rmSync(tempDir, { recursive: true, force: true });
   });
 
   it("records a successful command execution", async () => {
@@ -51,18 +62,21 @@ describe("CLI telemetry hooks", () => {
       version: "0.1.39",
     });
 
-    expect(captureCliCommandEvent).toHaveBeenCalledWith(expect.objectContaining({
-      status: "succeeded",
-      command_name: "logout",
-      command_path: "logout",
-      command_group: "logout",
-      raw_arg_count: 1,
-      flags: [],
-      auth_source: "interactive_or_public",
-      package_name: "@paysponge/sdk",
-      package_version: "0.1.39",
-      command_name_override: "spongewallet",
-    }), undefined);
-    expect(shutdownCliTelemetry).toHaveBeenCalledTimes(1);
+    expect(capture).toHaveBeenCalledWith(expect.objectContaining({
+      event: "cli_command",
+      properties: expect.objectContaining({
+        status: "succeeded",
+        command_name: "logout",
+        command_path: "logout",
+        command_group: "logout",
+        raw_arg_count: 1,
+        flags: [],
+        auth_source: "interactive_or_public",
+        package_name: "@paysponge/sdk",
+        package_version: "0.1.39",
+        command_name_override: "spongewallet",
+      }),
+    }));
+    expect(shutdown).toHaveBeenCalledTimes(1);
   });
 });
