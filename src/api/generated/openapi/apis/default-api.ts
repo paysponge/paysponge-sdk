@@ -25,6 +25,7 @@ import type {
   PostApiAgentsByIdEnrollmentsRequest,
   PostApiAgentsByIdHyperliquidCancelOrderRequest,
   PostApiAgentsByIdHyperliquidClosePositionRequest,
+  PostApiAgentsByIdHyperliquidLinkRequest,
   PostApiAgentsByIdHyperliquidTransferRequest,
   PostApiAgentsByIdHyperliquidWithdrawRequest,
   PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest,
@@ -160,6 +161,8 @@ import {
     PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON,
     PostApiAgentsByIdHyperliquidClosePositionRequestFromJSON,
     PostApiAgentsByIdHyperliquidClosePositionRequestToJSON,
+    PostApiAgentsByIdHyperliquidLinkRequestFromJSON,
+    PostApiAgentsByIdHyperliquidLinkRequestToJSON,
     PostApiAgentsByIdHyperliquidTransferRequestFromJSON,
     PostApiAgentsByIdHyperliquidTransferRequestToJSON,
     PostApiAgentsByIdHyperliquidWithdrawRequestFromJSON,
@@ -407,6 +410,10 @@ export interface DefaultApiDeleteApiAgentsByIdEnrollmentsByEnrollmentIdRequest {
     enrollmentId: string;
 }
 
+export interface DefaultApiDeleteApiAgentsByIdHyperliquidLinkRequest {
+    id: string;
+}
+
 export interface DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest {
     id: string;
     methodId: string;
@@ -532,6 +539,10 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest {
     interval?: string;
     startTime?: string;
     endTime?: string;
+}
+
+export interface DefaultApiGetApiAgentsByIdHyperliquidLinkRequest {
+    id: string;
 }
 
 export interface DefaultApiGetApiAgentsByIdHyperliquidMarketsRequest {
@@ -954,6 +965,19 @@ export interface DefaultApiPostApiAgentsByIdHyperliquidCancelOrderOperationReque
 export interface DefaultApiPostApiAgentsByIdHyperliquidClosePositionOperationRequest {
     id: string;
     postApiAgentsByIdHyperliquidClosePositionRequest: PostApiAgentsByIdHyperliquidClosePositionRequest;
+}
+
+export interface DefaultApiPostApiAgentsByIdHyperliquidLinkOperationRequest {
+    id: string;
+    postApiAgentsByIdHyperliquidLinkRequest: PostApiAgentsByIdHyperliquidLinkRequest;
+}
+
+export interface DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest {
+    id: string;
 }
 
 export interface DefaultApiPostApiAgentsByIdHyperliquidTransferOperationRequest {
@@ -2240,6 +2264,27 @@ export interface DefaultApiInterface {
     deleteApiAgentsByIdEnrollmentsByEnrollmentId(requestParameters: DefaultApiDeleteApiAgentsByIdEnrollmentsByEnrollmentIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for deleteApiAgentsByIdHyperliquidLink without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdHyperliquidLinkRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiAgentsByIdHyperliquidLinkRaw(requestParameters: DefaultApiDeleteApiAgentsByIdHyperliquidLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    deleteApiAgentsByIdHyperliquidLink(requestParameters: DefaultApiDeleteApiAgentsByIdHyperliquidLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for deleteApiAgentsByIdLinkPaymentMethodsByMethodId without sending the request
      * @param {string} id 
      * @param {string} methodId 
@@ -2944,6 +2989,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquidCandles(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidLink without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidLinkRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidLinkRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiAgentsByIdHyperliquidLink(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiAgentsByIdHyperliquidMarkets without sending the request
@@ -5362,6 +5428,71 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsByIdHyperliquidClosePosition(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidClosePositionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdHyperliquidLink without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdHyperliquidLinkRequest} postApiAgentsByIdHyperliquidLinkRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdHyperliquidLinkRequest} postApiAgentsByIdHyperliquidLinkRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidLinkRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdHyperliquidLink(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdHyperliquidLinkApiWallet without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidLinkApiWalletRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidLinkApiWalletRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdHyperliquidLinkApiWallet(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdHyperliquidLinkApiWalletConfirm without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidLinkApiWalletConfirmRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidLinkApiWalletConfirmRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdHyperliquidLinkApiWalletConfirm(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentsByIdHyperliquidTransfer without sending the request
@@ -9675,6 +9806,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for deleteApiAgentsByIdHyperliquidLink without sending the request
+     */
+    async deleteApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdHyperliquidLinkRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteApiAgentsByIdHyperliquidLink().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/link`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteApiAgentsByIdHyperliquidLinkRaw(requestParameters: DefaultApiDeleteApiAgentsByIdHyperliquidLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteApiAgentsByIdHyperliquidLink(requestParameters: DefaultApiDeleteApiAgentsByIdHyperliquidLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteApiAgentsByIdHyperliquidLinkRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deleteApiAgentsByIdLinkPaymentMethodsByMethodId without sending the request
      */
     async deleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequestOpts(requestParameters: DefaultApiDeleteApiAgentsByIdLinkPaymentMethodsByMethodIdRequest): Promise<runtime.RequestOpts> {
@@ -11095,6 +11268,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiAgentsByIdHyperliquidCandles(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiAgentsByIdHyperliquidCandlesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidLink without sending the request
+     */
+    async getApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidLinkRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidLink().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/link`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidLinkRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidLink(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiAgentsByIdHyperliquidLinkRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -15885,6 +16100,142 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentsByIdHyperliquidClosePosition(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidClosePositionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentsByIdHyperliquidClosePositionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdHyperliquidLink without sending the request
+     */
+    async postApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdHyperliquidLink().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdHyperliquidLinkRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdHyperliquidLinkRequest',
+                'Required parameter "postApiAgentsByIdHyperliquidLinkRequest" was null or undefined when calling postApiAgentsByIdHyperliquidLink().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/link`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdHyperliquidLinkRequestToJSON(requestParameters['postApiAgentsByIdHyperliquidLinkRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidLinkRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdHyperliquidLinkRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidLink(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdHyperliquidLinkRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdHyperliquidLinkApiWallet without sending the request
+     */
+    async postApiAgentsByIdHyperliquidLinkApiWalletRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdHyperliquidLinkApiWallet().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/link/api-wallet`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidLinkApiWalletRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdHyperliquidLinkApiWalletRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidLinkApiWallet(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdHyperliquidLinkApiWalletRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdHyperliquidLinkApiWalletConfirm without sending the request
+     */
+    async postApiAgentsByIdHyperliquidLinkApiWalletConfirmRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdHyperliquidLinkApiWalletConfirm().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/link/api-wallet/confirm`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidLinkApiWalletConfirmRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdHyperliquidLinkApiWalletConfirmRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidLinkApiWalletConfirm(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdHyperliquidLinkApiWalletConfirmRaw(requestParameters, initOverrides);
     }
 
     /**

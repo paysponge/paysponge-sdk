@@ -1140,6 +1140,121 @@
         "operationId": "postApiAgentsByIdHyperliquidWithdraw"
       }
     },
+    "/api/agents/{id}/hyperliquid/link": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdHyperliquidLink"
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "masterAddress"
+                ],
+                "properties": {
+                  "masterAddress": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "masterAddress"
+                ],
+                "properties": {
+                  "masterAddress": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "masterAddress"
+                ],
+                "properties": {
+                  "masterAddress": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdHyperliquidLink"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "deleteApiAgentsByIdHyperliquidLink"
+      }
+    },
+    "/api/agents/{id}/hyperliquid/link/api-wallet": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgentsByIdHyperliquidLinkApi-wallet"
+      }
+    },
+    "/api/agents/{id}/hyperliquid/link/api-wallet/confirm": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgentsByIdHyperliquidLinkApi-walletConfirm"
+      }
+    },
     "/api/agents/{id}/hyperliquid/candles": {
       "get": {
         "parameters": [
