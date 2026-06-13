@@ -112,6 +112,8 @@ import type {
   PostApiStripeOnrampSessionRequest,
   PostApiTasksRequest,
   PostApiTradesProposeRequest,
+  PostApiTradingAdminKillSwitchRequest,
+  PostApiTradingStrategiesByIdTestRunRequest,
   PostApiTransactionsBridgeRequest,
   PostApiTransactionsPrepareRequest,
   PostApiTransactionsSwapExecuteRequest,
@@ -335,6 +337,10 @@ import {
     PostApiTasksRequestToJSON,
     PostApiTradesProposeRequestFromJSON,
     PostApiTradesProposeRequestToJSON,
+    PostApiTradingAdminKillSwitchRequestFromJSON,
+    PostApiTradingAdminKillSwitchRequestToJSON,
+    PostApiTradingStrategiesByIdTestRunRequestFromJSON,
+    PostApiTradingStrategiesByIdTestRunRequestToJSON,
     PostApiTransactionsBridgeRequestFromJSON,
     PostApiTransactionsBridgeRequestToJSON,
     PostApiTransactionsPrepareRequestFromJSON,
@@ -462,6 +468,10 @@ export interface DefaultApiDeleteApiSpendingLimitsByIdRequest {
 
 export interface DefaultApiDeleteApiSpongeCardCustomerRequest {
     environment: DeleteApiSpongeCardCustomerEnvironmentEnum;
+}
+
+export interface DefaultApiDeleteApiTradingStrategiesByIdRequest {
+    id: string;
 }
 
 export interface DefaultApiGetApiAgentKeysRequest {
@@ -818,6 +828,28 @@ export interface DefaultApiGetApiTasksByTaskIdRequest {
     agentId?: string;
 }
 
+export interface DefaultApiGetApiTradingStrategiesRequest {
+    agentId?: string;
+    limit?: string;
+    offset?: string;
+}
+
+export interface DefaultApiGetApiTradingStrategiesByIdRequest {
+    id: string;
+}
+
+export interface DefaultApiGetApiTradingStrategiesByIdExecutionsRequest {
+    id: string;
+    limit?: string;
+    offset?: string;
+}
+
+export interface DefaultApiGetApiTradingStrategiesByIdLedgerRequest {
+    id: string;
+    limit?: string;
+    offset?: string;
+}
+
 export interface DefaultApiGetApiTransactionsRequest {
     agentId?: string;
     page?: string;
@@ -880,6 +912,10 @@ export interface DefaultApiGetOauthAuthorizeRequest {
     state?: string;
     codeChallengeMethod?: string;
     resource?: string;
+}
+
+export interface DefaultApiPatchApiTradingStrategiesByIdRequest {
+    id: string;
 }
 
 export interface DefaultApiPostApiAdminBetaUsersByIdPrefundRequest {
@@ -1406,6 +1442,31 @@ export interface DefaultApiPostApiTasksOperationRequest {
 
 export interface DefaultApiPostApiTradesProposeOperationRequest {
     postApiTradesProposeRequest: PostApiTradesProposeRequest;
+}
+
+export interface DefaultApiPostApiTradingAdminKillSwitchOperationRequest {
+    postApiTradingAdminKillSwitchRequest: PostApiTradingAdminKillSwitchRequest;
+}
+
+export interface DefaultApiPostApiTradingStrategiesByIdEnableRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiTradingStrategiesByIdKillRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiTradingStrategiesByIdPauseRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiTradingStrategiesByIdRunRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest {
+    id: string;
+    postApiTradingStrategiesByIdTestRunRequest: PostApiTradingStrategiesByIdTestRunRequest;
 }
 
 export interface DefaultApiPostApiTransactionsBaseSwapRequest {
@@ -2564,6 +2625,27 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiSpongeCardCustomer(requestParameters: DefaultApiDeleteApiSpongeCardCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for deleteApiTradingStrategiesById without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiTradingStrategiesByIdRequestOpts(requestParameters: DefaultApiDeleteApiTradingStrategiesByIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiTradingStrategiesByIdRaw(requestParameters: DefaultApiDeleteApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    deleteApiTradingStrategiesById(requestParameters: DefaultApiDeleteApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiAdminBetaUsers without sending the request
@@ -4711,6 +4793,121 @@ export interface DefaultApiInterface {
     getApiTasksByTaskId(requestParameters: DefaultApiGetApiTasksByTaskIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiTradingAdminKillSwitch without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminKillSwitchRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminKillSwitchRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingAdminKillSwitch(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingStrategies without sending the request
+     * @param {string} [agentId] 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [agentId] 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesRaw(requestParameters: DefaultApiGetApiTradingStrategiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingStrategies(requestParameters: DefaultApiGetApiTradingStrategiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingStrategiesById without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesByIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesByIdRaw(requestParameters: DefaultApiGetApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingStrategiesById(requestParameters: DefaultApiGetApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingStrategiesByIdExecutions without sending the request
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesByIdExecutionsRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesByIdExecutionsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesByIdExecutionsRaw(requestParameters: DefaultApiGetApiTradingStrategiesByIdExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingStrategiesByIdExecutions(requestParameters: DefaultApiGetApiTradingStrategiesByIdExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingStrategiesByIdLedger without sending the request
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesByIdLedgerRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesByIdLedgerRaw(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiTransactions without sending the request
      * @param {string} [agentId] 
      * @param {string} [page] 
@@ -5024,6 +5221,27 @@ export interface DefaultApiInterface {
     /**
      */
     getOauthAuthorize(requestParameters: DefaultApiGetOauthAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for patchApiTradingStrategiesById without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    patchApiTradingStrategiesByIdRequestOpts(requestParameters: DefaultApiPatchApiTradingStrategiesByIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    patchApiTradingStrategiesByIdRaw(requestParameters: DefaultApiPatchApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    patchApiTradingStrategiesById(requestParameters: DefaultApiPatchApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAdminBetaUsersByIdPrefund without sending the request
@@ -7687,6 +7905,172 @@ export interface DefaultApiInterface {
     /**
      */
     postApiTradesPropose(requestParameters: DefaultApiPostApiTradesProposeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingAdminKillSwitch without sending the request
+     * @param {PostApiTradingAdminKillSwitchRequest} postApiTradingAdminKillSwitchRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminKillSwitchRequestOpts(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiTradingAdminKillSwitchRequest} postApiTradingAdminKillSwitchRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminKillSwitchRaw(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingAdminKillSwitch(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingAdminReconcile without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminReconcileRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminReconcileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingAdminReconcile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategies without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategies(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdEnable without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdEnableRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdEnableRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdEnableRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdEnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesByIdEnable(requestParameters: DefaultApiPostApiTradingStrategiesByIdEnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdKill without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdKillRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdKillRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesByIdKill(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdPause without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdPauseRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdPauseRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdPauseRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdPauseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesByIdPause(requestParameters: DefaultApiPostApiTradingStrategiesByIdPauseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdRun without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdRunRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdRunRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesByIdRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdTestRun without sending the request
+     * @param {string} id 
+     * @param {PostApiTradingStrategiesByIdTestRunRequest} postApiTradingStrategiesByIdTestRunRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdTestRunRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiTradingStrategiesByIdTestRunRequest} postApiTradingStrategiesByIdTestRunRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdTestRunRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesByIdTestRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTransactionsBaseSwap without sending the request
@@ -10418,6 +10802,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async deleteApiSpongeCardCustomer(requestParameters: DefaultApiDeleteApiSpongeCardCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteApiSpongeCardCustomerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteApiTradingStrategiesById without sending the request
+     */
+    async deleteApiTradingStrategiesByIdRequestOpts(requestParameters: DefaultApiDeleteApiTradingStrategiesByIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteApiTradingStrategiesById().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteApiTradingStrategiesByIdRaw(requestParameters: DefaultApiDeleteApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteApiTradingStrategiesByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteApiTradingStrategiesById(requestParameters: DefaultApiDeleteApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteApiTradingStrategiesByIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -14586,6 +15012,228 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingAdminKillSwitch without sending the request
+     */
+    async getApiTradingAdminKillSwitchRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/kill-switch`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingAdminKillSwitchRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingAdminKillSwitchRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingAdminKillSwitch(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingAdminKillSwitchRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingStrategies without sending the request
+     */
+    async getApiTradingStrategiesRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agent_id'] = requestParameters['agentId'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesRaw(requestParameters: DefaultApiGetApiTradingStrategiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingStrategiesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingStrategies(requestParameters: DefaultApiGetApiTradingStrategiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingStrategiesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingStrategiesById without sending the request
+     */
+    async getApiTradingStrategiesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesByIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingStrategiesById().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesByIdRaw(requestParameters: DefaultApiGetApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingStrategiesByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesById(requestParameters: DefaultApiGetApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingStrategiesByIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingStrategiesByIdExecutions without sending the request
+     */
+    async getApiTradingStrategiesByIdExecutionsRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesByIdExecutionsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingStrategiesByIdExecutions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}/executions`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesByIdExecutionsRaw(requestParameters: DefaultApiGetApiTradingStrategiesByIdExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingStrategiesByIdExecutionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesByIdExecutions(requestParameters: DefaultApiGetApiTradingStrategiesByIdExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingStrategiesByIdExecutionsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingStrategiesByIdLedger without sending the request
+     */
+    async getApiTradingStrategiesByIdLedgerRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingStrategiesByIdLedger().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}/ledger`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesByIdLedgerRaw(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingStrategiesByIdLedgerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingStrategiesByIdLedgerRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTransactions without sending the request
      */
     async getApiTransactionsRequestOpts(requestParameters: DefaultApiGetApiTransactionsRequest): Promise<runtime.RequestOpts> {
@@ -15220,6 +15868,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getOauthAuthorize(requestParameters: DefaultApiGetOauthAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getOauthAuthorizeRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for patchApiTradingStrategiesById without sending the request
+     */
+    async patchApiTradingStrategiesByIdRequestOpts(requestParameters: DefaultApiPatchApiTradingStrategiesByIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling patchApiTradingStrategiesById().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async patchApiTradingStrategiesByIdRaw(requestParameters: DefaultApiPatchApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.patchApiTradingStrategiesByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async patchApiTradingStrategiesById(requestParameters: DefaultApiPatchApiTradingStrategiesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.patchApiTradingStrategiesByIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -20900,6 +21590,338 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiTradesPropose(requestParameters: DefaultApiPostApiTradesProposeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiTradesProposeRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingAdminKillSwitch without sending the request
+     */
+    async postApiTradingAdminKillSwitchRequestOpts(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTradingAdminKillSwitchRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingAdminKillSwitchRequest',
+                'Required parameter "postApiTradingAdminKillSwitchRequest" was null or undefined when calling postApiTradingAdminKillSwitch().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/admin/kill-switch`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminKillSwitchRequestToJSON(requestParameters['postApiTradingAdminKillSwitchRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingAdminKillSwitchRaw(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingAdminKillSwitchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingAdminKillSwitch(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingAdminKillSwitchRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingAdminReconcile without sending the request
+     */
+    async postApiTradingAdminReconcileRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/reconcile`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingAdminReconcileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingAdminReconcileRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingAdminReconcile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingAdminReconcileRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategies without sending the request
+     */
+    async postApiTradingStrategiesRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategies(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdEnable without sending the request
+     */
+    async postApiTradingStrategiesByIdEnableRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdEnableRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdEnable().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}/enable`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdEnableRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdEnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesByIdEnableRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdEnable(requestParameters: DefaultApiPostApiTradingStrategiesByIdEnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesByIdEnableRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdKill without sending the request
+     */
+    async postApiTradingStrategiesByIdKillRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdKill().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}/kill`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdKillRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesByIdKillRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdKill(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesByIdKillRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdPause without sending the request
+     */
+    async postApiTradingStrategiesByIdPauseRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdPauseRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdPause().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}/pause`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdPauseRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdPauseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesByIdPauseRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdPause(requestParameters: DefaultApiPostApiTradingStrategiesByIdPauseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesByIdPauseRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdRun without sending the request
+     */
+    async postApiTradingStrategiesByIdRunRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdRun().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}/run`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdRunRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesByIdRunRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesByIdRunRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdTestRun without sending the request
+     */
+    async postApiTradingStrategiesByIdTestRunRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdTestRun().'
+            );
+        }
+
+        if (requestParameters['postApiTradingStrategiesByIdTestRunRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingStrategiesByIdTestRunRequest',
+                'Required parameter "postApiTradingStrategiesByIdTestRunRequest" was null or undefined when calling postApiTradingStrategiesByIdTestRun().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/strategies/{id}/test-run`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingStrategiesByIdTestRunRequestToJSON(requestParameters['postApiTradingStrategiesByIdTestRunRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdTestRunRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesByIdTestRunRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdTestRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesByIdTestRunRaw(requestParameters, initOverrides);
     }
 
     /**
