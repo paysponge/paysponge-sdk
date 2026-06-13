@@ -13363,6 +13363,359 @@
         "operationId": "postApiTradingAdminReconcile"
       }
     },
+    "/api/trading/admin/strategies": {
+      "get": {
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingAdminStrategies"
+      }
+    },
+    "/api/trading/admin/strategies/{id}/test-run": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sampleEvent"
+                ],
+                "properties": {
+                  "sampleEvent": {
+                    "type": "object",
+                    "required": [
+                      "text"
+                    ],
+                    "properties": {
+                      "text": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "publishedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sampleEvent"
+                ],
+                "properties": {
+                  "sampleEvent": {
+                    "type": "object",
+                    "required": [
+                      "text"
+                    ],
+                    "properties": {
+                      "text": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "publishedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sampleEvent"
+                ],
+                "properties": {
+                  "sampleEvent": {
+                    "type": "object",
+                    "required": [
+                      "text"
+                    ],
+                    "properties": {
+                      "text": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "publishedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiTradingAdminStrategiesByIdTest-run"
+      }
+    },
+    "/api/trading/admin/test-run": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "strategy",
+                  "sampleEvent"
+                ],
+                "properties": {
+                  "strategy": {
+                    "type": "object",
+                    "required": [
+                      "instruction",
+                      "seedAmountUsd"
+                    ],
+                    "properties": {
+                      "instruction": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "seedAmountUsd": {
+                        "minimum": 0,
+                        "type": "number"
+                      },
+                      "maxLeverage": {
+                        "minimum": 1,
+                        "maximum": 50,
+                        "type": "number"
+                      },
+                      "instrumentAllowlist": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "paperTrading": {
+                        "type": "boolean"
+                      },
+                      "agentId": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "sampleEvent": {
+                    "type": "object",
+                    "required": [
+                      "text"
+                    ],
+                    "properties": {
+                      "text": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "publishedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "strategy",
+                  "sampleEvent"
+                ],
+                "properties": {
+                  "strategy": {
+                    "type": "object",
+                    "required": [
+                      "instruction",
+                      "seedAmountUsd"
+                    ],
+                    "properties": {
+                      "instruction": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "seedAmountUsd": {
+                        "minimum": 0,
+                        "type": "number"
+                      },
+                      "maxLeverage": {
+                        "minimum": 1,
+                        "maximum": 50,
+                        "type": "number"
+                      },
+                      "instrumentAllowlist": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "paperTrading": {
+                        "type": "boolean"
+                      },
+                      "agentId": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "sampleEvent": {
+                    "type": "object",
+                    "required": [
+                      "text"
+                    ],
+                    "properties": {
+                      "text": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "publishedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "strategy",
+                  "sampleEvent"
+                ],
+                "properties": {
+                  "strategy": {
+                    "type": "object",
+                    "required": [
+                      "instruction",
+                      "seedAmountUsd"
+                    ],
+                    "properties": {
+                      "instruction": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "seedAmountUsd": {
+                        "minimum": 0,
+                        "type": "number"
+                      },
+                      "maxLeverage": {
+                        "minimum": 1,
+                        "maximum": 50,
+                        "type": "number"
+                      },
+                      "instrumentAllowlist": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "paperTrading": {
+                        "type": "boolean"
+                      },
+                      "agentId": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "sampleEvent": {
+                    "type": "object",
+                    "required": [
+                      "text"
+                    ],
+                    "properties": {
+                      "text": {
+                        "minLength": 1,
+                        "maxLength": 10000,
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "publishedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiTradingAdminTest-run"
+      }
+    },
     "/api/users/sync": {
       "post": {
         "requestBody": {
