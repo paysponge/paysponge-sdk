@@ -13373,11 +13373,6 @@
         "operationId": "postApiTradingAdminKill-switch"
       }
     },
-    "/api/trading/admin/reconcile": {
-      "post": {
-        "operationId": "postApiTradingAdminReconcile"
-      }
-    },
     "/api/trading/admin/strategies": {
       "get": {
         "parameters": [

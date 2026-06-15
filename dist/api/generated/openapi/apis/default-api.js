@@ -9200,32 +9200,6 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiTradingAdminKillSwitchRaw(requestParameters, initOverrides);
     }
     /**
-     * Creates request options for postApiTradingAdminReconcile without sending the request
-     */
-    async postApiTradingAdminReconcileRequestOpts() {
-        const queryParameters = {};
-        const headerParameters = {};
-        let urlPath = `/api/trading/admin/reconcile`;
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async postApiTradingAdminReconcileRaw(initOverrides) {
-        const requestOptions = await this.postApiTradingAdminReconcileRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiTradingAdminReconcile(initOverrides) {
-        await this.postApiTradingAdminReconcileRaw(initOverrides);
-    }
-    /**
      * Creates request options for postApiTradingAdminStrategiesByIdTestRun without sending the request
      */
     async postApiTradingAdminStrategiesByIdTestRunRequestOpts(requestParameters) {

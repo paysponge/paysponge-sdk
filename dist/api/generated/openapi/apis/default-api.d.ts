@@ -6447,22 +6447,6 @@ export interface DefaultApiInterface {
      */
     postApiTradingAdminKillSwitch(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for postApiTradingAdminReconcile without sending the request
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiTradingAdminReconcileRequestOpts(): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiTradingAdminReconcileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiTradingAdminReconcile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
      * Creates request options for postApiTradingAdminStrategiesByIdTestRun without sending the request
      * @param {string} id
      * @param {PostApiTradingStrategiesByIdTestRunRequest} postApiTradingStrategiesByIdTestRunRequest
@@ -10277,16 +10261,6 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiTradingAdminKillSwitch(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiTradingAdminReconcile without sending the request
-     */
-    postApiTradingAdminReconcileRequestOpts(): Promise<runtime.RequestOpts>;
-    /**
-     */
-    postApiTradingAdminReconcileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiTradingAdminReconcile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiTradingAdminStrategiesByIdTestRun without sending the request
      */

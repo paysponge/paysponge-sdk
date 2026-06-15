@@ -7993,25 +7993,6 @@ export interface DefaultApiInterface {
     postApiTradingAdminKillSwitch(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Creates request options for postApiTradingAdminReconcile without sending the request
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiTradingAdminReconcileRequestOpts(): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiTradingAdminReconcileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    postApiTradingAdminReconcile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
      * Creates request options for postApiTradingAdminStrategiesByIdTestRun without sending the request
      * @param {string} id 
      * @param {PostApiTradingStrategiesByIdTestRunRequest} postApiTradingStrategiesByIdTestRunRequest 
@@ -21830,40 +21811,6 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiTradingAdminKillSwitch(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiTradingAdminKillSwitchRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Creates request options for postApiTradingAdminReconcile without sending the request
-     */
-    async postApiTradingAdminReconcileRequestOpts(): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/trading/admin/reconcile`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async postApiTradingAdminReconcileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.postApiTradingAdminReconcileRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async postApiTradingAdminReconcile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.postApiTradingAdminReconcileRaw(initOverrides);
     }
 
     /**
