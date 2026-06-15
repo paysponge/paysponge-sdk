@@ -858,6 +858,10 @@ export interface DefaultApiGetApiTradingStrategiesByIdLedgerRequest {
     offset?: string;
 }
 
+export interface DefaultApiGetApiTradingWorkspaceRequest {
+    agentId: string;
+}
+
 export interface DefaultApiGetApiTransactionsRequest {
     agentId?: string;
     page?: string;
@@ -4946,6 +4950,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingWorkspace without sending the request
+     * @param {string} agentId 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingWorkspaceRequestOpts(requestParameters: DefaultApiGetApiTradingWorkspaceRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} agentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingWorkspaceRaw(requestParameters: DefaultApiGetApiTradingWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingWorkspace(requestParameters: DefaultApiGetApiTradingWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiTransactions without sending the request
@@ -15357,6 +15382,51 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiTradingStrategiesByIdLedgerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingWorkspace without sending the request
+     */
+    async getApiTradingWorkspaceRequestOpts(requestParameters: DefaultApiGetApiTradingWorkspaceRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['agentId'] == null) {
+            throw new runtime.RequiredError(
+                'agentId',
+                'Required parameter "agentId" was null or undefined when calling getApiTradingWorkspace().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agent_id'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/workspace`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingWorkspaceRaw(requestParameters: DefaultApiGetApiTradingWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingWorkspaceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingWorkspace(requestParameters: DefaultApiGetApiTradingWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingWorkspaceRaw(requestParameters, initOverrides);
     }
 
     /**

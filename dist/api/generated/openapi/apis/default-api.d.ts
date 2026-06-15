@@ -373,6 +373,9 @@ export interface DefaultApiGetApiTradingStrategiesByIdLedgerRequest {
     limit?: string;
     offset?: string;
 }
+export interface DefaultApiGetApiTradingWorkspaceRequest {
+    agentId: string;
+}
 export interface DefaultApiGetApiTransactionsRequest {
     agentId?: string;
     page?: string;
@@ -3819,6 +3822,24 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingWorkspace without sending the request
+     * @param {string} agentId
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingWorkspaceRequestOpts(requestParameters: DefaultApiGetApiTradingWorkspaceRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} agentId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingWorkspaceRaw(requestParameters: DefaultApiGetApiTradingWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingWorkspace(requestParameters: DefaultApiGetApiTradingWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTransactions without sending the request
      * @param {string} [agentId]
@@ -8866,6 +8887,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingWorkspace without sending the request
+     */
+    getApiTradingWorkspaceRequestOpts(requestParameters: DefaultApiGetApiTradingWorkspaceRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingWorkspaceRaw(requestParameters: DefaultApiGetApiTradingWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingWorkspace(requestParameters: DefaultApiGetApiTradingWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTransactions without sending the request
      */

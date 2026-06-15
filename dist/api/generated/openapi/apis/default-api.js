@@ -4698,6 +4698,38 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingStrategiesByIdLedgerRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingWorkspace without sending the request
+     */
+    async getApiTradingWorkspaceRequestOpts(requestParameters) {
+        if (requestParameters['agentId'] == null) {
+            throw new runtime.RequiredError('agentId', 'Required parameter "agentId" was null or undefined when calling getApiTradingWorkspace().');
+        }
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agent_id'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/workspace`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingWorkspaceRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingWorkspaceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingWorkspace(requestParameters, initOverrides) {
+        await this.getApiTradingWorkspaceRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTransactions without sending the request
      */
     async getApiTransactionsRequestOpts(requestParameters) {

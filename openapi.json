@@ -12984,6 +12984,21 @@
         "operationId": "postInternalPayment-link-webhook"
       }
     },
+    "/api/trading/workspace": {
+      "get": {
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingWorkspace"
+      }
+    },
     "/api/trading/strategies/": {
       "post": {
         "operationId": "postApiTradingStrategies"
