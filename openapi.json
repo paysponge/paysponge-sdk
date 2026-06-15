@@ -12999,6 +12999,67 @@
         "operationId": "getApiTradingWorkspace"
       }
     },
+    "/api/trading/manual-strategies/close": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "symbol"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "symbol"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "agentId",
+                  "symbol"
+                ],
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiTradingManual-strategiesClose"
+      }
+    },
     "/api/trading/strategies/": {
       "post": {
         "operationId": "postApiTradingStrategies"
@@ -13031,6 +13092,21 @@
           }
         ],
         "operationId": "getApiTradingStrategies"
+      }
+    },
+    "/api/trading/strategies/x/resolve": {
+      "get": {
+        "parameters": [
+          {
+            "name": "handle",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingStrategiesXResolve"
       }
     },
     "/api/trading/strategies/{id}": {

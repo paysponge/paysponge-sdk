@@ -114,6 +114,7 @@ import type {
   PostApiTradesProposeRequest,
   PostApiTradingAdminKillSwitchRequest,
   PostApiTradingAdminTestRunRequest,
+  PostApiTradingManualStrategiesCloseRequest,
   PostApiTradingStrategiesByIdTestRunRequest,
   PostApiTransactionsBridgeRequest,
   PostApiTransactionsPrepareRequest,
@@ -342,6 +343,8 @@ import {
     PostApiTradingAdminKillSwitchRequestToJSON,
     PostApiTradingAdminTestRunRequestFromJSON,
     PostApiTradingAdminTestRunRequestToJSON,
+    PostApiTradingManualStrategiesCloseRequestFromJSON,
+    PostApiTradingManualStrategiesCloseRequestToJSON,
     PostApiTradingStrategiesByIdTestRunRequestFromJSON,
     PostApiTradingStrategiesByIdTestRunRequestToJSON,
     PostApiTransactionsBridgeRequestFromJSON,
@@ -856,6 +859,10 @@ export interface DefaultApiGetApiTradingStrategiesByIdLedgerRequest {
     id: string;
     limit?: string;
     offset?: string;
+}
+
+export interface DefaultApiGetApiTradingStrategiesXResolveRequest {
+    handle: string;
 }
 
 export interface DefaultApiGetApiTradingWorkspaceRequest {
@@ -1467,6 +1474,10 @@ export interface DefaultApiPostApiTradingAdminStrategiesByIdTestRunRequest {
 
 export interface DefaultApiPostApiTradingAdminTestRunOperationRequest {
     postApiTradingAdminTestRunRequest: PostApiTradingAdminTestRunRequest;
+}
+
+export interface DefaultApiPostApiTradingManualStrategiesCloseOperationRequest {
+    postApiTradingManualStrategiesCloseRequest: PostApiTradingManualStrategiesCloseRequest;
 }
 
 export interface DefaultApiPostApiTradingStrategiesByIdEnableRequest {
@@ -4952,6 +4963,27 @@ export interface DefaultApiInterface {
     getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiTradingStrategiesXResolve without sending the request
+     * @param {string} handle 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesXResolveRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesXResolveRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} handle 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesXResolveRaw(requestParameters: DefaultApiGetApiTradingStrategiesXResolveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingStrategiesXResolve(requestParameters: DefaultApiGetApiTradingStrategiesXResolveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiTradingWorkspace without sending the request
      * @param {string} agentId 
      * @throws {RequiredError}
@@ -8035,6 +8067,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiTradingAdminTestRun(requestParameters: DefaultApiPostApiTradingAdminTestRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingManualStrategiesClose without sending the request
+     * @param {PostApiTradingManualStrategiesCloseRequest} postApiTradingManualStrategiesCloseRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingManualStrategiesCloseRequestOpts(requestParameters: DefaultApiPostApiTradingManualStrategiesCloseOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiTradingManualStrategiesCloseRequest} postApiTradingManualStrategiesCloseRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingManualStrategiesCloseRaw(requestParameters: DefaultApiPostApiTradingManualStrategiesCloseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingManualStrategiesClose(requestParameters: DefaultApiPostApiTradingManualStrategiesCloseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTradingStrategies without sending the request
@@ -15366,6 +15419,51 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingStrategiesXResolve without sending the request
+     */
+    async getApiTradingStrategiesXResolveRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesXResolveRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['handle'] == null) {
+            throw new runtime.RequiredError(
+                'handle',
+                'Required parameter "handle" was null or undefined when calling getApiTradingStrategiesXResolve().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['handle'] != null) {
+            queryParameters['handle'] = requestParameters['handle'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/x/resolve`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesXResolveRaw(requestParameters: DefaultApiGetApiTradingStrategiesXResolveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingStrategiesXResolveRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesXResolve(requestParameters: DefaultApiGetApiTradingStrategiesXResolveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingStrategiesXResolveRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTradingWorkspace without sending the request
      */
     async getApiTradingWorkspaceRequestOpts(requestParameters: DefaultApiGetApiTradingWorkspaceRequest): Promise<runtime.RequestOpts> {
@@ -21907,6 +22005,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiTradingAdminTestRun(requestParameters: DefaultApiPostApiTradingAdminTestRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiTradingAdminTestRunRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingManualStrategiesClose without sending the request
+     */
+    async postApiTradingManualStrategiesCloseRequestOpts(requestParameters: DefaultApiPostApiTradingManualStrategiesCloseOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTradingManualStrategiesCloseRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingManualStrategiesCloseRequest',
+                'Required parameter "postApiTradingManualStrategiesCloseRequest" was null or undefined when calling postApiTradingManualStrategiesClose().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/manual-strategies/close`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingManualStrategiesCloseRequestToJSON(requestParameters['postApiTradingManualStrategiesCloseRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingManualStrategiesCloseRaw(requestParameters: DefaultApiPostApiTradingManualStrategiesCloseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingManualStrategiesCloseRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingManualStrategiesClose(requestParameters: DefaultApiPostApiTradingManualStrategiesCloseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingManualStrategiesCloseRaw(requestParameters, initOverrides);
     }
 
     /**
