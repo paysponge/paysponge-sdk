@@ -29,12 +29,6 @@ export interface PostApiTradingAdminTestRunRequestStrategy {
     seedAmountUsd: number;
     /**
      *
-     * @type {number}
-     * @memberof PostApiTradingAdminTestRunRequestStrategy
-     */
-    maxLeverage?: number;
-    /**
-     *
      * @type {Array<string>}
      * @memberof PostApiTradingAdminTestRunRequestStrategy
      */

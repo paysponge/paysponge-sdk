@@ -13617,11 +13617,6 @@
                         "minimum": 0,
                         "type": "number"
                       },
-                      "maxLeverage": {
-                        "minimum": 1,
-                        "maximum": 50,
-                        "type": "number"
-                      },
                       "instrumentAllowlist": {
                         "type": "array",
                         "items": {
@@ -13685,11 +13680,6 @@
                         "minimum": 0,
                         "type": "number"
                       },
-                      "maxLeverage": {
-                        "minimum": 1,
-                        "maximum": 50,
-                        "type": "number"
-                      },
                       "instrumentAllowlist": {
                         "type": "array",
                         "items": {
@@ -13751,11 +13741,6 @@
                       },
                       "seedAmountUsd": {
                         "minimum": 0,
-                        "type": "number"
-                      },
-                      "maxLeverage": {
-                        "minimum": 1,
-                        "maximum": 50,
                         "type": "number"
                       },
                       "instrumentAllowlist": {
