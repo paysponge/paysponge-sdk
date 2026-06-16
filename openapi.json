@@ -729,6 +729,114 @@
         "operationId": "getApiAgentsByIdHyperliquidSnapshot"
       }
     },
+    "/api/agents/{id}/hyperliquid/address": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response for status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "required": [
+                        "hasAccount",
+                        "address",
+                        "signerAddress",
+                        "mode"
+                      ],
+                      "properties": {
+                        "hasAccount": {
+                          "const": true,
+                          "type": "boolean"
+                        },
+                        "address": {
+                          "type": "string"
+                        },
+                        "signerAddress": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "hasAccount"
+                      ],
+                      "properties": {
+                        "hasAccount": {
+                          "const": false,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response for status 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "message"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Response for status 503",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "message"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiAgentsByIdHyperliquidAddress"
+      }
+    },
     "/api/agents/{id}/hyperliquid": {
       "get": {
         "parameters": [

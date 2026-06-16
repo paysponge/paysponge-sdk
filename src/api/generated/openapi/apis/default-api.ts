@@ -15,6 +15,8 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  GetApiAgentsByIdHyperliquidAddress200Response,
+  GetApiAgentsByIdHyperliquidAddress404Response,
   GetApiBridgeFiatCustomerForceRefreshParameter,
   PostApiAgentKeysRequest,
   PostApiAgentRequestsPlansRequest,
@@ -145,6 +147,10 @@ import type {
   PutApiSpendingLimitsByIdRequest,
 } from '../models/index.js';
 import {
+    GetApiAgentsByIdHyperliquidAddress200ResponseFromJSON,
+    GetApiAgentsByIdHyperliquidAddress200ResponseToJSON,
+    GetApiAgentsByIdHyperliquidAddress404ResponseFromJSON,
+    GetApiAgentsByIdHyperliquidAddress404ResponseToJSON,
     GetApiBridgeFiatCustomerForceRefreshParameterFromJSON,
     GetApiBridgeFiatCustomerForceRefreshParameterToJSON,
     PostApiAgentKeysRequestFromJSON,
@@ -547,6 +553,10 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidRequest {
 export interface DefaultApiGetApiAgentsByIdHyperliquidActivityRequest {
     id: string;
     limit?: string;
+}
+
+export interface DefaultApiGetApiAgentsByIdHyperliquidAddressRequest {
+    id: string;
 }
 
 export interface DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest {
@@ -3074,6 +3084,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquidActivity(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidAddress without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidAddressRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidAddressRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidAddressRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiAgentsByIdHyperliquidAddress200Response>>;
+
+    /**
+     */
+    getApiAgentsByIdHyperliquidAddress(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiAgentsByIdHyperliquidAddress200Response>;
 
     /**
      * Creates request options for getApiAgentsByIdHyperliquidCandles without sending the request
@@ -11772,6 +11803,49 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiAgentsByIdHyperliquidActivity(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiAgentsByIdHyperliquidActivityRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidAddress without sending the request
+     */
+    async getApiAgentsByIdHyperliquidAddressRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidAddressRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidAddress().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/address`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidAddressRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiAgentsByIdHyperliquidAddress200Response>> {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidAddressRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetApiAgentsByIdHyperliquidAddress200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getApiAgentsByIdHyperliquidAddress(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiAgentsByIdHyperliquidAddress200Response> {
+        const response = await this.getApiAgentsByIdHyperliquidAddressRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
