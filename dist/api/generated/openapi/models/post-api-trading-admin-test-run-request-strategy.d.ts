@@ -29,6 +29,12 @@ export interface PostApiTradingAdminTestRunRequestStrategy {
     seedAmountUsd: number;
     /**
      *
+     * @type {any}
+     * @memberof PostApiTradingAdminTestRunRequestStrategy
+     */
+    triggerConfig?: any | null;
+    /**
+     *
      * @type {Array<string>}
      * @memberof PostApiTradingAdminTestRunRequestStrategy
      */

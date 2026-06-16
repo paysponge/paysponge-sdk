@@ -13617,6 +13617,7 @@
                         "minimum": 0,
                         "type": "number"
                       },
+                      "triggerConfig": {},
                       "instrumentAllowlist": {
                         "type": "array",
                         "items": {
@@ -13680,6 +13681,7 @@
                         "minimum": 0,
                         "type": "number"
                       },
+                      "triggerConfig": {},
                       "instrumentAllowlist": {
                         "type": "array",
                         "items": {
@@ -13743,6 +13745,7 @@
                         "minimum": 0,
                         "type": "number"
                       },
+                      "triggerConfig": {},
                       "instrumentAllowlist": {
                         "type": "array",
                         "items": {

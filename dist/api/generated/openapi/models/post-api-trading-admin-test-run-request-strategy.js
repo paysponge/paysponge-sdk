@@ -31,6 +31,7 @@ export function PostApiTradingAdminTestRunRequestStrategyFromJSONTyped(json, ign
     return {
         'instruction': json['instruction'],
         'seedAmountUsd': json['seedAmountUsd'],
+        'triggerConfig': json['triggerConfig'] == null ? undefined : json['triggerConfig'],
         'instrumentAllowlist': json['instrumentAllowlist'] == null ? undefined : json['instrumentAllowlist'],
         'paperTrading': json['paperTrading'] == null ? undefined : json['paperTrading'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
@@ -46,6 +47,7 @@ export function PostApiTradingAdminTestRunRequestStrategyToJSONTyped(value, igno
     return {
         'instruction': value['instruction'],
         'seedAmountUsd': value['seedAmountUsd'],
+        'triggerConfig': value['triggerConfig'],
         'instrumentAllowlist': value['instrumentAllowlist'],
         'paperTrading': value['paperTrading'],
         'agentId': value['agentId'],
