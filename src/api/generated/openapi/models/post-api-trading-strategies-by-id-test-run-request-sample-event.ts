@@ -43,6 +43,18 @@ export interface PostApiTradingStrategiesByIdTestRunRequestSampleEvent {
      * @memberof PostApiTradingStrategiesByIdTestRunRequestSampleEvent
      */
     publishedAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiTradingStrategiesByIdTestRunRequestSampleEvent
+     */
+    formType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiTradingStrategiesByIdTestRunRequestSampleEvent
+     */
+    accession?: string;
 }
 
 /**
@@ -67,6 +79,8 @@ export function PostApiTradingStrategiesByIdTestRunRequestSampleEventFromJSONTyp
         'author': json['author'] == null ? undefined : json['author'],
         'url': json['url'] == null ? undefined : json['url'],
         'publishedAt': json['publishedAt'] == null ? undefined : json['publishedAt'],
+        'formType': json['formType'] == null ? undefined : json['formType'],
+        'accession': json['accession'] == null ? undefined : json['accession'],
     };
 }
 
@@ -85,6 +99,8 @@ export function PostApiTradingStrategiesByIdTestRunRequestSampleEventToJSONTyped
         'author': value['author'],
         'url': value['url'],
         'publishedAt': value['publishedAt'],
+        'formType': value['formType'],
+        'accession': value['accession'],
     };
 }
 

@@ -39,6 +39,18 @@ export interface PostApiTradingStrategiesByIdTestRunRequestSampleEvent {
      * @memberof PostApiTradingStrategiesByIdTestRunRequestSampleEvent
      */
     publishedAt?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiTradingStrategiesByIdTestRunRequestSampleEvent
+     */
+    formType?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiTradingStrategiesByIdTestRunRequestSampleEvent
+     */
+    accession?: string;
 }
 /**
  * Check if a given object implements the PostApiTradingStrategiesByIdTestRunRequestSampleEvent interface.

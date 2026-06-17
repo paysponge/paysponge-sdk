@@ -116,6 +116,7 @@ import type {
   PostApiTasksRequest,
   PostApiTradesProposeRequest,
   PostApiTradingAdminKillSwitchRequest,
+  PostApiTradingAdminStrategiesByIdReplayRequest,
   PostApiTradingAdminTestRunRequest,
   PostApiTradingManualStrategiesCloseRequest,
   PostApiTradingStrategiesByIdTestRunRequest,
@@ -350,6 +351,8 @@ import {
     PostApiTradesProposeRequestToJSON,
     PostApiTradingAdminKillSwitchRequestFromJSON,
     PostApiTradingAdminKillSwitchRequestToJSON,
+    PostApiTradingAdminStrategiesByIdReplayRequestFromJSON,
+    PostApiTradingAdminStrategiesByIdReplayRequestToJSON,
     PostApiTradingAdminTestRunRequestFromJSON,
     PostApiTradingAdminTestRunRequestToJSON,
     PostApiTradingManualStrategiesCloseRequestFromJSON,
@@ -850,6 +853,11 @@ export interface DefaultApiGetApiTasksByTaskIdRequest {
 export interface DefaultApiGetApiTradingAdminStrategiesRequest {
     limit?: string;
     offset?: string;
+}
+
+export interface DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest {
+    id: string;
+    limit?: string;
 }
 
 export interface DefaultApiGetApiTradingStrategiesRequest {
@@ -1483,6 +1491,11 @@ export interface DefaultApiPostApiTradesProposeOperationRequest {
 
 export interface DefaultApiPostApiTradingAdminKillSwitchOperationRequest {
     postApiTradingAdminKillSwitchRequest: PostApiTradingAdminKillSwitchRequest;
+}
+
+export interface DefaultApiPostApiTradingAdminStrategiesByIdReplayOperationRequest {
+    id: string;
+    postApiTradingAdminStrategiesByIdReplayRequest: PostApiTradingAdminStrategiesByIdReplayRequest;
 }
 
 export interface DefaultApiPostApiTradingAdminStrategiesByIdTestRunRequest {
@@ -4906,6 +4919,29 @@ export interface DefaultApiInterface {
     getApiTradingAdminStrategies(requestParameters: DefaultApiGetApiTradingAdminStrategiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiTradingAdminStrategiesByIdSourceEvents without sending the request
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminStrategiesByIdSourceEventsRequestOpts(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminStrategiesByIdSourceEventsRaw(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingAdminStrategiesByIdSourceEvents(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiTradingStrategies without sending the request
      * @param {string} [agentId] 
      * @param {string} [limit] 
@@ -8085,6 +8121,29 @@ export interface DefaultApiInterface {
     /**
      */
     postApiTradingAdminKillSwitch(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingAdminStrategiesByIdReplay without sending the request
+     * @param {string} id 
+     * @param {PostApiTradingAdminStrategiesByIdReplayRequest} postApiTradingAdminStrategiesByIdReplayRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminStrategiesByIdReplayRequestOpts(requestParameters: DefaultApiPostApiTradingAdminStrategiesByIdReplayOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiTradingAdminStrategiesByIdReplayRequest} postApiTradingAdminStrategiesByIdReplayRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminStrategiesByIdReplayRaw(requestParameters: DefaultApiPostApiTradingAdminStrategiesByIdReplayOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingAdminStrategiesByIdReplay(requestParameters: DefaultApiPostApiTradingAdminStrategiesByIdReplayOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTradingAdminStrategiesByIdTestRun without sending the request
@@ -15336,6 +15395,52 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingAdminStrategiesByIdSourceEvents without sending the request
+     */
+    async getApiTradingAdminStrategiesByIdSourceEventsRequestOpts(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingAdminStrategiesByIdSourceEvents().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/strategies/{id}/source-events`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingAdminStrategiesByIdSourceEventsRaw(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingAdminStrategiesByIdSourceEventsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingAdminStrategiesByIdSourceEvents(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingAdminStrategiesByIdSourceEventsRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTradingStrategies without sending the request
      */
     async getApiTradingStrategiesRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesRequest): Promise<runtime.RequestOpts> {
@@ -22066,6 +22171,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiTradingAdminKillSwitch(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiTradingAdminKillSwitchRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingAdminStrategiesByIdReplay without sending the request
+     */
+    async postApiTradingAdminStrategiesByIdReplayRequestOpts(requestParameters: DefaultApiPostApiTradingAdminStrategiesByIdReplayOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingAdminStrategiesByIdReplay().'
+            );
+        }
+
+        if (requestParameters['postApiTradingAdminStrategiesByIdReplayRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingAdminStrategiesByIdReplayRequest',
+                'Required parameter "postApiTradingAdminStrategiesByIdReplayRequest" was null or undefined when calling postApiTradingAdminStrategiesByIdReplay().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/admin/strategies/{id}/replay`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminStrategiesByIdReplayRequestToJSON(requestParameters['postApiTradingAdminStrategiesByIdReplayRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingAdminStrategiesByIdReplayRaw(requestParameters: DefaultApiPostApiTradingAdminStrategiesByIdReplayOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingAdminStrategiesByIdReplayRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingAdminStrategiesByIdReplay(requestParameters: DefaultApiPostApiTradingAdminStrategiesByIdReplayOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingAdminStrategiesByIdReplayRaw(requestParameters, initOverrides);
     }
 
     /**
