@@ -13,6 +13,7 @@ export * from './post-api-agents-by-id-enrollments-by-enrollment-id-verify-otp-r
 export * from './post-api-agents-by-id-enrollments-request.js';
 export * from './post-api-agents-by-id-hyperliquid-cancel-order-request.js';
 export * from './post-api-agents-by-id-hyperliquid-close-position-request.js';
+export * from './post-api-agents-by-id-hyperliquid-deposit-request.js';
 export * from './post-api-agents-by-id-hyperliquid-link-request.js';
 export * from './post-api-agents-by-id-hyperliquid-transfer-request.js';
 export * from './post-api-agents-by-id-hyperliquid-withdraw-request.js';

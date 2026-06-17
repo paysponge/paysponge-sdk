@@ -27,6 +27,7 @@ import type {
   PostApiAgentsByIdEnrollmentsRequest,
   PostApiAgentsByIdHyperliquidCancelOrderRequest,
   PostApiAgentsByIdHyperliquidClosePositionRequest,
+  PostApiAgentsByIdHyperliquidDepositRequest,
   PostApiAgentsByIdHyperliquidLinkRequest,
   PostApiAgentsByIdHyperliquidTransferRequest,
   PostApiAgentsByIdHyperliquidWithdrawRequest,
@@ -171,6 +172,8 @@ import {
     PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON,
     PostApiAgentsByIdHyperliquidClosePositionRequestFromJSON,
     PostApiAgentsByIdHyperliquidClosePositionRequestToJSON,
+    PostApiAgentsByIdHyperliquidDepositRequestFromJSON,
+    PostApiAgentsByIdHyperliquidDepositRequestToJSON,
     PostApiAgentsByIdHyperliquidLinkRequestFromJSON,
     PostApiAgentsByIdHyperliquidLinkRequestToJSON,
     PostApiAgentsByIdHyperliquidTransferRequestFromJSON,
@@ -1030,6 +1033,11 @@ export interface DefaultApiPostApiAgentsByIdHyperliquidCancelOrderOperationReque
 export interface DefaultApiPostApiAgentsByIdHyperliquidClosePositionOperationRequest {
     id: string;
     postApiAgentsByIdHyperliquidClosePositionRequest: PostApiAgentsByIdHyperliquidClosePositionRequest;
+}
+
+export interface DefaultApiPostApiAgentsByIdHyperliquidDepositOperationRequest {
+    id: string;
+    postApiAgentsByIdHyperliquidDepositRequest: PostApiAgentsByIdHyperliquidDepositRequest;
 }
 
 export interface DefaultApiPostApiAgentsByIdHyperliquidLinkOperationRequest {
@@ -5774,6 +5782,29 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsByIdHyperliquidClosePosition(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidClosePositionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdHyperliquidDeposit without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdHyperliquidDepositRequest} postApiAgentsByIdHyperliquidDepositRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidDepositRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidDepositOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdHyperliquidDepositRequest} postApiAgentsByIdHyperliquidDepositRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidDepositRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidDepositOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdHyperliquidDeposit(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidDepositOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentsByIdHyperliquidLink without sending the request
@@ -17139,6 +17170,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentsByIdHyperliquidClosePosition(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidClosePositionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentsByIdHyperliquidClosePositionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdHyperliquidDeposit without sending the request
+     */
+    async postApiAgentsByIdHyperliquidDepositRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidDepositOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdHyperliquidDeposit().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdHyperliquidDepositRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdHyperliquidDepositRequest',
+                'Required parameter "postApiAgentsByIdHyperliquidDepositRequest" was null or undefined when calling postApiAgentsByIdHyperliquidDeposit().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/deposit`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdHyperliquidDepositRequestToJSON(requestParameters['postApiAgentsByIdHyperliquidDepositRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidDepositRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidDepositOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdHyperliquidDepositRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidDeposit(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidDepositOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdHyperliquidDepositRaw(requestParameters, initOverrides);
     }
 
     /**
