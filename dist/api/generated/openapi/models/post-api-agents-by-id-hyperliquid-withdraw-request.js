@@ -28,6 +28,7 @@ export function PostApiAgentsByIdHyperliquidWithdrawRequestFromJSONTyped(json, i
     }
     return {
         'amount': json['amount'],
+        'destination': json['destination'] == null ? undefined : json['destination'],
     };
 }
 export function PostApiAgentsByIdHyperliquidWithdrawRequestToJSON(json) {
@@ -39,6 +40,7 @@ export function PostApiAgentsByIdHyperliquidWithdrawRequestToJSONTyped(value, ig
     }
     return {
         'amount': value['amount'],
+        'destination': value['destination'],
     };
 }
 //# sourceMappingURL=post-api-agents-by-id-hyperliquid-withdraw-request.js.map

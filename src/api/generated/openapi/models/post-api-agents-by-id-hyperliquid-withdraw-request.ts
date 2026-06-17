@@ -25,6 +25,12 @@ export interface PostApiAgentsByIdHyperliquidWithdrawRequest {
      * @memberof PostApiAgentsByIdHyperliquidWithdrawRequest
      */
     amount: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiAgentsByIdHyperliquidWithdrawRequest
+     */
+    destination?: string;
 }
 
 /**
@@ -46,6 +52,7 @@ export function PostApiAgentsByIdHyperliquidWithdrawRequestFromJSONTyped(json: a
     return {
         
         'amount': json['amount'],
+        'destination': json['destination'] == null ? undefined : json['destination'],
     };
 }
 
@@ -61,6 +68,7 @@ export function PostApiAgentsByIdHyperliquidWithdrawRequestToJSONTyped(value?: P
     return {
         
         'amount': value['amount'],
+        'destination': value['destination'],
     };
 }
 

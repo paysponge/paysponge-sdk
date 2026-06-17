@@ -21,6 +21,12 @@ export interface PostApiAgentsByIdHyperliquidWithdrawRequest {
      * @memberof PostApiAgentsByIdHyperliquidWithdrawRequest
      */
     amount: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdHyperliquidWithdrawRequest
+     */
+    destination?: string;
 }
 /**
  * Check if a given object implements the PostApiAgentsByIdHyperliquidWithdrawRequest interface.

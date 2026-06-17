@@ -1213,6 +1213,9 @@
                 "properties": {
                   "amount": {
                     "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
                   }
                 }
               }
@@ -1226,6 +1229,9 @@
                 "properties": {
                   "amount": {
                     "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
                   }
                 }
               }
@@ -1238,6 +1244,9 @@
                 ],
                 "properties": {
                   "amount": {
+                    "type": "string"
+                  },
+                  "destination": {
                     "type": "string"
                   }
                 }
