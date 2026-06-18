@@ -4592,6 +4592,39 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingAdminStrategiesRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingAdminStrategiesByIdEdgarFilings without sending the request
+     */
+    async getApiTradingAdminStrategiesByIdEdgarFilingsRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiTradingAdminStrategiesByIdEdgarFilings().');
+        }
+        const queryParameters = {};
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/admin/strategies/{id}/edgar-filings`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingAdminStrategiesByIdEdgarFilingsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingAdminStrategiesByIdEdgarFilingsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingAdminStrategiesByIdEdgarFilings(requestParameters, initOverrides) {
+        await this.getApiTradingAdminStrategiesByIdEdgarFilingsRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTradingAdminStrategiesByIdSourceEvents without sending the request
      */
     async getApiTradingAdminStrategiesByIdSourceEventsRequestOpts(requestParameters) {

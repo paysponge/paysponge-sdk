@@ -13832,6 +13832,29 @@
         "operationId": "getApiTradingAdminStrategiesByIdSource-events"
       }
     },
+    "/api/trading/admin/strategies/{id}/edgar-filings": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingAdminStrategiesByIdEdgar-filings"
+      }
+    },
     "/api/trading/admin/strategies/{id}/replay": {
       "post": {
         "parameters": [

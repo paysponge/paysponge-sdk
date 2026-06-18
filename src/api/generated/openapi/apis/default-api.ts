@@ -855,6 +855,11 @@ export interface DefaultApiGetApiTradingAdminStrategiesRequest {
     offset?: string;
 }
 
+export interface DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest {
+    id: string;
+    limit?: string;
+}
+
 export interface DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest {
     id: string;
     limit?: string;
@@ -4917,6 +4922,29 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingAdminStrategies(requestParameters: DefaultApiGetApiTradingAdminStrategiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingAdminStrategiesByIdEdgarFilings without sending the request
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilingsRequestOpts(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilingsRaw(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilings(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiTradingAdminStrategiesByIdSourceEvents without sending the request
@@ -15392,6 +15420,52 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiTradingAdminStrategies(requestParameters: DefaultApiGetApiTradingAdminStrategiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiTradingAdminStrategiesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingAdminStrategiesByIdEdgarFilings without sending the request
+     */
+    async getApiTradingAdminStrategiesByIdEdgarFilingsRequestOpts(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingAdminStrategiesByIdEdgarFilings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/strategies/{id}/edgar-filings`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingAdminStrategiesByIdEdgarFilingsRaw(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingAdminStrategiesByIdEdgarFilingsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingAdminStrategiesByIdEdgarFilings(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingAdminStrategiesByIdEdgarFilingsRaw(requestParameters, initOverrides);
     }
 
     /**

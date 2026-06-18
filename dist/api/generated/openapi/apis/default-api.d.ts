@@ -358,6 +358,10 @@ export interface DefaultApiGetApiTradingAdminStrategiesRequest {
     limit?: string;
     offset?: string;
 }
+export interface DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest {
+    id: string;
+    limit?: string;
+}
 export interface DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest {
     id: string;
     limit?: string;
@@ -3777,6 +3781,26 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingAdminStrategies(requestParameters: DefaultApiGetApiTradingAdminStrategiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingAdminStrategiesByIdEdgarFilings without sending the request
+     * @param {string} id
+     * @param {string} [limit]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilingsRequestOpts(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {string} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilingsRaw(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilings(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTradingAdminStrategiesByIdSourceEvents without sending the request
      * @param {string} id
@@ -8976,6 +9000,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiTradingAdminStrategies(requestParameters?: DefaultApiGetApiTradingAdminStrategiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingAdminStrategiesByIdEdgarFilings without sending the request
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilingsRequestOpts(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilingsRaw(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminStrategiesByIdEdgarFilings(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTradingAdminStrategiesByIdSourceEvents without sending the request
      */
