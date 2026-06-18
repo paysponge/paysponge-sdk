@@ -13587,6 +13587,41 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "liquidate": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "liquidate": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "liquidate": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "postApiTradingStrategiesByIdKill"
       }
     },
@@ -14160,9 +14195,6 @@
                           "type": "string"
                         }
                       },
-                      "paperTrading": {
-                        "type": "boolean"
-                      },
                       "agentId": {
                         "type": "string"
                       }
@@ -14230,9 +14262,6 @@
                           "type": "string"
                         }
                       },
-                      "paperTrading": {
-                        "type": "boolean"
-                      },
                       "agentId": {
                         "type": "string"
                       }
@@ -14299,9 +14328,6 @@
                         "items": {
                           "type": "string"
                         }
-                      },
-                      "paperTrading": {
-                        "type": "boolean"
                       },
                       "agentId": {
                         "type": "string"

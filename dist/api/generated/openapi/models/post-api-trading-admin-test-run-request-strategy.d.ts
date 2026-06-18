@@ -41,12 +41,6 @@ export interface PostApiTradingAdminTestRunRequestStrategy {
     instrumentAllowlist?: Array<string>;
     /**
      *
-     * @type {boolean}
-     * @memberof PostApiTradingAdminTestRunRequestStrategy
-     */
-    paperTrading?: boolean;
-    /**
-     *
      * @type {string}
      * @memberof PostApiTradingAdminTestRunRequestStrategy
      */

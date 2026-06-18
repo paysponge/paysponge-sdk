@@ -120,6 +120,7 @@ import type {
   PostApiTradingAdminStrategiesByIdReplayRequest,
   PostApiTradingAdminTestRunRequest,
   PostApiTradingManualStrategiesCloseRequest,
+  PostApiTradingStrategiesByIdKillRequest,
   PostApiTradingStrategiesByIdTestRunRequest,
   PostApiTransactionsBridgeRequest,
   PostApiTransactionsPrepareRequest,
@@ -360,6 +361,8 @@ import {
     PostApiTradingAdminTestRunRequestToJSON,
     PostApiTradingManualStrategiesCloseRequestFromJSON,
     PostApiTradingManualStrategiesCloseRequestToJSON,
+    PostApiTradingStrategiesByIdKillRequestFromJSON,
+    PostApiTradingStrategiesByIdKillRequestToJSON,
     PostApiTradingStrategiesByIdTestRunRequestFromJSON,
     PostApiTradingStrategiesByIdTestRunRequestToJSON,
     PostApiTransactionsBridgeRequestFromJSON,
@@ -1532,8 +1535,9 @@ export interface DefaultApiPostApiTradingStrategiesByIdEnableRequest {
     id: string;
 }
 
-export interface DefaultApiPostApiTradingStrategiesByIdKillRequest {
+export interface DefaultApiPostApiTradingStrategiesByIdKillOperationRequest {
     id: string;
+    postApiTradingStrategiesByIdKillRequest: PostApiTradingStrategiesByIdKillRequest;
 }
 
 export interface DefaultApiPostApiTradingStrategiesByIdPauseRequest {
@@ -8337,23 +8341,25 @@ export interface DefaultApiInterface {
     /**
      * Creates request options for postApiTradingStrategiesByIdKill without sending the request
      * @param {string} id 
+     * @param {PostApiTradingStrategiesByIdKillRequest} postApiTradingStrategiesByIdKillRequest 
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiTradingStrategiesByIdKillRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest): Promise<runtime.RequestOpts>;
+    postApiTradingStrategiesByIdKillRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillOperationRequest): Promise<runtime.RequestOpts>;
 
     /**
      * 
      * @param {string} id 
+     * @param {PostApiTradingStrategiesByIdKillRequest} postApiTradingStrategiesByIdKillRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiTradingStrategiesByIdKillRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    postApiTradingStrategiesByIdKillRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      */
-    postApiTradingStrategiesByIdKill(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    postApiTradingStrategiesByIdKill(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTradingStrategiesByIdPause without sending the request
@@ -22670,7 +22676,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     /**
      * Creates request options for postApiTradingStrategiesByIdKill without sending the request
      */
-    async postApiTradingStrategiesByIdKillRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest): Promise<runtime.RequestOpts> {
+    async postApiTradingStrategiesByIdKillRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -22678,9 +22684,18 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             );
         }
 
+        if (requestParameters['postApiTradingStrategiesByIdKillRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingStrategiesByIdKillRequest',
+                'Required parameter "postApiTradingStrategiesByIdKillRequest" was null or undefined when calling postApiTradingStrategiesByIdKill().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
 
         let urlPath = `/api/trading/strategies/{id}/kill`;
@@ -22691,12 +22706,13 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: PostApiTradingStrategiesByIdKillRequestToJSON(requestParameters['postApiTradingStrategiesByIdKillRequest']),
         };
     }
 
     /**
      */
-    async postApiTradingStrategiesByIdKillRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async postApiTradingStrategiesByIdKillRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.postApiTradingStrategiesByIdKillRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -22705,7 +22721,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async postApiTradingStrategiesByIdKill(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async postApiTradingStrategiesByIdKill(requestParameters: DefaultApiPostApiTradingStrategiesByIdKillOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiTradingStrategiesByIdKillRaw(requestParameters, initOverrides);
     }
 
