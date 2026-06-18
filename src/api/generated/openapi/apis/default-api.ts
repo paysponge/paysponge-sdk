@@ -29,6 +29,7 @@ import type {
   PostApiAgentsByIdHyperliquidClosePositionRequest,
   PostApiAgentsByIdHyperliquidDepositRequest,
   PostApiAgentsByIdHyperliquidLinkRequest,
+  PostApiAgentsByIdHyperliquidOrderRequest,
   PostApiAgentsByIdHyperliquidTransferRequest,
   PostApiAgentsByIdHyperliquidWithdrawRequest,
   PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest,
@@ -41,13 +42,13 @@ import type {
   PostApiAgentsByIdPolymarketFundRequest,
   PostApiAgentsByIdPolymarketRedeemRequest,
   PostApiAgentsByIdPolymarketWithdrawRequest,
-  PostApiAgentsByIdRegenerateKeyRequest,
   PostApiAgentsByIdShippingAddressesRequest,
   PostApiAgentsByIdStripePaymentMethodsRequest,
   PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest,
   PostApiAgentsByIdVirtualCardRequest,
   PostApiAgentsRegisterRequest,
   PostApiAgentsRequest,
+  PostApiAgentsTradingTerminalRequest,
   PostApiAllowlistRequest,
   PostApiAmazonCheckoutAmazonSearchRequest,
   PostApiAmazonCheckoutRequest,
@@ -177,6 +178,8 @@ import {
     PostApiAgentsByIdHyperliquidDepositRequestToJSON,
     PostApiAgentsByIdHyperliquidLinkRequestFromJSON,
     PostApiAgentsByIdHyperliquidLinkRequestToJSON,
+    PostApiAgentsByIdHyperliquidOrderRequestFromJSON,
+    PostApiAgentsByIdHyperliquidOrderRequestToJSON,
     PostApiAgentsByIdHyperliquidTransferRequestFromJSON,
     PostApiAgentsByIdHyperliquidTransferRequestToJSON,
     PostApiAgentsByIdHyperliquidWithdrawRequestFromJSON,
@@ -201,8 +204,6 @@ import {
     PostApiAgentsByIdPolymarketRedeemRequestToJSON,
     PostApiAgentsByIdPolymarketWithdrawRequestFromJSON,
     PostApiAgentsByIdPolymarketWithdrawRequestToJSON,
-    PostApiAgentsByIdRegenerateKeyRequestFromJSON,
-    PostApiAgentsByIdRegenerateKeyRequestToJSON,
     PostApiAgentsByIdShippingAddressesRequestFromJSON,
     PostApiAgentsByIdShippingAddressesRequestToJSON,
     PostApiAgentsByIdStripePaymentMethodsRequestFromJSON,
@@ -215,6 +216,8 @@ import {
     PostApiAgentsRegisterRequestToJSON,
     PostApiAgentsRequestFromJSON,
     PostApiAgentsRequestToJSON,
+    PostApiAgentsTradingTerminalRequestFromJSON,
+    PostApiAgentsTradingTerminalRequestToJSON,
     PostApiAllowlistRequestFromJSON,
     PostApiAllowlistRequestToJSON,
     PostApiAmazonCheckoutAmazonSearchRequestFromJSON,
@@ -1066,6 +1069,11 @@ export interface DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmReque
     id: string;
 }
 
+export interface DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest {
+    id: string;
+    postApiAgentsByIdHyperliquidOrderRequest: PostApiAgentsByIdHyperliquidOrderRequest;
+}
+
 export interface DefaultApiPostApiAgentsByIdHyperliquidTransferOperationRequest {
     id: string;
     postApiAgentsByIdHyperliquidTransferRequest: PostApiAgentsByIdHyperliquidTransferRequest;
@@ -1155,9 +1163,9 @@ export interface DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest {
     postApiAgentsByIdPolymarketWithdrawRequest: PostApiAgentsByIdPolymarketWithdrawRequest;
 }
 
-export interface DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest {
+export interface DefaultApiPostApiAgentsByIdRegenerateKeyRequest {
     id: string;
-    postApiAgentsByIdRegenerateKeyRequest: PostApiAgentsByIdRegenerateKeyRequest;
+    postApiAgentsTradingTerminalRequest: PostApiAgentsTradingTerminalRequest;
 }
 
 export interface DefaultApiPostApiAgentsByIdShippingAddressesOperationRequest {
@@ -1187,6 +1195,10 @@ export interface DefaultApiPostApiAgentsByIdVirtualCardOperationRequest {
 
 export interface DefaultApiPostApiAgentsRegisterOperationRequest {
     postApiAgentsRegisterRequest: PostApiAgentsRegisterRequest;
+}
+
+export interface DefaultApiPostApiAgentsTradingTerminalOperationRequest {
+    postApiAgentsTradingTerminalRequest: PostApiAgentsTradingTerminalRequest;
 }
 
 export interface DefaultApiPostApiAllowlistOperationRequest {
@@ -5936,6 +5948,29 @@ export interface DefaultApiInterface {
     postApiAgentsByIdHyperliquidLinkApiWalletConfirm(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiAgentsByIdHyperliquidOrder without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdHyperliquidOrderRequest} postApiAgentsByIdHyperliquidOrderRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidOrderRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdHyperliquidOrderRequest} postApiAgentsByIdHyperliquidOrderRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidOrderRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdHyperliquidOrder(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiAgentsByIdHyperliquidTransfer without sending the request
      * @param {string} id 
      * @param {PostApiAgentsByIdHyperliquidTransferRequest} postApiAgentsByIdHyperliquidTransferRequest 
@@ -6350,25 +6385,25 @@ export interface DefaultApiInterface {
     /**
      * Creates request options for postApiAgentsByIdRegenerateKey without sending the request
      * @param {string} id 
-     * @param {PostApiAgentsByIdRegenerateKeyRequest} postApiAgentsByIdRegenerateKeyRequest 
+     * @param {PostApiAgentsTradingTerminalRequest} postApiAgentsTradingTerminalRequest 
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest): Promise<runtime.RequestOpts>;
+    postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest): Promise<runtime.RequestOpts>;
 
     /**
      * 
      * @param {string} id 
-     * @param {PostApiAgentsByIdRegenerateKeyRequest} postApiAgentsByIdRegenerateKeyRequest 
+     * @param {PostApiAgentsTradingTerminalRequest} postApiAgentsTradingTerminalRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiAgentsByIdRegenerateKeyRaw(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    postApiAgentsByIdRegenerateKeyRaw(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      */
-    postApiAgentsByIdRegenerateKey(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    postApiAgentsByIdRegenerateKey(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentsByIdShippingAddresses without sending the request
@@ -6505,6 +6540,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsRegister(requestParameters: DefaultApiPostApiAgentsRegisterOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsTradingTerminal without sending the request
+     * @param {PostApiAgentsTradingTerminalRequest} postApiAgentsTradingTerminalRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsTradingTerminalRequestOpts(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiAgentsTradingTerminalRequest} postApiAgentsTradingTerminalRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsTradingTerminalRaw(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsTradingTerminal(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAllowlist without sending the request
@@ -17540,6 +17596,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiAgentsByIdHyperliquidOrder without sending the request
+     */
+    async postApiAgentsByIdHyperliquidOrderRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdHyperliquidOrder().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdHyperliquidOrderRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdHyperliquidOrderRequest',
+                'Required parameter "postApiAgentsByIdHyperliquidOrderRequest" was null or undefined when calling postApiAgentsByIdHyperliquidOrder().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/hyperliquid/order`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdHyperliquidOrderRequestToJSON(requestParameters['postApiAgentsByIdHyperliquidOrderRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidOrderRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdHyperliquidOrderRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdHyperliquidOrder(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdHyperliquidOrderRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiAgentsByIdHyperliquidTransfer without sending the request
      */
     async postApiAgentsByIdHyperliquidTransferRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidTransferOperationRequest): Promise<runtime.RequestOpts> {
@@ -18458,7 +18566,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     /**
      * Creates request options for postApiAgentsByIdRegenerateKey without sending the request
      */
-    async postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest): Promise<runtime.RequestOpts> {
+    async postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -18466,10 +18574,10 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             );
         }
 
-        if (requestParameters['postApiAgentsByIdRegenerateKeyRequest'] == null) {
+        if (requestParameters['postApiAgentsTradingTerminalRequest'] == null) {
             throw new runtime.RequiredError(
-                'postApiAgentsByIdRegenerateKeyRequest',
-                'Required parameter "postApiAgentsByIdRegenerateKeyRequest" was null or undefined when calling postApiAgentsByIdRegenerateKey().'
+                'postApiAgentsTradingTerminalRequest',
+                'Required parameter "postApiAgentsTradingTerminalRequest" was null or undefined when calling postApiAgentsByIdRegenerateKey().'
             );
         }
 
@@ -18488,13 +18596,13 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PostApiAgentsByIdRegenerateKeyRequestToJSON(requestParameters['postApiAgentsByIdRegenerateKeyRequest']),
+            body: PostApiAgentsTradingTerminalRequestToJSON(requestParameters['postApiAgentsTradingTerminalRequest']),
         };
     }
 
     /**
      */
-    async postApiAgentsByIdRegenerateKeyRaw(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async postApiAgentsByIdRegenerateKeyRaw(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -18503,7 +18611,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async postApiAgentsByIdRegenerateKey(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async postApiAgentsByIdRegenerateKey(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentsByIdRegenerateKeyRaw(requestParameters, initOverrides);
     }
 
@@ -18807,6 +18915,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentsRegister(requestParameters: DefaultApiPostApiAgentsRegisterOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentsRegisterRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsTradingTerminal without sending the request
+     */
+    async postApiAgentsTradingTerminalRequestOpts(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiAgentsTradingTerminalRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsTradingTerminalRequest',
+                'Required parameter "postApiAgentsTradingTerminalRequest" was null or undefined when calling postApiAgentsTradingTerminal().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/trading-terminal`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsTradingTerminalRequestToJSON(requestParameters['postApiAgentsTradingTerminalRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsTradingTerminalRaw(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsTradingTerminalRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsTradingTerminal(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsTradingTerminalRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiAgentsByIdHyperliquidAddress200Response, GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentRequestsPlansRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidDepositRequest, PostApiAgentsByIdHyperliquidLinkRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdPolymarketWithdrawRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdStripePaymentMethodsRequest, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTradingAdminKillSwitchRequest, PostApiTradingAdminStrategiesByIdReplayRequest, PostApiTradingAdminTestRunRequest, PostApiTradingManualStrategiesCloseRequest, PostApiTradingStrategiesByIdTestRunRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiAgentsByIdHyperliquidAddress200Response, GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentRequestsPlansRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidDepositRequest, PostApiAgentsByIdHyperliquidLinkRequest, PostApiAgentsByIdHyperliquidOrderRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdPolymarketWithdrawRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdStripePaymentMethodsRequest, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAgentsTradingTerminalRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTradingAdminKillSwitchRequest, PostApiTradingAdminStrategiesByIdReplayRequest, PostApiTradingAdminTestRunRequest, PostApiTradingManualStrategiesCloseRequest, PostApiTradingStrategiesByIdTestRunRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -528,6 +528,10 @@ export interface DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletRequest {
 export interface DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest {
     id: string;
 }
+export interface DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest {
+    id: string;
+    postApiAgentsByIdHyperliquidOrderRequest: PostApiAgentsByIdHyperliquidOrderRequest;
+}
 export interface DefaultApiPostApiAgentsByIdHyperliquidTransferOperationRequest {
     id: string;
     postApiAgentsByIdHyperliquidTransferRequest: PostApiAgentsByIdHyperliquidTransferRequest;
@@ -599,9 +603,9 @@ export interface DefaultApiPostApiAgentsByIdPolymarketWithdrawOperationRequest {
     id: string;
     postApiAgentsByIdPolymarketWithdrawRequest: PostApiAgentsByIdPolymarketWithdrawRequest;
 }
-export interface DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest {
+export interface DefaultApiPostApiAgentsByIdRegenerateKeyRequest {
     id: string;
-    postApiAgentsByIdRegenerateKeyRequest: PostApiAgentsByIdRegenerateKeyRequest;
+    postApiAgentsTradingTerminalRequest: PostApiAgentsTradingTerminalRequest;
 }
 export interface DefaultApiPostApiAgentsByIdShippingAddressesOperationRequest {
     id: string;
@@ -625,6 +629,9 @@ export interface DefaultApiPostApiAgentsByIdVirtualCardOperationRequest {
 }
 export interface DefaultApiPostApiAgentsRegisterOperationRequest {
     postApiAgentsRegisterRequest: PostApiAgentsRegisterRequest;
+}
+export interface DefaultApiPostApiAgentsTradingTerminalOperationRequest {
+    postApiAgentsTradingTerminalRequest: PostApiAgentsTradingTerminalRequest;
 }
 export interface DefaultApiPostApiAllowlistOperationRequest {
     postApiAllowlistRequest: PostApiAllowlistRequest;
@@ -4662,6 +4669,26 @@ export interface DefaultApiInterface {
      */
     postApiAgentsByIdHyperliquidLinkApiWalletConfirm(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiAgentsByIdHyperliquidOrder without sending the request
+     * @param {string} id
+     * @param {PostApiAgentsByIdHyperliquidOrderRequest} postApiAgentsByIdHyperliquidOrderRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidOrderRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {PostApiAgentsByIdHyperliquidOrderRequest} postApiAgentsByIdHyperliquidOrderRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdHyperliquidOrderRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdHyperliquidOrder(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiAgentsByIdHyperliquidTransfer without sending the request
      * @param {string} id
      * @param {PostApiAgentsByIdHyperliquidTransferRequest} postApiAgentsByIdHyperliquidTransferRequest
@@ -5022,23 +5049,23 @@ export interface DefaultApiInterface {
     /**
      * Creates request options for postApiAgentsByIdRegenerateKey without sending the request
      * @param {string} id
-     * @param {PostApiAgentsByIdRegenerateKeyRequest} postApiAgentsByIdRegenerateKeyRequest
+     * @param {PostApiAgentsTradingTerminalRequest} postApiAgentsTradingTerminalRequest
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest): Promise<runtime.RequestOpts>;
+    postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest): Promise<runtime.RequestOpts>;
     /**
      *
      * @param {string} id
-     * @param {PostApiAgentsByIdRegenerateKeyRequest} postApiAgentsByIdRegenerateKeyRequest
+     * @param {PostApiAgentsTradingTerminalRequest} postApiAgentsTradingTerminalRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiAgentsByIdRegenerateKeyRaw(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    postApiAgentsByIdRegenerateKeyRaw(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    postApiAgentsByIdRegenerateKey(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    postApiAgentsByIdRegenerateKey(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentsByIdShippingAddresses without sending the request
      * @param {string} id
@@ -5157,6 +5184,24 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsRegister(requestParameters: DefaultApiPostApiAgentsRegisterOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAgentsTradingTerminal without sending the request
+     * @param {PostApiAgentsTradingTerminalRequest} postApiAgentsTradingTerminalRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsTradingTerminalRequestOpts(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiAgentsTradingTerminalRequest} postApiAgentsTradingTerminalRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsTradingTerminalRaw(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsTradingTerminal(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAllowlist without sending the request
      * @param {PostApiAllowlistRequest} postApiAllowlistRequest
@@ -9441,6 +9486,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     postApiAgentsByIdHyperliquidLinkApiWalletConfirm(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidLinkApiWalletConfirmRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiAgentsByIdHyperliquidOrder without sending the request
+     */
+    postApiAgentsByIdHyperliquidOrderRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAgentsByIdHyperliquidOrderRaw(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdHyperliquidOrder(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidOrderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiAgentsByIdHyperliquidTransfer without sending the request
      */
     postApiAgentsByIdHyperliquidTransferRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdHyperliquidTransferOperationRequest): Promise<runtime.RequestOpts>;
@@ -9623,13 +9678,13 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      * Creates request options for postApiAgentsByIdRegenerateKey without sending the request
      */
-    postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest): Promise<runtime.RequestOpts>;
+    postApiAgentsByIdRegenerateKeyRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest): Promise<runtime.RequestOpts>;
     /**
      */
-    postApiAgentsByIdRegenerateKeyRaw(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    postApiAgentsByIdRegenerateKeyRaw(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    postApiAgentsByIdRegenerateKey(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    postApiAgentsByIdRegenerateKey(requestParameters: DefaultApiPostApiAgentsByIdRegenerateKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentsByIdShippingAddresses without sending the request
      */
@@ -9690,6 +9745,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiAgentsRegister(requestParameters: DefaultApiPostApiAgentsRegisterOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAgentsTradingTerminal without sending the request
+     */
+    postApiAgentsTradingTerminalRequestOpts(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAgentsTradingTerminalRaw(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsTradingTerminal(requestParameters: DefaultApiPostApiAgentsTradingTerminalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAllowlist without sending the request
      */

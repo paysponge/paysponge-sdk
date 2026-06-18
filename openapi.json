@@ -115,6 +115,46 @@
         "operationId": "getApiAgentsMe"
       }
     },
+    "/api/agents/trading-terminal": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isTestMode": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isTestMode": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isTestMode": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsTrading-terminal"
+      }
+    },
     "/api/agents/": {
       "post": {
         "requestBody": {
@@ -1012,6 +1052,176 @@
           }
         },
         "operationId": "postApiAgentsByIdHyperliquidCancel-order"
+      }
+    },
+    "/api/agents/{id}/hyperliquid/order": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "symbol",
+                  "side",
+                  "type",
+                  "amount"
+                ],
+                "properties": {
+                  "symbol": {
+                    "type": "string"
+                  },
+                  "side": {
+                    "type": "string",
+                    "enum": [
+                      "buy",
+                      "sell"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "market",
+                      "limit"
+                    ]
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "string"
+                  },
+                  "reduceOnly": {
+                    "type": "boolean"
+                  },
+                  "tif": {
+                    "type": "string",
+                    "enum": [
+                      "GTC",
+                      "IOC",
+                      "PO"
+                    ]
+                  },
+                  "leverage": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "symbol",
+                  "side",
+                  "type",
+                  "amount"
+                ],
+                "properties": {
+                  "symbol": {
+                    "type": "string"
+                  },
+                  "side": {
+                    "type": "string",
+                    "enum": [
+                      "buy",
+                      "sell"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "market",
+                      "limit"
+                    ]
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "string"
+                  },
+                  "reduceOnly": {
+                    "type": "boolean"
+                  },
+                  "tif": {
+                    "type": "string",
+                    "enum": [
+                      "GTC",
+                      "IOC",
+                      "PO"
+                    ]
+                  },
+                  "leverage": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "symbol",
+                  "side",
+                  "type",
+                  "amount"
+                ],
+                "properties": {
+                  "symbol": {
+                    "type": "string"
+                  },
+                  "side": {
+                    "type": "string",
+                    "enum": [
+                      "buy",
+                      "sell"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "market",
+                      "limit"
+                    ]
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "string"
+                  },
+                  "reduceOnly": {
+                    "type": "boolean"
+                  },
+                  "tif": {
+                    "type": "string",
+                    "enum": [
+                      "GTC",
+                      "IOC",
+                      "PO"
+                    ]
+                  },
+                  "leverage": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiAgentsByIdHyperliquidOrder"
       }
     },
     "/api/agents/{id}/hyperliquid/close-position": {
