@@ -120,6 +120,7 @@ import type {
   PostApiTradingAdminStrategiesByIdReplayRequest,
   PostApiTradingAdminTestRunRequest,
   PostApiTradingManualStrategiesCloseRequest,
+  PostApiTradingNotificationsReadAllRequest,
   PostApiTradingStrategiesByIdKillRequest,
   PostApiTradingStrategiesByIdTestRunRequest,
   PostApiTransactionsBridgeRequest,
@@ -361,6 +362,8 @@ import {
     PostApiTradingAdminTestRunRequestToJSON,
     PostApiTradingManualStrategiesCloseRequestFromJSON,
     PostApiTradingManualStrategiesCloseRequestToJSON,
+    PostApiTradingNotificationsReadAllRequestFromJSON,
+    PostApiTradingNotificationsReadAllRequestToJSON,
     PostApiTradingStrategiesByIdKillRequestFromJSON,
     PostApiTradingStrategiesByIdKillRequestToJSON,
     PostApiTradingStrategiesByIdTestRunRequestFromJSON,
@@ -868,6 +871,11 @@ export interface DefaultApiGetApiTradingAdminStrategiesByIdEdgarFilingsRequest {
 
 export interface DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest {
     id: string;
+    limit?: string;
+}
+
+export interface DefaultApiGetApiTradingNotificationsRequest {
+    agentId: string;
     limit?: string;
 }
 
@@ -1529,6 +1537,18 @@ export interface DefaultApiPostApiTradingAdminTestRunOperationRequest {
 
 export interface DefaultApiPostApiTradingManualStrategiesCloseOperationRequest {
     postApiTradingManualStrategiesCloseRequest: PostApiTradingManualStrategiesCloseRequest;
+}
+
+export interface DefaultApiPostApiTradingNotificationsByIdDismissRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiTradingNotificationsByIdReadRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiTradingNotificationsReadAllOperationRequest {
+    postApiTradingNotificationsReadAllRequest: PostApiTradingNotificationsReadAllRequest;
 }
 
 export interface DefaultApiPostApiTradingStrategiesByIdEnableRequest {
@@ -4986,6 +5006,29 @@ export interface DefaultApiInterface {
     getApiTradingAdminStrategiesByIdSourceEvents(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiTradingNotifications without sending the request
+     * @param {string} agentId 
+     * @param {string} [limit] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingNotificationsRequestOpts(requestParameters: DefaultApiGetApiTradingNotificationsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} agentId 
+     * @param {string} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingNotificationsRaw(requestParameters: DefaultApiGetApiTradingNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingNotifications(requestParameters: DefaultApiGetApiTradingNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiTradingStrategies without sending the request
      * @param {string} [agentId] 
      * @param {string} [limit] 
@@ -8297,6 +8340,69 @@ export interface DefaultApiInterface {
     /**
      */
     postApiTradingManualStrategiesClose(requestParameters: DefaultApiPostApiTradingManualStrategiesCloseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingNotificationsByIdDismiss without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingNotificationsByIdDismissRequestOpts(requestParameters: DefaultApiPostApiTradingNotificationsByIdDismissRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingNotificationsByIdDismissRaw(requestParameters: DefaultApiPostApiTradingNotificationsByIdDismissRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingNotificationsByIdDismiss(requestParameters: DefaultApiPostApiTradingNotificationsByIdDismissRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingNotificationsByIdRead without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingNotificationsByIdReadRequestOpts(requestParameters: DefaultApiPostApiTradingNotificationsByIdReadRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingNotificationsByIdReadRaw(requestParameters: DefaultApiPostApiTradingNotificationsByIdReadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingNotificationsByIdRead(requestParameters: DefaultApiPostApiTradingNotificationsByIdReadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingNotificationsReadAll without sending the request
+     * @param {PostApiTradingNotificationsReadAllRequest} postApiTradingNotificationsReadAllRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingNotificationsReadAllRequestOpts(requestParameters: DefaultApiPostApiTradingNotificationsReadAllOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiTradingNotificationsReadAllRequest} postApiTradingNotificationsReadAllRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingNotificationsReadAllRaw(requestParameters: DefaultApiPostApiTradingNotificationsReadAllOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingNotificationsReadAll(requestParameters: DefaultApiPostApiTradingNotificationsReadAllOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTradingStrategies without sending the request
@@ -15577,6 +15683,55 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingNotifications without sending the request
+     */
+    async getApiTradingNotificationsRequestOpts(requestParameters: DefaultApiGetApiTradingNotificationsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['agentId'] == null) {
+            throw new runtime.RequiredError(
+                'agentId',
+                'Required parameter "agentId" was null or undefined when calling getApiTradingNotifications().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agent_id'] = requestParameters['agentId'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/notifications`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingNotificationsRaw(requestParameters: DefaultApiGetApiTradingNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingNotificationsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingNotifications(requestParameters: DefaultApiGetApiTradingNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingNotificationsRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTradingStrategies without sending the request
      */
     async getApiTradingStrategiesRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesRequest): Promise<runtime.RequestOpts> {
@@ -22595,6 +22750,134 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiTradingManualStrategiesClose(requestParameters: DefaultApiPostApiTradingManualStrategiesCloseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiTradingManualStrategiesCloseRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingNotificationsByIdDismiss without sending the request
+     */
+    async postApiTradingNotificationsByIdDismissRequestOpts(requestParameters: DefaultApiPostApiTradingNotificationsByIdDismissRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingNotificationsByIdDismiss().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/notifications/{id}/dismiss`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingNotificationsByIdDismissRaw(requestParameters: DefaultApiPostApiTradingNotificationsByIdDismissRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingNotificationsByIdDismissRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingNotificationsByIdDismiss(requestParameters: DefaultApiPostApiTradingNotificationsByIdDismissRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingNotificationsByIdDismissRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingNotificationsByIdRead without sending the request
+     */
+    async postApiTradingNotificationsByIdReadRequestOpts(requestParameters: DefaultApiPostApiTradingNotificationsByIdReadRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingNotificationsByIdRead().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/notifications/{id}/read`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingNotificationsByIdReadRaw(requestParameters: DefaultApiPostApiTradingNotificationsByIdReadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingNotificationsByIdReadRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingNotificationsByIdRead(requestParameters: DefaultApiPostApiTradingNotificationsByIdReadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingNotificationsByIdReadRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingNotificationsReadAll without sending the request
+     */
+    async postApiTradingNotificationsReadAllRequestOpts(requestParameters: DefaultApiPostApiTradingNotificationsReadAllOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTradingNotificationsReadAllRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingNotificationsReadAllRequest',
+                'Required parameter "postApiTradingNotificationsReadAllRequest" was null or undefined when calling postApiTradingNotificationsReadAll().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/notifications/read-all`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingNotificationsReadAllRequestToJSON(requestParameters['postApiTradingNotificationsReadAllRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingNotificationsReadAllRaw(requestParameters: DefaultApiPostApiTradingNotificationsReadAllOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingNotificationsReadAllRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingNotificationsReadAll(requestParameters: DefaultApiPostApiTradingNotificationsReadAllOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingNotificationsReadAllRaw(requestParameters, initOverrides);
     }
 
     /**
