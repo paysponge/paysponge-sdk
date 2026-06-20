@@ -4830,6 +4830,38 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingStrategiesByIdLedgerRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingStrategiesSecFilersSuggestions without sending the request
+     */
+    async getApiTradingStrategiesSecFilersSuggestionsRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/strategies/sec/filers/suggestions`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingStrategiesSecFilersSuggestionsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingStrategiesSecFilersSuggestionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingStrategiesSecFilersSuggestions(requestParameters = {}, initOverrides) {
+        await this.getApiTradingStrategiesSecFilersSuggestionsRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTradingStrategiesXResolve without sending the request
      */
     async getApiTradingStrategiesXResolveRequestOpts(requestParameters) {
@@ -4860,6 +4892,38 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiTradingStrategiesXResolve(requestParameters, initOverrides) {
         await this.getApiTradingStrategiesXResolveRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingStrategiesXSuggestions without sending the request
+     */
+    async getApiTradingStrategiesXSuggestionsRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/strategies/x/suggestions`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingStrategiesXSuggestionsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingStrategiesXSuggestionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingStrategiesXSuggestions(requestParameters = {}, initOverrides) {
+        await this.getApiTradingStrategiesXSuggestionsRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiTradingWorkspace without sending the request

@@ -13591,6 +13591,29 @@
         "operationId": "getApiTradingStrategies"
       }
     },
+    "/api/trading/strategies/x/suggestions": {
+      "get": {
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingStrategiesXSuggestions"
+      }
+    },
     "/api/trading/strategies/x/resolve": {
       "get": {
         "parameters": [
@@ -13604,6 +13627,29 @@
           }
         ],
         "operationId": "getApiTradingStrategiesXResolve"
+      }
+    },
+    "/api/trading/strategies/sec/filers/suggestions": {
+      "get": {
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingStrategiesSecFilersSuggestions"
       }
     },
     "/api/trading/strategies/{id}": {
