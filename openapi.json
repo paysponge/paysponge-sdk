@@ -13861,6 +13861,85 @@
         "operationId": "postApiTradingStrategiesByIdTest-run"
       }
     },
+    "/api/trading/strategies/preview-draft": {
+      "post": {
+        "operationId": "postApiTradingStrategiesPreview-draft"
+      }
+    },
+    "/api/trading/strategies/{id}/preview": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiTradingStrategiesByIdPreview"
+      }
+    },
+    "/api/trading/strategies/{id}/preview/start": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "previewToken"
+                ],
+                "properties": {
+                  "previewToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "previewToken"
+                ],
+                "properties": {
+                  "previewToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "previewToken"
+                ],
+                "properties": {
+                  "previewToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiTradingStrategiesByIdPreviewStart"
+      }
+    },
     "/api/trading/strategies/{id}/run": {
       "post": {
         "parameters": [

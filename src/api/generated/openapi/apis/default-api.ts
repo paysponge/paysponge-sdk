@@ -122,6 +122,7 @@ import type {
   PostApiTradingManualStrategiesCloseRequest,
   PostApiTradingNotificationsReadAllRequest,
   PostApiTradingStrategiesByIdKillRequest,
+  PostApiTradingStrategiesByIdPreviewStartRequest,
   PostApiTradingStrategiesByIdTestRunRequest,
   PostApiTransactionsBridgeRequest,
   PostApiTransactionsPrepareRequest,
@@ -366,6 +367,8 @@ import {
     PostApiTradingNotificationsReadAllRequestToJSON,
     PostApiTradingStrategiesByIdKillRequestFromJSON,
     PostApiTradingStrategiesByIdKillRequestToJSON,
+    PostApiTradingStrategiesByIdPreviewStartRequestFromJSON,
+    PostApiTradingStrategiesByIdPreviewStartRequestToJSON,
     PostApiTradingStrategiesByIdTestRunRequestFromJSON,
     PostApiTradingStrategiesByIdTestRunRequestToJSON,
     PostApiTransactionsBridgeRequestFromJSON,
@@ -1562,6 +1565,15 @@ export interface DefaultApiPostApiTradingStrategiesByIdKillOperationRequest {
 
 export interface DefaultApiPostApiTradingStrategiesByIdPauseRequest {
     id: string;
+}
+
+export interface DefaultApiPostApiTradingStrategiesByIdPreviewRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequest {
+    id: string;
+    postApiTradingStrategiesByIdPreviewStartRequest: PostApiTradingStrategiesByIdPreviewStartRequest;
 }
 
 export interface DefaultApiPostApiTradingStrategiesByIdRunRequest {
@@ -8489,6 +8501,50 @@ export interface DefaultApiInterface {
     postApiTradingStrategiesByIdPause(requestParameters: DefaultApiPostApiTradingStrategiesByIdPauseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiTradingStrategiesByIdPreview without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdPreviewRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdPreviewRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesByIdPreview(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdPreviewStart without sending the request
+     * @param {string} id 
+     * @param {PostApiTradingStrategiesByIdPreviewStartRequest} postApiTradingStrategiesByIdPreviewStartRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdPreviewStartRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiTradingStrategiesByIdPreviewStartRequest} postApiTradingStrategiesByIdPreviewStartRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdPreviewStartRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesByIdPreviewStart(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiTradingStrategiesByIdRun without sending the request
      * @param {string} id 
      * @throws {RequiredError}
@@ -8531,6 +8587,25 @@ export interface DefaultApiInterface {
     /**
      */
     postApiTradingStrategiesByIdTestRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategiesPreviewDraft without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesPreviewDraftRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesPreviewDraftRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesPreviewDraft(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTransactionsBaseSwap without sending the request
@@ -23051,6 +23126,100 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiTradingStrategiesByIdPreview without sending the request
+     */
+    async postApiTradingStrategiesByIdPreviewRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdPreview().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}/preview`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdPreviewRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesByIdPreviewRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdPreview(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesByIdPreviewRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdPreviewStart without sending the request
+     */
+    async postApiTradingStrategiesByIdPreviewStartRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdPreviewStart().'
+            );
+        }
+
+        if (requestParameters['postApiTradingStrategiesByIdPreviewStartRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingStrategiesByIdPreviewStartRequest',
+                'Required parameter "postApiTradingStrategiesByIdPreviewStartRequest" was null or undefined when calling postApiTradingStrategiesByIdPreviewStart().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/strategies/{id}/preview/start`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingStrategiesByIdPreviewStartRequestToJSON(requestParameters['postApiTradingStrategiesByIdPreviewStartRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdPreviewStartRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesByIdPreviewStartRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdPreviewStart(requestParameters: DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesByIdPreviewStartRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiTradingStrategiesByIdRun without sending the request
      */
     async postApiTradingStrategiesByIdRunRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest): Promise<runtime.RequestOpts> {
@@ -23142,6 +23311,40 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiTradingStrategiesByIdTestRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiTradingStrategiesByIdTestRunRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategiesPreviewDraft without sending the request
+     */
+    async postApiTradingStrategiesPreviewDraftRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/preview-draft`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesPreviewDraftRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesPreviewDraftRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesPreviewDraft(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesPreviewDraftRaw(initOverrides);
     }
 
     /**

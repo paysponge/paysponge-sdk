@@ -129,6 +129,7 @@ export * from './post-api-trading-admin-test-run-request-strategy.js';
 export * from './post-api-trading-manual-strategies-close-request.js';
 export * from './post-api-trading-notifications-read-all-request.js';
 export * from './post-api-trading-strategies-by-id-kill-request.js';
+export * from './post-api-trading-strategies-by-id-preview-start-request.js';
 export * from './post-api-trading-strategies-by-id-test-run-request.js';
 export * from './post-api-trading-strategies-by-id-test-run-request-sample-event.js';
 export * from './post-api-transactions-bridge-request.js';
