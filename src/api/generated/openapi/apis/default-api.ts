@@ -877,6 +877,10 @@ export interface DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest {
     limit?: string;
 }
 
+export interface DefaultApiGetApiTradingAllocationRequest {
+    agentId: string;
+}
+
 export interface DefaultApiGetApiTradingNotificationsRequest {
     agentId: string;
     limit?: string;
@@ -902,6 +906,10 @@ export interface DefaultApiGetApiTradingStrategiesByIdLedgerRequest {
     id: string;
     limit?: string;
     offset?: string;
+}
+
+export interface DefaultApiGetApiTradingStrategiesDetailedRequest {
+    agentId: string;
 }
 
 export interface DefaultApiGetApiTradingStrategiesSecFilersSuggestionsRequest {
@@ -5028,6 +5036,27 @@ export interface DefaultApiInterface {
     getApiTradingAdminStrategiesByIdSourceEvents(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiTradingAllocation without sending the request
+     * @param {string} agentId 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAllocationRequestOpts(requestParameters: DefaultApiGetApiTradingAllocationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} agentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAllocationRaw(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingAllocation(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiTradingNotifications without sending the request
      * @param {string} agentId 
      * @param {string} [limit] 
@@ -5145,6 +5174,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingStrategiesDetailed without sending the request
+     * @param {string} agentId 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesDetailedRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} agentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesDetailedRaw(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingStrategiesDetailed(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiTradingStrategiesSecFilersSuggestions without sending the request
@@ -15814,6 +15864,51 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingAllocation without sending the request
+     */
+    async getApiTradingAllocationRequestOpts(requestParameters: DefaultApiGetApiTradingAllocationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['agentId'] == null) {
+            throw new runtime.RequiredError(
+                'agentId',
+                'Required parameter "agentId" was null or undefined when calling getApiTradingAllocation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agent_id'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/allocation`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingAllocationRaw(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingAllocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingAllocation(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingAllocationRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTradingNotifications without sending the request
      */
     async getApiTradingNotificationsRequestOpts(requestParameters: DefaultApiGetApiTradingNotificationsRequest): Promise<runtime.RequestOpts> {
@@ -16048,6 +16143,51 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiTradingStrategiesByIdLedgerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingStrategiesDetailed without sending the request
+     */
+    async getApiTradingStrategiesDetailedRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['agentId'] == null) {
+            throw new runtime.RequiredError(
+                'agentId',
+                'Required parameter "agentId" was null or undefined when calling getApiTradingStrategiesDetailed().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agent_id'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/detailed`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesDetailedRaw(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingStrategiesDetailedRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesDetailed(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingStrategiesDetailedRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -4658,6 +4658,38 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingAdminStrategiesByIdSourceEventsRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingAllocation without sending the request
+     */
+    async getApiTradingAllocationRequestOpts(requestParameters) {
+        if (requestParameters['agentId'] == null) {
+            throw new runtime.RequiredError('agentId', 'Required parameter "agentId" was null or undefined when calling getApiTradingAllocation().');
+        }
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agent_id'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/allocation`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingAllocationRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingAllocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingAllocation(requestParameters, initOverrides) {
+        await this.getApiTradingAllocationRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTradingNotifications without sending the request
      */
     async getApiTradingNotificationsRequestOpts(requestParameters) {
@@ -4828,6 +4860,38 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiTradingStrategiesByIdLedger(requestParameters, initOverrides) {
         await this.getApiTradingStrategiesByIdLedgerRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingStrategiesDetailed without sending the request
+     */
+    async getApiTradingStrategiesDetailedRequestOpts(requestParameters) {
+        if (requestParameters['agentId'] == null) {
+            throw new runtime.RequiredError('agentId', 'Required parameter "agentId" was null or undefined when calling getApiTradingStrategiesDetailed().');
+        }
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agent_id'] = requestParameters['agentId'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/strategies/detailed`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingStrategiesDetailedRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingStrategiesDetailedRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingStrategiesDetailed(requestParameters, initOverrides) {
+        await this.getApiTradingStrategiesDetailedRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiTradingStrategiesSecFilersSuggestions without sending the request

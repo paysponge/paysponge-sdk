@@ -13496,6 +13496,36 @@
         "operationId": "getApiTradingWorkspace"
       }
     },
+    "/api/trading/allocation": {
+      "get": {
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingAllocation"
+      }
+    },
+    "/api/trading/strategies/detailed": {
+      "get": {
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingStrategiesDetailed"
+      }
+    },
     "/api/trading/manual-strategies/close": {
       "post": {
         "requestBody": {

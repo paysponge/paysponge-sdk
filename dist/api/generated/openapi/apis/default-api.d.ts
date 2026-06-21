@@ -366,6 +366,9 @@ export interface DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest {
     id: string;
     limit?: string;
 }
+export interface DefaultApiGetApiTradingAllocationRequest {
+    agentId: string;
+}
 export interface DefaultApiGetApiTradingNotificationsRequest {
     agentId: string;
     limit?: string;
@@ -387,6 +390,9 @@ export interface DefaultApiGetApiTradingStrategiesByIdLedgerRequest {
     id: string;
     limit?: string;
     offset?: string;
+}
+export interface DefaultApiGetApiTradingStrategiesDetailedRequest {
+    agentId: string;
 }
 export interface DefaultApiGetApiTradingStrategiesSecFilersSuggestionsRequest {
     q?: string;
@@ -3858,6 +3864,24 @@ export interface DefaultApiInterface {
      */
     getApiTradingAdminStrategiesByIdSourceEvents(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiTradingAllocation without sending the request
+     * @param {string} agentId
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAllocationRequestOpts(requestParameters: DefaultApiGetApiTradingAllocationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} agentId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAllocationRaw(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAllocation(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiTradingNotifications without sending the request
      * @param {string} agentId
      * @param {string} [limit]
@@ -3961,6 +3985,24 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingStrategiesDetailed without sending the request
+     * @param {string} agentId
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesDetailedRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} agentId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesDetailedRaw(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingStrategiesDetailed(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTradingStrategiesSecFilersSuggestions without sending the request
      * @param {string} [q]
@@ -9265,6 +9307,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiTradingAdminStrategiesByIdSourceEvents(requestParameters: DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiTradingAllocation without sending the request
+     */
+    getApiTradingAllocationRequestOpts(requestParameters: DefaultApiGetApiTradingAllocationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingAllocationRaw(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAllocation(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiTradingNotifications without sending the request
      */
     getApiTradingNotificationsRequestOpts(requestParameters: DefaultApiGetApiTradingNotificationsRequest): Promise<runtime.RequestOpts>;
@@ -9314,6 +9366,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiTradingStrategiesByIdLedger(requestParameters: DefaultApiGetApiTradingStrategiesByIdLedgerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingStrategiesDetailed without sending the request
+     */
+    getApiTradingStrategiesDetailedRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingStrategiesDetailedRaw(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingStrategiesDetailed(requestParameters: DefaultApiGetApiTradingStrategiesDetailedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTradingStrategiesSecFilersSuggestions without sending the request
      */
