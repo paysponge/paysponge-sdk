@@ -43,12 +43,6 @@ export interface PostApiAgentsByIdHyperliquidClosePositionRequest {
      * @memberof PostApiAgentsByIdHyperliquidClosePositionRequest
      */
     max?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiAgentsByIdHyperliquidClosePositionRequest
-     */
-    idempotencyKey?: string;
 }
 
 
@@ -86,7 +80,6 @@ export function PostApiAgentsByIdHyperliquidClosePositionRequestFromJSONTyped(js
         'side': json['side'],
         'amount': json['amount'],
         'max': json['max'] == null ? undefined : json['max'],
-        'idempotencyKey': json['idempotencyKey'] == null ? undefined : json['idempotencyKey'],
     };
 }
 
@@ -105,7 +98,6 @@ export function PostApiAgentsByIdHyperliquidClosePositionRequestToJSONTyped(valu
         'side': value['side'],
         'amount': value['amount'],
         'max': value['max'],
-        'idempotencyKey': value['idempotencyKey'],
     };
 }
 

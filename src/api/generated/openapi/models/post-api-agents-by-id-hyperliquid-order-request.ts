@@ -79,12 +79,6 @@ export interface PostApiAgentsByIdHyperliquidOrderRequest {
      * @memberof PostApiAgentsByIdHyperliquidOrderRequest
      */
     stopLossPrice?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiAgentsByIdHyperliquidOrderRequest
-     */
-    idempotencyKey?: string;
 }
 
 
@@ -148,7 +142,6 @@ export function PostApiAgentsByIdHyperliquidOrderRequestFromJSONTyped(json: any,
         'leverage': json['leverage'] == null ? undefined : json['leverage'],
         'takeProfitPrice': json['takeProfitPrice'] == null ? undefined : json['takeProfitPrice'],
         'stopLossPrice': json['stopLossPrice'] == null ? undefined : json['stopLossPrice'],
-        'idempotencyKey': json['idempotencyKey'] == null ? undefined : json['idempotencyKey'],
     };
 }
 
@@ -173,7 +166,6 @@ export function PostApiAgentsByIdHyperliquidOrderRequestToJSONTyped(value?: Post
         'leverage': value['leverage'],
         'takeProfitPrice': value['takeProfitPrice'],
         'stopLossPrice': value['stopLossPrice'],
-        'idempotencyKey': value['idempotencyKey'],
     };
 }
 

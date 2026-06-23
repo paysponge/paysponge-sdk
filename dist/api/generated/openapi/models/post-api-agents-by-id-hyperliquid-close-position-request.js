@@ -42,7 +42,6 @@ export function PostApiAgentsByIdHyperliquidClosePositionRequestFromJSONTyped(js
         'side': json['side'],
         'amount': json['amount'],
         'max': json['max'] == null ? undefined : json['max'],
-        'idempotencyKey': json['idempotencyKey'] == null ? undefined : json['idempotencyKey'],
     };
 }
 export function PostApiAgentsByIdHyperliquidClosePositionRequestToJSON(json) {
@@ -57,7 +56,6 @@ export function PostApiAgentsByIdHyperliquidClosePositionRequestToJSONTyped(valu
         'side': value['side'],
         'amount': value['amount'],
         'max': value['max'],
-        'idempotencyKey': value['idempotencyKey'],
     };
 }
 //# sourceMappingURL=post-api-agents-by-id-hyperliquid-close-position-request.js.map

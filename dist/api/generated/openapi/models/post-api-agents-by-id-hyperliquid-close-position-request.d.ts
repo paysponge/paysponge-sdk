@@ -39,12 +39,6 @@ export interface PostApiAgentsByIdHyperliquidClosePositionRequest {
      * @memberof PostApiAgentsByIdHyperliquidClosePositionRequest
      */
     max?: boolean;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiAgentsByIdHyperliquidClosePositionRequest
-     */
-    idempotencyKey?: string;
 }
 /**
  * @export

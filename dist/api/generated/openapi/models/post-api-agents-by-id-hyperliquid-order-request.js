@@ -65,7 +65,6 @@ export function PostApiAgentsByIdHyperliquidOrderRequestFromJSONTyped(json, igno
         'leverage': json['leverage'] == null ? undefined : json['leverage'],
         'takeProfitPrice': json['takeProfitPrice'] == null ? undefined : json['takeProfitPrice'],
         'stopLossPrice': json['stopLossPrice'] == null ? undefined : json['stopLossPrice'],
-        'idempotencyKey': json['idempotencyKey'] == null ? undefined : json['idempotencyKey'],
     };
 }
 export function PostApiAgentsByIdHyperliquidOrderRequestToJSON(json) {
@@ -86,7 +85,6 @@ export function PostApiAgentsByIdHyperliquidOrderRequestToJSONTyped(value, ignor
         'leverage': value['leverage'],
         'takeProfitPrice': value['takeProfitPrice'],
         'stopLossPrice': value['stopLossPrice'],
-        'idempotencyKey': value['idempotencyKey'],
     };
 }
 //# sourceMappingURL=post-api-agents-by-id-hyperliquid-order-request.js.map
