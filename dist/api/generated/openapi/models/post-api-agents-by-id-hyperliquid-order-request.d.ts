@@ -75,6 +75,12 @@ export interface PostApiAgentsByIdHyperliquidOrderRequest {
      * @memberof PostApiAgentsByIdHyperliquidOrderRequest
      */
     stopLossPrice?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdHyperliquidOrderRequest
+     */
+    idempotencyKey?: string;
 }
 /**
  * @export

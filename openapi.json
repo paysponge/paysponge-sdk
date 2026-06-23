@@ -1121,6 +1121,9 @@
                   },
                   "stopLossPrice": {
                     "type": "string"
+                  },
+                  "idempotencyKey": {
+                    "type": "string"
                   }
                 }
               }
@@ -1177,6 +1180,9 @@
                   },
                   "stopLossPrice": {
                     "type": "string"
+                  },
+                  "idempotencyKey": {
+                    "type": "string"
                   }
                 }
               }
@@ -1232,6 +1238,9 @@
                     "type": "string"
                   },
                   "stopLossPrice": {
+                    "type": "string"
+                  },
+                  "idempotencyKey": {
                     "type": "string"
                   }
                 }
@@ -1281,6 +1290,9 @@
                   },
                   "max": {
                     "type": "boolean"
+                  },
+                  "idempotencyKey": {
+                    "type": "string"
                   }
                 }
               }
@@ -1309,6 +1321,9 @@
                   },
                   "max": {
                     "type": "boolean"
+                  },
+                  "idempotencyKey": {
+                    "type": "string"
                   }
                 }
               }
@@ -1337,6 +1352,9 @@
                   },
                   "max": {
                     "type": "boolean"
+                  },
+                  "idempotencyKey": {
+                    "type": "string"
                   }
                 }
               }
