@@ -1115,6 +1115,12 @@
                   },
                   "leverage": {
                     "type": "number"
+                  },
+                  "takeProfitPrice": {
+                    "type": "string"
+                  },
+                  "stopLossPrice": {
+                    "type": "string"
                   }
                 }
               }
@@ -1165,6 +1171,12 @@
                   },
                   "leverage": {
                     "type": "number"
+                  },
+                  "takeProfitPrice": {
+                    "type": "string"
+                  },
+                  "stopLossPrice": {
+                    "type": "string"
                   }
                 }
               }
@@ -1215,6 +1227,12 @@
                   },
                   "leverage": {
                     "type": "number"
+                  },
+                  "takeProfitPrice": {
+                    "type": "string"
+                  },
+                  "stopLossPrice": {
+                    "type": "string"
                   }
                 }
               }

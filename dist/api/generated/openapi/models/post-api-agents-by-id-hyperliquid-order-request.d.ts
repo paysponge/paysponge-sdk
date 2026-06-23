@@ -63,6 +63,18 @@ export interface PostApiAgentsByIdHyperliquidOrderRequest {
      * @memberof PostApiAgentsByIdHyperliquidOrderRequest
      */
     leverage?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdHyperliquidOrderRequest
+     */
+    takeProfitPrice?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdHyperliquidOrderRequest
+     */
+    stopLossPrice?: string;
 }
 /**
  * @export

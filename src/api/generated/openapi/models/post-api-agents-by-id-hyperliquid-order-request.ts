@@ -67,6 +67,18 @@ export interface PostApiAgentsByIdHyperliquidOrderRequest {
      * @memberof PostApiAgentsByIdHyperliquidOrderRequest
      */
     leverage?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiAgentsByIdHyperliquidOrderRequest
+     */
+    takeProfitPrice?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiAgentsByIdHyperliquidOrderRequest
+     */
+    stopLossPrice?: string;
 }
 
 
@@ -128,6 +140,8 @@ export function PostApiAgentsByIdHyperliquidOrderRequestFromJSONTyped(json: any,
         'reduceOnly': json['reduceOnly'] == null ? undefined : json['reduceOnly'],
         'tif': json['tif'] == null ? undefined : json['tif'],
         'leverage': json['leverage'] == null ? undefined : json['leverage'],
+        'takeProfitPrice': json['takeProfitPrice'] == null ? undefined : json['takeProfitPrice'],
+        'stopLossPrice': json['stopLossPrice'] == null ? undefined : json['stopLossPrice'],
     };
 }
 
@@ -150,6 +164,8 @@ export function PostApiAgentsByIdHyperliquidOrderRequestToJSONTyped(value?: Post
         'reduceOnly': value['reduceOnly'],
         'tif': value['tif'],
         'leverage': value['leverage'],
+        'takeProfitPrice': value['takeProfitPrice'],
+        'stopLossPrice': value['stopLossPrice'],
     };
 }
 

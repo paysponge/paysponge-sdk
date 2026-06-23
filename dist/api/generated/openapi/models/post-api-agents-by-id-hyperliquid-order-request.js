@@ -63,6 +63,8 @@ export function PostApiAgentsByIdHyperliquidOrderRequestFromJSONTyped(json, igno
         'reduceOnly': json['reduceOnly'] == null ? undefined : json['reduceOnly'],
         'tif': json['tif'] == null ? undefined : json['tif'],
         'leverage': json['leverage'] == null ? undefined : json['leverage'],
+        'takeProfitPrice': json['takeProfitPrice'] == null ? undefined : json['takeProfitPrice'],
+        'stopLossPrice': json['stopLossPrice'] == null ? undefined : json['stopLossPrice'],
     };
 }
 export function PostApiAgentsByIdHyperliquidOrderRequestToJSON(json) {
@@ -81,6 +83,8 @@ export function PostApiAgentsByIdHyperliquidOrderRequestToJSONTyped(value, ignor
         'reduceOnly': value['reduceOnly'],
         'tif': value['tif'],
         'leverage': value['leverage'],
+        'takeProfitPrice': value['takeProfitPrice'],
+        'stopLossPrice': value['stopLossPrice'],
     };
 }
 //# sourceMappingURL=post-api-agents-by-id-hyperliquid-order-request.js.map
