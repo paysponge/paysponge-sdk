@@ -173,9 +173,6 @@
                   "description": {
                     "type": "string"
                   },
-                  "agentType": {
-                    "type": "string"
-                  },
                   "dailySpendingLimit": {
                     "type": "string"
                   },
@@ -210,9 +207,6 @@
                   "description": {
                     "type": "string"
                   },
-                  "agentType": {
-                    "type": "string"
-                  },
                   "dailySpendingLimit": {
                     "type": "string"
                   },
@@ -245,9 +239,6 @@
                     "type": "string"
                   },
                   "description": {
-                    "type": "string"
-                  },
-                  "agentType": {
                     "type": "string"
                   },
                   "dailySpendingLimit": {
@@ -351,9 +342,6 @@
                   "description": {
                     "type": "string"
                   },
-                  "agentType": {
-                    "type": "string"
-                  },
                   "status": {
                     "type": "string"
                   },
@@ -385,9 +373,6 @@
                   "description": {
                     "type": "string"
                   },
-                  "agentType": {
-                    "type": "string"
-                  },
                   "status": {
                     "type": "string"
                   },
@@ -417,9 +402,6 @@
                     "type": "string"
                   },
                   "description": {
-                    "type": "string"
-                  },
-                  "agentType": {
                     "type": "string"
                   },
                   "status": {

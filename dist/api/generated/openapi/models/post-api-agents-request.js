@@ -29,7 +29,6 @@ export function PostApiAgentsRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'agentType': json['agentType'] == null ? undefined : json['agentType'],
         'dailySpendingLimit': json['dailySpendingLimit'] == null ? undefined : json['dailySpendingLimit'],
         'weeklySpendingLimit': json['weeklySpendingLimit'] == null ? undefined : json['weeklySpendingLimit'],
         'monthlySpendingLimit': json['monthlySpendingLimit'] == null ? undefined : json['monthlySpendingLimit'],
@@ -47,7 +46,6 @@ export function PostApiAgentsRequestToJSONTyped(value, ignoreDiscriminator = fal
     return {
         'name': value['name'],
         'description': value['description'],
-        'agentType': value['agentType'],
         'dailySpendingLimit': value['dailySpendingLimit'],
         'weeklySpendingLimit': value['weeklySpendingLimit'],
         'monthlySpendingLimit': value['monthlySpendingLimit'],

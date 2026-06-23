@@ -36,12 +36,6 @@ export interface PostApiAgentsRequest {
      * @type {string}
      * @memberof PostApiAgentsRequest
      */
-    agentType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostApiAgentsRequest
-     */
     dailySpendingLimit?: string;
     /**
      * 
@@ -89,7 +83,6 @@ export function PostApiAgentsRequestFromJSONTyped(json: any, ignoreDiscriminator
         
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'agentType': json['agentType'] == null ? undefined : json['agentType'],
         'dailySpendingLimit': json['dailySpendingLimit'] == null ? undefined : json['dailySpendingLimit'],
         'weeklySpendingLimit': json['weeklySpendingLimit'] == null ? undefined : json['weeklySpendingLimit'],
         'monthlySpendingLimit': json['monthlySpendingLimit'] == null ? undefined : json['monthlySpendingLimit'],
@@ -111,7 +104,6 @@ export function PostApiAgentsRequestToJSONTyped(value?: PostApiAgentsRequest | n
         
         'name': value['name'],
         'description': value['description'],
-        'agentType': value['agentType'],
         'dailySpendingLimit': value['dailySpendingLimit'],
         'weeklySpendingLimit': value['weeklySpendingLimit'],
         'monthlySpendingLimit': value['monthlySpendingLimit'],

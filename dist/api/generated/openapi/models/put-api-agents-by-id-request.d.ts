@@ -32,12 +32,6 @@ export interface PutApiAgentsByIdRequest {
      * @type {string}
      * @memberof PutApiAgentsByIdRequest
      */
-    agentType?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PutApiAgentsByIdRequest
-     */
     status?: string;
     /**
      *

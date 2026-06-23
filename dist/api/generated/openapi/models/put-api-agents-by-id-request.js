@@ -27,7 +27,6 @@ export function PutApiAgentsByIdRequestFromJSONTyped(json, ignoreDiscriminator) 
     return {
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'agentType': json['agentType'] == null ? undefined : json['agentType'],
         'status': json['status'] == null ? undefined : json['status'],
         'dailySpendingLimit': json['dailySpendingLimit'] == null ? undefined : json['dailySpendingLimit'],
         'weeklySpendingLimit': json['weeklySpendingLimit'] == null ? undefined : json['weeklySpendingLimit'],
@@ -45,7 +44,6 @@ export function PutApiAgentsByIdRequestToJSONTyped(value, ignoreDiscriminator = 
     return {
         'name': value['name'],
         'description': value['description'],
-        'agentType': value['agentType'],
         'status': value['status'],
         'dailySpendingLimit': value['dailySpendingLimit'],
         'weeklySpendingLimit': value['weeklySpendingLimit'],

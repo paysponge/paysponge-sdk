@@ -32,12 +32,6 @@ export interface PostApiAgentsRequest {
      * @type {string}
      * @memberof PostApiAgentsRequest
      */
-    agentType?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PostApiAgentsRequest
-     */
     dailySpendingLimit?: string;
     /**
      *
