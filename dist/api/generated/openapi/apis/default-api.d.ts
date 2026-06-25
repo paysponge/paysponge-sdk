@@ -129,6 +129,9 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidActivityRequest {
 export interface DefaultApiGetApiAgentsByIdHyperliquidAddressRequest {
     id: string;
 }
+export interface DefaultApiGetApiAgentsByIdHyperliquidBalancesRequest {
+    id: string;
+}
 export interface DefaultApiGetApiAgentsByIdHyperliquidCandlesRequest {
     id: string;
     symbol: string;
@@ -2281,6 +2284,24 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquidAddress(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiAgentsByIdHyperliquidAddress200Response>;
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidBalances without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidBalancesRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidBalancesRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdHyperliquidBalancesRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidBalances(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsByIdHyperliquidCandles without sending the request
      * @param {string} id
@@ -8456,6 +8477,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiAgentsByIdHyperliquidAddress(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiAgentsByIdHyperliquidAddress200Response>;
+    /**
+     * Creates request options for getApiAgentsByIdHyperliquidBalances without sending the request
+     */
+    getApiAgentsByIdHyperliquidBalancesRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidBalancesRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidBalancesRaw(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdHyperliquidBalances(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidBalancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsByIdHyperliquidCandles without sending the request
      */

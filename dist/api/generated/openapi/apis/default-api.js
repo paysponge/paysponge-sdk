@@ -2049,6 +2049,36 @@ export class DefaultApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Creates request options for getApiAgentsByIdHyperliquidBalances without sending the request
+     */
+    async getApiAgentsByIdHyperliquidBalancesRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiAgentsByIdHyperliquidBalances().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/agents/{id}/hyperliquid/balances`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiAgentsByIdHyperliquidBalancesRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiAgentsByIdHyperliquidBalancesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiAgentsByIdHyperliquidBalances(requestParameters, initOverrides) {
+        await this.getApiAgentsByIdHyperliquidBalancesRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiAgentsByIdHyperliquidCandles without sending the request
      */
     async getApiAgentsByIdHyperliquidCandlesRequestOpts(requestParameters) {

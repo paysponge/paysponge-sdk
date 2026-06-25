@@ -874,6 +874,21 @@
         "operationId": "getApiAgentsByIdHyperliquid"
       }
     },
+    "/api/agents/{id}/hyperliquid/balances": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdHyperliquidBalances"
+      }
+    },
     "/api/agents/{id}/hyperliquid/positions": {
       "get": {
         "parameters": [
