@@ -4956,6 +4956,36 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingStrategiesSecFilersSuggestionsRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingStrategiesSharedByToken without sending the request
+     */
+    async getApiTradingStrategiesSharedByTokenRequestOpts(requestParameters) {
+        if (requestParameters['token'] == null) {
+            throw new runtime.RequiredError('token', 'Required parameter "token" was null or undefined when calling getApiTradingStrategiesSharedByToken().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/strategies/shared/{token}`;
+        urlPath = urlPath.replace(`{${"token"}}`, encodeURIComponent(String(requestParameters['token'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingStrategiesSharedByTokenRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingStrategiesSharedByTokenRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingStrategiesSharedByToken(requestParameters, initOverrides) {
+        await this.getApiTradingStrategiesSharedByTokenRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTradingStrategiesXResolve without sending the request
      */
     async getApiTradingStrategiesXResolveRequestOpts(requestParameters) {
@@ -10060,6 +10090,36 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiTradingStrategiesByIdRun(requestParameters, initOverrides) {
         await this.postApiTradingStrategiesByIdRunRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingStrategiesByIdShare without sending the request
+     */
+    async postApiTradingStrategiesByIdShareRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdShare().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/strategies/{id}/share`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiTradingStrategiesByIdShareRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiTradingStrategiesByIdShareRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingStrategiesByIdShare(requestParameters, initOverrides) {
+        await this.postApiTradingStrategiesByIdShareRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiTradingStrategiesByIdTestRun without sending the request

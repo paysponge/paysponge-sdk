@@ -921,6 +921,10 @@ export interface DefaultApiGetApiTradingStrategiesSecFilersSuggestionsRequest {
     limit?: string;
 }
 
+export interface DefaultApiGetApiTradingStrategiesSharedByTokenRequest {
+    token: string;
+}
+
 export interface DefaultApiGetApiTradingStrategiesXResolveRequest {
     handle: string;
 }
@@ -1599,6 +1603,10 @@ export interface DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequ
 }
 
 export interface DefaultApiPostApiTradingStrategiesByIdRunRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiTradingStrategiesByIdShareRequest {
     id: string;
 }
 
@@ -5245,6 +5253,27 @@ export interface DefaultApiInterface {
     getApiTradingStrategiesSecFilersSuggestions(requestParameters: DefaultApiGetApiTradingStrategiesSecFilersSuggestionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiTradingStrategiesSharedByToken without sending the request
+     * @param {string} token 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesSharedByTokenRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} token 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesSharedByTokenRaw(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingStrategiesSharedByToken(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiTradingStrategiesXResolve without sending the request
      * @param {string} handle 
      * @throws {RequiredError}
@@ -8695,6 +8724,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiTradingStrategiesByIdRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdShare without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdShareRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdShareRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingStrategiesByIdShare(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTradingStrategiesByIdTestRun without sending the request
@@ -16300,6 +16350,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingStrategiesSharedByToken without sending the request
+     */
+    async getApiTradingStrategiesSharedByTokenRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['token'] == null) {
+            throw new runtime.RequiredError(
+                'token',
+                'Required parameter "token" was null or undefined when calling getApiTradingStrategiesSharedByToken().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/shared/{token}`;
+        urlPath = urlPath.replace(`{${"token"}}`, encodeURIComponent(String(requestParameters['token'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesSharedByTokenRaw(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingStrategiesSharedByTokenRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingStrategiesSharedByToken(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingStrategiesSharedByTokenRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTradingStrategiesXResolve without sending the request
      */
     async getApiTradingStrategiesXResolveRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesXResolveRequest): Promise<runtime.RequestOpts> {
@@ -23606,6 +23698,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiTradingStrategiesByIdRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiTradingStrategiesByIdRunRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingStrategiesByIdShare without sending the request
+     */
+    async postApiTradingStrategiesByIdShareRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingStrategiesByIdShare().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/strategies/{id}/share`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdShareRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingStrategiesByIdShareRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingStrategiesByIdShare(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingStrategiesByIdShareRaw(requestParameters, initOverrides);
     }
 
     /**

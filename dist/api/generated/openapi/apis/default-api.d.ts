@@ -401,6 +401,9 @@ export interface DefaultApiGetApiTradingStrategiesSecFilersSuggestionsRequest {
     q?: string;
     limit?: string;
 }
+export interface DefaultApiGetApiTradingStrategiesSharedByTokenRequest {
+    token: string;
+}
 export interface DefaultApiGetApiTradingStrategiesXResolveRequest {
     handle: string;
 }
@@ -928,6 +931,9 @@ export interface DefaultApiPostApiTradingStrategiesByIdPreviewStartOperationRequ
     postApiTradingStrategiesByIdPreviewStartRequest: PostApiTradingStrategiesByIdPreviewStartRequest;
 }
 export interface DefaultApiPostApiTradingStrategiesByIdRunRequest {
+    id: string;
+}
+export interface DefaultApiPostApiTradingStrategiesByIdShareRequest {
     id: string;
 }
 export interface DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest {
@@ -4045,6 +4051,24 @@ export interface DefaultApiInterface {
      */
     getApiTradingStrategiesSecFilersSuggestions(requestParameters: DefaultApiGetApiTradingStrategiesSecFilersSuggestionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiTradingStrategiesSharedByToken without sending the request
+     * @param {string} token
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesSharedByTokenRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} token
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingStrategiesSharedByTokenRaw(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingStrategiesSharedByToken(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiTradingStrategiesXResolve without sending the request
      * @param {string} handle
      * @throws {RequiredError}
@@ -7023,6 +7047,24 @@ export interface DefaultApiInterface {
      */
     postApiTradingStrategiesByIdRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiTradingStrategiesByIdShare without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdShareRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingStrategiesByIdShareRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingStrategiesByIdShare(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiTradingStrategiesByIdTestRun without sending the request
      * @param {string} id
      * @param {PostApiTradingStrategiesByIdTestRunRequest} postApiTradingStrategiesByIdTestRunRequest
@@ -9418,6 +9460,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiTradingStrategiesSecFilersSuggestions(requestParameters?: DefaultApiGetApiTradingStrategiesSecFilersSuggestionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiTradingStrategiesSharedByToken without sending the request
+     */
+    getApiTradingStrategiesSharedByTokenRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingStrategiesSharedByTokenRaw(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingStrategiesSharedByToken(requestParameters: DefaultApiGetApiTradingStrategiesSharedByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiTradingStrategiesXResolve without sending the request
      */
     getApiTradingStrategiesXResolveRequestOpts(requestParameters: DefaultApiGetApiTradingStrategiesXResolveRequest): Promise<runtime.RequestOpts>;
@@ -10997,6 +11049,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiTradingStrategiesByIdRun(requestParameters: DefaultApiPostApiTradingStrategiesByIdRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingStrategiesByIdShare without sending the request
+     */
+    postApiTradingStrategiesByIdShareRequestOpts(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiTradingStrategiesByIdShareRaw(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingStrategiesByIdShare(requestParameters: DefaultApiPostApiTradingStrategiesByIdShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiTradingStrategiesByIdTestRun without sending the request
      */

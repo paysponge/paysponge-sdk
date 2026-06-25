@@ -13756,6 +13756,36 @@
         "operationId": "deleteApiTradingStrategiesById"
       }
     },
+    "/api/trading/strategies/{id}/share": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiTradingStrategiesByIdShare"
+      }
+    },
+    "/api/trading/strategies/shared/{token}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingStrategiesSharedByToken"
+      }
+    },
     "/api/trading/strategies/{id}/enable": {
       "post": {
         "parameters": [
