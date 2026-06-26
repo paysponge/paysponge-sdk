@@ -18,6 +18,7 @@ import type {
   GetApiAgentsByIdHyperliquidAddress200Response,
   GetApiAgentsByIdHyperliquidAddress404Response,
   GetApiBridgeFiatCustomerForceRefreshParameter,
+  PatchApiTradingAdminContentFeedsByIdRequest,
   PostApiAgentKeysRequest,
   PostApiAgentRequestsPlansRequest,
   PostApiAgentsByIdAmazonAccountsCopyRequest,
@@ -116,6 +117,10 @@ import type {
   PostApiStripeOnrampSessionRequest,
   PostApiTasksRequest,
   PostApiTradesProposeRequest,
+  PostApiTradingAdminContentDiscoverRequest,
+  PostApiTradingAdminContentFeedsCatalogRequest,
+  PostApiTradingAdminContentFeedsRequest,
+  PostApiTradingAdminContentProcessRequest,
   PostApiTradingAdminKillSwitchRequest,
   PostApiTradingAdminStrategiesByIdReplayRequest,
   PostApiTradingAdminTestRunRequest,
@@ -159,6 +164,8 @@ import {
     GetApiAgentsByIdHyperliquidAddress404ResponseToJSON,
     GetApiBridgeFiatCustomerForceRefreshParameterFromJSON,
     GetApiBridgeFiatCustomerForceRefreshParameterToJSON,
+    PatchApiTradingAdminContentFeedsByIdRequestFromJSON,
+    PatchApiTradingAdminContentFeedsByIdRequestToJSON,
     PostApiAgentKeysRequestFromJSON,
     PostApiAgentKeysRequestToJSON,
     PostApiAgentRequestsPlansRequestFromJSON,
@@ -355,6 +362,14 @@ import {
     PostApiTasksRequestToJSON,
     PostApiTradesProposeRequestFromJSON,
     PostApiTradesProposeRequestToJSON,
+    PostApiTradingAdminContentDiscoverRequestFromJSON,
+    PostApiTradingAdminContentDiscoverRequestToJSON,
+    PostApiTradingAdminContentFeedsCatalogRequestFromJSON,
+    PostApiTradingAdminContentFeedsCatalogRequestToJSON,
+    PostApiTradingAdminContentFeedsRequestFromJSON,
+    PostApiTradingAdminContentFeedsRequestToJSON,
+    PostApiTradingAdminContentProcessRequestFromJSON,
+    PostApiTradingAdminContentProcessRequestToJSON,
     PostApiTradingAdminKillSwitchRequestFromJSON,
     PostApiTradingAdminKillSwitchRequestToJSON,
     PostApiTradingAdminStrategiesByIdReplayRequestFromJSON,
@@ -498,6 +513,10 @@ export interface DefaultApiDeleteApiSpendingLimitsByIdRequest {
 
 export interface DefaultApiDeleteApiSpongeCardCustomerRequest {
     environment: DeleteApiSpongeCardCustomerEnvironmentEnum;
+}
+
+export interface DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest {
+    id: string;
 }
 
 export interface DefaultApiDeleteApiTradingStrategiesByIdRequest {
@@ -866,6 +885,15 @@ export interface DefaultApiGetApiTasksByTaskIdRequest {
     agentId?: string;
 }
 
+export interface DefaultApiGetApiTradingAdminContentSourcesRequest {
+    status?: GetApiTradingAdminContentSourcesStatusEnum;
+    limit?: string;
+}
+
+export interface DefaultApiGetApiTradingAdminContentSourcesByIdRequest {
+    id: string;
+}
+
 export interface DefaultApiGetApiTradingAdminStrategiesRequest {
     limit?: string;
     offset?: string;
@@ -883,6 +911,31 @@ export interface DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest {
 
 export interface DefaultApiGetApiTradingAllocationRequest {
     agentId: string;
+}
+
+export interface DefaultApiGetApiTradingContentArticlesRequest {
+    feedId?: string;
+    medium?: GetApiTradingContentArticlesMediumEnum;
+    instrument?: string;
+    direction?: GetApiTradingContentArticlesDirectionEnum;
+    limit?: string;
+}
+
+export interface DefaultApiGetApiTradingContentIdeasByIdCandlesRequest {
+    id: string;
+}
+
+export interface DefaultApiGetApiTradingContentSignalsRequest {
+    feedId?: string;
+    medium?: GetApiTradingContentSignalsMediumEnum;
+    instrument?: string;
+    direction?: GetApiTradingContentSignalsDirectionEnum;
+    limit?: string;
+    cursor?: string;
+}
+
+export interface DefaultApiGetApiTradingContentSourcesByIdRequest {
+    id: string;
 }
 
 export interface DefaultApiGetApiTradingNotificationsRequest {
@@ -1000,6 +1053,11 @@ export interface DefaultApiGetOauthAuthorizeRequest {
     state?: string;
     codeChallengeMethod?: string;
     resource?: string;
+}
+
+export interface DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest {
+    id: string;
+    patchApiTradingAdminContentFeedsByIdRequest: PatchApiTradingAdminContentFeedsByIdRequest;
 }
 
 export interface DefaultApiPatchApiTradingStrategiesByIdRequest {
@@ -1544,6 +1602,26 @@ export interface DefaultApiPostApiTasksOperationRequest {
 
 export interface DefaultApiPostApiTradesProposeOperationRequest {
     postApiTradesProposeRequest: PostApiTradesProposeRequest;
+}
+
+export interface DefaultApiPostApiTradingAdminContentDiscoverOperationRequest {
+    postApiTradingAdminContentDiscoverRequest: PostApiTradingAdminContentDiscoverRequest;
+}
+
+export interface DefaultApiPostApiTradingAdminContentFeedsOperationRequest {
+    postApiTradingAdminContentFeedsRequest: PostApiTradingAdminContentFeedsRequest;
+}
+
+export interface DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest {
+    postApiTradingAdminContentFeedsCatalogRequest: PostApiTradingAdminContentFeedsCatalogRequest;
+}
+
+export interface DefaultApiPostApiTradingAdminContentProcessOperationRequest {
+    postApiTradingAdminContentProcessRequest: PostApiTradingAdminContentProcessRequest;
+}
+
+export interface DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest {
+    id: string;
 }
 
 export interface DefaultApiPostApiTradingAdminKillSwitchOperationRequest {
@@ -2771,6 +2849,27 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiSpongeCardCustomer(requestParameters: DefaultApiDeleteApiSpongeCardCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for deleteApiTradingAdminContentFeedsById without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiTradingAdminContentFeedsByIdRequestOpts(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiTradingAdminContentFeedsByIdRaw(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    deleteApiTradingAdminContentFeedsById(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for deleteApiTradingStrategiesById without sending the request
@@ -4981,6 +5080,88 @@ export interface DefaultApiInterface {
     getApiTasksByTaskId(requestParameters: DefaultApiGetApiTasksByTaskIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiTradingAdminContentFeeds without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentFeedsRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentFeedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingAdminContentFeeds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingAdminContentFeedsCatalog without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentFeedsCatalogRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentFeedsCatalogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingAdminContentFeedsCatalog(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingAdminContentSources without sending the request
+     * @param {'pending' | 'fetched' | 'complete' | 'failed' | 'skipped'} [status] 
+     * @param {string} [limit] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentSourcesRequestOpts(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {'pending' | 'fetched' | 'complete' | 'failed' | 'skipped'} [status] 
+     * @param {string} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentSourcesRaw(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingAdminContentSources(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingAdminContentSourcesById without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentSourcesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentSourcesByIdRaw(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingAdminContentSourcesById(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiTradingAdminKillSwitch without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -5088,6 +5269,127 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingAllocation(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingContentArticles without sending the request
+     * @param {string} [feedId] 
+     * @param {'youtube' | 'substack'} [medium] 
+     * @param {string} [instrument] 
+     * @param {'long' | 'short'} [direction] 
+     * @param {string} [limit] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentArticlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentArticlesRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [feedId] 
+     * @param {'youtube' | 'substack'} [medium] 
+     * @param {string} [instrument] 
+     * @param {'long' | 'short'} [direction] 
+     * @param {string} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentArticlesRaw(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingContentArticles(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingContentFeeds without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentFeedsRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentFeedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingContentFeeds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingContentIdeasByIdCandles without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentIdeasByIdCandlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentIdeasByIdCandlesRaw(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingContentIdeasByIdCandles(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingContentSignals without sending the request
+     * @param {string} [feedId] 
+     * @param {'youtube' | 'substack'} [medium] 
+     * @param {string} [instrument] 
+     * @param {'long' | 'short'} [direction] 
+     * @param {string} [limit] 
+     * @param {string} [cursor] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentSignalsRequestOpts(requestParameters: DefaultApiGetApiTradingContentSignalsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [feedId] 
+     * @param {'youtube' | 'substack'} [medium] 
+     * @param {string} [instrument] 
+     * @param {'long' | 'short'} [direction] 
+     * @param {string} [limit] 
+     * @param {string} [cursor] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentSignalsRaw(requestParameters: DefaultApiGetApiTradingContentSignalsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingContentSignals(requestParameters: DefaultApiGetApiTradingContentSignalsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingContentSourcesById without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentSourcesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentSourcesByIdRaw(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingContentSourcesById(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiTradingNotifications without sending the request
@@ -5652,6 +5954,29 @@ export interface DefaultApiInterface {
     /**
      */
     getOauthAuthorize(requestParameters: DefaultApiGetOauthAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for patchApiTradingAdminContentFeedsById without sending the request
+     * @param {string} id 
+     * @param {PatchApiTradingAdminContentFeedsByIdRequest} patchApiTradingAdminContentFeedsByIdRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    patchApiTradingAdminContentFeedsByIdRequestOpts(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PatchApiTradingAdminContentFeedsByIdRequest} patchApiTradingAdminContentFeedsByIdRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    patchApiTradingAdminContentFeedsByIdRaw(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    patchApiTradingAdminContentFeedsById(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for patchApiTradingStrategiesById without sending the request
@@ -8403,6 +8728,111 @@ export interface DefaultApiInterface {
     /**
      */
     postApiTradesPropose(requestParameters: DefaultApiPostApiTradesProposeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingAdminContentDiscover without sending the request
+     * @param {PostApiTradingAdminContentDiscoverRequest} postApiTradingAdminContentDiscoverRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentDiscoverRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiTradingAdminContentDiscoverRequest} postApiTradingAdminContentDiscoverRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentDiscoverRaw(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingAdminContentDiscover(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingAdminContentFeeds without sending the request
+     * @param {PostApiTradingAdminContentFeedsRequest} postApiTradingAdminContentFeedsRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentFeedsRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiTradingAdminContentFeedsRequest} postApiTradingAdminContentFeedsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentFeedsRaw(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingAdminContentFeeds(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingAdminContentFeedsCatalog without sending the request
+     * @param {PostApiTradingAdminContentFeedsCatalogRequest} postApiTradingAdminContentFeedsCatalogRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentFeedsCatalogRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiTradingAdminContentFeedsCatalogRequest} postApiTradingAdminContentFeedsCatalogRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentFeedsCatalogRaw(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingAdminContentFeedsCatalog(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingAdminContentProcess without sending the request
+     * @param {PostApiTradingAdminContentProcessRequest} postApiTradingAdminContentProcessRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentProcessRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiTradingAdminContentProcessRequest} postApiTradingAdminContentProcessRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentProcessRaw(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingAdminContentProcess(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiTradingAdminContentSourcesByIdRetry without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentSourcesByIdRetryRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentSourcesByIdRetryRaw(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTradingAdminContentSourcesByIdRetry(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTradingAdminKillSwitch without sending the request
@@ -11518,6 +11948,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async deleteApiSpongeCardCustomer(requestParameters: DefaultApiDeleteApiSpongeCardCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteApiSpongeCardCustomerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteApiTradingAdminContentFeedsById without sending the request
+     */
+    async deleteApiTradingAdminContentFeedsByIdRequestOpts(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteApiTradingAdminContentFeedsById().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/content/feeds/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteApiTradingAdminContentFeedsByIdRaw(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteApiTradingAdminContentFeedsByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteApiTradingAdminContentFeedsById(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteApiTradingAdminContentFeedsByIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -15813,6 +16285,158 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingAdminContentFeeds without sending the request
+     */
+    async getApiTradingAdminContentFeedsRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/content/feeds`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingAdminContentFeedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingAdminContentFeedsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingAdminContentFeeds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingAdminContentFeedsRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingAdminContentFeedsCatalog without sending the request
+     */
+    async getApiTradingAdminContentFeedsCatalogRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/content/feeds/catalog`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingAdminContentFeedsCatalogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingAdminContentFeedsCatalogRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingAdminContentFeedsCatalog(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingAdminContentFeedsCatalogRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingAdminContentSources without sending the request
+     */
+    async getApiTradingAdminContentSourcesRequestOpts(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/content/sources`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingAdminContentSourcesRaw(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingAdminContentSourcesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingAdminContentSources(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingAdminContentSourcesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingAdminContentSourcesById without sending the request
+     */
+    async getApiTradingAdminContentSourcesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingAdminContentSourcesById().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/content/sources/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingAdminContentSourcesByIdRaw(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingAdminContentSourcesByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingAdminContentSourcesById(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingAdminContentSourcesByIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTradingAdminKillSwitch without sending the request
      */
     async getApiTradingAdminKillSwitchRequestOpts(): Promise<runtime.RequestOpts> {
@@ -16023,6 +16647,236 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiTradingAllocation(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiTradingAllocationRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingContentArticles without sending the request
+     */
+    async getApiTradingContentArticlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentArticlesRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['feedId'] != null) {
+            queryParameters['feed_id'] = requestParameters['feedId'];
+        }
+
+        if (requestParameters['medium'] != null) {
+            queryParameters['medium'] = requestParameters['medium'];
+        }
+
+        if (requestParameters['instrument'] != null) {
+            queryParameters['instrument'] = requestParameters['instrument'];
+        }
+
+        if (requestParameters['direction'] != null) {
+            queryParameters['direction'] = requestParameters['direction'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/content/articles`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingContentArticlesRaw(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingContentArticlesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingContentArticles(requestParameters: DefaultApiGetApiTradingContentArticlesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingContentArticlesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingContentFeeds without sending the request
+     */
+    async getApiTradingContentFeedsRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/content/feeds`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingContentFeedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingContentFeedsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingContentFeeds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingContentFeedsRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingContentIdeasByIdCandles without sending the request
+     */
+    async getApiTradingContentIdeasByIdCandlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingContentIdeasByIdCandles().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/content/ideas/{id}/candles`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingContentIdeasByIdCandlesRaw(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingContentIdeasByIdCandlesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingContentIdeasByIdCandles(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingContentIdeasByIdCandlesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingContentSignals without sending the request
+     */
+    async getApiTradingContentSignalsRequestOpts(requestParameters: DefaultApiGetApiTradingContentSignalsRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['feedId'] != null) {
+            queryParameters['feed_id'] = requestParameters['feedId'];
+        }
+
+        if (requestParameters['medium'] != null) {
+            queryParameters['medium'] = requestParameters['medium'];
+        }
+
+        if (requestParameters['instrument'] != null) {
+            queryParameters['instrument'] = requestParameters['instrument'];
+        }
+
+        if (requestParameters['direction'] != null) {
+            queryParameters['direction'] = requestParameters['direction'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['cursor'] != null) {
+            queryParameters['cursor'] = requestParameters['cursor'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/content/signals`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingContentSignalsRaw(requestParameters: DefaultApiGetApiTradingContentSignalsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingContentSignalsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingContentSignals(requestParameters: DefaultApiGetApiTradingContentSignalsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingContentSignalsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingContentSourcesById without sending the request
+     */
+    async getApiTradingContentSourcesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingContentSourcesById().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/content/sources/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingContentSourcesByIdRaw(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingContentSourcesByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingContentSourcesById(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingContentSourcesByIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -17158,6 +18012,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getOauthAuthorize(requestParameters: DefaultApiGetOauthAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getOauthAuthorizeRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for patchApiTradingAdminContentFeedsById without sending the request
+     */
+    async patchApiTradingAdminContentFeedsByIdRequestOpts(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling patchApiTradingAdminContentFeedsById().'
+            );
+        }
+
+        if (requestParameters['patchApiTradingAdminContentFeedsByIdRequest'] == null) {
+            throw new runtime.RequiredError(
+                'patchApiTradingAdminContentFeedsByIdRequest',
+                'Required parameter "patchApiTradingAdminContentFeedsByIdRequest" was null or undefined when calling patchApiTradingAdminContentFeedsById().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/admin/content/feeds/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PatchApiTradingAdminContentFeedsByIdRequestToJSON(requestParameters['patchApiTradingAdminContentFeedsByIdRequest']),
+        };
+    }
+
+    /**
+     */
+    async patchApiTradingAdminContentFeedsByIdRaw(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.patchApiTradingAdminContentFeedsByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async patchApiTradingAdminContentFeedsById(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.patchApiTradingAdminContentFeedsByIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -23031,6 +23937,224 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiTradingAdminContentDiscover without sending the request
+     */
+    async postApiTradingAdminContentDiscoverRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTradingAdminContentDiscoverRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingAdminContentDiscoverRequest',
+                'Required parameter "postApiTradingAdminContentDiscoverRequest" was null or undefined when calling postApiTradingAdminContentDiscover().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/admin/content/discover`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminContentDiscoverRequestToJSON(requestParameters['postApiTradingAdminContentDiscoverRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentDiscoverRaw(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingAdminContentDiscoverRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentDiscover(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingAdminContentDiscoverRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingAdminContentFeeds without sending the request
+     */
+    async postApiTradingAdminContentFeedsRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTradingAdminContentFeedsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingAdminContentFeedsRequest',
+                'Required parameter "postApiTradingAdminContentFeedsRequest" was null or undefined when calling postApiTradingAdminContentFeeds().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/admin/content/feeds`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminContentFeedsRequestToJSON(requestParameters['postApiTradingAdminContentFeedsRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentFeedsRaw(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingAdminContentFeedsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentFeeds(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingAdminContentFeedsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingAdminContentFeedsCatalog without sending the request
+     */
+    async postApiTradingAdminContentFeedsCatalogRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTradingAdminContentFeedsCatalogRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingAdminContentFeedsCatalogRequest',
+                'Required parameter "postApiTradingAdminContentFeedsCatalogRequest" was null or undefined when calling postApiTradingAdminContentFeedsCatalog().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/admin/content/feeds/catalog`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminContentFeedsCatalogRequestToJSON(requestParameters['postApiTradingAdminContentFeedsCatalogRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentFeedsCatalogRaw(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingAdminContentFeedsCatalogRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentFeedsCatalog(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingAdminContentFeedsCatalogRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingAdminContentProcess without sending the request
+     */
+    async postApiTradingAdminContentProcessRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTradingAdminContentProcessRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingAdminContentProcessRequest',
+                'Required parameter "postApiTradingAdminContentProcessRequest" was null or undefined when calling postApiTradingAdminContentProcess().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/trading/admin/content/process`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminContentProcessRequestToJSON(requestParameters['postApiTradingAdminContentProcessRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentProcessRaw(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingAdminContentProcessRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentProcess(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingAdminContentProcessRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiTradingAdminContentSourcesByIdRetry without sending the request
+     */
+    async postApiTradingAdminContentSourcesByIdRetryRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiTradingAdminContentSourcesByIdRetry().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/admin/content/sources/{id}/retry`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentSourcesByIdRetryRaw(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingAdminContentSourcesByIdRetryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTradingAdminContentSourcesByIdRetry(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingAdminContentSourcesByIdRetryRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiTradingAdminKillSwitch without sending the request
      */
     async postApiTradingAdminKillSwitchRequestOpts(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest): Promise<runtime.RequestOpts> {
@@ -25626,3 +26750,46 @@ export const GetApiSpongeCardCustomerEnvironmentEnum = {
     Production: 'production'
 } as const;
 export type GetApiSpongeCardCustomerEnvironmentEnum = typeof GetApiSpongeCardCustomerEnvironmentEnum[keyof typeof GetApiSpongeCardCustomerEnvironmentEnum];
+/**
+ * @export
+ */
+export const GetApiTradingAdminContentSourcesStatusEnum = {
+    Pending: 'pending',
+    Fetched: 'fetched',
+    Complete: 'complete',
+    Failed: 'failed',
+    Skipped: 'skipped'
+} as const;
+export type GetApiTradingAdminContentSourcesStatusEnum = typeof GetApiTradingAdminContentSourcesStatusEnum[keyof typeof GetApiTradingAdminContentSourcesStatusEnum];
+/**
+ * @export
+ */
+export const GetApiTradingContentArticlesMediumEnum = {
+    Youtube: 'youtube',
+    Substack: 'substack'
+} as const;
+export type GetApiTradingContentArticlesMediumEnum = typeof GetApiTradingContentArticlesMediumEnum[keyof typeof GetApiTradingContentArticlesMediumEnum];
+/**
+ * @export
+ */
+export const GetApiTradingContentArticlesDirectionEnum = {
+    Long: 'long',
+    Short: 'short'
+} as const;
+export type GetApiTradingContentArticlesDirectionEnum = typeof GetApiTradingContentArticlesDirectionEnum[keyof typeof GetApiTradingContentArticlesDirectionEnum];
+/**
+ * @export
+ */
+export const GetApiTradingContentSignalsMediumEnum = {
+    Youtube: 'youtube',
+    Substack: 'substack'
+} as const;
+export type GetApiTradingContentSignalsMediumEnum = typeof GetApiTradingContentSignalsMediumEnum[keyof typeof GetApiTradingContentSignalsMediumEnum];
+/**
+ * @export
+ */
+export const GetApiTradingContentSignalsDirectionEnum = {
+    Long: 'long',
+    Short: 'short'
+} as const;
+export type GetApiTradingContentSignalsDirectionEnum = typeof GetApiTradingContentSignalsDirectionEnum[keyof typeof GetApiTradingContentSignalsDirectionEnum];

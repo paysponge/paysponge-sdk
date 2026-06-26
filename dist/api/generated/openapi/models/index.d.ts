@@ -3,6 +3,7 @@ export * from './get-api-agents-by-id-hyperliquid-address200-response-any-of.js'
 export * from './get-api-agents-by-id-hyperliquid-address200-response-any-of1.js';
 export * from './get-api-agents-by-id-hyperliquid-address404-response.js';
 export * from './get-api-bridge-fiat-customer-force-refresh-parameter.js';
+export * from './patch-api-trading-admin-content-feeds-by-id-request.js';
 export * from './post-api-agent-keys-request.js';
 export * from './post-api-agent-requests-plans-request.js';
 export * from './post-api-agent-requests-plans-request-steps-inner.js';
@@ -122,6 +123,10 @@ export * from './post-api-sponge-card-withdraw-request.js';
 export * from './post-api-stripe-onramp-session-request.js';
 export * from './post-api-tasks-request.js';
 export * from './post-api-trades-propose-request.js';
+export * from './post-api-trading-admin-content-discover-request.js';
+export * from './post-api-trading-admin-content-feeds-catalog-request.js';
+export * from './post-api-trading-admin-content-feeds-request.js';
+export * from './post-api-trading-admin-content-process-request.js';
 export * from './post-api-trading-admin-kill-switch-request.js';
 export * from './post-api-trading-admin-strategies-by-id-replay-request.js';
 export * from './post-api-trading-admin-test-run-request.js';

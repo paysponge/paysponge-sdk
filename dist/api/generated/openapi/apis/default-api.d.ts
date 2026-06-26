@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiAgentsByIdHyperliquidAddress200Response, GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentRequestsPlansRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidDepositRequest, PostApiAgentsByIdHyperliquidLinkRequest, PostApiAgentsByIdHyperliquidOrderRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdPolymarketWithdrawRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdStripePaymentMethodsRequest, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAgentsTradingTerminalRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTradingAdminKillSwitchRequest, PostApiTradingAdminStrategiesByIdReplayRequest, PostApiTradingAdminTestRunRequest, PostApiTradingManualStrategiesCloseRequest, PostApiTradingNotificationsReadAllRequest, PostApiTradingStrategiesByIdKillRequest, PostApiTradingStrategiesByIdPreviewStartRequest, PostApiTradingStrategiesByIdTestRunRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiAgentsByIdHyperliquidAddress200Response, GetApiBridgeFiatCustomerForceRefreshParameter, PatchApiTradingAdminContentFeedsByIdRequest, PostApiAgentKeysRequest, PostApiAgentRequestsPlansRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidDepositRequest, PostApiAgentsByIdHyperliquidLinkRequest, PostApiAgentsByIdHyperliquidOrderRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdPolymarketWithdrawRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdStripePaymentMethodsRequest, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAgentsTradingTerminalRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTradingAdminContentDiscoverRequest, PostApiTradingAdminContentFeedsCatalogRequest, PostApiTradingAdminContentFeedsRequest, PostApiTradingAdminContentProcessRequest, PostApiTradingAdminKillSwitchRequest, PostApiTradingAdminStrategiesByIdReplayRequest, PostApiTradingAdminTestRunRequest, PostApiTradingManualStrategiesCloseRequest, PostApiTradingNotificationsReadAllRequest, PostApiTradingStrategiesByIdKillRequest, PostApiTradingStrategiesByIdPreviewStartRequest, PostApiTradingStrategiesByIdTestRunRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -67,6 +67,9 @@ export interface DefaultApiDeleteApiSpendingLimitsByIdRequest {
 }
 export interface DefaultApiDeleteApiSpongeCardCustomerRequest {
     environment: DeleteApiSpongeCardCustomerEnvironmentEnum;
+}
+export interface DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest {
+    id: string;
 }
 export interface DefaultApiDeleteApiTradingStrategiesByIdRequest {
     id: string;
@@ -357,6 +360,13 @@ export interface DefaultApiGetApiTasksByTaskIdRequest {
     taskId: string;
     agentId?: string;
 }
+export interface DefaultApiGetApiTradingAdminContentSourcesRequest {
+    status?: GetApiTradingAdminContentSourcesStatusEnum;
+    limit?: string;
+}
+export interface DefaultApiGetApiTradingAdminContentSourcesByIdRequest {
+    id: string;
+}
 export interface DefaultApiGetApiTradingAdminStrategiesRequest {
     limit?: string;
     offset?: string;
@@ -371,6 +381,27 @@ export interface DefaultApiGetApiTradingAdminStrategiesByIdSourceEventsRequest {
 }
 export interface DefaultApiGetApiTradingAllocationRequest {
     agentId: string;
+}
+export interface DefaultApiGetApiTradingContentArticlesRequest {
+    feedId?: string;
+    medium?: GetApiTradingContentArticlesMediumEnum;
+    instrument?: string;
+    direction?: GetApiTradingContentArticlesDirectionEnum;
+    limit?: string;
+}
+export interface DefaultApiGetApiTradingContentIdeasByIdCandlesRequest {
+    id: string;
+}
+export interface DefaultApiGetApiTradingContentSignalsRequest {
+    feedId?: string;
+    medium?: GetApiTradingContentSignalsMediumEnum;
+    instrument?: string;
+    direction?: GetApiTradingContentSignalsDirectionEnum;
+    limit?: string;
+    cursor?: string;
+}
+export interface DefaultApiGetApiTradingContentSourcesByIdRequest {
+    id: string;
 }
 export interface DefaultApiGetApiTradingNotificationsRequest {
     agentId: string;
@@ -467,6 +498,10 @@ export interface DefaultApiGetOauthAuthorizeRequest {
     state?: string;
     codeChallengeMethod?: string;
     resource?: string;
+}
+export interface DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest {
+    id: string;
+    patchApiTradingAdminContentFeedsByIdRequest: PatchApiTradingAdminContentFeedsByIdRequest;
 }
 export interface DefaultApiPatchApiTradingStrategiesByIdRequest {
     id: string;
@@ -886,6 +921,21 @@ export interface DefaultApiPostApiTasksOperationRequest {
 }
 export interface DefaultApiPostApiTradesProposeOperationRequest {
     postApiTradesProposeRequest: PostApiTradesProposeRequest;
+}
+export interface DefaultApiPostApiTradingAdminContentDiscoverOperationRequest {
+    postApiTradingAdminContentDiscoverRequest: PostApiTradingAdminContentDiscoverRequest;
+}
+export interface DefaultApiPostApiTradingAdminContentFeedsOperationRequest {
+    postApiTradingAdminContentFeedsRequest: PostApiTradingAdminContentFeedsRequest;
+}
+export interface DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest {
+    postApiTradingAdminContentFeedsCatalogRequest: PostApiTradingAdminContentFeedsCatalogRequest;
+}
+export interface DefaultApiPostApiTradingAdminContentProcessOperationRequest {
+    postApiTradingAdminContentProcessRequest: PostApiTradingAdminContentProcessRequest;
+}
+export interface DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest {
+    id: string;
 }
 export interface DefaultApiPostApiTradingAdminKillSwitchOperationRequest {
     postApiTradingAdminKillSwitchRequest: PostApiTradingAdminKillSwitchRequest;
@@ -1912,6 +1962,24 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiSpongeCardCustomer(requestParameters: DefaultApiDeleteApiSpongeCardCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for deleteApiTradingAdminContentFeedsById without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiTradingAdminContentFeedsByIdRequestOpts(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiTradingAdminContentFeedsByIdRaw(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    deleteApiTradingAdminContentFeedsById(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for deleteApiTradingStrategiesById without sending the request
      * @param {string} id
@@ -3815,6 +3883,76 @@ export interface DefaultApiInterface {
      */
     getApiTasksByTaskId(requestParameters: DefaultApiGetApiTasksByTaskIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiTradingAdminContentFeeds without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentFeedsRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentFeedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminContentFeeds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingAdminContentFeedsCatalog without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentFeedsCatalogRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentFeedsCatalogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminContentFeedsCatalog(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingAdminContentSources without sending the request
+     * @param {'pending' | 'fetched' | 'complete' | 'failed' | 'skipped'} [status]
+     * @param {string} [limit]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentSourcesRequestOpts(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {'pending' | 'fetched' | 'complete' | 'failed' | 'skipped'} [status]
+     * @param {string} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentSourcesRaw(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminContentSources(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingAdminContentSourcesById without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentSourcesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingAdminContentSourcesByIdRaw(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminContentSourcesById(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiTradingAdminKillSwitch without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -3908,6 +4046,112 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingAllocation(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentArticles without sending the request
+     * @param {string} [feedId]
+     * @param {'youtube' | 'substack'} [medium]
+     * @param {string} [instrument]
+     * @param {'long' | 'short'} [direction]
+     * @param {string} [limit]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentArticlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentArticlesRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [feedId]
+     * @param {'youtube' | 'substack'} [medium]
+     * @param {string} [instrument]
+     * @param {'long' | 'short'} [direction]
+     * @param {string} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentArticlesRaw(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentArticles(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentFeeds without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentFeedsRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentFeedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentFeeds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentIdeasByIdCandles without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentIdeasByIdCandlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentIdeasByIdCandlesRaw(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentIdeasByIdCandles(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentSignals without sending the request
+     * @param {string} [feedId]
+     * @param {'youtube' | 'substack'} [medium]
+     * @param {string} [instrument]
+     * @param {'long' | 'short'} [direction]
+     * @param {string} [limit]
+     * @param {string} [cursor]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentSignalsRequestOpts(requestParameters: DefaultApiGetApiTradingContentSignalsRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [feedId]
+     * @param {'youtube' | 'substack'} [medium]
+     * @param {string} [instrument]
+     * @param {'long' | 'short'} [direction]
+     * @param {string} [limit]
+     * @param {string} [cursor]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentSignalsRaw(requestParameters: DefaultApiGetApiTradingContentSignalsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentSignals(requestParameters: DefaultApiGetApiTradingContentSignalsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentSourcesById without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentSourcesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentSourcesByIdRaw(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentSourcesById(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTradingNotifications without sending the request
      * @param {string} agentId
@@ -4400,6 +4644,26 @@ export interface DefaultApiInterface {
     /**
      */
     getOauthAuthorize(requestParameters: DefaultApiGetOauthAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for patchApiTradingAdminContentFeedsById without sending the request
+     * @param {string} id
+     * @param {PatchApiTradingAdminContentFeedsByIdRequest} patchApiTradingAdminContentFeedsByIdRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    patchApiTradingAdminContentFeedsByIdRequestOpts(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {PatchApiTradingAdminContentFeedsByIdRequest} patchApiTradingAdminContentFeedsByIdRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    patchApiTradingAdminContentFeedsByIdRaw(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    patchApiTradingAdminContentFeedsById(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for patchApiTradingStrategiesById without sending the request
      * @param {string} id
@@ -6770,6 +7034,96 @@ export interface DefaultApiInterface {
     /**
      */
     postApiTradesPropose(requestParameters: DefaultApiPostApiTradesProposeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentDiscover without sending the request
+     * @param {PostApiTradingAdminContentDiscoverRequest} postApiTradingAdminContentDiscoverRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentDiscoverRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiTradingAdminContentDiscoverRequest} postApiTradingAdminContentDiscoverRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentDiscoverRaw(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentDiscover(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentFeeds without sending the request
+     * @param {PostApiTradingAdminContentFeedsRequest} postApiTradingAdminContentFeedsRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentFeedsRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiTradingAdminContentFeedsRequest} postApiTradingAdminContentFeedsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentFeedsRaw(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentFeeds(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentFeedsCatalog without sending the request
+     * @param {PostApiTradingAdminContentFeedsCatalogRequest} postApiTradingAdminContentFeedsCatalogRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentFeedsCatalogRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiTradingAdminContentFeedsCatalogRequest} postApiTradingAdminContentFeedsCatalogRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentFeedsCatalogRaw(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentFeedsCatalog(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentProcess without sending the request
+     * @param {PostApiTradingAdminContentProcessRequest} postApiTradingAdminContentProcessRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentProcessRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiTradingAdminContentProcessRequest} postApiTradingAdminContentProcessRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentProcessRaw(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentProcess(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentSourcesByIdRetry without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentSourcesByIdRetryRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTradingAdminContentSourcesByIdRetryRaw(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentSourcesByIdRetry(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiTradingAdminKillSwitch without sending the request
      * @param {PostApiTradingAdminKillSwitchRequest} postApiTradingAdminKillSwitchRequest
@@ -8320,6 +8674,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     deleteApiSpongeCardCustomer(requestParameters: DefaultApiDeleteApiSpongeCardCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for deleteApiTradingAdminContentFeedsById without sending the request
+     */
+    deleteApiTradingAdminContentFeedsByIdRequestOpts(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    deleteApiTradingAdminContentFeedsByIdRaw(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    deleteApiTradingAdminContentFeedsById(requestParameters: DefaultApiDeleteApiTradingAdminContentFeedsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for deleteApiTradingStrategiesById without sending the request
      */
     deleteApiTradingStrategiesByIdRequestOpts(requestParameters: DefaultApiDeleteApiTradingStrategiesByIdRequest): Promise<runtime.RequestOpts>;
@@ -9340,6 +9704,46 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiTasksByTaskId(requestParameters: DefaultApiGetApiTasksByTaskIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiTradingAdminContentFeeds without sending the request
+     */
+    getApiTradingAdminContentFeedsRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingAdminContentFeedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminContentFeeds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingAdminContentFeedsCatalog without sending the request
+     */
+    getApiTradingAdminContentFeedsCatalogRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingAdminContentFeedsCatalogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminContentFeedsCatalog(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingAdminContentSources without sending the request
+     */
+    getApiTradingAdminContentSourcesRequestOpts(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingAdminContentSourcesRaw(requestParameters: DefaultApiGetApiTradingAdminContentSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminContentSources(requestParameters?: DefaultApiGetApiTradingAdminContentSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingAdminContentSourcesById without sending the request
+     */
+    getApiTradingAdminContentSourcesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingAdminContentSourcesByIdRaw(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingAdminContentSourcesById(requestParameters: DefaultApiGetApiTradingAdminContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiTradingAdminKillSwitch without sending the request
      */
     getApiTradingAdminKillSwitchRequestOpts(): Promise<runtime.RequestOpts>;
@@ -9389,6 +9793,56 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiTradingAllocation(requestParameters: DefaultApiGetApiTradingAllocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentArticles without sending the request
+     */
+    getApiTradingContentArticlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentArticlesRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingContentArticlesRaw(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentArticles(requestParameters?: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentFeeds without sending the request
+     */
+    getApiTradingContentFeedsRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingContentFeedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentFeeds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentIdeasByIdCandles without sending the request
+     */
+    getApiTradingContentIdeasByIdCandlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingContentIdeasByIdCandlesRaw(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentIdeasByIdCandles(requestParameters: DefaultApiGetApiTradingContentIdeasByIdCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentSignals without sending the request
+     */
+    getApiTradingContentSignalsRequestOpts(requestParameters: DefaultApiGetApiTradingContentSignalsRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingContentSignalsRaw(requestParameters: DefaultApiGetApiTradingContentSignalsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentSignals(requestParameters?: DefaultApiGetApiTradingContentSignalsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentSourcesById without sending the request
+     */
+    getApiTradingContentSourcesByIdRequestOpts(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingContentSourcesByIdRaw(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentSourcesById(requestParameters: DefaultApiGetApiTradingContentSourcesByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTradingNotifications without sending the request
      */
@@ -9629,6 +10083,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getOauthAuthorize(requestParameters: DefaultApiGetOauthAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for patchApiTradingAdminContentFeedsById without sending the request
+     */
+    patchApiTradingAdminContentFeedsByIdRequestOpts(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    patchApiTradingAdminContentFeedsByIdRaw(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    patchApiTradingAdminContentFeedsById(requestParameters: DefaultApiPatchApiTradingAdminContentFeedsByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for patchApiTradingStrategiesById without sending the request
      */
@@ -10900,6 +11364,56 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     postApiTradesPropose(requestParameters: DefaultApiPostApiTradesProposeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiTradingAdminContentDiscover without sending the request
+     */
+    postApiTradingAdminContentDiscoverRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiTradingAdminContentDiscoverRaw(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentDiscover(requestParameters: DefaultApiPostApiTradingAdminContentDiscoverOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentFeeds without sending the request
+     */
+    postApiTradingAdminContentFeedsRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiTradingAdminContentFeedsRaw(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentFeeds(requestParameters: DefaultApiPostApiTradingAdminContentFeedsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentFeedsCatalog without sending the request
+     */
+    postApiTradingAdminContentFeedsCatalogRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiTradingAdminContentFeedsCatalogRaw(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentFeedsCatalog(requestParameters: DefaultApiPostApiTradingAdminContentFeedsCatalogOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentProcess without sending the request
+     */
+    postApiTradingAdminContentProcessRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiTradingAdminContentProcessRaw(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentProcess(requestParameters: DefaultApiPostApiTradingAdminContentProcessOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiTradingAdminContentSourcesByIdRetry without sending the request
+     */
+    postApiTradingAdminContentSourcesByIdRetryRequestOpts(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiTradingAdminContentSourcesByIdRetryRaw(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiTradingAdminContentSourcesByIdRetry(requestParameters: DefaultApiPostApiTradingAdminContentSourcesByIdRetryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiTradingAdminKillSwitch without sending the request
      */
     postApiTradingAdminKillSwitchRequestOpts(requestParameters: DefaultApiPostApiTradingAdminKillSwitchOperationRequest): Promise<runtime.RequestOpts>;
@@ -11526,4 +12040,47 @@ export declare const GetApiSpongeCardCustomerEnvironmentEnum: {
     readonly Production: "production";
 };
 export type GetApiSpongeCardCustomerEnvironmentEnum = typeof GetApiSpongeCardCustomerEnvironmentEnum[keyof typeof GetApiSpongeCardCustomerEnvironmentEnum];
+/**
+ * @export
+ */
+export declare const GetApiTradingAdminContentSourcesStatusEnum: {
+    readonly Pending: "pending";
+    readonly Fetched: "fetched";
+    readonly Complete: "complete";
+    readonly Failed: "failed";
+    readonly Skipped: "skipped";
+};
+export type GetApiTradingAdminContentSourcesStatusEnum = typeof GetApiTradingAdminContentSourcesStatusEnum[keyof typeof GetApiTradingAdminContentSourcesStatusEnum];
+/**
+ * @export
+ */
+export declare const GetApiTradingContentArticlesMediumEnum: {
+    readonly Youtube: "youtube";
+    readonly Substack: "substack";
+};
+export type GetApiTradingContentArticlesMediumEnum = typeof GetApiTradingContentArticlesMediumEnum[keyof typeof GetApiTradingContentArticlesMediumEnum];
+/**
+ * @export
+ */
+export declare const GetApiTradingContentArticlesDirectionEnum: {
+    readonly Long: "long";
+    readonly Short: "short";
+};
+export type GetApiTradingContentArticlesDirectionEnum = typeof GetApiTradingContentArticlesDirectionEnum[keyof typeof GetApiTradingContentArticlesDirectionEnum];
+/**
+ * @export
+ */
+export declare const GetApiTradingContentSignalsMediumEnum: {
+    readonly Youtube: "youtube";
+    readonly Substack: "substack";
+};
+export type GetApiTradingContentSignalsMediumEnum = typeof GetApiTradingContentSignalsMediumEnum[keyof typeof GetApiTradingContentSignalsMediumEnum];
+/**
+ * @export
+ */
+export declare const GetApiTradingContentSignalsDirectionEnum: {
+    readonly Long: "long";
+    readonly Short: "short";
+};
+export type GetApiTradingContentSignalsDirectionEnum = typeof GetApiTradingContentSignalsDirectionEnum[keyof typeof GetApiTradingContentSignalsDirectionEnum];
 //# sourceMappingURL=default-api.d.ts.map

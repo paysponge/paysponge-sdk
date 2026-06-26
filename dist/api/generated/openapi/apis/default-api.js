@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { GetApiAgentsByIdHyperliquidAddress200ResponseFromJSON, PostApiAgentKeysRequestToJSON, PostApiAgentRequestsPlansRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidDepositRequestToJSON, PostApiAgentsByIdHyperliquidLinkRequestToJSON, PostApiAgentsByIdHyperliquidOrderRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdPolymarketWithdrawRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdStripePaymentMethodsRequestToJSON, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAgentsTradingTerminalRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTradingAdminKillSwitchRequestToJSON, PostApiTradingAdminStrategiesByIdReplayRequestToJSON, PostApiTradingAdminTestRunRequestToJSON, PostApiTradingManualStrategiesCloseRequestToJSON, PostApiTradingNotificationsReadAllRequestToJSON, PostApiTradingStrategiesByIdKillRequestToJSON, PostApiTradingStrategiesByIdPreviewStartRequestToJSON, PostApiTradingStrategiesByIdTestRunRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { GetApiAgentsByIdHyperliquidAddress200ResponseFromJSON, PatchApiTradingAdminContentFeedsByIdRequestToJSON, PostApiAgentKeysRequestToJSON, PostApiAgentRequestsPlansRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidDepositRequestToJSON, PostApiAgentsByIdHyperliquidLinkRequestToJSON, PostApiAgentsByIdHyperliquidOrderRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdPolymarketWithdrawRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdStripePaymentMethodsRequestToJSON, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAgentsTradingTerminalRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTradingAdminContentDiscoverRequestToJSON, PostApiTradingAdminContentFeedsCatalogRequestToJSON, PostApiTradingAdminContentFeedsRequestToJSON, PostApiTradingAdminContentProcessRequestToJSON, PostApiTradingAdminKillSwitchRequestToJSON, PostApiTradingAdminStrategiesByIdReplayRequestToJSON, PostApiTradingAdminTestRunRequestToJSON, PostApiTradingManualStrategiesCloseRequestToJSON, PostApiTradingNotificationsReadAllRequestToJSON, PostApiTradingStrategiesByIdKillRequestToJSON, PostApiTradingStrategiesByIdPreviewStartRequestToJSON, PostApiTradingStrategiesByIdTestRunRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -1417,6 +1417,36 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async deleteApiSpongeCardCustomer(requestParameters, initOverrides) {
         await this.deleteApiSpongeCardCustomerRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for deleteApiTradingAdminContentFeedsById without sending the request
+     */
+    async deleteApiTradingAdminContentFeedsByIdRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling deleteApiTradingAdminContentFeedsById().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/admin/content/feeds/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async deleteApiTradingAdminContentFeedsByIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.deleteApiTradingAdminContentFeedsByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async deleteApiTradingAdminContentFeedsById(requestParameters, initOverrides) {
+        await this.deleteApiTradingAdminContentFeedsByIdRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for deleteApiTradingStrategiesById without sending the request
@@ -4564,6 +4594,120 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTasksByTaskIdRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingAdminContentFeeds without sending the request
+     */
+    async getApiTradingAdminContentFeedsRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/admin/content/feeds`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingAdminContentFeedsRaw(initOverrides) {
+        const requestOptions = await this.getApiTradingAdminContentFeedsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingAdminContentFeeds(initOverrides) {
+        await this.getApiTradingAdminContentFeedsRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingAdminContentFeedsCatalog without sending the request
+     */
+    async getApiTradingAdminContentFeedsCatalogRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/admin/content/feeds/catalog`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingAdminContentFeedsCatalogRaw(initOverrides) {
+        const requestOptions = await this.getApiTradingAdminContentFeedsCatalogRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingAdminContentFeedsCatalog(initOverrides) {
+        await this.getApiTradingAdminContentFeedsCatalogRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingAdminContentSources without sending the request
+     */
+    async getApiTradingAdminContentSourcesRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/admin/content/sources`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingAdminContentSourcesRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingAdminContentSourcesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingAdminContentSources(requestParameters = {}, initOverrides) {
+        await this.getApiTradingAdminContentSourcesRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingAdminContentSourcesById without sending the request
+     */
+    async getApiTradingAdminContentSourcesByIdRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiTradingAdminContentSourcesById().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/admin/content/sources/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingAdminContentSourcesByIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingAdminContentSourcesByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingAdminContentSourcesById(requestParameters, initOverrides) {
+        await this.getApiTradingAdminContentSourcesByIdRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTradingAdminKillSwitch without sending the request
      */
     async getApiTradingAdminKillSwitchRequestOpts() {
@@ -4718,6 +4862,177 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiTradingAllocation(requestParameters, initOverrides) {
         await this.getApiTradingAllocationRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingContentArticles without sending the request
+     */
+    async getApiTradingContentArticlesRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['feedId'] != null) {
+            queryParameters['feed_id'] = requestParameters['feedId'];
+        }
+        if (requestParameters['medium'] != null) {
+            queryParameters['medium'] = requestParameters['medium'];
+        }
+        if (requestParameters['instrument'] != null) {
+            queryParameters['instrument'] = requestParameters['instrument'];
+        }
+        if (requestParameters['direction'] != null) {
+            queryParameters['direction'] = requestParameters['direction'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/content/articles`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingContentArticlesRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingContentArticlesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingContentArticles(requestParameters = {}, initOverrides) {
+        await this.getApiTradingContentArticlesRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingContentFeeds without sending the request
+     */
+    async getApiTradingContentFeedsRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/content/feeds`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingContentFeedsRaw(initOverrides) {
+        const requestOptions = await this.getApiTradingContentFeedsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingContentFeeds(initOverrides) {
+        await this.getApiTradingContentFeedsRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingContentIdeasByIdCandles without sending the request
+     */
+    async getApiTradingContentIdeasByIdCandlesRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiTradingContentIdeasByIdCandles().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/content/ideas/{id}/candles`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingContentIdeasByIdCandlesRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingContentIdeasByIdCandlesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingContentIdeasByIdCandles(requestParameters, initOverrides) {
+        await this.getApiTradingContentIdeasByIdCandlesRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingContentSignals without sending the request
+     */
+    async getApiTradingContentSignalsRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['feedId'] != null) {
+            queryParameters['feed_id'] = requestParameters['feedId'];
+        }
+        if (requestParameters['medium'] != null) {
+            queryParameters['medium'] = requestParameters['medium'];
+        }
+        if (requestParameters['instrument'] != null) {
+            queryParameters['instrument'] = requestParameters['instrument'];
+        }
+        if (requestParameters['direction'] != null) {
+            queryParameters['direction'] = requestParameters['direction'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        if (requestParameters['cursor'] != null) {
+            queryParameters['cursor'] = requestParameters['cursor'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/content/signals`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingContentSignalsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingContentSignalsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingContentSignals(requestParameters = {}, initOverrides) {
+        await this.getApiTradingContentSignalsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingContentSourcesById without sending the request
+     */
+    async getApiTradingContentSourcesByIdRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiTradingContentSourcesById().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/content/sources/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingContentSourcesByIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingContentSourcesByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingContentSourcesById(requestParameters, initOverrides) {
+        await this.getApiTradingContentSourcesByIdRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiTradingNotifications without sending the request
@@ -5541,6 +5856,41 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getOauthAuthorize(requestParameters, initOverrides) {
         await this.getOauthAuthorizeRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for patchApiTradingAdminContentFeedsById without sending the request
+     */
+    async patchApiTradingAdminContentFeedsByIdRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling patchApiTradingAdminContentFeedsById().');
+        }
+        if (requestParameters['patchApiTradingAdminContentFeedsByIdRequest'] == null) {
+            throw new runtime.RequiredError('patchApiTradingAdminContentFeedsByIdRequest', 'Required parameter "patchApiTradingAdminContentFeedsByIdRequest" was null or undefined when calling patchApiTradingAdminContentFeedsById().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/trading/admin/content/feeds/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PatchApiTradingAdminContentFeedsByIdRequestToJSON(requestParameters['patchApiTradingAdminContentFeedsByIdRequest']),
+        };
+    }
+    /**
+     */
+    async patchApiTradingAdminContentFeedsByIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.patchApiTradingAdminContentFeedsByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async patchApiTradingAdminContentFeedsById(requestParameters, initOverrides) {
+        await this.patchApiTradingAdminContentFeedsByIdRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for patchApiTradingStrategiesById without sending the request
@@ -9622,6 +9972,160 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiTradesProposeRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for postApiTradingAdminContentDiscover without sending the request
+     */
+    async postApiTradingAdminContentDiscoverRequestOpts(requestParameters) {
+        if (requestParameters['postApiTradingAdminContentDiscoverRequest'] == null) {
+            throw new runtime.RequiredError('postApiTradingAdminContentDiscoverRequest', 'Required parameter "postApiTradingAdminContentDiscoverRequest" was null or undefined when calling postApiTradingAdminContentDiscover().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/trading/admin/content/discover`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminContentDiscoverRequestToJSON(requestParameters['postApiTradingAdminContentDiscoverRequest']),
+        };
+    }
+    /**
+     */
+    async postApiTradingAdminContentDiscoverRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiTradingAdminContentDiscoverRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingAdminContentDiscover(requestParameters, initOverrides) {
+        await this.postApiTradingAdminContentDiscoverRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingAdminContentFeeds without sending the request
+     */
+    async postApiTradingAdminContentFeedsRequestOpts(requestParameters) {
+        if (requestParameters['postApiTradingAdminContentFeedsRequest'] == null) {
+            throw new runtime.RequiredError('postApiTradingAdminContentFeedsRequest', 'Required parameter "postApiTradingAdminContentFeedsRequest" was null or undefined when calling postApiTradingAdminContentFeeds().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/trading/admin/content/feeds`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminContentFeedsRequestToJSON(requestParameters['postApiTradingAdminContentFeedsRequest']),
+        };
+    }
+    /**
+     */
+    async postApiTradingAdminContentFeedsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiTradingAdminContentFeedsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingAdminContentFeeds(requestParameters, initOverrides) {
+        await this.postApiTradingAdminContentFeedsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingAdminContentFeedsCatalog without sending the request
+     */
+    async postApiTradingAdminContentFeedsCatalogRequestOpts(requestParameters) {
+        if (requestParameters['postApiTradingAdminContentFeedsCatalogRequest'] == null) {
+            throw new runtime.RequiredError('postApiTradingAdminContentFeedsCatalogRequest', 'Required parameter "postApiTradingAdminContentFeedsCatalogRequest" was null or undefined when calling postApiTradingAdminContentFeedsCatalog().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/trading/admin/content/feeds/catalog`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminContentFeedsCatalogRequestToJSON(requestParameters['postApiTradingAdminContentFeedsCatalogRequest']),
+        };
+    }
+    /**
+     */
+    async postApiTradingAdminContentFeedsCatalogRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiTradingAdminContentFeedsCatalogRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingAdminContentFeedsCatalog(requestParameters, initOverrides) {
+        await this.postApiTradingAdminContentFeedsCatalogRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingAdminContentProcess without sending the request
+     */
+    async postApiTradingAdminContentProcessRequestOpts(requestParameters) {
+        if (requestParameters['postApiTradingAdminContentProcessRequest'] == null) {
+            throw new runtime.RequiredError('postApiTradingAdminContentProcessRequest', 'Required parameter "postApiTradingAdminContentProcessRequest" was null or undefined when calling postApiTradingAdminContentProcess().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/trading/admin/content/process`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingAdminContentProcessRequestToJSON(requestParameters['postApiTradingAdminContentProcessRequest']),
+        };
+    }
+    /**
+     */
+    async postApiTradingAdminContentProcessRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiTradingAdminContentProcessRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingAdminContentProcess(requestParameters, initOverrides) {
+        await this.postApiTradingAdminContentProcessRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingAdminContentSourcesByIdRetry without sending the request
+     */
+    async postApiTradingAdminContentSourcesByIdRetryRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling postApiTradingAdminContentSourcesByIdRetry().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/admin/content/sources/{id}/retry`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiTradingAdminContentSourcesByIdRetryRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiTradingAdminContentSourcesByIdRetryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingAdminContentSourcesByIdRetry(requestParameters, initOverrides) {
+        await this.postApiTradingAdminContentSourcesByIdRetryRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for postApiTradingAdminKillSwitch without sending the request
      */
     async postApiTradingAdminKillSwitchRequestOpts(requestParameters) {
@@ -11454,5 +11958,43 @@ export const GetApiSpongeCardContractsByContractIdBalanceEnvironmentEnum = {
 export const GetApiSpongeCardCustomerEnvironmentEnum = {
     Dev: 'dev',
     Production: 'production'
+};
+/**
+ * @export
+ */
+export const GetApiTradingAdminContentSourcesStatusEnum = {
+    Pending: 'pending',
+    Fetched: 'fetched',
+    Complete: 'complete',
+    Failed: 'failed',
+    Skipped: 'skipped'
+};
+/**
+ * @export
+ */
+export const GetApiTradingContentArticlesMediumEnum = {
+    Youtube: 'youtube',
+    Substack: 'substack'
+};
+/**
+ * @export
+ */
+export const GetApiTradingContentArticlesDirectionEnum = {
+    Long: 'long',
+    Short: 'short'
+};
+/**
+ * @export
+ */
+export const GetApiTradingContentSignalsMediumEnum = {
+    Youtube: 'youtube',
+    Substack: 'substack'
+};
+/**
+ * @export
+ */
+export const GetApiTradingContentSignalsDirectionEnum = {
+    Long: 'long',
+    Short: 'short'
 };
 //# sourceMappingURL=default-api.js.map
