@@ -14813,6 +14813,41 @@
         "operationId": "getApiTradingContentSignals"
       }
     },
+    "/api/trading/content/candles": {
+      "get": {
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "anchorAt",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "long",
+                "short"
+              ]
+            }
+          }
+        ],
+        "operationId": "getApiTradingContentCandles"
+      }
+    },
     "/api/trading/content/ideas/{id}/candles": {
       "get": {
         "parameters": [

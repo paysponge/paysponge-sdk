@@ -4905,6 +4905,47 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingContentArticlesRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingContentCandles without sending the request
+     */
+    async getApiTradingContentCandlesRequestOpts(requestParameters) {
+        if (requestParameters['instrument'] == null) {
+            throw new runtime.RequiredError('instrument', 'Required parameter "instrument" was null or undefined when calling getApiTradingContentCandles().');
+        }
+        if (requestParameters['anchorAt'] == null) {
+            throw new runtime.RequiredError('anchorAt', 'Required parameter "anchorAt" was null or undefined when calling getApiTradingContentCandles().');
+        }
+        const queryParameters = {};
+        if (requestParameters['instrument'] != null) {
+            queryParameters['instrument'] = requestParameters['instrument'];
+        }
+        if (requestParameters['anchorAt'] != null) {
+            queryParameters['anchorAt'] = requestParameters['anchorAt'];
+        }
+        if (requestParameters['direction'] != null) {
+            queryParameters['direction'] = requestParameters['direction'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/content/candles`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingContentCandlesRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingContentCandlesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingContentCandles(requestParameters, initOverrides) {
+        await this.getApiTradingContentCandlesRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTradingContentFeeds without sending the request
      */
     async getApiTradingContentFeedsRequestOpts() {
@@ -11980,6 +12021,13 @@ export const GetApiTradingContentArticlesMediumEnum = {
  * @export
  */
 export const GetApiTradingContentArticlesDirectionEnum = {
+    Long: 'long',
+    Short: 'short'
+};
+/**
+ * @export
+ */
+export const GetApiTradingContentCandlesDirectionEnum = {
     Long: 'long',
     Short: 'short'
 };

@@ -921,6 +921,12 @@ export interface DefaultApiGetApiTradingContentArticlesRequest {
     limit?: string;
 }
 
+export interface DefaultApiGetApiTradingContentCandlesRequest {
+    instrument: string;
+    anchorAt: string;
+    direction?: GetApiTradingContentCandlesDirectionEnum;
+}
+
 export interface DefaultApiGetApiTradingContentIdeasByIdCandlesRequest {
     id: string;
 }
@@ -5298,6 +5304,31 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingContentArticles(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingContentCandles without sending the request
+     * @param {string} instrument 
+     * @param {string} anchorAt 
+     * @param {'long' | 'short'} [direction] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentCandlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentCandlesRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} instrument 
+     * @param {string} anchorAt 
+     * @param {'long' | 'short'} [direction] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentCandlesRaw(requestParameters: DefaultApiGetApiTradingContentCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingContentCandles(requestParameters: DefaultApiGetApiTradingContentCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiTradingContentFeeds without sending the request
@@ -16704,6 +16735,66 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingContentCandles without sending the request
+     */
+    async getApiTradingContentCandlesRequestOpts(requestParameters: DefaultApiGetApiTradingContentCandlesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['instrument'] == null) {
+            throw new runtime.RequiredError(
+                'instrument',
+                'Required parameter "instrument" was null or undefined when calling getApiTradingContentCandles().'
+            );
+        }
+
+        if (requestParameters['anchorAt'] == null) {
+            throw new runtime.RequiredError(
+                'anchorAt',
+                'Required parameter "anchorAt" was null or undefined when calling getApiTradingContentCandles().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['instrument'] != null) {
+            queryParameters['instrument'] = requestParameters['instrument'];
+        }
+
+        if (requestParameters['anchorAt'] != null) {
+            queryParameters['anchorAt'] = requestParameters['anchorAt'];
+        }
+
+        if (requestParameters['direction'] != null) {
+            queryParameters['direction'] = requestParameters['direction'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/content/candles`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingContentCandlesRaw(requestParameters: DefaultApiGetApiTradingContentCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingContentCandlesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingContentCandles(requestParameters: DefaultApiGetApiTradingContentCandlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingContentCandlesRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTradingContentFeeds without sending the request
      */
     async getApiTradingContentFeedsRequestOpts(): Promise<runtime.RequestOpts> {
@@ -26777,6 +26868,14 @@ export const GetApiTradingContentArticlesDirectionEnum = {
     Short: 'short'
 } as const;
 export type GetApiTradingContentArticlesDirectionEnum = typeof GetApiTradingContentArticlesDirectionEnum[keyof typeof GetApiTradingContentArticlesDirectionEnum];
+/**
+ * @export
+ */
+export const GetApiTradingContentCandlesDirectionEnum = {
+    Long: 'long',
+    Short: 'short'
+} as const;
+export type GetApiTradingContentCandlesDirectionEnum = typeof GetApiTradingContentCandlesDirectionEnum[keyof typeof GetApiTradingContentCandlesDirectionEnum];
 /**
  * @export
  */
