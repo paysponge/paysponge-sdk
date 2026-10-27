@@ -6313,36 +6313,6 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.patchApiTradingXFollowingByIdRaw(requestParameters, initOverrides);
     }
     /**
-     * Creates request options for postApiAdminBetaUsersByIdPrefund without sending the request
-     */
-    async postApiAdminBetaUsersByIdPrefundRequestOpts(requestParameters) {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling postApiAdminBetaUsersByIdPrefund().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        let urlPath = `/api/admin/beta-users/{id}/prefund`;
-        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async postApiAdminBetaUsersByIdPrefundRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiAdminBetaUsersByIdPrefundRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiAdminBetaUsersByIdPrefund(requestParameters, initOverrides) {
-        await this.postApiAdminBetaUsersByIdPrefundRaw(requestParameters, initOverrides);
-    }
-    /**
      * Creates request options for postApiAgentKeys without sending the request
      */
     async postApiAgentKeysRequestOpts(requestParameters) {

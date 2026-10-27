@@ -15938,21 +15938,6 @@
         "operationId": "getApiAdminBeta-users"
       }
     },
-    "/api/admin/beta-users/{id}/prefund": {
-      "post": {
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "operationId": "postApiAdminBeta-usersByIdPrefund"
-      }
-    },
     "/oauth/register": {
       "post": {
         "requestBody": {

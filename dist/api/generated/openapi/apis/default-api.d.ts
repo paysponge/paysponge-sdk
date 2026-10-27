@@ -534,9 +534,6 @@ export interface DefaultApiPatchApiTradingXFollowingByIdOperationRequest {
     id: string;
     patchApiTradingXFollowingByIdRequest: PatchApiTradingXFollowingByIdRequest;
 }
-export interface DefaultApiPostApiAdminBetaUsersByIdPrefundRequest {
-    id: string;
-}
 export interface DefaultApiPostApiAgentKeysOperationRequest {
     postApiAgentKeysRequest: PostApiAgentKeysRequest;
 }
@@ -4948,24 +4945,6 @@ export interface DefaultApiInterface {
     /**
      */
     patchApiTradingXFollowingById(requestParameters: DefaultApiPatchApiTradingXFollowingByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiAdminBetaUsersByIdPrefund without sending the request
-     * @param {string} id
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiAdminBetaUsersByIdPrefundRequestOpts(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiAdminBetaUsersByIdPrefundRaw(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiAdminBetaUsersByIdPrefund(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentKeys without sending the request
      * @param {PostApiAgentKeysRequest} postApiAgentKeysRequest
@@ -10567,16 +10546,6 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     patchApiTradingXFollowingById(requestParameters: DefaultApiPatchApiTradingXFollowingByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiAdminBetaUsersByIdPrefund without sending the request
-     */
-    postApiAdminBetaUsersByIdPrefundRequestOpts(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest): Promise<runtime.RequestOpts>;
-    /**
-     */
-    postApiAdminBetaUsersByIdPrefundRaw(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiAdminBetaUsersByIdPrefund(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentKeys without sending the request
      */

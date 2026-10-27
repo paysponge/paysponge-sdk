@@ -1109,10 +1109,6 @@ export interface DefaultApiPatchApiTradingXFollowingByIdOperationRequest {
     patchApiTradingXFollowingByIdRequest: PatchApiTradingXFollowingByIdRequest;
 }
 
-export interface DefaultApiPostApiAdminBetaUsersByIdPrefundRequest {
-    id: string;
-}
-
 export interface DefaultApiPostApiAgentKeysOperationRequest {
     postApiAgentKeysRequest: PostApiAgentKeysRequest;
 }
@@ -6322,27 +6318,6 @@ export interface DefaultApiInterface {
     /**
      */
     patchApiTradingXFollowingById(requestParameters: DefaultApiPatchApiTradingXFollowingByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Creates request options for postApiAdminBetaUsersByIdPrefund without sending the request
-     * @param {string} id 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiAdminBetaUsersByIdPrefundRequestOpts(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiAdminBetaUsersByIdPrefundRaw(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    postApiAdminBetaUsersByIdPrefund(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentKeys without sending the request
@@ -19047,48 +19022,6 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async patchApiTradingXFollowingById(requestParameters: DefaultApiPatchApiTradingXFollowingByIdOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.patchApiTradingXFollowingByIdRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Creates request options for postApiAdminBetaUsersByIdPrefund without sending the request
-     */
-    async postApiAdminBetaUsersByIdPrefundRequestOpts(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling postApiAdminBetaUsersByIdPrefund().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/admin/beta-users/{id}/prefund`;
-        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async postApiAdminBetaUsersByIdPrefundRaw(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.postApiAdminBetaUsersByIdPrefundRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async postApiAdminBetaUsersByIdPrefund(requestParameters: DefaultApiPostApiAdminBetaUsersByIdPrefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.postApiAdminBetaUsersByIdPrefundRaw(requestParameters, initOverrides);
     }
 
     /**
